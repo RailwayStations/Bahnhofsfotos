@@ -7,19 +7,56 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireSwiftyJSON
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
+
+    var bahnhoefe: [Bahnhof]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        bahnhoefe?.removeAll()
+        bahnhoefe = []
+
+        Alamofire.request(Constants.BAHNHOEFE_OHNE_PHOTO_URL).responseSwiftyJSON { response in
+            guard let json = response.result.value?.array else { return }
+
+            for bh in json {
+                if let bahnhof = try! Bahnhof(json: bh) {
+                    self.bahnhoefe?.append(bahnhof)
+                }
+            }
+
+            self.sortBahnhoefe()
+            self.showBahnhoefeOhneFoto()
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func sortBahnhoefe() {
+        bahnhoefe?.sort(by: { (bahnhof1, bahnhof2) -> Bool in
+            bahnhof1.title < bahnhof2.title
+        })
     }
 
+    func showBahnhoefeOhneFoto() {
+        self.tableView.reloadData()
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return bahnhoefe?.count ?? 0
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
+
+        if let bahnhof = bahnhoefe?[indexPath.row] {
+            cell.textLabel?.text = bahnhof.title
+        }
+
+        return cell
+    }
 
 }
 

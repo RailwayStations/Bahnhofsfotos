@@ -12,6 +12,8 @@
 		49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B503EB1E048EAE00B8AFDE /* Main.storyboard */; };
 		49B503EF1E048EAE00B8AFDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B503EE1E048EAE00B8AFDE /* Assets.xcassets */; };
 		49B503F21E048EAE00B8AFDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B503F01E048EAE00B8AFDE /* LaunchScreen.storyboard */; };
+		49B503FA1E04991800B8AFDE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503F91E04991800B8AFDE /* Constants.swift */; };
+		49B503FC1E04A1B700B8AFDE /* Bahnhof.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503FB1E04A1B700B8AFDE /* Bahnhof.swift */; };
 		7265CDE2F28E2527EA9C46C9 /* Pods_Bahnhofsfotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		49B503EE1E048EAE00B8AFDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49B503F11E048EAE00B8AFDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49B503F31E048EAE00B8AFDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49B503F91E04991800B8AFDE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		49B503FB1E04A1B700B8AFDE /* Bahnhof.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bahnhof.swift; sourceTree = "<group>"; };
 		7C56300D9DCF452C76B5066F /* Pods-Bahnhofsfotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,14 +65,48 @@
 		49B503E61E048EAE00B8AFDE /* Bahnhofsfotos */ = {
 			isa = PBXGroup;
 			children = (
-				49B503E71E048EAE00B8AFDE /* AppDelegate.swift */,
-				49B503E91E048EAE00B8AFDE /* ViewController.swift */,
-				49B503EB1E048EAE00B8AFDE /* Main.storyboard */,
-				49B503EE1E048EAE00B8AFDE /* Assets.xcassets */,
-				49B503F01E048EAE00B8AFDE /* LaunchScreen.storyboard */,
-				49B503F31E048EAE00B8AFDE /* Info.plist */,
+				49B504001E04A3D200B8AFDE /* Controller */,
+				49B503FF1E04A3B400B8AFDE /* Misc */,
+				49B503FE1E04A38A00B8AFDE /* Model */,
+				49B503FD1E04A38400B8AFDE /* Util */,
 			);
 			path = Bahnhofsfotos;
+			sourceTree = "<group>";
+		};
+		49B503FD1E04A38400B8AFDE /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				49B503F91E04991800B8AFDE /* Constants.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		49B503FE1E04A38A00B8AFDE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				49B503FB1E04A1B700B8AFDE /* Bahnhof.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		49B503FF1E04A3B400B8AFDE /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				49B503EB1E048EAE00B8AFDE /* Main.storyboard */,
+				49B503E71E048EAE00B8AFDE /* AppDelegate.swift */,
+				49B503EE1E048EAE00B8AFDE /* Assets.xcassets */,
+				49B503F31E048EAE00B8AFDE /* Info.plist */,
+				49B503F01E048EAE00B8AFDE /* LaunchScreen.storyboard */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		49B504001E04A3D200B8AFDE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				49B503E91E048EAE00B8AFDE /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		95E2D7A511D466C1AF063B5D /* Frameworks */ = {
@@ -213,6 +251,8 @@
 			files = (
 				49B503EA1E048EAE00B8AFDE /* ViewController.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
+				49B503FC1E04A1B700B8AFDE /* Bahnhof.swift in Sources */,
+				49B503FA1E04991800B8AFDE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
