@@ -23,19 +23,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Bahnhofsfotos" id="s8q-nz-7V6"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="qwq-ki-G4v" id="wNN-Kf-tpE"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftI-1r-5Eu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="qwq-ki-G4v">
-                    <connections>
-                        <outlet property="delegate" destination="Eb1-rx-MXf" id="7h8-VV-iGF"/>
-                        <outlet property="searchContentsController" destination="Eb1-rx-MXf" id="twK-aW-7Zu"/>
-                        <outlet property="searchResultsDataSource" destination="Eb1-rx-MXf" id="hB0-Zy-i9J"/>
-                        <outlet property="searchResultsDelegate" destination="Eb1-rx-MXf" id="b1J-3e-ZsM"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1114.4000000000001" y="146.17691154422789"/>
         </scene>
