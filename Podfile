@@ -7,5 +7,6 @@ target 'Bahnhofsfotos' do
   # Pods for Bahnhofsfotos
   pod 'Alamofire', '~> 4.2'
   pod 'AlamofireSwiftyJSON', '~> 0.2'
+  pod 'Former', '~> 1.5'
 
 end

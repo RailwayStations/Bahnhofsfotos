@@ -22,11 +22,11 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NAh-oo-tj8" id="EyB-HH-BlK">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mhW-4U-SlD">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -45,6 +45,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Bahnhofsfotos" id="s8q-nz-7V6">
+                        <barButtonItem key="leftBarButtonItem" title="Profil" id="lfY-qx-e6l">
+                            <connections>
+                                <segue destination="aXH-4f-edi" kind="show" id="S5T-Iv-unf"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Karte" id="kCy-SH-WSY">
                             <connections>
                                 <segue destination="tyn-iQ-KqD" kind="show" id="Sod-RA-Hz1"/>
@@ -90,6 +95,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTw-oH-BRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1998" y="146"/>
+        </scene>
+        <!--Deine Daten-->
+        <scene sceneID="jZi-ik-zmh">
+            <objects>
+                <viewController id="aXH-4f-edi" customClass="ProfileViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tVC-4a-MLY"/>
+                        <viewControllerLayoutGuide type="bottom" id="XRX-v6-fOC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CeT-tN-Imf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Deine Daten" id="gLk-CY-rl4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ko6-Ks-QeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1113.75" y="919.0140845070423"/>
         </scene>
         <!--Neues Bahnhofsfoto-->
         <scene sceneID="FS2-Xg-eGb">
