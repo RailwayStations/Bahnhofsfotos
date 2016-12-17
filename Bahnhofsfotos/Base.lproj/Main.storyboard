@@ -22,11 +22,52 @@
                             <outlet property="delegate" destination="Eb1-rx-MXf" id="7TW-hC-JPc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Bahnhofsfotos" id="s8q-nz-7V6"/>
+                    <navigationItem key="navigationItem" title="Bahnhofsfotos" id="s8q-nz-7V6">
+                        <barButtonItem key="rightBarButtonItem" title="Karte" id="kCy-SH-WSY">
+                            <connections>
+                                <segue destination="tyn-iQ-KqD" kind="show" id="Sod-RA-Hz1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftI-1r-5Eu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1114.4000000000001" y="146.17691154422789"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="kRc-Kv-3mb">
+            <objects>
+                <viewController id="tyn-iQ-KqD" customClass="MapViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sfx-Oa-qKF"/>
+                        <viewControllerLayoutGuide type="bottom" id="esO-dz-13U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jPl-f2-bW0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4BO-yD-xQk">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tyn-iQ-KqD" id="nZl-t5-NvW"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="esO-dz-13U" firstAttribute="top" secondItem="4BO-yD-xQk" secondAttribute="bottom" id="iEb-aL-dhH"/>
+                            <constraint firstAttribute="trailing" secondItem="4BO-yD-xQk" secondAttribute="trailing" id="qzi-qv-its"/>
+                            <constraint firstItem="4BO-yD-xQk" firstAttribute="top" secondItem="sfx-Oa-qKF" secondAttribute="bottom" id="rNj-te-jVE"/>
+                            <constraint firstItem="4BO-yD-xQk" firstAttribute="leading" secondItem="jPl-f2-bW0" secondAttribute="leading" id="uWP-GS-qtz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="4BO-yD-xQk" id="aSS-1o-UZ3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xTw-oH-BRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1998" y="146"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8T4-qM-0C3">

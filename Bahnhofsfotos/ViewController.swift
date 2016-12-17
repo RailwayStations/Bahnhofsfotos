@@ -33,33 +33,16 @@ class ViewController: UITableViewController {
 
     // Bahnhöfe auslesen und anzeigen
     func showBahnhoefeOnheFoto() {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
-        Alamofire.request(Constants.BAHNHOEFE_OHNE_PHOTO_URL).responseSwiftyJSON { response in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-            guard let json = response.result.value?.array else { return }
-
-            for bh in json {
-                if let bahnhof = try! Bahnhof(json: bh) {
-                    self.bahnhoefe?.append(bahnhof)
-                }
-            }
-
-            self.sortBahnhoefe()
+        BahnhofStorage.loadBahnhoefeOhneFoto { bahnhoefe in
+            self.bahnhoefe = bahnhoefe
             self.tableView.reloadData()
         }
     }
 
-    // Bahnhöfe sortieren
-    func sortBahnhoefe() {
-        bahnhoefe?.sort(by: { (bahnhof1, bahnhof2) -> Bool in
-            bahnhof1.title < bahnhof2.title
-        })
-    }
+    
 
     // Bahnhöfe filtern
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    func filterContentForSearchText(_ searchText: String) {
         gefilterteBahnhoefe = bahnhoefe?.filter { bahnhof in
             return bahnhof.title.lowercased().contains(searchText.lowercased())
         }
