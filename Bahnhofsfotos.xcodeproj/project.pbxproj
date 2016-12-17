@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		49455A671E04CA76007A5501 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A661E04CA76007A5501 /* MapViewController.swift */; };
 		49455A691E04CB60007A5501 /* BahnhofStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A681E04CB60007A5501 /* BahnhofStorage.swift */; };
+		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
 		49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503E71E048EAE00B8AFDE /* AppDelegate.swift */; };
 		49B503EA1E048EAE00B8AFDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503E91E048EAE00B8AFDE /* ViewController.swift */; };
 		49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B503EB1E048EAE00B8AFDE /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		1D78A7B9AED7B7EE6DBA4F26 /* Pods-Bahnhofsfotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.release.xcconfig"; sourceTree = "<group>"; };
 		49455A661E04CA76007A5501 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		49455A681E04CB60007A5501 /* BahnhofStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BahnhofStorage.swift; sourceTree = "<group>"; };
+		49455A6A1E04D73A007A5501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		49B503E41E048EAE00B8AFDE /* Bahnhofsfotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bahnhofsfotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B503E71E048EAE00B8AFDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49B503E91E048EAE00B8AFDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */,
 				7265CDE2F28E2527EA9C46C9 /* Pods_Bahnhofsfotos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +121,7 @@
 		95E2D7A511D466C1AF063B5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49455A6A1E04D73A007A5501 /* MapKit.framework */,
 				1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */,
 			);
 			name = Frameworks;
@@ -168,6 +172,11 @@
 					49B503E31E048EAD00B8AFDE = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};

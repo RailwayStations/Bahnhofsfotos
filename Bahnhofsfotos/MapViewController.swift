@@ -8,20 +8,64 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    var locationManager: CLLocationManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for bahnhof in BahnhofStorage.bahnhoefeOhneFoto {
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.startUpdatingLocation()
+    }
+
+}
+
+// MARK: - MKMapViewDelegate
+extension MapViewController: MKMapViewDelegate {
+
+    func mapViewDidStopLocatingUser(_ mapView: MKMapView) {
+        debugPrint(mapViewDidStopLocatingUser)
+    }
+
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let latHalf = mapView.region.span.latitudeDelta / 2
+        let lngHalf = mapView.region.span.longitudeDelta / 2
+
+        let lat = (start: mapView.region.center.latitude - latHalf, end: mapView.region.center.latitude + latHalf)
+        let lng = (start: mapView.region.center.longitude - lngHalf, end: mapView.region.center.longitude + lngHalf)
+
+        let bahnhoefeInRegion = BahnhofStorage.bahnhoefeOhneFoto.filter {
+            ($0.lat >= lat.start && $0.lat <= lat.end) && ($0.lon >= lng.start && $0.lon <= lng.end)
+        }
+
+        mapView.removeAnnotations(mapView.annotations)
+        
+        for bahnhof in bahnhoefeInRegion {
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: bahnhof.lat, longitude: bahnhof.lon)
             annotation.title = bahnhof.title
             mapView.addAnnotation(annotation)
         }
+    }
+
+}
+
+// MARK: - CLLocationManagerDelegate
+extension MapViewController: CLLocationManagerDelegate {
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = manager.location else { return }
+
+        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.setRegion(region, animated: true)
+        manager.stopUpdatingLocation()
     }
 
 }
