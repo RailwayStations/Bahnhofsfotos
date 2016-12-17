@@ -181,7 +181,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};

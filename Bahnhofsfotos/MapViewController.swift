@@ -11,9 +11,11 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController {
+
+    var locationManager: CLLocationManager?
+    var mapViewDidFinishRenderingMap = false
     
     @IBOutlet weak var mapView: MKMapView!
-    var locationManager: CLLocationManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +32,15 @@ class MapViewController: UIViewController {
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
 
-    func mapViewDidStopLocatingUser(_ mapView: MKMapView) {
-        debugPrint(mapViewDidStopLocatingUser)
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        mapViewDidFinishRenderingMap = true
     }
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        guard mapViewDidFinishRenderingMap else {
+            return
+        }
+
         let latHalf = mapView.region.span.latitudeDelta / 2
         let lngHalf = mapView.region.span.longitudeDelta / 2
 
