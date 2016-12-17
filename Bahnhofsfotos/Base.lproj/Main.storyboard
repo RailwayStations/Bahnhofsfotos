@@ -22,11 +22,11 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NAh-oo-tj8" id="EyB-HH-BlK">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mhW-4U-SlD">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -150,15 +150,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Neues Bahnhofsfoto" id="F7k-N0-ZEC">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="HVs-Wv-LNA">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="action" id="HVs-Wv-LNA">
                             <connections>
-                                <action selector="saveTouched:" destination="0yW-na-ZCr" id="G4P-VE-fYJ"/>
+                                <action selector="shareTouched:" destination="0yW-na-ZCr" id="FXz-qu-usy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="VZb-4q-gnf" id="wuj-kr-pfV"/>
-                        <outlet property="saveBarButton" destination="HVs-Wv-LNA" id="Ieh-OX-M6J"/>
+                        <outlet property="shareBarButton" destination="HVs-Wv-LNA" id="yAC-dE-Pkx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJl-Wg-HCW" userLabel="First Responder" sceneMemberID="firstResponder"/>

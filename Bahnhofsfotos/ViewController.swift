@@ -76,6 +76,12 @@ class ViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let bahnhof = bahnhoefe?[indexPath.row] {
+            BahnhofStorage.currentBahnhof = bahnhof
+        }
+    }
+
 }
 
 // MARK: - UISearchResultsUpdating

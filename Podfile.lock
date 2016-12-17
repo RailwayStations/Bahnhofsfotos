@@ -1,4 +1,5 @@
 PODS:
+  - AAShareBubbles (1.2.4)
   - Alamofire (4.2.0)
   - AlamofireSwiftyJSON (0.2.0):
     - Alamofire (~> 4.0)
@@ -7,16 +8,18 @@ PODS:
   - SwiftyJSON (3.1.3)
 
 DEPENDENCIES:
+  - AAShareBubbles (~> 1.2)
   - Alamofire (~> 4.2)
   - AlamofireSwiftyJSON (~> 0.2)
   - Former (~> 1.5)
 
 SPEC CHECKSUMS:
+  AAShareBubbles: 53fd5064602fa041a2249dda6b26f7fdccca3093
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AlamofireSwiftyJSON: 5a49196b8b061e32f5ebc84fa0815300bd8a974e
   Former: 0b48a812c0d93b092b908d1b0574d0fd95c6b6f9
   SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
 
-PODFILE CHECKSUM: 4dc89abaa4a6de0e9b7a6ebd43919924b1a83467
+PODFILE CHECKSUM: 596a02c6aa4cb782160ae6d3dd20e84cd033d288
 
 COCOAPODS: 1.1.1

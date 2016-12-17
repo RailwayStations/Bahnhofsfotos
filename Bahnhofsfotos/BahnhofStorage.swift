@@ -12,6 +12,7 @@ import AlamofireSwiftyJSON
 class BahnhofStorage {
 
     static var bahnhoefeOhneFoto: [Bahnhof] = []
+    static var currentBahnhof: Bahnhof?
 
     // Bahnhöfe ohne Foto auslesen
     static func loadBahnhoefeOhneFoto(completionHandler: @escaping (_ bahnhoefe: [Bahnhof]) -> Void) {
