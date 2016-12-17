@@ -10,6 +10,7 @@
 		49455A671E04CA76007A5501 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A661E04CA76007A5501 /* MapViewController.swift */; };
 		49455A691E04CB60007A5501 /* BahnhofStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A681E04CB60007A5501 /* BahnhofStorage.swift */; };
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
+		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
 		49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503E71E048EAE00B8AFDE /* AppDelegate.swift */; };
 		49B503EA1E048EAE00B8AFDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503E91E048EAE00B8AFDE /* ViewController.swift */; };
 		49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B503EB1E048EAE00B8AFDE /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		49455A661E04CA76007A5501 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		49455A681E04CB60007A5501 /* BahnhofStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BahnhofStorage.swift; sourceTree = "<group>"; };
 		49455A6A1E04D73A007A5501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		49455A6E1E04E981007A5501 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		49B503E41E048EAE00B8AFDE /* Bahnhofsfotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bahnhofsfotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B503E71E048EAE00B8AFDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49B503E91E048EAE00B8AFDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				49B503E91E048EAE00B8AFDE /* ViewController.swift */,
 				49455A661E04CA76007A5501 /* MapViewController.swift */,
+				49455A6E1E04E981007A5501 /* PhotoViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -166,11 +169,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = MrHaitec;
 				TargetAttributes = {
 					49B503E31E048EAD00B8AFDE = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = XJ2QWA5JWT;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -265,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B503EA1E048EAE00B8AFDE /* ViewController.swift in Sources */,
+				49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
 				49455A691E04CB60007A5501 /* BahnhofStorage.swift in Sources */,
 				49B503FC1E04A1B700B8AFDE /* Bahnhof.swift in Sources */,
@@ -396,6 +401,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XJ2QWA5JWT;
 				INFOPLIST_FILE = Bahnhofsfotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mrhaitec.de.Bahnhofsfotos;
@@ -410,6 +416,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XJ2QWA5JWT;
 				INFOPLIST_FILE = Bahnhofsfotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mrhaitec.de.Bahnhofsfotos;
