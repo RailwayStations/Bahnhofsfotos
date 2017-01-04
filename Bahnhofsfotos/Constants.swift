@@ -27,15 +27,8 @@ public class Constants {
         public static let KEY_ROWID_COUNTRIES = "rowidcountries"
     }
 
-    public static let BAHNHOEFE_OHNE_PHOTO_URL = "http://fotouebersicht.xn--deutschlands-bahnhfe-lbc.de/bahnhoefe-withoutPhoto.json"
-    //public static let BAHNHOEFE_OHNE_PHOTO_URL = "http://fotouebersicht.xn--deutschlands-bahnhfe-lbc.de/de/bahnhoefe?hasPhoto=false"
-    public static let INTERNATIONALE_BAHNHOEFE_OHNE_PHOTO_URL = "http://www.flying-snail.de/transit-train_station.json"
-    public static let BAHNHOEFE_MIT_PHOTO_URL =  "http://fotouebersicht.xn--deutschlands-bahnhfe-lbc.de/bahnhoefe-withPhoto.json"
-    //public static let BAHNHOEFE_MIT_PHOTO_URL =  "http://fotouebersicht.xn--deutschlands-bahnhfe-lbc.de/de/bahnhoefe?hasPhoto=true"
-
     // Links zusammenschrauben
-    public static let BAHNHOEFE_START_URL = "http://fotouebersicht.xn--deutschlands-bahnhfe-lbc.de"
-    public static let BAHNHOEFE_END_URL = "bahnhoefe?hasPhoto="
-    public static let LAENDERDATEN_URL = "http://www.deutschlands-bahnhoefe.org/laenderdaten.json"
+    public static let BASE_URL = "https://api.railway-stations.org/de"
+    public static let COUNTRIES_URL = "https://railway-stations.org/laenderdaten.json"
 
 }

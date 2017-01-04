@@ -33,13 +33,12 @@ class ViewController: UITableViewController {
 
     // Bahnhöfe auslesen und anzeigen
     func showBahnhoefeOnheFoto() {
-        BahnhofStorage.loadBahnhoefeOhneFoto { bahnhoefe in
+        BahnhofStorage.getStations(withPhoto: false) { bahnhoefe in
             self.bahnhoefe = bahnhoefe
             self.tableView.reloadData()
         }
     }
 
-    
 
     // Bahnhöfe filtern
     func filterContentForSearchText(_ searchText: String) {
@@ -49,6 +48,12 @@ class ViewController: UITableViewController {
 
         tableView.reloadData()
     }
+
+}
+
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+extension ViewController {
 
     // TableView: Anzahl der anzeigbaren Bahnhöfe
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,13 +80,14 @@ class ViewController: UITableViewController {
         return cell
     }
 
+    // TableView: Bahnhof ausgewählt
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let bahnhof = bahnhoefe?[indexPath.row] {
             BahnhofStorage.currentBahnhof = bahnhof
         }
     }
-
 }
+
 
 // MARK: - UISearchResultsUpdating
 extension ViewController: UISearchResultsUpdating {
@@ -92,5 +98,4 @@ extension ViewController: UISearchResultsUpdating {
         }
         filterContentForSearchText(query)
     }
-
 }
