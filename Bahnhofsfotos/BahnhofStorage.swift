@@ -7,7 +7,7 @@
 //
 
 import Alamofire
-import AlamofireSwiftyJSON
+import SwiftyJSON
 
 class BahnhofStorage {
 
@@ -21,10 +21,10 @@ class BahnhofStorage {
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
-        Alamofire.request(Constants.BAHNHOEFE_OHNE_PHOTO_URL).responseSwiftyJSON { response in
+        Alamofire.request(Constants.BAHNHOEFE_OHNE_PHOTO_URL).responseJSON { response in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
 
-            guard let json = response.result.value?.array else { return }
+            guard let json = JSON(response.result.value as Any).array else { return }
 
             for bh in json {
                 if let bahnhof = try! Bahnhof(json: bh) {

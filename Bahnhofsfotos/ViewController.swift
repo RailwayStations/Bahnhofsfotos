@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import AlamofireSwiftyJSON
 
 class ViewController: UITableViewController {
 
