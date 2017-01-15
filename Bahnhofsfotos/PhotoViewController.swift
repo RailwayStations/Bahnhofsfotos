@@ -56,7 +56,7 @@ class PhotoViewController: UIViewController {
         guard let image = imageView.image else {
             return
         }
-        guard let name = BahnhofStorage.currentBahnhof?.title else {
+        guard let name = StationStorage.currentStation?.title else {
             return
         }
         if MFMailComposeViewController.canSendMail() {

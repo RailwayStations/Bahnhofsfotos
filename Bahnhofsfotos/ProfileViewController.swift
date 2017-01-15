@@ -10,19 +10,59 @@ import Former
 
 class ProfileViewController: FormViewController {
 
-    var lizenzSwitchRow: SwitchRowFormer<FormSwitchCell>!
-    var urheberSwitchRow: SwitchRowFormer<FormSwitchCell>!
-    var verlinkungSwitchRow: SwitchRowFormer<FormSwitchCell>!
-    var accountInlinePickerRow: InlinePickerRowFormer<FormInlinePickerCell, String>!
+//    var lizenzSwitchRow: SwitchRowFormer<FormSwitchCell>!
+//    var urheberSwitchRow: SwitchRowFormer<FormSwitchCell>!
+//    var verlinkungSwitchRow: SwitchRowFormer<FormSwitchCell>!
+//    var accountInlinePickerRow: InlinePickerRowFormer<FormInlinePickerCell, String>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        createLizenzForm()
-        createUrheberForm()
-        createVerlinkungForm()
+        createDownloadForm()
+
+//        createLizenzForm()
+//        createUrheberForm()
+//        createVerlinkungForm()
     }
 
+    // Download
+    private func createDownloadForm() {
+
+        let labelRow = LabelRowFormer<FormLabelCell>().configure {
+            $0.cell.textLabel?.text = "Bahnhofsdaten aktualisieren"
+            $0.onSelected({ row in
+
+                row.cell.isSelected = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+                API.getStations(withPhoto: false, completionHandler: { stations in
+
+                    do {
+                        try StationStorage.removeAll()
+                        for station in stations {
+                            try station.save()
+                        }
+                        try StationStorage.fetchAll()
+                    } catch {
+                        debugPrint(error)
+                    }
+
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                })
+            })
+        }
+
+        let header = LabelViewFormer<FormLabelHeaderView>() {
+            $0.textLabel?.text = "Bahnhofsdaten"
+        }
+
+        let section = SectionFormer(rowFormer: labelRow)
+            .set(headerViewFormer: header)
+
+        former.append(sectionFormer: section)
+    }
+
+    /*
     // Lizenzierung
     private func createLizenzForm() {
         let labelRow = LabelRowFormer<FormLabelCell>().configure {
@@ -105,4 +145,6 @@ class ProfileViewController: FormViewController {
             .set(headerViewFormer: header)
         former.append(sectionFormer: section)
     }
+    */
+
 }

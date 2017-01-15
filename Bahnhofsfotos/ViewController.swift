@@ -13,8 +13,7 @@ class ViewController: UITableViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
 
-    var bahnhoefe: [Bahnhof]?
-    var gefilterteBahnhoefe: [Bahnhof]?
+    var gefilterteBahnhoefe: [Station]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,25 +24,24 @@ class ViewController: UITableViewController {
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
 
-        bahnhoefe?.removeAll()
-        bahnhoefe = []
-
-        showBahnhoefeOnheFoto()
+        showStations()
     }
 
-    // Bahnhöfe auslesen und anzeigen
-    func showBahnhoefeOnheFoto() {
-        BahnhofStorage.getStations(withPhoto: false) { bahnhoefe in
-            self.bahnhoefe = bahnhoefe
+    // Bahnhöfe anzeigen
+    func showStations() {
+        try? StationStorage.fetchAll()
+
+        if StationStorage.stationsWithoutPhoto.count > 0 {
             self.tableView.reloadData()
         }
+        // Keine Bahnhöfe geladen. Bitte zuerst im Profil auf "Bahnhofsdaten aktualisieren" tippen.
     }
 
 
     // Bahnhöfe filtern
     func filterContentForSearchText(_ searchText: String) {
-        gefilterteBahnhoefe = bahnhoefe?.filter { bahnhof in
-            return bahnhof.title.lowercased().contains(searchText.lowercased())
+        gefilterteBahnhoefe = StationStorage.stationsWithoutPhoto.filter { station in
+            return station.title.lowercased().contains(searchText.lowercased())
         }
 
         tableView.reloadData()
@@ -60,21 +58,21 @@ extension ViewController {
         if searchController.isActive && searchController.searchBar.text != "" {
             return gefilterteBahnhoefe?.count ?? 0
         }
-        return bahnhoefe?.count ?? 0
+        return StationStorage.stationsWithoutPhoto.count
     }
 
     // TableView: Zelle für spezifischen Bahnhof
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
 
-        var bahnhof: Bahnhof?
+        var station: Station?
         if searchController.isActive && searchController.searchBar.text != "" {
-            bahnhof = gefilterteBahnhoefe?[indexPath.row]
+            station = gefilterteBahnhoefe?[indexPath.row]
         } else {
-            bahnhof = bahnhoefe?[indexPath.row]
+            station = StationStorage.stationsWithoutPhoto[indexPath.row]
         }
-        if bahnhof != nil {
-            cell.textLabel?.text = bahnhof?.title
+        if station != nil {
+            cell.textLabel?.text = station?.title
         }
 
         return cell
@@ -82,9 +80,7 @@ extension ViewController {
 
     // TableView: Bahnhof ausgewählt
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let bahnhof = bahnhoefe?[indexPath.row] {
-            BahnhofStorage.currentBahnhof = bahnhof
-        }
+        StationStorage.currentStation = StationStorage.stationsWithoutPhoto[indexPath.row]
     }
 }
 

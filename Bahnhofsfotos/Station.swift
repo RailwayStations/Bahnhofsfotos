@@ -1,5 +1,5 @@
 //
-//  Bahnhof.swift
+//  Station.swift
 //  Bahnhofsfotos
 //
 //  Created by Miguel Dönicke on 16.12.16.
@@ -9,36 +9,44 @@
 import Foundation
 import SwiftyJSON
 
-class Bahnhof {
+class Station {
 
     var id: Int             //Bahnhofsnummer
     var title: String       //Bahnhofsname
+    var country: String
     var lat: Double
     var lon: Double
-    private var datum: Int?          // not used in the database
-    private var photoflag: String?   // not used in the database
+    var hasPhoto: Bool
+    var datum: Int?
+    var photoflag: String?
 
-    init(id: Int, title: String, lat: Double, lon: Double) {
+    init(id: Int, title: String, country: String, lat: Double, lon: Double, hasPhoto: Bool) {
         self.id = id
         self.title = title
+        self.country = country
         self.lat = lat
         self.lon = lon
+        self.hasPhoto = hasPhoto
     }
 
     init?(json: JSON) throws {
         guard
             let id = json["id"].int,
             let title = json["title"].string,
+            let country = json["country"].string,
             let lat = json["lat"].double,
-            let lon = json["lon"].double
+            let lon = json["lon"].double,
+            let hasPhoto = json["hasPhoto"].bool
         else {
             return nil
         }
 
         self.id = id
         self.title = title
+        self.country = country
         self.lat = lat
         self.lon = lon
+        self.hasPhoto = hasPhoto
     }
 
 }

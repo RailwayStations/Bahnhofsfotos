@@ -5,9 +5,9 @@ target 'Bahnhofsfotos' do
   use_frameworks!
 
   # Pods for Bahnhofsfotos
-  pod 'Alamofire', '~> 4.2'
-  pod 'SwiftyJSON', '~> 3.1'
-  pod 'Former', '~> 1.5'
   pod 'AAShareBubbles', '~> 1.2'
-
+  pod 'Alamofire', '~> 4.2'
+  pod 'Former', '~> 1.5'
+  pod 'SQLite.swift', '~> 0.11'
+  pod 'SwiftyJSON', '~> 3.1' 
 end

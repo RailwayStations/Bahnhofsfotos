@@ -47,16 +47,16 @@ extension MapViewController: MKMapViewDelegate {
         let lat = (start: mapView.region.center.latitude - latHalf, end: mapView.region.center.latitude + latHalf)
         let lng = (start: mapView.region.center.longitude - lngHalf, end: mapView.region.center.longitude + lngHalf)
 
-        let bahnhoefeInRegion = BahnhofStorage.bahnhoefeOhneFoto.filter {
+        let stationsInRegion = StationStorage.stationsWithoutPhoto.filter {
             ($0.lat >= lat.start && $0.lat <= lat.end) && ($0.lon >= lng.start && $0.lon <= lng.end)
         }
 
         mapView.removeAnnotations(mapView.annotations)
         
-        for bahnhof in bahnhoefeInRegion {
+        for station in stationsInRegion {
             let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: bahnhof.lat, longitude: bahnhof.lon)
-            annotation.title = bahnhof.title
+            annotation.coordinate = CLLocationCoordinate2D(latitude: station.lat, longitude: station.lon)
+            annotation.title = station.title
             mapView.addAnnotation(annotation)
         }
     }
