@@ -15,7 +15,12 @@ class StationStorage {
         case message(String?)
     }
 
-    static var stationsWithoutPhoto: [Station] = []
+    static var lastUpdatedAt: Date?
+
+    private static var _stationsWithoutPhoto: [Station] = []
+    static var stationsWithoutPhoto: [Station] {
+        return _stationsWithoutPhoto
+    }
     static var currentStation: Station?
 
     // SQLite properties
@@ -63,18 +68,22 @@ class StationStorage {
     static func removeAll() throws {
         let db = try openConnection()
         try db.run(table.delete())
+
+        lastUpdatedAt = Date()
     }
 
     // Fetch all stations
     static func fetchAll() throws {
         let db = try openConnection()
 
-        stationsWithoutPhoto.removeAll()
+        _stationsWithoutPhoto.removeAll()
 
         for station in try db.prepare(table) {
             let s = Station.from(row: station)
-            stationsWithoutPhoto.append(s)
+            _stationsWithoutPhoto.append(s)
         }
+
+        lastUpdatedAt = Date()
     }
 
     // Save a station
@@ -89,20 +98,28 @@ class StationStorage {
             expressionLon <- station.lon,
             expressionHasPhoto <- station.hasPhoto
         ))
+
+        if let stationIdToUpdate = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
+            _stationsWithoutPhoto.remove(at: stationIdToUpdate)
+            _stationsWithoutPhoto.insert(station, at: stationIdToUpdate)
+        }else {
+            _stationsWithoutPhoto.append(station)
+        }
+
+        lastUpdatedAt = Date()
     }
 
-    // Update a station
-    static func update(station: Station) throws {
+    static func delete(station: Station) throws {
         let db = try openConnection()
 
-        try db.run(table.update(
-            expressionId <- station.id,
-            expressionTitle <- station.title,
-            expressionCountry <- station.country,
-            expressionLat <- station.lat,
-            expressionLon <- station.lon,
-            expressionHasPhoto <- station.hasPhoto
-        ))
+        let s = table.filter(expressionId == station.id)
+        try db.run(s.delete())
+
+        if let stationIdToDelete = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
+            _stationsWithoutPhoto.remove(at: stationIdToDelete)
+        }
+
+        lastUpdatedAt = Date()
     }
 
 }
