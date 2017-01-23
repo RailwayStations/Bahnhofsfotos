@@ -13,7 +13,14 @@ class ViewController: UITableViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
 
+    var stationsUpdatedAt: Date?
     var gefilterteBahnhoefe: [Station]?
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        showStations()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +30,12 @@ class ViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-
-        showStations()
     }
 
     // Bahnhöfe anzeigen
     func showStations() {
-        if StationStorage.stationsWithoutPhoto.count > 0 {
+        if StationStorage.lastUpdatedAt != stationsUpdatedAt {
+            stationsUpdatedAt = StationStorage.lastUpdatedAt
             self.tableView.reloadData()
         }
         // Keine Bahnhöfe geladen. Bitte zuerst im Profil auf "Bahnhofsdaten aktualisieren" tippen.
