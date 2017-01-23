@@ -78,9 +78,10 @@
 		49B503E61E048EAE00B8AFDE /* Bahnhofsfotos */ = {
 			isa = PBXGroup;
 			children = (
+				49B503FE1E04A38A00B8AFDE /* Model */,
+				49F4A3B41E366888009C258A /* View */,
 				49B504001E04A3D200B8AFDE /* Controller */,
 				49B503FF1E04A3B400B8AFDE /* Misc */,
-				49B503FE1E04A38A00B8AFDE /* Model */,
 				49B503FD1E04A38400B8AFDE /* Util */,
 			);
 			path = Bahnhofsfotos;
@@ -107,11 +108,9 @@
 		49B503FF1E04A3B400B8AFDE /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				49B503EB1E048EAE00B8AFDE /* Main.storyboard */,
+				49B503F31E048EAE00B8AFDE /* Info.plist */,
 				49B503E71E048EAE00B8AFDE /* AppDelegate.swift */,
 				49B503EE1E048EAE00B8AFDE /* Assets.xcassets */,
-				49B503F31E048EAE00B8AFDE /* Info.plist */,
-				49B503F01E048EAE00B8AFDE /* LaunchScreen.storyboard */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -119,12 +118,21 @@
 		49B504001E04A3D200B8AFDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				49B503E91E048EAE00B8AFDE /* ViewController.swift */,
 				49455A661E04CA76007A5501 /* MapViewController.swift */,
 				49455A6E1E04E981007A5501 /* PhotoViewController.swift */,
 				49F690F01E05272000BDE340 /* ProfileViewController.swift */,
+				49B503E91E048EAE00B8AFDE /* ViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		49F4A3B41E366888009C258A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				49B503F01E048EAE00B8AFDE /* LaunchScreen.storyboard */,
+				49B503EB1E048EAE00B8AFDE /* Main.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		95E2D7A511D466C1AF063B5D /* Frameworks */ = {
