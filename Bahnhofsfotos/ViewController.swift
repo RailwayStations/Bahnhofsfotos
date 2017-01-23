@@ -38,7 +38,6 @@ class ViewController: UITableViewController {
             stationsUpdatedAt = StationStorage.lastUpdatedAt
             self.tableView.reloadData()
         }
-        // Keine Bahnhöfe geladen. Bitte zuerst im Profil auf "Bahnhofsdaten aktualisieren" tippen.
     }
 
 
@@ -56,6 +55,25 @@ class ViewController: UITableViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ViewController {
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        if StationStorage.stationsWithoutPhoto.count > 0 {
+            tableView.tableHeaderView?.isHidden = false
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLine
+
+            return 1
+        } else {
+//            // Keine Bahnhöfe geladen. Bitte zuerst im Profil auf "Bahnhofsdaten aktualisieren" tippen.
+            let emptyView = EmptyView()
+            emptyView.messageLabel.text = "Keine Bahnhöfe geladen.\nBitte zuerst im Profil\n\"Bahnhofsdaten aktualisieren\"."
+            tableView.tableHeaderView?.isHidden = true
+            tableView.backgroundView = emptyView
+            tableView.separatorStyle = .none
+
+            return 0
+        }
+    }
 
     // TableView: Anzahl der anzeigbaren Bahnhöfe
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

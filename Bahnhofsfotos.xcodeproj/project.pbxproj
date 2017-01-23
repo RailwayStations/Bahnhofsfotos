@@ -11,6 +11,9 @@
 		49455A691E04CB60007A5501 /* StationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A681E04CB60007A5501 /* StationStorage.swift */; };
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
 		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
+		499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B263D1E36A16400E081B3 /* EmptyView.swift */; };
+		499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 499B263F1E36ADF400E081B3 /* EmptyView.xib */; };
+		499B26421E36B08800E081B3 /* ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B26411E36B08800E081B3 /* ViewFromNib.swift */; };
 		49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503E71E048EAE00B8AFDE /* AppDelegate.swift */; };
 		49B503EA1E048EAE00B8AFDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503E91E048EAE00B8AFDE /* ViewController.swift */; };
 		49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B503EB1E048EAE00B8AFDE /* Main.storyboard */; };
@@ -30,6 +33,9 @@
 		49455A681E04CB60007A5501 /* StationStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StationStorage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49455A6A1E04D73A007A5501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		49455A6E1E04E981007A5501 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		499B263D1E36A16400E081B3 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		499B263F1E36ADF400E081B3 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
+		499B26411E36B08800E081B3 /* ViewFromNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFromNib.swift; sourceTree = "<group>"; };
 		49B503E41E048EAE00B8AFDE /* Bahnhofsfotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bahnhofsfotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B503E71E048EAE00B8AFDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49B503E91E048EAE00B8AFDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -129,8 +135,11 @@
 		49F4A3B41E366888009C258A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				499B263D1E36A16400E081B3 /* EmptyView.swift */,
+				499B263F1E36ADF400E081B3 /* EmptyView.xib */,
 				49B503F01E048EAE00B8AFDE /* LaunchScreen.storyboard */,
 				49B503EB1E048EAE00B8AFDE /* Main.storyboard */,
+				499B26411E36B08800E081B3 /* ViewFromNib.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -221,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */,
 				49B503F21E048EAE00B8AFDE /* LaunchScreen.storyboard in Resources */,
 				49B503EF1E048EAE00B8AFDE /* Assets.xcassets in Resources */,
 				49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */,
@@ -287,7 +297,9 @@
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
 				49455A691E04CB60007A5501 /* StationStorage.swift in Sources */,
 				49B503FC1E04A1B700B8AFDE /* Station.swift in Sources */,
+				499B26421E36B08800E081B3 /* ViewFromNib.swift in Sources */,
 				49455A671E04CA76007A5501 /* MapViewController.swift in Sources */,
+				499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */,
 				49F690F11E05272000BDE340 /* ProfileViewController.swift in Sources */,
 				49DF03B81E2BA7E8003C8159 /* API.swift in Sources */,
 				49B503FA1E04991800B8AFDE /* Constants.swift in Sources */,
