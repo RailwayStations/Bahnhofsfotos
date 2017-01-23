@@ -29,8 +29,6 @@ class ViewController: UITableViewController {
 
     // Bahnhöfe anzeigen
     func showStations() {
-        try? StationStorage.fetchAll()
-
         if StationStorage.stationsWithoutPhoto.count > 0 {
             self.tableView.reloadData()
         }
