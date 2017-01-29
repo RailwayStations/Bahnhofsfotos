@@ -6,6 +6,7 @@ PODS:
     - SQLite.swift/standard (= 0.11.2)
   - SQLite.swift/standard (0.11.2)
   - SwiftyJSON (3.1.4)
+  - Toast-Swift (2.0.0)
 
 DEPENDENCIES:
   - AAShareBubbles (~> 1.2)
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - Former (~> 1.5)
   - SQLite.swift (~> 0.11)
   - SwiftyJSON (~> 3.1)
+  - Toast-Swift (~> 2.0)
 
 SPEC CHECKSUMS:
   AAShareBubbles: 53fd5064602fa041a2249dda6b26f7fdccca3093
@@ -20,7 +22,8 @@ SPEC CHECKSUMS:
   Former: 0b48a812c0d93b092b908d1b0574d0fd95c6b6f9
   SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
 
-PODFILE CHECKSUM: 676b915384429bfeac093129b6b8016eaf4ed335
+PODFILE CHECKSUM: c07886f7e962d13c554778975bdd2a7da6755e96
 
 COCOAPODS: 1.1.1

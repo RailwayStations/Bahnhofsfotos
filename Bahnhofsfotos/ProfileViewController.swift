@@ -7,6 +7,7 @@
 //
 
 import Former
+import Toast_Swift
 
 class ProfileViewController: FormViewController {
 
@@ -27,28 +28,55 @@ class ProfileViewController: FormViewController {
 
     // Download
     private func createDownloadForm() {
+        let labelText = "Bahnhofsdaten aktualisieren"
 
-        let labelRow = LabelRowFormer<FormLabelCell>().configure {
-            $0.cell.textLabel?.text = "Bahnhofsdaten aktualisieren"
+        let labelRow = CustomRowFormer<FormLabelCell>().configure {
+            $0.cell.titleLabel?.text = labelText
             $0.onSelected({ row in
 
                 row.cell.isSelected = false
+                row.cell.titleLabel.text = "Bahnhofsdaten herunterladen"
+                self.view.isUserInteractionEnabled = false
+                self.navigationController?.view.isUserInteractionEnabled = false
+                self.view.makeToastActivity(.center)
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
-                API.getStations(withPhoto: false, completionHandler: { stations in
-
-                    do {
-                        try StationStorage.removeAll()
-                        for station in stations {
-                            try station.save()
-                        }
-                        try StationStorage.fetchAll()
-                    } catch {
-                        debugPrint(error)
-                    }
-
+                API.getStations(withPhoto: false) { stations in
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                })
+
+                    let dispatchSource = DispatchSource.makeUserDataAddSource(queue: .main)
+                    dispatchSource.setEventHandler() {
+                        row.cell.titleLabel.text = "Bahnhof speichern: \(dispatchSource.data)/\(stations.count)"
+                        row.cell.subTextLabel?.text = "\(UInt(Float(dispatchSource.data) / Float(stations.count) * 100))%"
+                    }
+                    dispatchSource.resume()
+
+                    // Save stations in background
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        do {
+                            try StationStorage.removeAll()
+                            var counter: UInt = 1
+
+                            for station in stations {
+                                // Update progress
+                                dispatchSource.add(data: counter)
+                                try station.save()
+                                counter += 1
+                            }
+                            try StationStorage.fetchAll()
+                        } catch {
+                            debugPrint(error)
+                        }
+
+                        DispatchQueue.main.async {
+                            row.cell.titleLabel?.text = labelText
+                            row.cell.subTextLabel.text = nil
+                            self.view.isUserInteractionEnabled = true
+                            self.navigationController?.view.isUserInteractionEnabled = true
+                            self.view.hideToastActivity()
+                        }
+                    }
+                }
             })
         }
 
