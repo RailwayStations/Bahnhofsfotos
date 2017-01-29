@@ -28,7 +28,10 @@ class API {
 
                 var stations = [Station]()
 
-                guard let json = JSON(response.result.value as Any).array else { return }
+                guard let json = JSON(response.result.value as Any).array else {
+                    completionHandler(stations)
+                    return
+                }
 
                 do {
                     stations = try json.map {
