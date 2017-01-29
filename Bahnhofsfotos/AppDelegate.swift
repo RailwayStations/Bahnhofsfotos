@@ -6,6 +6,7 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import SwiftyUserDefaults
 import UIKit
 
 @UIApplicationMain
@@ -16,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        try? StationStorage.fetchAll()
+        if Defaults[.dataComplete] {
+            try? StationStorage.fetchAll()
+        }
 
         return true
     }

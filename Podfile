@@ -10,5 +10,6 @@ target 'Bahnhofsfotos' do
   pod 'Former', '~> 1.5'
   pod 'SQLite.swift', '~> 0.11'
   pod 'SwiftyJSON', '~> 3.1'
+  pod 'SwiftyUserDefaults', '~> 3.0'
   pod 'Toast-Swift', '~> 2.0'
 end

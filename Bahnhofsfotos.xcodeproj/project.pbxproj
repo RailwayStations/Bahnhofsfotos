@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4918B1E11E3E7C62007D5757 /* Settings.swift */; };
 		49455A671E04CA76007A5501 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A661E04CA76007A5501 /* MapViewController.swift */; };
 		49455A691E04CB60007A5501 /* StationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A681E04CB60007A5501 /* StationStorage.swift */; };
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bahnhofsfotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D78A7B9AED7B7EE6DBA4F26 /* Pods-Bahnhofsfotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.release.xcconfig"; sourceTree = "<group>"; };
+		4918B1E11E3E7C62007D5757 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		49455A661E04CA76007A5501 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49455A681E04CB60007A5501 /* StationStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StationStorage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49455A6A1E04D73A007A5501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -114,9 +116,10 @@
 		49B503FF1E04A3B400B8AFDE /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				49B503F31E048EAE00B8AFDE /* Info.plist */,
 				49B503E71E048EAE00B8AFDE /* AppDelegate.swift */,
 				49B503EE1E048EAE00B8AFDE /* Assets.xcassets */,
+				49B503F31E048EAE00B8AFDE /* Info.plist */,
+				4918B1E11E3E7C62007D5757 /* Settings.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				49455A691E04CB60007A5501 /* StationStorage.swift in Sources */,
 				49B503FC1E04A1B700B8AFDE /* Station.swift in Sources */,
 				499B26421E36B08800E081B3 /* ViewFromNib.swift in Sources */,
+				4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */,
 				49455A671E04CA76007A5501 /* MapViewController.swift in Sources */,
 				499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */,
 				49F690F11E05272000BDE340 /* ProfileViewController.swift in Sources */,
