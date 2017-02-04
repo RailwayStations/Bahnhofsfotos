@@ -16,27 +16,22 @@ class Station {
     var country: String
     var lat: Double
     var lon: Double
-    var hasPhoto: Bool
-    var datum: Int?
-    var photoflag: String?
 
-    init(id: Int, title: String, country: String, lat: Double, lon: Double, hasPhoto: Bool) {
+    init(id: Int, title: String, country: String, lat: Double, lon: Double) {
         self.id = id
         self.title = title
         self.country = country
         self.lat = lat
         self.lon = lon
-        self.hasPhoto = hasPhoto
     }
 
     init?(json: JSON) throws {
         guard
-            let id = json["id"].int,
-            let title = json["title"].string,
-            let country = json["country"].string,
-            let lat = json["lat"].double,
-            let lon = json["lon"].double,
-            let hasPhoto = json["hasPhoto"].bool
+            let id = json[Constants.DB_JSON_CONSTANTS.KEY_ID].int,
+            let title = json[Constants.DB_JSON_CONSTANTS.KEY_TITLE].string,
+            let country = json[Constants.DB_JSON_CONSTANTS.KEY_COUNTRYNAME].string,
+            let lat = json[Constants.DB_JSON_CONSTANTS.KEY_LAT].double,
+            let lon = json[Constants.DB_JSON_CONSTANTS.KEY_LON].double
         else {
             return nil
         }
@@ -46,7 +41,6 @@ class Station {
         self.country = country
         self.lat = lat
         self.lon = lon
-        self.hasPhoto = hasPhoto
     }
 
 }

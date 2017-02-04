@@ -13,14 +13,29 @@ enum License: String {
 }
 
 enum AccountType: String {
-    case none
-    case twitter
-    case facebook
-    case instagram
-    case snapchat
-    case xing
-    case web
-    case misc
+    case none = "Kein"
+    case twitter = "Twitter"
+    case facebook = "Facebook"
+    case instagram = "Instagram"
+    case snapchat = "Snapchat"
+    case xing = "Xing"
+    case web = "Web"
+    case misc = "Sonstiges"
+}
+
+class Settings {
+
+    static let shared = Settings()
+
+    init() {
+        if Defaults[.country] == "" {
+            Defaults[.country] = "DE"
+        }
+        if Defaults[.accountType] == nil {
+            Defaults[.accountType] = AccountType.none
+        }
+    }
+
 }
 
 extension UserDefaults {
@@ -36,8 +51,9 @@ extension UserDefaults {
 }
 
 extension DefaultsKeys {
-    static let dataComplete = DefaultsKey<Bool>("dataComplete")
+    static let country = DefaultsKey<String>("country")
     static let lastUpdate = DefaultsKey<Date?>("lastUpdate")
+    static let dataComplete = DefaultsKey<Bool>("dataComplete")
     static let license = DefaultsKey<License?>("license")
     static let accountType = DefaultsKey<AccountType?>("accountType")
     static let accountLink = DefaultsKey<String>("accountLink")

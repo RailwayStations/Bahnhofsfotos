@@ -9,6 +9,7 @@
 import Alamofire
 import Foundation
 import SwiftyJSON
+import SwiftyUserDefaults
 
 class API {
 
@@ -16,10 +17,40 @@ class API {
         case message(String)
     }
 
+    static var baseUrl: String {
+        return Constants.BASE_URL + "/" + Defaults[.country].lowercased()
+    }
+
+    // Get all countries
+    static func getCountries(completionHandler: @escaping ([Country]) -> Void) {
+
+        Alamofire.request(Constants.COUNTRIES_URL)
+            .responseJSON { response in
+
+                var countries = [Country]()
+
+                guard let json = JSON(response.result.value as Any).array else {
+                    completionHandler(countries)
+                    return
+                }
+
+                do {
+                    countries = try json.map {
+                        guard let country = try Country(json: $0) else { throw APIError.message("JSON of country is invalid.") }
+                        return country
+                    }
+                } catch {
+                    debugPrint(error)
+                }
+
+                completionHandler(countries)
+        }
+    }
+
     // Get all stations (or with/out photo)
     static func getStations(withPhoto hasPhoto: Bool?, completionHandler: @escaping ([Station]) -> Void) {
 
-        Alamofire.request(Constants.BASE_URL + "/stations",
+        Alamofire.request(API.baseUrl + "/stations",
                           method: .get,
                           parameters: hasPhoto != nil ? ["hasPhoto": hasPhoto!.description] : nil,
                           encoding: URLEncoding.default,

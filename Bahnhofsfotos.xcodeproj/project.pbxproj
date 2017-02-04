@@ -22,6 +22,8 @@
 		49B503F21E048EAE00B8AFDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B503F01E048EAE00B8AFDE /* LaunchScreen.storyboard */; };
 		49B503FA1E04991800B8AFDE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503F91E04991800B8AFDE /* Constants.swift */; };
 		49B503FC1E04A1B700B8AFDE /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503FB1E04A1B700B8AFDE /* Station.swift */; };
+		49C42F6E1E3FA875005544C0 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C42F6D1E3FA875005544C0 /* Country.swift */; };
+		49C42F701E3FAE46005544C0 /* CountryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */; };
 		49DF03B81E2BA7E8003C8159 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF03B71E2BA7E8003C8159 /* API.swift */; };
 		49F690F11E05272000BDE340 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F690F01E05272000BDE340 /* ProfileViewController.swift */; };
 		7265CDE2F28E2527EA9C46C9 /* Pods_Bahnhofsfotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */; };
@@ -47,6 +49,8 @@
 		49B503F31E048EAE00B8AFDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49B503F91E04991800B8AFDE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		49B503FB1E04A1B700B8AFDE /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		49C42F6D1E3FA875005544C0 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryStorage.swift; sourceTree = "<group>"; };
 		49DF03B71E2BA7E8003C8159 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		49F690F01E05272000BDE340 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7C56300D9DCF452C76B5066F /* Pods-Bahnhofsfotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 		49B503FE1E04A38A00B8AFDE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				49C42F6D1E3FA875005544C0 /* Country.swift */,
+				49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */,
 				49B503FB1E04A1B700B8AFDE /* Station.swift */,
 				49455A681E04CB60007A5501 /* StationStorage.swift */,
 			);
@@ -299,8 +305,10 @@
 				49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
 				49455A691E04CB60007A5501 /* StationStorage.swift in Sources */,
+				49C42F701E3FAE46005544C0 /* CountryStorage.swift in Sources */,
 				49B503FC1E04A1B700B8AFDE /* Station.swift in Sources */,
 				499B26421E36B08800E081B3 /* ViewFromNib.swift in Sources */,
+				49C42F6E1E3FA875005544C0 /* Country.swift in Sources */,
 				4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */,
 				49455A671E04CA76007A5501 /* MapViewController.swift in Sources */,
 				499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */,

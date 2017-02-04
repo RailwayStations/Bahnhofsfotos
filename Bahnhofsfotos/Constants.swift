@@ -18,6 +18,7 @@ public class Constants {
         public static let KEY_LON = "lon"
         public static let KEY_DATE = "datum"
         public static let KEY_PHOTOFLAG = "photoflag"
+        public static let KEY_PHOTOGRAPHER = "photographer"
 
         //Länderkonstanten
         public static let KEY_COUNTRYNAME = "country"
@@ -27,8 +28,10 @@ public class Constants {
         public static let KEY_ROWID_COUNTRIES = "rowidcountries"
     }
 
+    public static let DB_FILENAME = "db.sqlite3"
+
     // Links zusammenschrauben
-    public static let BASE_URL = "https://api.railway-stations.org/de"
+    public static let BASE_URL = "https://api.railway-stations.org"
     public static let COUNTRIES_URL = "https://railway-stations.org/laenderdaten.json"
 
 }

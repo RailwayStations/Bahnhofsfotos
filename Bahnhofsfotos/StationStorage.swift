@@ -19,21 +19,18 @@ class StationStorage {
 
     private static var _stationsWithoutPhoto: [Station] = []
     static var stationsWithoutPhoto: [Station] {
-        return _stationsWithoutPhoto
+        return _stationsWithoutPhoto.sorted { $0.title < $1.title }
     }
     static var currentStation: Station?
 
     // SQLite properties
-    private static let table = Table("stations")
-    private static let fileName = "db.sqlite3"
-    fileprivate static let expressionId = Expression<Int>("id")
-    fileprivate static let expressionCountry = Expression<String>("country")
-    fileprivate static let expressionTitle = Expression<String>("title")
-    fileprivate static let expressionLat = Expression<Double>("lat")
-    fileprivate static let expressionLon = Expression<Double>("lon")
-    fileprivate static let expressionHasPhoto = Expression<Bool>("hasPhoto")
-    fileprivate static let expressionPhotographer = Expression<String?>("photographer")
-    fileprivate static let expressionDate = Expression<Date?>("datum")
+    private static let table = Table("station")
+    private static let fileName = Constants.DB_FILENAME
+    fileprivate static let expressionId = Expression<Int>(Constants.DB_JSON_CONSTANTS.KEY_ID)
+    fileprivate static let expressionCountry = Expression<String>(Constants.DB_JSON_CONSTANTS.KEY_COUNTRYNAME)
+    fileprivate static let expressionTitle = Expression<String>(Constants.DB_JSON_CONSTANTS.KEY_TITLE)
+    fileprivate static let expressionLat = Expression<Double>(Constants.DB_JSON_CONSTANTS.KEY_LAT)
+    fileprivate static let expressionLon = Expression<Double>(Constants.DB_JSON_CONSTANTS.KEY_LON)
 
     // Open connection to database
     private static func openConnection() throws -> Connection {
@@ -55,9 +52,6 @@ class StationStorage {
             t.column(expressionTitle)
             t.column(expressionLat)
             t.column(expressionLon)
-            t.column(expressionHasPhoto)
-            t.column(expressionPhotographer)
-            t.column(expressionDate)
         })
 
         // return connection
@@ -95,8 +89,7 @@ class StationStorage {
             expressionTitle <- station.title,
             expressionCountry <- station.country,
             expressionLat <- station.lat,
-            expressionLon <- station.lon,
-            expressionHasPhoto <- station.hasPhoto
+            expressionLon <- station.lon
         ))
 
         if let stationIdToUpdate = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
@@ -136,8 +129,7 @@ extension Station {
                        title: row.get(StationStorage.expressionTitle),
                        country: row.get(StationStorage.expressionCountry),
                        lat: row.get(StationStorage.expressionLat),
-                       lon: row.get(StationStorage.expressionLon),
-                       hasPhoto: row.get(StationStorage.expressionHasPhoto)
+                       lon: row.get(StationStorage.expressionLon)
                 )
     }
     

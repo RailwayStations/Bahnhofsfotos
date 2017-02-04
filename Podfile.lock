@@ -1,7 +1,7 @@
 PODS:
   - AAShareBubbles (1.2.4)
   - Alamofire (4.2.0)
-  - Former (1.5.1)
+  - Eureka (2.0.0-beta.1)
   - SQLite.swift (0.11.2):
     - SQLite.swift/standard (= 0.11.2)
   - SQLite.swift/standard (0.11.2)
@@ -12,7 +12,7 @@ PODS:
 DEPENDENCIES:
   - AAShareBubbles (~> 1.2)
   - Alamofire (~> 4.2)
-  - Former (~> 1.5)
+  - Eureka (~> 2.0.0-beta.1)
   - SQLite.swift (~> 0.11)
   - SwiftyJSON (~> 3.1)
   - SwiftyUserDefaults (~> 3.0)
@@ -21,12 +21,12 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AAShareBubbles: 53fd5064602fa041a2249dda6b26f7fdccca3093
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
-  Former: 0b48a812c0d93b092b908d1b0574d0fd95c6b6f9
+  Eureka: d014adf16406745e1a78d5790ea37ed130a0a8e5
   SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
 
-PODFILE CHECKSUM: 0dff489ee1225f1685b1ecaeb0a5ef82d55ccf9e
+PODFILE CHECKSUM: ef2126b03d0d290324999e408353e4351d55f123
 
 COCOAPODS: 1.1.1
