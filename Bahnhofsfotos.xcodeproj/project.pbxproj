@@ -202,7 +202,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = MrHaitec;
+				ORGANIZATIONNAME = "Railway-Stations";
 				TargetAttributes = {
 					49B503E31E048EAD00B8AFDE = {
 						CreatedOnToolsVersion = 8.1;
@@ -444,7 +444,7 @@
 				DEVELOPMENT_TEAM = XJ2QWA5JWT;
 				INFOPLIST_FILE = Bahnhofsfotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mrhaitec.de.Bahnhofsfotos;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.railway-stations.RSApp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -459,7 +459,7 @@
 				DEVELOPMENT_TEAM = XJ2QWA5JWT;
 				INFOPLIST_FILE = Bahnhofsfotos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mrhaitec.de.Bahnhofsfotos;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.railway-stations.RSApp-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
