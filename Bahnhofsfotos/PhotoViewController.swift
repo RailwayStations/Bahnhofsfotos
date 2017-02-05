@@ -6,30 +6,29 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
-import UIKit
 import AAShareBubbles
+import ImagePicker
 import MessageUI
+import UIKit
 
 class PhotoViewController: UIViewController {
-
-    var imagePicker: UIImagePickerController!
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shareBarButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
     }
 
     @IBAction func pickImage(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Foto machen", style: .default) { _ in self.openPicker(type: .camera) })
-        alert.addAction(UIAlertAction(title: "Foto aus Galerie", style: .default) { _ in self.openPicker(type: .photoLibrary) })
-        alert.addAction(UIAlertAction(title: "Abbrechen", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
+        Configuration.allowMultiplePhotoSelection = false
+        Configuration.lockedOrientation = .landscape
+        Configuration.cancelButtonTitle = "Abbruch"
+        Configuration.doneButtonTitle = "Fertig"
+
+        let imagePicker =  ImagePickerController()
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
     }
 
     @IBAction func shareTouched(_ sender: Any) {
@@ -39,11 +38,6 @@ class PhotoViewController: UIViewController {
         shareBubbles?.showTwitterBubble = true
         shareBubbles?.showFacebookBubble = true
         shareBubbles?.show()
-    }
-
-    func openPicker(type: UIImagePickerControllerSourceType) {
-        imagePicker.sourceType = type
-        present(imagePicker, animated: true, completion: nil)
     }
 
     func showError(_ error: String) {
@@ -79,13 +73,22 @@ class PhotoViewController: UIViewController {
 
 }
 
-// MARK: - UINavigationControllerDelegate
-// MARK: UIImagePickerControllerDelegate
-extension PhotoViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+// MARK: - ImagePickerDelegate
+extension PhotoViewController: ImagePickerDelegate {
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        shareBarButton.isEnabled = true
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.showGalleryView()
+    }
+
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        if !images.isEmpty {
+            imageView.image = images[0]
+            shareBarButton.isEnabled = true
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
         imagePicker.dismiss(animated: true, completion: nil)
     }
 
