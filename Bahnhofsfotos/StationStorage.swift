@@ -101,6 +101,35 @@ class StationStorage {
 
         lastUpdatedAt = Date()
     }
+    
+    // Save stations
+    static func create(stations: [Station], progressHandler: ((Int) -> Void)? = nil) throws {
+        let db = try openConnection()
+        
+        try db.transaction {
+            var counter = 0
+            for station in stations {
+                counter += 1
+                progressHandler?(counter)
+                try db.run(table.insert(or: .replace,
+                                        expressionId <- station.id,
+                                        expressionTitle <- station.title,
+                                        expressionCountry <- station.country,
+                                        expressionLat <- station.lat,
+                                        expressionLon <- station.lon
+                ))
+                
+                if let stationIdToUpdate = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
+                    _stationsWithoutPhoto.remove(at: stationIdToUpdate)
+                    _stationsWithoutPhoto.insert(station, at: stationIdToUpdate)
+                } else {
+                    _stationsWithoutPhoto.append(station)
+                }
+            }
+        }
+        
+        lastUpdatedAt = Date()
+    }
 
     static func delete(station: Station) throws {
         let db = try openConnection()

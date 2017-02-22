@@ -270,14 +270,9 @@ class ProfileViewController: FormViewController {
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     try StationStorage.removeAll()
-                    var counter: UInt = 1
-
-                    for station in stations {
-                        // Update progress
-                        dispatchSource.add(data: counter)
-                        try station.save()
-                        counter += 1
-                    }
+                    try StationStorage.create(stations: stations, progressHandler: { counter in
+                        dispatchSource.add(data: UInt(counter))
+                    })
                     Defaults[.dataComplete] = true
                     Defaults[.lastUpdate] = StationStorage.lastUpdatedAt
                     try StationStorage.fetchAll()
