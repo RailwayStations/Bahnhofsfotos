@@ -177,7 +177,17 @@ class ProfileViewController: FormViewController {
         return Section(FormSection.link.rawValue)
 
             <<< LabelRow() { row in
-                    row.title = "Möchtest Du verlinkt werden?"
+                row.title = "Möchtest Du verlinkt werden?"
+            }
+
+            <<< SwitchRow() { row in
+                    row.title = Defaults[.accountLinking] ? "Ja" : "Nein"
+                    row.value = Defaults[.accountLinking]
+                }.onChange { row in
+                    guard let value = row.value else { return }
+                    Defaults[.accountLinking] = value
+                    row.title = Defaults[.accountLinking] ? "Ja" : "Nein"
+                    row.updateCell()
                 }
 
             <<< PickerInlineRow<AccountType>(RowTag.accountType.rawValue) { row in
@@ -189,7 +199,6 @@ class ProfileViewController: FormViewController {
                         AccountType.instagram,
                         AccountType.snapchat,
                         AccountType.xing,
-                        AccountType.web,
                         AccountType.misc
                     ]
                     row.displayValueFor = { (value: AccountType?) in
@@ -201,13 +210,13 @@ class ProfileViewController: FormViewController {
                 }
 
             <<< TextRow() { row in
-                    row.value = Defaults[.accountLink]
-                    row.placeholder = "Accountname oder URL (http://...)"
+                    row.value = Defaults[.accountName]
+                    row.placeholder = "Accountname"
                     row.hidden = .function([RowTag.accountType.rawValue], { _ in
                         return Defaults[.accountType] == AccountType.none
                     })
                 }.onChange { row in
-                    Defaults[.accountLink] = row.value ?? ""
+                    Defaults[.accountName] = row.value ?? ""
                 }
     }
 
