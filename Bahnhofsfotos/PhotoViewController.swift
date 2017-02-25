@@ -21,12 +21,13 @@ class PhotoViewController: UIViewController {
     }
 
     @IBAction func pickImage(_ sender: Any) {
-        Configuration.allowMultiplePhotoSelection = false
-        Configuration.lockedOrientation = .landscape
-        Configuration.cancelButtonTitle = "Abbruch"
-        Configuration.doneButtonTitle = "Fertig"
+        var configuration = Configuration()
+        configuration.allowMultiplePhotoSelection = false
+        configuration.allowedOrientations = .landscape
+        configuration.cancelButtonTitle = "Abbruch"
+        configuration.doneButtonTitle = "Fertig"
 
-        let imagePicker =  ImagePickerController()
+        let imagePicker =  ImagePickerController(configuration: configuration)
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }

@@ -26,14 +26,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ImagePicker:
-    :commit: 21ab988c69ca1c95c093a796b2e113d924a18937
+    :commit: 1169eaf77ea71a5dfc3ca22a0fb91ebf30ef4761
     :git: https://github.com/Haitec/ImagePicker
 
 SPEC CHECKSUMS:
   AAShareBubbles: 53fd5064602fa041a2249dda6b26f7fdccca3093
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Eureka: d014adf16406745e1a78d5790ea37ed130a0a8e5
-  ImagePicker: 81175d36c2852cb543cb4f5d6c19e28f3e8d90eb
+  ImagePicker: 036ad79e41064dea59e1b0f9b913174a17656089
   SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
