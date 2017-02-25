@@ -52,6 +52,17 @@ class ViewController: UITableViewController {
 
 }
 
+// MARK: - Segue
+extension ViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "" // show only back arrow
+        navigationItem.backBarButtonItem = backItem
+    }
+    
+}
+
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ViewController {
