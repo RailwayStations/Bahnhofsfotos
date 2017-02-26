@@ -19,7 +19,6 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.backBarButtonItem?.title = "BACK"
         navigationItem.title = StationStorage.currentStation?.title
     }
 
