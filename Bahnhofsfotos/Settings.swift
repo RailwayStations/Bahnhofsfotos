@@ -57,6 +57,6 @@ extension DefaultsKeys {
     static let license = DefaultsKey<License?>("license")
     static let accountLinking = DefaultsKey<Bool>("accountLinking")
     static let accountType = DefaultsKey<AccountType?>("accountType")
-    static let accountName = DefaultsKey<String>("accountName")
+    static let accountName = DefaultsKey<String?>("accountName")
 }
 

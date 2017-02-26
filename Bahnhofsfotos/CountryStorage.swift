@@ -8,6 +8,7 @@
 
 import SQLite
 import SwiftyJSON
+import SwiftyUserDefaults
 
 class CountryStorage {
 
@@ -20,6 +21,11 @@ class CountryStorage {
     private static var _countries: [Country] = []
     static var countries: [Country] {
         return _countries.sorted { $0.country < $1.country }
+    }
+    static var currentCountry: Country? {
+        return CountryStorage.countries.first(where: { (country) -> Bool in
+            country.countryflag == Defaults[.country]
+        })
     }
 
     // SQLite properties

@@ -9,6 +9,7 @@
 import AAShareBubbles
 import ImagePicker
 import MessageUI
+import SwiftyUserDefaults
 import UIKit
 
 class PhotoViewController: UIViewController {
@@ -57,12 +58,16 @@ class PhotoViewController: UIViewController {
             return
         }
         if MFMailComposeViewController.canSendMail() {
+            guard
+                let email = CountryStorage.currentCountry?.mail,
+                let username = Defaults[.accountName]
+                else { return }
             let mailController = MFMailComposeViewController()
             mailController.mailComposeDelegate = self
-            mailController.setToRecipients(["fotos@bahn.hof"])
+            mailController.setToRecipients([email])
             mailController.setSubject("Neues Bahnhofsfoto: \(name)")
             if let data = UIImagePNGRepresentation(image) {
-                mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(name)-haitec")
+                mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(name)-\(username)")
             }
             present(mailController, animated: true, completion: nil)
         } else {
