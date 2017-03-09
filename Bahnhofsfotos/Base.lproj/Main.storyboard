@@ -21,11 +21,11 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NAh-oo-tj8" id="EyB-HH-BlK">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mhW-4U-SlD">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -122,15 +122,12 @@
                         <viewControllerLayoutGuide type="top" id="ksF-Du-KU1"/>
                         <viewControllerLayoutGuide type="bottom" id="psc-Cf-leI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rKr-kO-jnn">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="rKr-kO-jnn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyRailway" translatesAutoresizingMaskIntoConstraints="NO" id="QFz-bG-m8N">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-4q-gnf">
-                                <rect key="frame" x="16" y="84" width="288" height="464"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-qD-uxL">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
@@ -138,21 +135,24 @@
                                     <action selector="pickImage:" destination="0yW-na-ZCr" eventType="touchUpInside" id="pYf-5X-mWY"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-4q-gnf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Nnd-qD-uxL" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="2dg-qk-WiP"/>
-                            <constraint firstItem="VZb-4q-gnf" firstAttribute="top" secondItem="ksF-Du-KU1" secondAttribute="bottom" constant="20" id="3He-GH-wWO"/>
-                            <constraint firstItem="Nnd-qD-uxL" firstAttribute="top" secondItem="ksF-Du-KU1" secondAttribute="bottom" id="7dt-ol-S1H"/>
+                            <constraint firstAttribute="trailing" secondItem="VZb-4q-gnf" secondAttribute="trailing" id="3lN-vr-gsK"/>
+                            <constraint firstItem="Nnd-qD-uxL" firstAttribute="top" secondItem="ksF-Du-KU1" secondAttribute="bottom" id="E8i-S4-fLt"/>
                             <constraint firstItem="QFz-bG-m8N" firstAttribute="top" secondItem="rKr-kO-jnn" secondAttribute="top" id="GCD-9N-MgV"/>
-                            <constraint firstAttribute="trailing" secondItem="VZb-4q-gnf" secondAttribute="trailing" constant="16" id="Mcd-Kj-9L4"/>
-                            <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="VZb-4q-gnf" secondAttribute="bottom" constant="20" id="POf-ib-GV9"/>
-                            <constraint firstAttribute="trailing" secondItem="Nnd-qD-uxL" secondAttribute="trailing" id="RgU-hS-vZe"/>
+                            <constraint firstAttribute="trailing" secondItem="Nnd-qD-uxL" secondAttribute="trailing" id="M8K-N2-02B"/>
+                            <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="VZb-4q-gnf" secondAttribute="bottom" id="SoN-wz-lTS"/>
                             <constraint firstItem="QFz-bG-m8N" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="X2B-J0-uwI"/>
-                            <constraint firstItem="VZb-4q-gnf" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" constant="16" id="iPH-SD-isY"/>
+                            <constraint firstItem="VZb-4q-gnf" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="Zrg-fq-giX"/>
+                            <constraint firstItem="Nnd-qD-uxL" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="ejd-Ts-dfx"/>
+                            <constraint firstItem="VZb-4q-gnf" firstAttribute="top" secondItem="rKr-kO-jnn" secondAttribute="top" id="hgQ-ix-EwB"/>
                             <constraint firstAttribute="trailing" secondItem="QFz-bG-m8N" secondAttribute="trailing" id="u9U-9e-dxi"/>
+                            <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="Nnd-qD-uxL" secondAttribute="bottom" id="wZB-pG-4Hy"/>
                             <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="QFz-bG-m8N" secondAttribute="bottom" id="xfq-mw-GLE"/>
-                            <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="Nnd-qD-uxL" secondAttribute="bottom" id="zNB-KX-tOl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Neues Bahnhofsfoto" id="F7k-N0-ZEC">
