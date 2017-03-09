@@ -9,6 +9,7 @@
 import AAShareBubbles
 import ImagePicker
 import MessageUI
+import Social
 import SwiftyUserDefaults
 import UIKit
 
@@ -44,24 +45,25 @@ class PhotoViewController: UIViewController {
         shareBubbles?.show()
     }
 
+    // show error message
     func showError(_ error: String) {
         let alert = UIAlertController(title: nil, message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 
+    // show mail controller
     func showMailController() {
-        guard let image = imageView.image else {
-            return
-        }
-        guard let name = StationStorage.currentStation?.title else {
-            return
-        }
+        guard let image = imageView.image else { return }
+        guard let name = StationStorage.currentStation?.title else { return }
+        guard let email = CountryStorage.currentCountry?.mail else { return }
+
         if MFMailComposeViewController.canSendMail() {
-            guard
-                let email = CountryStorage.currentCountry?.mail,
-                let username = Defaults[.accountName]
-                else { return }
+            guard let username = Defaults[.accountName] else {
+                showError("Kein Accountname hinterlegt. Bitte unter \"Meine Daten\" angeben.")
+                return
+            }
+
             let mailController = MFMailComposeViewController()
             mailController.mailComposeDelegate = self
             mailController.setToRecipients([email])
@@ -72,6 +74,28 @@ class PhotoViewController: UIViewController {
             present(mailController, animated: true, completion: nil)
         } else {
             showError("Es können keine E-Mail verschickt werden.")
+        }
+    }
+
+    // show twitter controller
+    func showTwitterController() {
+        guard let name = StationStorage.currentStation?.title,
+              let tags = CountryStorage.currentCountry?.twitter_tags else { return }
+        guard let image = imageView.image else {
+            showError("Kein Bild ausgewählt.")
+            return
+        }
+        guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) else {
+            showError("Twitter nicht im System gefunden.")
+            return
+        }
+
+        if let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
+            twitterController.setInitialText("\(name) \(tags)")
+            twitterController.add(image)
+            present(twitterController, animated: true, completion: nil)
+        } else {
+            showError("Es können keine Tweets verschickt werden.")
         }
     }
 
@@ -110,7 +134,7 @@ extension PhotoViewController: AAShareBubblesDelegate {
         case .mail:
             showMailController()
         case .twitter:
-            debugPrint("twitter")
+            showTwitterController()
         case .facebook:
             debugPrint("facebook")
         default:
