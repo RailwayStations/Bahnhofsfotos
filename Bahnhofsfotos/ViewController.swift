@@ -75,7 +75,7 @@ extension ViewController {
 
             return 1
         } else {
-//            // Keine Bahnhöfe geladen. Bitte zuerst im Profil auf "Bahnhofsdaten aktualisieren" tippen.
+            // Keine Bahnhöfe geladen. Bitte zuerst im Profil auf "Bahnhofsdaten aktualisieren" tippen.
             let emptyView = EmptyView()
             emptyView.messageLabel.text = "Keine Bahnhöfe geladen.\nBitte zuerst im Profil\n\"Bahnhofsdaten aktualisieren\"."
             tableView.tableHeaderView?.isHidden = true
@@ -94,10 +94,13 @@ extension ViewController {
         return StationStorage.stationsWithoutPhoto.count
     }
 
-    // TableView: Zelle für spezifischen Bahnhof
+    // TableView: Zelle
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell()
+        return tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
+    }
 
+    // TableView: Zelle für spezifischen Bahnhof
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var station: Station?
         if searchController.isActive && searchController.searchBar.text != "" {
             station = gefilterteBahnhoefe?[indexPath.row]
@@ -107,8 +110,6 @@ extension ViewController {
         if station != nil {
             cell.textLabel?.text = station?.title
         }
-
-        return cell
     }
 
     // TableView: Bahnhof ausgewählt

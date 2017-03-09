@@ -19,7 +19,7 @@ class StationStorage {
 
     private static var _stationsWithoutPhoto: [Station] = []
     static var stationsWithoutPhoto: [Station] {
-        return _stationsWithoutPhoto.sorted { $0.title < $1.title }
+        return _stationsWithoutPhoto
     }
     static var currentStation: Station?
 
@@ -77,6 +77,8 @@ class StationStorage {
             _stationsWithoutPhoto.append(s)
         }
 
+        _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.title < $1.title }
+
         lastUpdatedAt = Date()
     }
 
@@ -97,6 +99,7 @@ class StationStorage {
             _stationsWithoutPhoto.insert(station, at: stationIdToUpdate)
         }else {
             _stationsWithoutPhoto.append(station)
+            _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.title < $1.title }
         }
 
         lastUpdatedAt = Date()
@@ -127,6 +130,8 @@ class StationStorage {
                 }
             }
         }
+
+        _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.title < $1.title }
         
         lastUpdatedAt = Date()
     }

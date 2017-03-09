@@ -20,7 +20,7 @@ class CountryStorage {
 
     private static var _countries: [Country] = []
     static var countries: [Country] {
-        return _countries.sorted { $0.country < $1.country }
+        return _countries
     }
     static var currentCountry: Country? {
         return CountryStorage.countries.first(where: { (country) -> Bool in
@@ -80,6 +80,8 @@ class CountryStorage {
             _countries.append(c)
         }
 
+        _countries = _countries.sorted { $0.country < $1.country }
+
         lastUpdatedAt = Date()
     }
 
@@ -94,6 +96,8 @@ class CountryStorage {
         ))
 
         _countries.append(country)
+
+        _countries = _countries.sorted { $0.country < $1.country }
 
         lastUpdatedAt = Date()
     }
