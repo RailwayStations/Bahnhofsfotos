@@ -50,14 +50,14 @@ class ProfileViewController: FormViewController {
             row.title = "Länderdaten laden"
             row.updateCell()
 
-            self.setIsUserInteractionEnabled(false)
+            Helper.setIsUserInteractionEnabled(in: self, to: false)
             self.view.makeToastActivity(.center)
 
-            self.loadCountries {
+            Helper.loadCountries {
                 row.title = rowTitle
                 row.value = ""
                 row.updateCell()
-                self.setIsUserInteractionEnabled(true)
+                Helper.setIsUserInteractionEnabled(in: self, to: true)
                 self.view.hideToastActivity()
             }
         }
@@ -99,52 +99,11 @@ class ProfileViewController: FormViewController {
         }
     }
 
-    // Creates the row for getting the stations
-    private func createGetStationsRow() -> LabelRow {
-        let rowTitle = "Bahnhofsdaten aktualisieren"
-
-        return LabelRow() { row in
-            row.title = rowTitle
-            if let lastUpdate = Defaults[.lastUpdate] {
-                row.value = self.getNiceDateString(fromDate: lastUpdate)
-            }
-            row.disabled = .function([RowTag.countryPicker.rawValue], { _ in
-                return Defaults[.country].characters.count == 0
-            })
-        }.onCellSelection { (cell, row) in
-            if row.isDisabled {
-                return
-            }
-            row.title = "Bahnhofsdaten herunterladen"
-            row.value = nil
-            row.updateCell()
-
-            self.setIsUserInteractionEnabled(false)
-            self.view.makeToastActivity(.center)
-
-            self.loadStations(progressHandler: { progress, count in
-                row.title = "Bahnhof speichern: \(progress)/\(count)"
-                row.value = "\(UInt(Float(progress) / Float(count) * 100))%"
-                row.updateCell()
-            }) {
-                row.title = rowTitle
-                if let lastUpdate = Defaults[.lastUpdate] {
-                    row.value = self.getNiceDateString(fromDate: lastUpdate)
-                }
-                row.updateCell()
-
-                self.setIsUserInteractionEnabled(true)
-                self.view.hideToastActivity()
-            }
-        }
-    }
-
     // Creates the download section
     private func createDownloadSection() -> Section {
         return Section(FormSection.download.rawValue)
             <<< createGetCountriesRow()
             <<< createCountryPickerRow()
-            <<< createGetStationsRow()
     }
 
     // MARK: License
@@ -218,82 +177,6 @@ class ProfileViewController: FormViewController {
                 }.onChange { row in
                     Defaults[.accountName] = row.value ?? ""
                 }
-    }
-
-    // MARK: - Helpers
-
-    // Disables the view for user interaction
-    private func setIsUserInteractionEnabled(_ enabled: Bool) {
-        view.isUserInteractionEnabled = enabled
-        navigationController?.view.isUserInteractionEnabled = enabled
-    }
-
-    // Get date string based on (to)day
-    private func getNiceDateString(fromDate date: Date) -> String {
-        if Calendar.current.isDateInToday(date) {
-            return DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
-        } else {
-            return DateFormatter.localizedString(from: date, dateStyle: .short, timeStyle: .none)
-        }
-    }
-
-    // Get and save countries
-    private func loadCountries(completionHandler: @escaping () -> Void) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        API.getCountries { countries in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-            // Save countries in background
-            DispatchQueue.global(qos: .userInitiated).async {
-                do {
-                    try CountryStorage.removeAll()
-
-                    for country in countries {
-                        try country.save()
-                    }
-                    try CountryStorage.fetchAll()
-                } catch {
-                    debugPrint(error)
-                }
-
-                DispatchQueue.main.async {
-                    completionHandler()
-                }
-            }
-        }
-    }
-
-    // Get and save stations
-    private func loadStations(progressHandler: @escaping (Int, Int) -> Void, completionHandler: @escaping () -> Void) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        API.getStations(withPhoto: false) { stations in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-            let dispatchSource = DispatchSource.makeUserDataAddSource(queue: .main)
-            dispatchSource.setEventHandler() {
-                progressHandler(Int(dispatchSource.data), stations.count)
-            }
-            dispatchSource.resume()
-
-            // Save stations in background
-            DispatchQueue.global(qos: .userInitiated).async {
-                do {
-                    try StationStorage.removeAll()
-                    try StationStorage.create(stations: stations, progressHandler: { counter in
-                        dispatchSource.add(data: UInt(counter))
-                    })
-                    Defaults[.dataComplete] = true
-                    Defaults[.lastUpdate] = StationStorage.lastUpdatedAt
-                    try StationStorage.fetchAll()
-                } catch {
-                    debugPrint(error)
-                }
-
-                DispatchQueue.main.async {
-                    completionHandler()
-                }
-            }
-        }
-    }
+    }    
 
 }

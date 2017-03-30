@@ -6,10 +6,14 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
-import UIKit
 import Alamofire
+import UIKit
 
-class ViewController: UITableViewController {
+class ListViewController: UIViewController {
+    
+    fileprivate let kCellIdentifier = "cell"
+    
+    @IBOutlet weak var tableView: UITableView!
 
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -24,6 +28,9 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
 
         searchController.searchBar.placeholder = "Bahnhof finden"
         searchController.searchResultsUpdater = self
@@ -32,6 +39,10 @@ class ViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
     }
 
+    @IBAction func showMenu(_ sender: Any) {
+        sideMenuViewController?.presentLeftMenuViewController()
+    }
+    
     // Bahnhöfe anzeigen
     func showStations() {
         if StationStorage.lastUpdatedAt != stationsUpdatedAt {
@@ -52,22 +63,11 @@ class ViewController: UITableViewController {
 
 }
 
-// MARK: - Segue
-extension ViewController {
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem()
-        backItem.title = "" // show only back arrow
-        navigationItem.backBarButtonItem = backItem
-    }
-    
-}
 
+// MARK: - UITableViewDataSource
+extension ListViewController: UITableViewDataSource {
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension ViewController {
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if StationStorage.stationsWithoutPhoto.count > 0 {
             tableView.tableHeaderView?.isHidden = false
             tableView.backgroundView = nil
@@ -87,7 +87,7 @@ extension ViewController {
     }
 
     // TableView: Anzahl der anzeigbaren Bahnhöfe
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
             return gefilterteBahnhoefe?.count ?? 0
         }
@@ -95,12 +95,17 @@ extension ViewController {
     }
 
     // TableView: Zelle
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: kCellIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: kCellIdentifier)
     }
+    
+}
 
-    // TableView: Zelle für spezifischen Bahnhof
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+// MARK: - UITableViewDelegate
+extension ListViewController: UITableViewDelegate {
+    
+    // TableView: station will be shown
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var station: Station?
         if searchController.isActive && searchController.searchBar.text != "" {
             station = gefilterteBahnhoefe?[indexPath.row]
@@ -111,16 +116,17 @@ extension ViewController {
             cell.textLabel?.text = station?.title
         }
     }
-
-    // TableView: Bahnhof ausgewählt
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    // TableView: station selected
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         StationStorage.currentStation = StationStorage.stationsWithoutPhoto[indexPath.row]
     }
+    
 }
 
 
 // MARK: - UISearchResultsUpdating
-extension ViewController: UISearchResultsUpdating {
+extension ListViewController: UISearchResultsUpdating {
 
     public func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text else {

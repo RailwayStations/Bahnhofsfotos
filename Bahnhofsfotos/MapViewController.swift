@@ -16,6 +16,10 @@ class MapViewController: UIViewController {
     var mapViewDidFinishRenderingMap = false
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    @IBAction func showMenu(_ sender: Any) {
+        sideMenuViewController?.presentLeftMenuViewController()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
