@@ -22,12 +22,17 @@ class Helper {
         return viewController
     }
     
+    // Show view controller
+    static func show(viewController: UIViewController) {
+        rootViewController?.setContentViewController(viewController, animated: true)
+        rootViewController?.hideMenuViewController()
+    }
+    
     // Show view controller with identifier
     static func showViewController(withIdentifier identifier: String) {
         let viewController = self.viewController(withIdentifier: identifier)
         
-        rootViewController?.setContentViewController(viewController, animated: true)
-        rootViewController?.hideMenuViewController()
+        show(viewController: viewController)
     }
     
     // Disables the view for user interaction

@@ -280,7 +280,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHa-3Y-B5F" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
-                                        <rect key="frame" x="288" y="30.5" width="24" height="24"/>
+                                        <rect key="frame" x="288" y="31" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="cMT-cH-lXk"/>
                                             <constraint firstAttribute="height" constant="24" id="hkM-D2-C9b"/>
@@ -421,7 +421,6 @@
                             <constraint firstItem="kaF-D6-iWq" firstAttribute="leading" secondItem="L1q-lD-hXU" secondAttribute="leading" id="u6G-TO-Iw0"/>
                         </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tableView" destination="kaF-D6-iWq" id="2mZ-fa-5wL"/>
                     </connections>

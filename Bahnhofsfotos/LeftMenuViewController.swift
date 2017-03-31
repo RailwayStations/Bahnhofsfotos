@@ -7,6 +7,8 @@
 //
 
 import AKSideMenu
+import CPDAcknowledgements
+import FontAwesomeKit_Swift
 import SwiftyUserDefaults
 
 class LeftMenuViewController: UIViewController {
@@ -18,7 +20,7 @@ class LeftMenuViewController: UIViewController {
         MenuItem(key: "profile", title: "Deine Daten", action: LeftMenuViewController.openProfile),
         MenuItem(key: "map", title: "Karte", action: LeftMenuViewController.openMap),
         MenuItem(key: "list", title: "Bahnhöfe ohne Foto", action: LeftMenuViewController.openList),
-//        MenuItem(key: "infos", title: "Informationen", action: LeftMenuViewController.openProfile)
+        MenuItem(key: "infos", title: "Informationen", action: LeftMenuViewController.openInformations)
     ]
     
     @IBOutlet weak var tableView: UITableView!
@@ -72,6 +74,30 @@ class LeftMenuViewController: UIViewController {
     
     static func openMap(_ sender: Any?) {
         Helper.showViewController(withIdentifier: "MapViewController")
+    }
+    
+    static func openInformations(_ sender: Any?) {
+        let acknowledgementsViewController = CPDAcknowledgementsViewController()
+        
+        let leftItem = UIBarButtonItem(awesomeType: .fa_bars, size: 24, style: .done, target: acknowledgementsViewController, action: #selector(presentLeftMenuViewController))
+        leftItem.tintColor = UIColor.white
+        
+        acknowledgementsViewController.navigationItem.leftBarButtonItem = leftItem
+        acknowledgementsViewController.navigationItem.titleView?.tintColor = UIColor.white
+        acknowledgementsViewController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        acknowledgementsViewController.title = "Lizenzen"
+
+        
+        let navigationViewController = UINavigationController(rootViewController: acknowledgementsViewController)
+        navigationViewController.navigationBar.isTranslucent = false
+        navigationViewController.navigationBar.barTintColor = UIColor(red: 167.0/255.0, green: 58.0/255.0, blue: 88/255.0, alpha: 1.0)
+        navigationViewController.navigationBar.tintColor = UIColor.white
+        navigationViewController.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 17) as Any
+        ]
+        
+        Helper.show(viewController: navigationViewController)
     }
     
 }

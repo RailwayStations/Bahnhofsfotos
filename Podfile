@@ -1,5 +1,7 @@
 platform :ios, '9.0'
 
+plugin 'cocoapods-acknowledgements'
+
 target 'Bahnhofsfotos' do
   use_frameworks!
 
@@ -7,6 +9,7 @@ target 'Bahnhofsfotos' do
   pod 'AAShareBubbles', '~> 1.2'
   pod 'AKSideMenu', '~> 1.3'
   pod 'Alamofire', '~> 4.2'
+  pod 'CPDAcknowledgements', '~> 1.0'
   pod 'Eureka', '~> 2.0'
   pod 'FontAwesomeKit.Swift', '~> 0.3'
   pod 'ImagePicker', :git => 'https://github.com/Haitec/ImagePicker'
