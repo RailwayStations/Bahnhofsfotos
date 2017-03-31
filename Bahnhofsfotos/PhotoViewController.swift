@@ -44,6 +44,10 @@ class PhotoViewController: UIViewController {
         shareBubbles?.showFacebookBubble = true
         shareBubbles?.show()
     }
+    
+    @IBAction func closeTouched(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 
     // show error message
     func showError(_ error: String) {

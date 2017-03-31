@@ -280,29 +280,29 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHa-3Y-B5F" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
-                                        <rect key="frame" x="8" y="30.5" width="24" height="24"/>
+                                        <rect key="frame" x="288" y="30.5" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="24" id="bND-UV-Hai"/>
-                                            <constraint firstAttribute="height" constant="24" id="bsa-gj-cqp"/>
+                                            <constraint firstAttribute="width" constant="24" id="cMT-cH-lXk"/>
+                                            <constraint firstAttribute="height" constant="24" id="hkM-D2-C9b"/>
                                         </constraints>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f060"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f00d"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="showMenu:" destination="aEt-a1-M33" eventType="touchUpInside" id="Vte-sZ-G1M"/>
+                                            <action selector="closeTouched:" destination="0yW-na-ZCr" eventType="touchUpInside" id="Joc-wg-PUu"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="54x-vg-Oah" firstAttribute="centerY" secondItem="1HG-vx-b0A" secondAttribute="centerY" constant="10" id="08J-fk-eJy"/>
-                                    <constraint firstItem="dHa-3Y-B5F" firstAttribute="centerY" secondItem="1HG-vx-b0A" secondAttribute="centerY" constant="10" id="OiW-eE-96d"/>
+                                    <constraint firstItem="dHa-3Y-B5F" firstAttribute="centerY" secondItem="1HG-vx-b0A" secondAttribute="centerY" constant="10" id="IBb-ug-PcM"/>
+                                    <constraint firstAttribute="trailing" secondItem="dHa-3Y-B5F" secondAttribute="trailing" constant="8" id="Z8z-X7-zgO"/>
                                     <constraint firstItem="54x-vg-Oah" firstAttribute="centerX" secondItem="1HG-vx-b0A" secondAttribute="centerX" id="hE7-qG-1kx"/>
                                     <constraint firstAttribute="height" constant="65" id="sCg-w3-iH1"/>
-                                    <constraint firstItem="dHa-3Y-B5F" firstAttribute="leading" secondItem="1HG-vx-b0A" secondAttribute="leading" constant="8" id="uv3-69-JM7"/>
                                 </constraints>
                             </view>
                         </subviews>
