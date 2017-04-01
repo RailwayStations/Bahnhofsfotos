@@ -18,7 +18,7 @@ class ListViewController: UIViewController {
   let searchController = UISearchController(searchResultsController: nil)
 
   var stationsUpdatedAt: Date?
-  var gefilterteBahnhoefe: [Station]?
+  var filteredStations: [Station]?
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -53,7 +53,7 @@ class ListViewController: UIViewController {
 
   // Bahnhöfe filtern
   func filterContentForSearchText(_ searchText: String) {
-    gefilterteBahnhoefe = StationStorage.stationsWithoutPhoto.filter { station in
+    filteredStations = StationStorage.stationsWithoutPhoto.filter { station in
       return station.name.lowercased().contains(searchText.lowercased())
     }
 
@@ -87,7 +87,7 @@ extension ListViewController: UITableViewDataSource {
   // TableView: Anzahl der anzeigbaren Bahnhöfe
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if searchController.isActive && searchController.searchBar.text != "" {
-      return gefilterteBahnhoefe?.count ?? 0
+      return filteredStations?.count ?? 0
     }
     return StationStorage.stationsWithoutPhoto.count
   }
@@ -106,7 +106,7 @@ extension ListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     var station: Station?
     if searchController.isActive && searchController.searchBar.text != "" {
-      station = gefilterteBahnhoefe?[indexPath.row]
+      station = filteredStations?[indexPath.row]
     } else {
       station = StationStorage.stationsWithoutPhoto[indexPath.row]
     }
@@ -118,7 +118,11 @@ extension ListViewController: UITableViewDelegate {
   // TableView: station selected
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    StationStorage.currentStation = StationStorage.stationsWithoutPhoto[indexPath.row]
+    if searchController.isActive && searchController.searchBar.text != "" {
+      StationStorage.currentStation = filteredStations?[indexPath.row]
+    } else {
+      StationStorage.currentStation = StationStorage.stationsWithoutPhoto[indexPath.row]
+    }
     performSegue(withIdentifier: "showDetail", sender: nil)
   }
 
