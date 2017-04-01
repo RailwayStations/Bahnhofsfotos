@@ -41,29 +41,33 @@ class LeftMenuViewController: UIViewController {
     static func loadData(_ sender: Any?) {
         let rowTitle = "Bahnhofsdaten aktualisieren"
 
-        guard let viewController = Helper.viewController(withIdentifier: "LeftMenuViewController") as? LeftMenuViewController else {
-            return
-        }
-
         if let cell = sender as? UITableViewCell {
 
-            cell.textLabel?.text = "Bahnhofsdaten herunterladen"
+            if Helper.rootViewController != nil {
+                Helper.setIsUserInteractionEnabled(in: Helper.rootViewController!, to: false)
+                Helper.rootViewController?.view.makeToastActivity(.center)
+            }
+
+            cell.textLabel?.text = "Länderdaten herunterladen"
             cell.detailTextLabel?.text = nil
 
-            Helper.setIsUserInteractionEnabled(in: viewController, to: false)
-            viewController.view.makeToastActivity(.center)
+            Helper.loadCountries {
+                cell.textLabel?.text = "Bahnhofsdaten herunterladen"
 
-            Helper.loadStations(progressHandler: { progress, count in
-                cell.textLabel?.text = "Bahnhof speichern: \(progress)/\(count)"
-                cell.detailTextLabel?.text = "\(UInt(Float(progress) / Float(count) * 100))%"
-            }) {
-                cell.textLabel?.text = rowTitle
-                if let lastUpdate = Defaults[.lastUpdate] {
-                    cell.detailTextLabel?.text = lastUpdate.relativeDateString
+                Helper.loadStations(progressHandler: { progress, count in
+                    cell.textLabel?.text = "Bahnhof speichern: \(progress)/\(count)"
+                    cell.detailTextLabel?.text = "\(UInt(Float(progress) / Float(count) * 100))%"
+                }) {
+                    cell.textLabel?.text = rowTitle
+                    if let lastUpdate = Defaults[.lastUpdate] {
+                        cell.detailTextLabel?.text = lastUpdate.relativeDateString
+                    }
+
+                    if Helper.rootViewController != nil {
+                        Helper.setIsUserInteractionEnabled(in: Helper.rootViewController!, to: true)
+                        Helper.rootViewController?.view.hideToastActivity()
+                    }
                 }
-
-                Helper.setIsUserInteractionEnabled(in: viewController, to: true)
-                viewController.view.hideToastActivity()
             }
         }
     }
