@@ -77,10 +77,17 @@ class PhotoViewController: UIViewController {
         return
       }
 
+      let text = "Bahnhof: \(name)\n" +
+        "Lizenz: \(Defaults[.license] == License.cc40 ? "CC4.0" : "CC0")\n" +
+        "Accountname: \(username)\n" +
+        "Verlinkung: \(Defaults[.accountLinking] == true ? "Ja" : "Nein")\n" +
+        "Accounttyp: \(Defaults[.accountType] ?? AccountType.none)"
+
       let mailController = MFMailComposeViewController()
       mailController.mailComposeDelegate = self
       mailController.setToRecipients([email])
       mailController.setSubject("Neues Bahnhofsfoto: \(name)")
+      mailController.setMessageBody(text, isHTML: false)
       if let data = UIImagePNGRepresentation(image) {
         mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(name)-\(username)")
       }
@@ -103,8 +110,10 @@ class PhotoViewController: UIViewController {
       return
     }
 
+    let license = "\(Defaults[.license] == License.cc40 ? "CC4.0" : "CC0")"
+
     if let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
-      twitterController.setInitialText("\(name) \(tags)")
+      twitterController.setInitialText("\(name) \(license) \(tags)")
       twitterController.add(image)
       present(twitterController, animated: true, completion: nil)
     } else {
