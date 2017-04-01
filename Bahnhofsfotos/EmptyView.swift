@@ -10,7 +10,7 @@ import UIKit
 
 class EmptyView: ViewFromNib {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var messageLabel: UILabel!
+  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var messageLabel: UILabel!
 
 }

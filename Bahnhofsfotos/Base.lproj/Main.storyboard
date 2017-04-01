@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -75,9 +76,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="0yW-na-ZCr" kind="show" id="tOI-eF-Nq7"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -95,6 +93,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Yb9-ei-6cF" id="NGl-i9-20d"/>
+                        <segue destination="0yW-na-ZCr" kind="show" identifier="showDetail" id="VXC-Bt-xTe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iti-ST-8TH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -261,20 +260,11 @@
                             <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyRailway" translatesAutoresizingMaskIntoConstraints="NO" id="QFz-bG-m8N">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-qD-uxL">
-                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                                <connections>
-                                    <action selector="pickImage:" destination="0yW-na-ZCr" eventType="touchUpInside" id="pYf-5X-mWY"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-4q-gnf">
-                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HG-vx-b0A">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neues Bahnhofsfoto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54x-vg-Oah">
-                                        <rect key="frame" x="80" y="31" width="161" height="24"/>
+                                        <rect key="frame" x="80.5" y="31.5" width="160.5" height="23.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -323,22 +313,39 @@
                                     <constraint firstAttribute="height" constant="65" id="sCg-w3-iH1"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sQB-52-Qh3">
+                                <rect key="frame" x="16" y="81" width="288" height="471"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbi-os-AOo">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="471"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnd-qD-uxL">
+                                                <rect key="frame" x="0.0" y="0.0" width="288" height="416"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="pickImage:" destination="0yW-na-ZCr" eventType="touchUpInside" id="pYf-5X-mWY"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-4q-gnf">
+                                                <rect key="frame" x="0.0" y="0.0" width="288" height="416"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="VZb-4q-gnf" secondAttribute="trailing" id="3lN-vr-gsK"/>
-                            <constraint firstItem="Nnd-qD-uxL" firstAttribute="top" secondItem="1HG-vx-b0A" secondAttribute="bottom" id="Dw4-g7-Xje"/>
                             <constraint firstItem="1HG-vx-b0A" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="Fgo-Kk-4JH"/>
                             <constraint firstItem="QFz-bG-m8N" firstAttribute="top" secondItem="rKr-kO-jnn" secondAttribute="top" id="GCD-9N-MgV"/>
-                            <constraint firstAttribute="trailing" secondItem="Nnd-qD-uxL" secondAttribute="trailing" id="HxX-8u-n1u"/>
-                            <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="VZb-4q-gnf" secondAttribute="bottom" id="SoN-wz-lTS"/>
+                            <constraint firstItem="sQB-52-Qh3" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leadingMargin" id="I0X-iF-zk2"/>
+                            <constraint firstItem="sQB-52-Qh3" firstAttribute="top" secondItem="1HG-vx-b0A" secondAttribute="bottom" constant="16" id="Sid-zC-Ngi"/>
                             <constraint firstItem="QFz-bG-m8N" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="X2B-J0-uwI"/>
-                            <constraint firstItem="VZb-4q-gnf" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="Zrg-fq-giX"/>
-                            <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="Nnd-qD-uxL" secondAttribute="bottom" id="cTN-WY-Iqo"/>
-                            <constraint firstItem="VZb-4q-gnf" firstAttribute="top" secondItem="1HG-vx-b0A" secondAttribute="bottom" id="gc1-d4-b4L"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sQB-52-Qh3" secondAttribute="trailing" id="bbM-vF-oiN"/>
+                            <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="sQB-52-Qh3" secondAttribute="bottom" constant="16" id="j3T-s4-1KJ"/>
                             <constraint firstAttribute="trailing" secondItem="1HG-vx-b0A" secondAttribute="trailing" id="met-RB-8jX"/>
                             <constraint firstAttribute="trailing" secondItem="QFz-bG-m8N" secondAttribute="trailing" id="u9U-9e-dxi"/>
-                            <constraint firstItem="Nnd-qD-uxL" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="x1g-Ji-xGQ"/>
                             <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="QFz-bG-m8N" secondAttribute="bottom" id="xfq-mw-GLE"/>
                             <constraint firstItem="1HG-vx-b0A" firstAttribute="top" secondItem="rKr-kO-jnn" secondAttribute="top" id="xg3-GR-9kC"/>
                         </constraints>
@@ -349,6 +356,7 @@
                     <connections>
                         <outlet property="imageView" destination="VZb-4q-gnf" id="wuj-kr-pfV"/>
                         <outlet property="shareBarButton" destination="nTQ-BI-egp" id="BAq-kX-f8f"/>
+                        <outlet property="titleLabel" destination="54x-vg-Oah" id="Lle-Zf-dhF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJl-Wg-HCW" userLabel="First Responder" sceneMemberID="firstResponder"/>

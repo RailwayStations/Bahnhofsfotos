@@ -13,70 +13,70 @@ import SwiftyUserDefaults
 
 class API {
 
-    enum APIError: Error {
-        case message(String)
-    }
+  enum APIError: Error {
+    case message(String)
+  }
 
-    static var baseUrl: String {
-        return Constants.baseUrl + "/" + Defaults[.country].lowercased()
-    }
+  static var baseUrl: String {
+    return Constants.baseUrl + "/" + Defaults[.country].lowercased()
+  }
 
-    // Get all countries
-    static func getCountries(completionHandler: @escaping ([Country]) -> Void) {
+  // Get all countries
+  static func getCountries(completionHandler: @escaping ([Country]) -> Void) {
 
-        Alamofire.request(Constants.countriesUrl)
-            .responseJSON { response in
+    Alamofire.request(Constants.countriesUrl)
+      .responseJSON { response in
 
-                var countries = [Country]()
+        var countries = [Country]()
 
-                guard let json = JSON(response.result.value as Any).array else {
-                    completionHandler(countries)
-                    return
-                }
-
-                do {
-                    countries = try json.map {
-                        guard let country = try Country(json: $0) else { throw APIError.message("JSON of country is invalid.") }
-                        return country
-                    }
-                } catch {
-                    debugPrint(error)
-                }
-
-                completionHandler(countries)
+        guard let json = JSON(response.result.value as Any).array else {
+          completionHandler(countries)
+          return
         }
+
+        do {
+          countries = try json.map {
+            guard let country = try Country(json: $0) else { throw APIError.message("JSON of country is invalid.") }
+            return country
+          }
+        } catch {
+          debugPrint(error)
+        }
+
+        completionHandler(countries)
     }
+  }
 
-    // Get all stations (or with/out photo)
-    static func getStations(withPhoto hasPhoto: Bool?, completionHandler: @escaping ([Station]) -> Void) {
+  // Get all stations (or with/out photo)
+  static func getStations(withPhoto hasPhoto: Bool?, completionHandler: @escaping ([Station]) -> Void) {
 
-        Alamofire.request(API.baseUrl + "/stations",
-                          method: .get,
-                          parameters: hasPhoto != nil ? ["hasPhoto": hasPhoto!.description] : nil,
-                          encoding: URLEncoding.default,
-                          headers: nil)
-            .responseJSON { response in
+    Alamofire.request(API.baseUrl + "/stations",
+                      method: .get,
+                      parameters: hasPhoto != nil ? ["hasPhoto": hasPhoto!.description] : nil,
+                      encoding: URLEncoding.default,
+                      headers: nil)
+      .responseJSON { response in
 
-                var stations = [Station]()
+        var stations = [Station]()
 
-                guard let json = JSON(response.result.value as Any).array else {
-                    completionHandler(stations)
-                    return
-                }
+        guard let json = JSON(response.result.value as Any).array else {
+          completionHandler(stations)
+          return
+        }
 
-                do {
-                    stations = try json.map {
-                        var jsonStation = $0
-                        jsonStation["hasPhoto"].bool = hasPhoto ?? false
-                        guard let station = try Station(json: jsonStation) else { throw APIError.message("JSON of station is invalid.") }
-                        return station
-                    }
-                } catch {
-                    debugPrint(error)
-                }
+        do {
+          stations = try json.map {
+            var jsonStation = $0
+            jsonStation["hasPhoto"].bool = hasPhoto ?? false
+            guard let station = try Station(json: jsonStation) else { throw APIError.message("JSON of station is invalid.") }
+            return station
+          }
+        } catch {
+          debugPrint(error)
+        }
 
-                completionHandler(stations)
-            }
-    }
+        completionHandler(stations)
+      }
+  }
 
 }

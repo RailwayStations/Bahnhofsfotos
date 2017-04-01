@@ -8,30 +8,30 @@
 
 public class Constants {
 
-    public final class JsonConstants {
+  public final class JsonConstants {
 
-        //Bahnhofs-Konstanten
-        public static let kRowId = "rowid"
-        public static let kId = "id"
-        public static let kTitle = "title"
-        public static let kLat = "lat"
-        public static let kLon = "lon"
-        public static let kDate = "datum"
-        public static let kPhotoflag = "photoflag"
-        public static let kPhotohrapher = "photographer"
+    //Bahnhofs-Konstanten
+    public static let kRowId = "rowid"
+    public static let kId = "id"
+    public static let kTitle = "title"
+    public static let kLat = "lat"
+    public static let kLon = "lon"
+    public static let kDate = "datum"
+    public static let kPhotoflag = "photoflag"
+    public static let kPhotohrapher = "photographer"
 
-        //Länderkonstanten
-        public static let kCountryName = "country"
-        public static let kCountryShortcode = "countryflag"
-        public static let kEmail = "mail"
-        public static let kTwitterTags = "twitter_tags"
-        public static let kRowIdContries = "rowidcountries"
-    }
+    //Länderkonstanten
+    public static let kCountryName = "country"
+    public static let kCountryShortcode = "countryflag"
+    public static let kEmail = "mail"
+    public static let kTwitterTags = "twitter_tags"
+    public static let kRowIdContries = "rowidcountries"
+  }
 
-    public static let dbFilename = "db.sqlite3"
+  public static let dbFilename = "db.sqlite3"
 
-    // Links zusammenschrauben
-    public static let baseUrl = "https://api.railway-stations.org"
-    public static let countriesUrl = "https://railway-stations.org/laenderdaten.json"
+  // Links zusammenschrauben
+  public static let baseUrl = "https://api.railway-stations.org"
+  public static let countriesUrl = "https://railway-stations.org/laenderdaten.json"
 
 }
