@@ -16,12 +16,14 @@ import UIKit
 class PhotoViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var shareBarButton: UIBarButtonItem!
+    @IBOutlet weak var shareBarButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = StationStorage.currentStation?.title
+        shareBarButton.isEnabled = false
+        shareBarButton.isHidden = true
     }
 
     @IBAction func pickImage(_ sender: Any) {
@@ -120,6 +122,7 @@ extension PhotoViewController: ImagePickerDelegate {
         if !images.isEmpty {
             imageView.image = images[0]
             shareBarButton.isEnabled = true
+            shareBarButton.isHidden = false
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
@@ -140,7 +143,7 @@ extension PhotoViewController: AAShareBubblesDelegate {
         case .twitter:
             showTwitterController()
         case .facebook:
-            debugPrint("facebook")
+            showError("Facebook ist nocht nicht implementiert.")
         default:
             break
         }
