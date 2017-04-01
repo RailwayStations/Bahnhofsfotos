@@ -10,9 +10,9 @@ import Alamofire
 import UIKit
 
 class ListViewController: UIViewController {
-    
+
     fileprivate let kCellIdentifier = "cell"
-    
+
     @IBOutlet weak var tableView: UITableView!
 
     let searchController = UISearchController(searchResultsController: nil)
@@ -28,7 +28,7 @@ class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.dataSource = self
         tableView.delegate = self
 
@@ -42,7 +42,7 @@ class ListViewController: UIViewController {
     @IBAction func showMenu(_ sender: Any) {
         sideMenuViewController?.presentLeftMenuViewController()
     }
-    
+
     // Bahnhöfe anzeigen
     func showStations() {
         if StationStorage.lastUpdatedAt != stationsUpdatedAt {
@@ -50,7 +50,6 @@ class ListViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-
 
     // Bahnhöfe filtern
     func filterContentForSearchText(_ searchText: String) {
@@ -62,7 +61,6 @@ class ListViewController: UIViewController {
     }
 
 }
-
 
 // MARK: - UITableViewDataSource
 extension ListViewController: UITableViewDataSource {
@@ -98,12 +96,12 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(withIdentifier: kCellIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: kCellIdentifier)
     }
-    
+
 }
 
 // MARK: - UITableViewDelegate
 extension ListViewController: UITableViewDelegate {
-    
+
     // TableView: station will be shown
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var station: Station?
@@ -116,14 +114,13 @@ extension ListViewController: UITableViewDelegate {
             cell.textLabel?.text = station?.title
         }
     }
-    
+
     // TableView: station selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         StationStorage.currentStation = StationStorage.stationsWithoutPhoto[indexPath.row]
     }
-    
-}
 
+}
 
 // MARK: - UISearchResultsUpdating
 extension ListViewController: UISearchResultsUpdating {

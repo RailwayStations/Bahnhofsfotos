@@ -9,9 +9,9 @@
 import UIKit
 
 class ProfileWrapperViewController: UIViewController {
-    
+
     @IBAction func showMenu(_ sender: Any) {
         sideMenuViewController?.presentLeftMenuViewController()
     }
-    
+
 }

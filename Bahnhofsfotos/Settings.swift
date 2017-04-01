@@ -9,7 +9,7 @@
 import SwiftyUserDefaults
 
 enum License: String {
-    case cc0, cc4_0
+    case cc0, cc40
 }
 
 enum AccountType: String {
@@ -59,4 +59,3 @@ extension DefaultsKeys {
     static let accountType = DefaultsKey<AccountType?>("accountType")
     static let accountName = DefaultsKey<String?>("accountName")
 }
-

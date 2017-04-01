@@ -25,12 +25,12 @@ class StationStorage {
 
     // SQLite properties
     private static let table = Table("station")
-    private static let fileName = Constants.DB_FILENAME
-    fileprivate static let expressionId = Expression<Int>(Constants.DB_JSON_CONSTANTS.KEY_ID)
-    fileprivate static let expressionCountry = Expression<String>(Constants.DB_JSON_CONSTANTS.KEY_COUNTRYNAME)
-    fileprivate static let expressionTitle = Expression<String>(Constants.DB_JSON_CONSTANTS.KEY_TITLE)
-    fileprivate static let expressionLat = Expression<Double>(Constants.DB_JSON_CONSTANTS.KEY_LAT)
-    fileprivate static let expressionLon = Expression<Double>(Constants.DB_JSON_CONSTANTS.KEY_LON)
+    private static let fileName = Constants.dbFilename
+    fileprivate static let expressionId = Expression<Int>(Constants.JsonConstants.kId)
+    fileprivate static let expressionCountry = Expression<String>(Constants.JsonConstants.kCountryName)
+    fileprivate static let expressionTitle = Expression<String>(Constants.JsonConstants.kTitle)
+    fileprivate static let expressionLat = Expression<Double>(Constants.JsonConstants.kLat)
+    fileprivate static let expressionLon = Expression<Double>(Constants.JsonConstants.kLon)
 
     // Open connection to database
     private static func openConnection() throws -> Connection {
@@ -46,12 +46,12 @@ class StationStorage {
         let db = try Connection("\(path)/\(fileName)")
 
         // create table if not exists
-        try db.run(table.create(ifNotExists: true) { t in
-            t.column(expressionId, primaryKey: .autoincrement)
-            t.column(expressionCountry)
-            t.column(expressionTitle)
-            t.column(expressionLat)
-            t.column(expressionLon)
+        try db.run(table.create(ifNotExists: true) { table in
+            table.column(expressionId, primaryKey: .autoincrement)
+            table.column(expressionCountry)
+            table.column(expressionTitle)
+            table.column(expressionLat)
+            table.column(expressionLon)
         })
 
         // return connection
@@ -97,18 +97,18 @@ class StationStorage {
         if let stationIdToUpdate = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
             _stationsWithoutPhoto.remove(at: stationIdToUpdate)
             _stationsWithoutPhoto.insert(station, at: stationIdToUpdate)
-        }else {
+        } else {
             _stationsWithoutPhoto.append(station)
             _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.title < $1.title }
         }
 
         lastUpdatedAt = Date()
     }
-    
+
     // Save stations
     static func create(stations: [Station], progressHandler: ((Int) -> Void)? = nil) throws {
         let db = try openConnection()
-        
+
         try db.transaction {
             var counter = 0
             for station in stations {
@@ -121,7 +121,7 @@ class StationStorage {
                                         expressionLat <- station.lat,
                                         expressionLon <- station.lon
                 ))
-                
+
                 if let stationIdToUpdate = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
                     _stationsWithoutPhoto.remove(at: stationIdToUpdate)
                     _stationsWithoutPhoto.insert(station, at: stationIdToUpdate)
@@ -132,7 +132,7 @@ class StationStorage {
         }
 
         _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.title < $1.title }
-        
+
         lastUpdatedAt = Date()
     }
 
@@ -166,5 +166,5 @@ extension Station {
                        lon: row.get(StationStorage.expressionLon)
                 )
     }
-    
+
 }

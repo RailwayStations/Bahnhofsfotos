@@ -30,11 +30,11 @@ class CountryStorage {
 
     // SQLite properties
     private static let table = Table("country")
-    private static let fileName = Constants.DB_FILENAME
-    fileprivate static let expressionCountryFlag = Expression<String>(Constants.DB_JSON_CONSTANTS.KEY_COUNTRYSHORTCODE)
-    fileprivate static let expressionCountry = Expression<String>(Constants.DB_JSON_CONSTANTS.KEY_COUNTRYNAME)
-    fileprivate static let expressionMail = Expression<String?>(Constants.DB_JSON_CONSTANTS.KEY_EMAIL)
-    fileprivate static let expressionTwitterTags = Expression<String?>(Constants.DB_JSON_CONSTANTS.KEY_TWITTERTAGS)
+    private static let fileName = Constants.dbFilename
+    fileprivate static let expressionCountryFlag = Expression<String>(Constants.JsonConstants.kCountryShortcode)
+    fileprivate static let expressionCountry = Expression<String>(Constants.JsonConstants.kCountryName)
+    fileprivate static let expressionMail = Expression<String?>(Constants.JsonConstants.kEmail)
+    fileprivate static let expressionTwitterTags = Expression<String?>(Constants.JsonConstants.kTwitterTags)
 
     // Open connection to database
     private static func openConnection() throws -> Connection {
@@ -50,11 +50,11 @@ class CountryStorage {
         let db = try Connection("\(path)/\(fileName)")
 
         // create table if not exists
-        try db.run(table.create(ifNotExists: true) { t in
-            t.column(expressionCountryFlag, primaryKey: true)
-            t.column(expressionCountry)
-            t.column(expressionMail)
-            t.column(expressionTwitterTags)
+        try db.run(table.create(ifNotExists: true) { table in
+            table.column(expressionCountryFlag, primaryKey: true)
+            table.column(expressionCountry)
+            table.column(expressionMail)
+            table.column(expressionTwitterTags)
         })
 
         // return connection
@@ -92,7 +92,7 @@ class CountryStorage {
         try db.run(table.insert(expressionCountry <- country.country,
                                 expressionCountryFlag <- country.countryflag,
                                 expressionMail <- country.mail,
-                                expressionTwitterTags <- country.twitter_tags
+                                expressionTwitterTags <- country.twitterTags
         ))
 
         _countries.append(country)
@@ -115,8 +115,8 @@ extension Country {
         return Country(country: row.get(CountryStorage.expressionCountry),
                        countryflag: row.get(CountryStorage.expressionCountryFlag),
                        mail: row.get(CountryStorage.expressionMail),
-                       twitter_tags: row.get(CountryStorage.expressionTwitterTags)
+                       twitterTags: row.get(CountryStorage.expressionTwitterTags)
         )
     }
-    
+
 }

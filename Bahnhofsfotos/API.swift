@@ -18,13 +18,13 @@ class API {
     }
 
     static var baseUrl: String {
-        return Constants.BASE_URL + "/" + Defaults[.country].lowercased()
+        return Constants.baseUrl + "/" + Defaults[.country].lowercased()
     }
 
     // Get all countries
     static func getCountries(completionHandler: @escaping ([Country]) -> Void) {
 
-        Alamofire.request(Constants.COUNTRIES_URL)
+        Alamofire.request(Constants.countriesUrl)
             .responseJSON { response in
 
                 var countries = [Country]()

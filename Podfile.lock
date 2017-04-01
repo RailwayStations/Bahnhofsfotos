@@ -9,6 +9,7 @@ PODS:
   - SQLite.swift (0.11.2):
     - SQLite.swift/standard (= 0.11.2)
   - SQLite.swift/standard (0.11.2)
+  - SwiftLint (0.17.0)
   - SwiftyJSON (3.1.4)
   - SwiftyUserDefaults (3.0.0)
   - Toast-Swift (2.0.0)
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - FontAwesomeKit.Swift (~> 0.3)
   - ImagePicker (from `https://github.com/Haitec/ImagePicker`)
   - SQLite.swift (~> 0.11)
+  - SwiftLint (~> 0.17)
   - SwiftyJSON (~> 3.1)
   - SwiftyUserDefaults (~> 3.0)
   - Toast-Swift (~> 2.0)
@@ -44,10 +46,11 @@ SPEC CHECKSUMS:
   FontAwesomeKit.Swift: 77fd566e8c20d3267da18161a10c48a31b9323b9
   ImagePicker: 036ad79e41064dea59e1b0f9b913174a17656089
   SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
+  SwiftLint: 9fb1dd71d5952d130f8c2fb60ae2e1475cf5d575
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
 
-PODFILE CHECKSUM: 119f2d980661691e303be37b6456331773414d85
+PODFILE CHECKSUM: 8f998b2807b880a2d5d497f88ca5a65408c9d03a
 
 COCOAPODS: 1.2.0

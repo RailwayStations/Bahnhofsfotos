@@ -14,9 +14,9 @@ class MapViewController: UIViewController {
 
     var locationManager: CLLocationManager?
     var mapViewDidFinishRenderingMap = false
-    
+
     @IBOutlet weak var mapView: MKMapView!
-    
+
     @IBAction func showMenu(_ sender: Any) {
         sideMenuViewController?.presentLeftMenuViewController()
     }
@@ -56,7 +56,7 @@ extension MapViewController: MKMapViewDelegate {
         }
 
         mapView.removeAnnotations(mapView.annotations)
-        
+
         for station in stationsInRegion {
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: station.lat, longitude: station.lon)

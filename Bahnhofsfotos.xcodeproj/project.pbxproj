@@ -197,6 +197,7 @@
 			buildConfigurationList = 49B503F61E048EAE00B8AFDE /* Build configuration list for PBXNativeTarget "Bahnhofsfotos" */;
 			buildPhases = (
 				ED397E516860B75F83899C8D /* [CP] Check Pods Manifest.lock */,
+				4915BFBD1E8FC1B900F5195A /* Run SwiftLint */,
 				49B503E01E048EAD00B8AFDE /* Sources */,
 				49B503E11E048EAD00B8AFDE /* Frameworks */,
 				49B503E21E048EAD00B8AFDE /* Resources */,
@@ -268,6 +269,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4915BFBD1E8FC1B900F5195A /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+			showEnvVarsInLog = 0;
+		};
 		927AAACFA7716B8BFDE8399A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

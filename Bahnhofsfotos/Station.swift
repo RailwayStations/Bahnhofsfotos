@@ -27,11 +27,11 @@ class Station {
 
     init?(json: JSON) throws {
         guard
-            let id = json[Constants.DB_JSON_CONSTANTS.KEY_ID].int,
-            let title = json[Constants.DB_JSON_CONSTANTS.KEY_TITLE].string,
-            let country = json[Constants.DB_JSON_CONSTANTS.KEY_COUNTRYNAME].string,
-            let lat = json[Constants.DB_JSON_CONSTANTS.KEY_LAT].double,
-            let lon = json[Constants.DB_JSON_CONSTANTS.KEY_LON].double
+            let id = json[Constants.JsonConstants.kId].int,
+            let title = json[Constants.JsonConstants.kTitle].string,
+            let country = json[Constants.JsonConstants.kCountryName].string,
+            let lat = json[Constants.JsonConstants.kLat].double,
+            let lon = json[Constants.JsonConstants.kLon].double
         else {
             return nil
         }

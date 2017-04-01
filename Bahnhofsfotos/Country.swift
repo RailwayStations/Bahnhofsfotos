@@ -14,24 +14,24 @@ class Country: Equatable {
     var country: String
     var countryflag: String
     var mail: String?
-    var twitter_tags: String?
+    var twitterTags: String?
 
-    init(country: String, countryflag: String, mail: String?, twitter_tags: String?) {
+    init(country: String, countryflag: String, mail: String?, twitterTags: String?) {
         self.country = country
         self.countryflag = countryflag
         self.mail = mail
-        self.twitter_tags = twitter_tags
+        self.twitterTags = twitterTags
     }
 
     init?(json: JSON) throws {
-        self.country = json[Constants.DB_JSON_CONSTANTS.KEY_COUNTRYNAME].stringValue
-        self.countryflag = json[Constants.DB_JSON_CONSTANTS.KEY_COUNTRYSHORTCODE].stringValue
-        self.mail = json[Constants.DB_JSON_CONSTANTS.KEY_EMAIL].string
-        self.twitter_tags = json[Constants.DB_JSON_CONSTANTS.KEY_TWITTERTAGS].string
+        self.country = json[Constants.JsonConstants.kCountryName].stringValue
+        self.countryflag = json[Constants.JsonConstants.kCountryShortcode].stringValue
+        self.mail = json[Constants.JsonConstants.kEmail].string
+        self.twitterTags = json[Constants.JsonConstants.kTwitterTags].string
     }
 
-    public static func ==(lhs: Country, rhs: Country) -> Bool {
+    public static func == (lhs: Country, rhs: Country) -> Bool {
         return lhs.countryflag == rhs.countryflag
     }
-    
+
 }

@@ -44,7 +44,7 @@ class PhotoViewController: UIViewController {
         shareBubbles?.showFacebookBubble = true
         shareBubbles?.show()
     }
-    
+
     @IBAction func closeTouched(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -84,7 +84,7 @@ class PhotoViewController: UIViewController {
     // show twitter controller
     func showTwitterController() {
         guard let name = StationStorage.currentStation?.title,
-              let tags = CountryStorage.currentCountry?.twitter_tags else { return }
+              let tags = CountryStorage.currentCountry?.twitterTags else { return }
         guard let image = imageView.image else {
             showError("Kein Bild ausgewählt.")
             return

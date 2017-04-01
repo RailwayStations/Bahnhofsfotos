@@ -9,10 +9,10 @@
 import AKSideMenu
 
 class RootViewController: AKSideMenu {
-    
+
     override public func awakeFromNib() {
         contentViewController = storyboard?.instantiateViewController(withIdentifier: "ListViewController")
         leftMenuViewController = storyboard?.instantiateViewController(withIdentifier: "LeftMenuViewController")
     }
-    
+
 }

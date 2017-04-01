@@ -46,7 +46,7 @@ class ProfileViewController: FormViewController {
 
         return LabelRow(RowTag.loadCountries.rawValue) { row in
             row.title = rowTitle
-        }.onCellSelection { (cell, row) in
+        }.onCellSelection { (_, row) in
             row.title = "Länderdaten laden"
             row.updateCell()
 
@@ -110,21 +110,21 @@ class ProfileViewController: FormViewController {
 
     private func createLicenseSection() -> Section {
         let license = { (license: License?) in
-            return (text: license == .cc4_0 ? "CC4.0 mit Namensnennung" : "CC0 - ohne Namensnennung", value: license == .cc4_0)
+            return (text: license == .cc40 ? "CC4.0 mit Namensnennung" : "CC0 - ohne Namensnennung", value: license == .cc40)
         }
 
         return Section(FormSection.license.rawValue)
 
-            <<< LabelRow() { row in
+            <<< LabelRow { row in
                 row.title = "Lizenz deiner Fotos?"
             }
 
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                     row.title = license(Defaults[.license]).text
                     row.value = license(Defaults[.license]).value
                 }.onChange { row in
                     guard let value = row.value else { return }
-                    Defaults[.license] = value ? .cc4_0 : .cc0
+                    Defaults[.license] = value ? .cc40 : .cc0
                     row.title = license(Defaults[.license]).text
                     row.updateCell()
                 }
@@ -135,11 +135,11 @@ class ProfileViewController: FormViewController {
     private func createLinkSection() -> Section {
         return Section(FormSection.link.rawValue)
 
-            <<< LabelRow() { row in
+            <<< LabelRow { row in
                 row.title = "Möchtest Du verlinkt werden?"
             }
 
-            <<< SwitchRow() { row in
+            <<< SwitchRow { row in
                     row.title = Defaults[.accountLinking] ? "Ja" : "Nein"
                     row.value = Defaults[.accountLinking]
                 }.onChange { row in
@@ -168,7 +168,7 @@ class ProfileViewController: FormViewController {
                     Defaults[.accountType] = row.value
                 }
 
-            <<< TextRow() { row in
+            <<< TextRow { row in
                     row.value = Defaults[.accountName]
                     row.placeholder = "Accountname"
                     row.hidden = .function([RowTag.accountType.rawValue], { _ in
@@ -177,6 +177,6 @@ class ProfileViewController: FormViewController {
                 }.onChange { row in
                     Defaults[.accountName] = row.value ?? ""
                 }
-    }    
+    }
 
 }
