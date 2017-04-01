@@ -22,7 +22,7 @@ class PhotoViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    titleLabel.text = StationStorage.currentStation?.title
+    titleLabel.text = StationStorage.currentStation?.name
     shareBarButton.isEnabled = false
     shareBarButton.isHidden = true
   }
@@ -50,6 +50,12 @@ class PhotoViewController: UIViewController {
 
   @IBAction func closeTouched(_ sender: Any) {
     dismiss(animated: true, completion: nil)
+  }
+
+  @IBAction func openNavigation(_ sender: Any) {
+    if let station = StationStorage.currentStation {
+      Helper.openNavigation(to: station)
+    }
   }
 
   // show error message
@@ -87,7 +93,7 @@ class PhotoViewController: UIViewController {
   // show twitter controller
   func showTwitterController() {
     guard let name = StationStorage.currentStation?.title,
-          let tags = CountryStorage.currentCountry?.twitterTags else { return }
+      let tags = CountryStorage.currentCountry?.twitterTags else { return }
     guard let image = imageView.image else {
       showError("Kein Bild ausgewählt.")
       return

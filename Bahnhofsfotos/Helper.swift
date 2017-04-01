@@ -101,6 +101,16 @@ class Helper {
     }
   }
 
+  static func openNavigation(to station: Station) {
+    let placemark = MKPlacemark(coordinate: station.coordinate, addressDictionary: nil)
+    let mapItem = MKMapItem(placemark: placemark)
+    mapItem.name = station.name
+    mapItem.openInMaps(launchOptions: [
+      MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,
+      MKLaunchOptionsShowsTrafficKey: true
+      ])
+  }
+
 }
 
 extension Date {

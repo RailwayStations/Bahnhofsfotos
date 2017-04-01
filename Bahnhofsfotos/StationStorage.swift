@@ -40,7 +40,7 @@ class StationStorage {
       .documentDirectory, .userDomainMask, true)
       .first else {
         throw StorageError.message("Path not found.")
-      }
+    }
 
     // open connection
     let db = try Connection("\(path)/\(fileName)")
@@ -77,7 +77,7 @@ class StationStorage {
       _stationsWithoutPhoto.append(s)
     }
 
-    _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.title < $1.title }
+    _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.name < $1.name }
 
     lastUpdatedAt = Date()
   }
@@ -88,7 +88,7 @@ class StationStorage {
 
     try db.run(table.insert(or: .replace,
                             expressionId <- station.id,
-                            expressionTitle <- station.title,
+                            expressionTitle <- station.name,
                             expressionCountry <- station.country,
                             expressionLat <- station.lat,
                             expressionLon <- station.lon
@@ -99,7 +99,7 @@ class StationStorage {
       _stationsWithoutPhoto.insert(station, at: stationIdToUpdate)
     } else {
       _stationsWithoutPhoto.append(station)
-      _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.title < $1.title }
+      _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.name < $1.name }
     }
 
     lastUpdatedAt = Date()
@@ -116,7 +116,7 @@ class StationStorage {
         progressHandler?(counter)
         try db.run(table.insert(or: .replace,
                                 expressionId <- station.id,
-                                expressionTitle <- station.title,
+                                expressionTitle <- station.name,
                                 expressionCountry <- station.country,
                                 expressionLat <- station.lat,
                                 expressionLon <- station.lon
@@ -131,7 +131,7 @@ class StationStorage {
       }
     }
 
-    _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.title < $1.title }
+    _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.name < $1.name }
 
     lastUpdatedAt = Date()
   }

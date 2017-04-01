@@ -63,10 +63,31 @@ extension MapViewController: MKMapViewDelegate {
     mapView.removeAnnotations(mapView.annotations)
 
     for station in stationsInRegion {
-      let annotation = MKPointAnnotation()
-      annotation.coordinate = CLLocationCoordinate2D(latitude: station.lat, longitude: station.lon)
-      annotation.title = station.title
-      mapView.addAnnotation(annotation)
+      mapView.addAnnotation(station)
+    }
+  }
+
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    if annotation is MKUserLocation {
+      return nil
+    }
+
+    let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "") ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+    annotationView.isEnabled = true
+    annotationView.canShowCallout = true
+
+    let button = UIButton(type: .system)
+    button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    button.fa_setTitle(.fa_compass, for: .normal)
+
+    annotationView.rightCalloutAccessoryView = button
+
+    return annotationView
+  }
+
+  func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    if let station = view.annotation as? Station {
+      Helper.openNavigation(to: station)
     }
   }
 
