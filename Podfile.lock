@@ -5,7 +5,7 @@ PODS:
   - CPDAcknowledgements (1.0.0)
   - Eureka (2.0.1)
   - FontAwesomeKit.Swift (0.3.1)
-  - ImagePicker (2.0.0)
+  - ImagePicker (2.1.0)
   - SQLite.swift (0.11.2):
     - SQLite.swift/standard (= 0.11.2)
   - SQLite.swift/standard (0.11.2)
@@ -34,7 +34,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ImagePicker:
-    :commit: 1169eaf77ea71a5dfc3ca22a0fb91ebf30ef4761
+    :commit: 513b327edd5c43684df1bba75aced295c04ce4ec
     :git: https://github.com/Haitec/ImagePicker
 
 SPEC CHECKSUMS:
@@ -44,7 +44,7 @@ SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
   FontAwesomeKit.Swift: 77fd566e8c20d3267da18161a10c48a31b9323b9
-  ImagePicker: 036ad79e41064dea59e1b0f9b913174a17656089
+  ImagePicker: 137d14706a1bf2de99febbe0593d8bad3e4fe8a2
   SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
   SwiftLint: 9fb1dd71d5952d130f8c2fb60ae2e1475cf5d575
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
