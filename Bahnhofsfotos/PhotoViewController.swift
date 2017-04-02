@@ -77,11 +77,11 @@ class PhotoViewController: UIViewController {
         return
       }
 
-      let text = "Bahnhof: \(name)\n" +
-        "Lizenz: \(Defaults[.license] == License.cc40 ? "CC4.0" : "CC0")\n" +
-        "Accountname: \(username)\n" +
-        "Verlinkung: \(Defaults[.accountLinking] == true ? "Ja" : "Nein")\n" +
-        "Accounttyp: \(Defaults[.accountType] ?? AccountType.none)"
+      var text = "Bahnhof: \(name)\n"
+      text += "Lizenz: \(Defaults[.license] == License.cc40 ? "CC4.0" : "CC0")\n"
+      text += "Accountname: \(username)\n"
+      text += "Verlinkung: \(Defaults[.accountLinking] == true ? "Ja" : "Nein")\n"
+      text += "Accounttyp: \(Defaults[.accountType] ?? AccountType.none)"
 
       let mailController = MFMailComposeViewController()
       mailController.mailComposeDelegate = self
@@ -110,18 +110,26 @@ class PhotoViewController: UIViewController {
       return
     }
 
-    let license = "\(Defaults[.license] == License.cc40 ? "CC4.0" : "CC0")"
-
     if let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
-      twitterController.setInitialText("\(name) \(license) \(tags)")
+      twitterController.setInitialText("\(name) \(tags)")
       twitterController.add(image)
+      twitterController.completionHandler = { result in
+        if result == .done {
+          DispatchQueue.main.async {
+            self.removeStationAndCloseView()
+          }
+        }
+      }
       present(twitterController, animated: true, completion: nil)
     } else {
       showError("Es können keine Tweets verschickt werden.")
     }
   }
 
-  func closeShare() {
+  func removeStationAndCloseView() {
+    if let station = StationStorage.currentStation {
+      try? StationStorage.delete(station: station)
+    }
     dismiss(animated: true, completion: nil)
   }
 
@@ -174,7 +182,7 @@ extension PhotoViewController: MFMailComposeViewControllerDelegate {
     if result == .cancelled || result == .failed {
       controller.dismiss(animated: true, completion: nil)
     } else {
-      controller.dismiss(animated: true) { self.closeShare() }
+      controller.dismiss(animated: true) { self.removeStationAndCloseView() }
     }
   }
 
