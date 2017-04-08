@@ -1,5 +1,7 @@
 # Bahnhofsfotos for iOS
 ---
+[![Build Status](https://travis-ci.org/RailwayStations/Bahnhofsfotos.svg?branch=master)](https://travis-ci.org/RailwayStations/Bahnhofsfotos)
+
 iOS-App for the project "Deutschlands-Bahnhoefe"
 
 You can find the project website on [railway-stations.org](https://railway-stations.org) and the map on [deutschlands-bahnhoefe.de](http://www.deutschlands-bahnhoefe.de).
