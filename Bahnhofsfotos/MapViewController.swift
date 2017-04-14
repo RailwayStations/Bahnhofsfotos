@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import FBAnnotationClusteringSwift
 import FontAwesomeKit_Swift
 import MapKit
 import UIKit
@@ -14,7 +15,29 @@ import UIKit
 class MapViewController: UIViewController {
 
   var locationManager: CLLocationManager?
-  var mapViewDidFinishRenderingMap = false
+
+  lazy var clusteringManager: FBClusteringManager = {
+      let renderer = FBRenderer(animator: FBBounceAnimator())
+      return FBClusteringManager(algorithm: FBAllMapDistanceBasedClusteringAlgorithm(), renderer: renderer)
+  }()
+
+  fileprivate lazy var configuration: FBAnnotationClusterViewConfiguration = {
+    let color = Helper.tintColor
+
+    var smallTemplate = FBAnnotationClusterTemplate(range: Range(uncheckedBounds: (lower: 0, upper: 6)), displayMode: .SolidColor(sideLength: 25, color: color))
+    smallTemplate.borderWidth = 2
+    smallTemplate.font = UIFont.boldSystemFont(ofSize: 13)
+
+    var mediumTemplate = FBAnnotationClusterTemplate(range: Range(uncheckedBounds: (lower: 6, upper: 15)), displayMode: .SolidColor(sideLength: 35, color: color))
+    mediumTemplate.borderWidth = 3
+    mediumTemplate.font = UIFont.boldSystemFont(ofSize: 13)
+
+    var largeTemplate = FBAnnotationClusterTemplate(range: nil, displayMode: .SolidColor(sideLength: 45, color: color))
+    largeTemplate.borderWidth = 4
+    largeTemplate.font = UIFont.boldSystemFont(ofSize: 13)
+
+    return FBAnnotationClusterViewConfiguration(templates: [smallTemplate, mediumTemplate], defaultTemplate: largeTemplate)
+  }()
 
   @IBOutlet weak var mapView: MKMapView!
 
@@ -30,6 +53,8 @@ class MapViewController: UIViewController {
     locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
     locationManager?.requestWhenInUseAuthorization()
     locationManager?.startUpdatingLocation()
+
+    clusteringManager.replace(annotations: StationStorage.stationsWithoutPhoto.map { StationAnnotation(station: $0) }, in: mapView)
   }
 
 }
@@ -37,34 +62,20 @@ class MapViewController: UIViewController {
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
 
-  func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-    mapView.removeAnnotations(mapView.annotations)
-  }
-
-  func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-    mapViewDidFinishRenderingMap = true
-  }
-
   func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-    guard mapViewDidFinishRenderingMap else {
-      return
-    }
+    clusteringManager.updateAnnotations(in: mapView)
+  }
 
-    let latHalf = mapView.region.span.latitudeDelta / 2
-    let lngHalf = mapView.region.span.longitudeDelta / 2
+  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    guard let annotation = view.annotation as? FBAnnotationCluster else { return }
 
-    let lat = (start: mapView.region.center.latitude - latHalf, end: mapView.region.center.latitude + latHalf)
-    let lng = (start: mapView.region.center.longitude - lngHalf, end: mapView.region.center.longitude + lngHalf)
+    var region = annotation.region
 
-    let stationsInRegion = StationStorage.stationsWithoutPhoto.filter {
-      ($0.lat >= lat.start && $0.lat <= lat.end) && ($0.lon >= lng.start && $0.lon <= lng.end)
-    }
+    // Make span a bit bigger so there are no points on the edges of the map
+    let smallSpan = region.span
+    region.span = MKCoordinateSpan(latitudeDelta: smallSpan.latitudeDelta * 1.3, longitudeDelta: smallSpan.longitudeDelta * 1.3)
 
-    mapView.removeAnnotations(mapView.annotations)
-
-    for station in stationsInRegion {
-      mapView.addAnnotation(station)
-    }
+    mapView.setRegion(region, animated: true)
   }
 
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -72,17 +83,32 @@ extension MapViewController: MKMapViewDelegate {
       return nil
     }
 
-    let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "") ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
-    annotationView.isEnabled = true
-    annotationView.canShowCallout = true
+    var reuseId = "Pin"
 
+    // check if cluster
+    if annotation is FBAnnotationCluster {
+      reuseId = "Cluster"
+      let clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) ??
+        FBAnnotationClusterView(annotation: annotation, reuseIdentifier: reuseId, configuration: configuration)
+      clusterView.annotation = annotation
+      return clusterView
+    }
+
+    // button for navigation
     let button = UIButton(type: .system)
     button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
     button.fa_setTitle(.fa_compass, for: .normal)
 
-    annotationView.rightCalloutAccessoryView = button
+    // single station
+    let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView ??
+      MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+    pinView.pinTintColor = Helper.tintColor
+    pinView.annotation = annotation
+    pinView.isEnabled = true
+    pinView.canShowCallout = true
+    pinView.rightCalloutAccessoryView = button
 
-    return annotationView
+    return pinView
   }
 
   func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {

@@ -95,7 +95,7 @@ class LeftMenuViewController: UIViewController {
 
     let navigationViewController = UINavigationController(rootViewController: acknowledgementsViewController)
     navigationViewController.navigationBar.isTranslucent = false
-    navigationViewController.navigationBar.barTintColor = UIColor(red: 167.0/255.0, green: 58.0/255.0, blue: 88/255.0, alpha: 1.0)
+    navigationViewController.navigationBar.barTintColor = Helper.tintColor
     navigationViewController.navigationBar.tintColor = UIColor.white
     navigationViewController.navigationBar.titleTextAttributes = [
       NSForegroundColorAttributeName: UIColor.white,
