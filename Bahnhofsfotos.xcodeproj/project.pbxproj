@@ -10,6 +10,7 @@
 		32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67F95631E12281F589409A6D /* Pods-Bahnhofsfotos-metadata.plist */; };
 		4906E7891E7809C800B527F5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906E7881E7809C800B527F5 /* RootViewController.swift */; };
 		4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4918B1E11E3E7C62007D5757 /* Settings.swift */; };
+		49200C211EA172840054F426 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49200C201EA172840054F426 /* StationAnnotation.swift */; };
 		493D06981E8DB2F2000EB37A /* ProfileWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D06971E8DB2F2000EB37A /* ProfileWrapperViewController.swift */; };
 		49455A671E04CA76007A5501 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A661E04CA76007A5501 /* MapViewController.swift */; };
 		49455A691E04CB60007A5501 /* StationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A681E04CB60007A5501 /* StationStorage.swift */; };
@@ -40,6 +41,7 @@
 		1D78A7B9AED7B7EE6DBA4F26 /* Pods-Bahnhofsfotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.release.xcconfig"; sourceTree = "<group>"; };
 		4906E7881E7809C800B527F5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4918B1E11E3E7C62007D5757 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		49200C201EA172840054F426 /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		493D06971E8DB2F2000EB37A /* ProfileWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWrapperViewController.swift; sourceTree = "<group>"; };
 		49455A661E04CA76007A5501 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49455A681E04CB60007A5501 /* StationStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StationStorage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -129,6 +131,7 @@
 				499AD7E11E7ED6B600A5CFE9 /* MenuItem.swift */,
 				49B503FB1E04A1B700B8AFDE /* Station.swift */,
 				49455A681E04CB60007A5501 /* StationStorage.swift */,
+				49200C201EA172840054F426 /* StationAnnotation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				499AD7E21E7ED6B600A5CFE9 /* MenuItem.swift in Sources */,
 				49B503EA1E048EAE00B8AFDE /* ListViewController.swift in Sources */,
 				49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */,
+				49200C211EA172840054F426 /* StationAnnotation.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
 				49455A691E04CB60007A5501 /* StationStorage.swift in Sources */,
 				493D06981E8DB2F2000EB37A /* ProfileWrapperViewController.swift in Sources */,

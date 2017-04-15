@@ -4,6 +4,7 @@ PODS:
   - Alamofire (4.2.0)
   - CPDAcknowledgements (1.0.0)
   - Eureka (2.0.1)
+  - FBAnnotationClusteringSwift (2.0)
   - FontAwesomeKit.Swift (0.3.1)
   - ImagePicker (2.1.0)
   - SQLite.swift (0.11.2):
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.2)
   - CPDAcknowledgements (~> 1.0)
   - Eureka (~> 2.0)
+  - FBAnnotationClusteringSwift (from `https://github.com/666tos/FBAnnotationClusteringSwift`)
   - FontAwesomeKit.Swift (~> 0.3)
   - ImagePicker (from `https://github.com/Haitec/ImagePicker`)
   - SQLite.swift (~> 0.11)
@@ -29,10 +31,15 @@ DEPENDENCIES:
   - Toast-Swift (~> 2.0)
 
 EXTERNAL SOURCES:
+  FBAnnotationClusteringSwift:
+    :git: https://github.com/666tos/FBAnnotationClusteringSwift
   ImagePicker:
     :git: https://github.com/Haitec/ImagePicker
 
 CHECKOUT OPTIONS:
+  FBAnnotationClusteringSwift:
+    :commit: b146e122c8f6a12c947f7d321c6efffae1947fab
+    :git: https://github.com/666tos/FBAnnotationClusteringSwift
   ImagePicker:
     :commit: 513b327edd5c43684df1bba75aced295c04ce4ec
     :git: https://github.com/Haitec/ImagePicker
@@ -43,6 +50,7 @@ SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
+  FBAnnotationClusteringSwift: 9eb6e2acee2db56183c7ccff9239723598f286b0
   FontAwesomeKit.Swift: 77fd566e8c20d3267da18161a10c48a31b9323b9
   ImagePicker: 137d14706a1bf2de99febbe0593d8bad3e4fe8a2
   SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
@@ -51,6 +59,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
 
-PODFILE CHECKSUM: 8f998b2807b880a2d5d497f88ca5a65408c9d03a
+PODFILE CHECKSUM: 7bbdcaee9604133f8f8f9b229194cb9c58bf6f98
 
 COCOAPODS: 1.2.0
