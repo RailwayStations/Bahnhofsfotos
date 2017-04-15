@@ -80,6 +80,7 @@ class Helper {
 
       let dispatchSource = DispatchSource.makeUserDataAddSource(queue: .main)
       dispatchSource.setEventHandler {
+        if dispatchSource.data > UInt(stations.count) { return }
         progressHandler(Int(dispatchSource.data), stations.count)
       }
       dispatchSource.resume()

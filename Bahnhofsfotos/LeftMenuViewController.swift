@@ -55,10 +55,8 @@ class LeftMenuViewController: UIViewController {
         cell.textLabel?.text = "Bahnhofsdaten herunterladen"
 
         Helper.loadStations(progressHandler: { progress, count in
-          if progress < StationStorage.stationsWithoutPhoto.count {
-            cell.textLabel?.text = "Bahnhof speichern: \(progress)/\(count)"
-            cell.detailTextLabel?.text = "\(UInt(round(Float(progress) / Float(count) * 100)))%"
-          }
+          cell.textLabel?.text = "Bahnhof speichern: \(progress)/\(count)"
+          cell.detailTextLabel?.text = "\(UInt(round(Float(progress) / Float(count) * 100)))%"
         }) {
           cell.textLabel?.text = rowTitle
           if let lastUpdate = Defaults[.lastUpdate] {
