@@ -131,7 +131,7 @@ extension ListViewController: UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-    return [UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "Entfernen") { action, indexPath in
+    return [UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "Entfernen") { _, indexPath in
       var station: Station?
       if self.searchController.isActive && self.searchController.searchBar.text != "" {
         station = self.filteredStations?[indexPath.row]

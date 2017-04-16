@@ -15,7 +15,7 @@ $ sudo gem install cocoapods cocoapods-acknowledgements
 ```
 > For macOS Sierra: (╯°□°）╯︵ ┻━┻
 > 
->     sudo gem install -n /usr/local/bin cocoapods cocoapods-acknowledgements
+>     $ sudo gem install -n /usr/local/bin cocoapods cocoapods-acknowledgements
 
 ### Installation
 After CocoaPods and the plugin has been installed, you have to run `$ pod install` in the project root directory, to download and install the dependencies.
