@@ -43,6 +43,10 @@ class ListViewController: UIViewController {
     sideMenuViewController?.presentLeftMenuViewController()
   }
 
+  @IBAction func toggleEditing(_ sender: Any) {
+    tableView.setEditing(!tableView.isEditing, animated: true)
+  }
+
   // Bahnhöfe anzeigen
   func showStations() {
     if StationStorage.lastUpdatedAt != stationsUpdatedAt {
@@ -124,6 +128,26 @@ extension ListViewController: UITableViewDelegate {
       StationStorage.currentStation = StationStorage.stationsWithoutPhoto[indexPath.row]
     }
     performSegue(withIdentifier: "showDetail", sender: nil)
+  }
+
+  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    return [UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "Entfernen") { action, indexPath in
+      var station: Station?
+      if self.searchController.isActive && self.searchController.searchBar.text != "" {
+        station = self.filteredStations?[indexPath.row]
+      } else {
+        station = StationStorage.stationsWithoutPhoto[indexPath.row]
+      }
+      guard station != nil else { return }
+      do {
+        try StationStorage.delete(station: station!)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+      } catch {
+        let alert = UIAlertController(title: "Fehler", message: "Löschen war nicht erfolgreich", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        Helper.show(viewController: alert)
+      }
+    }]
   }
 
 }

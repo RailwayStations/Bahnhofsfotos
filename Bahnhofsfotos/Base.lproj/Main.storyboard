@@ -47,6 +47,22 @@
                                             <action selector="showMenu:" destination="aEt-a1-M33" eventType="touchUpInside" id="Uzf-Yj-38S"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utv-oy-Vdz" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
+                                        <rect key="frame" x="288" y="30" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="Eq8-lZ-l8A"/>
+                                            <constraint firstAttribute="width" constant="24" id="OrF-A4-ZlS"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f040"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="toggleEditing:" destination="aEt-a1-M33" eventType="touchUpInside" id="PWA-Ct-XJi"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -54,6 +70,8 @@
                                     <constraint firstItem="yku-Sr-2jj" firstAttribute="centerY" secondItem="rUc-eR-S6p" secondAttribute="centerY" constant="10" id="AKi-fV-YGt"/>
                                     <constraint firstAttribute="height" constant="65" id="baH-FI-7zd"/>
                                     <constraint firstItem="yku-Sr-2jj" firstAttribute="leading" secondItem="rUc-eR-S6p" secondAttribute="leading" constant="8" id="eMI-pd-yNv"/>
+                                    <constraint firstAttribute="trailing" secondItem="Utv-oy-Vdz" secondAttribute="trailing" constant="8" id="hXH-eG-7mu"/>
+                                    <constraint firstItem="Utv-oy-Vdz" firstAttribute="centerY" secondItem="rUc-eR-S6p" secondAttribute="centerY" constant="10" id="jxQ-HT-0CI"/>
                                     <constraint firstItem="a8m-Di-LcQ" firstAttribute="centerX" secondItem="rUc-eR-S6p" secondAttribute="centerX" id="p53-LQ-w1T"/>
                                 </constraints>
                             </view>
