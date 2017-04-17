@@ -17,6 +17,7 @@
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
 		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
 		495CCE731E7AD80400D5B11C /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495CCE721E7AD80400D5B11C /* LeftMenuViewController.swift */; };
+		4979D6941EA54B0F00BE505B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4979D6931EA54B0F00BE505B /* GoogleService-Info.plist */; };
 		499AD7E21E7ED6B600A5CFE9 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499AD7E11E7ED6B600A5CFE9 /* MenuItem.swift */; };
 		499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B263D1E36A16400E081B3 /* EmptyView.swift */; };
 		499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 499B263F1E36ADF400E081B3 /* EmptyView.xib */; };
@@ -48,6 +49,7 @@
 		49455A6A1E04D73A007A5501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		49455A6E1E04E981007A5501 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		495CCE721E7AD80400D5B11C /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
+		4979D6931EA54B0F00BE505B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		499AD7E11E7ED6B600A5CFE9 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		499B263D1E36A16400E081B3 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		499B263F1E36ADF400E081B3 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				49B503E71E048EAE00B8AFDE /* AppDelegate.swift */,
 				49B503EE1E048EAE00B8AFDE /* Assets.xcassets */,
+				4979D6931EA54B0F00BE505B /* GoogleService-Info.plist */,
 				49B503F31E048EAE00B8AFDE /* Info.plist */,
 				4918B1E11E3E7C62007D5757 /* Settings.swift */,
 			);
@@ -266,6 +269,7 @@
 				49B503EF1E048EAE00B8AFDE /* Assets.xcassets in Resources */,
 				49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */,
 				32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */,
+				4979D6941EA54B0F00BE505B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

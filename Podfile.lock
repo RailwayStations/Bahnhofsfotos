@@ -5,7 +5,21 @@ PODS:
   - CPDAcknowledgements (1.0.0)
   - Eureka (2.0.1)
   - FBAnnotationClusteringSwift (2.0)
+  - Firebase/Core (3.16.0):
+    - FirebaseAnalytics (= 3.8.0)
+    - FirebaseCore (= 3.6.0)
+  - FirebaseAnalytics (3.8.0):
+    - FirebaseCore (~> 3.6)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.6.0):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
   - FontAwesomeKit.Swift (0.3.1)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - ImagePicker (2.1.0)
   - SQLite.swift (0.11.2):
     - SQLite.swift/standard (= 0.11.2)
@@ -22,6 +36,7 @@ DEPENDENCIES:
   - CPDAcknowledgements (~> 1.0)
   - Eureka (~> 2.0)
   - FBAnnotationClusteringSwift (from `https://github.com/666tos/FBAnnotationClusteringSwift`)
+  - Firebase/Core (~> 3.16)
   - FontAwesomeKit.Swift (~> 0.3)
   - ImagePicker (from `https://github.com/Haitec/ImagePicker`)
   - SQLite.swift (~> 0.11)
@@ -51,7 +66,12 @@ SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
   FBAnnotationClusteringSwift: 9eb6e2acee2db56183c7ccff9239723598f286b0
+  Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
+  FirebaseAnalytics: 920e46455f27b0a52a80907a6d9b73ee4bd1c635
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   FontAwesomeKit.Swift: 77fd566e8c20d3267da18161a10c48a31b9323b9
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   ImagePicker: 137d14706a1bf2de99febbe0593d8bad3e4fe8a2
   SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
   SwiftLint: 9fb1dd71d5952d130f8c2fb60ae2e1475cf5d575
@@ -59,6 +79,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
 
-PODFILE CHECKSUM: 7bbdcaee9604133f8f8f9b229194cb9c58bf6f98
+PODFILE CHECKSUM: 0ac7695026df8fad0fd3f370d4e59c089d56c9df
 
 COCOAPODS: 1.2.0

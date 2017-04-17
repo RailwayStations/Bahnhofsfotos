@@ -12,6 +12,7 @@ target 'Bahnhofsfotos' do
   pod 'CPDAcknowledgements', '~> 1.0'
   pod 'Eureka', '~> 2.0'
   pod 'FBAnnotationClusteringSwift', :git => 'https://github.com/666tos/FBAnnotationClusteringSwift'
+  pod 'Firebase/Core', '~> 3.16'
   pod 'FontAwesomeKit.Swift', '~> 0.3'
   pod 'ImagePicker', :git => 'https://github.com/Haitec/ImagePicker'
   pod 'SQLite.swift', '~> 0.11'

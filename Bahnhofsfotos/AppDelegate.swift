@@ -6,6 +6,7 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import Firebase
 import SwiftyUserDefaults
 import UIKit
 
@@ -15,11 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    // Get SQLite data
     try? CountryStorage.fetchAll()
     if Defaults[.dataComplete] {
       try? StationStorage.fetchAll()
     }
+
+    // Use Firebase library to configure APIs
+    FIRApp.configure()
 
     return true
   }
