@@ -144,6 +144,9 @@ extension ListViewController: UITableViewDelegate {
       guard station != nil else { return }
       do {
         try StationStorage.delete(station: station!)
+        if self.searchController.isActive && self.searchController.searchBar.text != "" {
+          self.filteredStations?.remove(at: indexPath.row)
+        }
         tableView.deleteRows(at: [indexPath], with: .automatic)
       } catch {
         let alert = UIAlertController(title: "Fehler", message: "Löschen war nicht erfolgreich", preferredStyle: .alert)
