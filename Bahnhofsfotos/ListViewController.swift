@@ -6,6 +6,7 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import AKSideMenu
 import Alamofire
 import UIKit
 
@@ -28,6 +29,8 @@ class ListViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    Helper.rootViewController?.delegate = self
 
     tableView.dataSource = self
     tableView.delegate = self
@@ -159,6 +162,15 @@ extension ListViewController: UISearchResultsUpdating {
     if let query = searchController.searchBar.text {
       filterContentForSearchText(query)
     }
+  }
+
+}
+
+// MARK: - AKSideMenuDelegate
+extension ListViewController: AKSideMenuDelegate {
+
+  func sideMenu(_ sideMenu: AKSideMenu, willHideMenuViewController menuViewController: UIViewController) {
+    showStations()
   }
 
 }

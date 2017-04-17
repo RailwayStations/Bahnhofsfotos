@@ -6,6 +6,7 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import AKSideMenu
 import CoreLocation
 import FBAnnotationClusteringSwift
 import FontAwesomeKit_Swift
@@ -15,6 +16,7 @@ import UIKit
 class MapViewController: UIViewController {
 
   var locationManager: CLLocationManager?
+  var stationsUpdatedAt: Date?
 
   lazy var clusteringManager: FBClusteringManager = {
       let renderer = FBRenderer(animator: FBBounceAnimator())
@@ -48,13 +50,23 @@ class MapViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    Helper.rootViewController?.delegate = self
+
     locationManager = CLLocationManager()
     locationManager?.delegate = self
     locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
     locationManager?.requestWhenInUseAuthorization()
     locationManager?.startUpdatingLocation()
 
-    clusteringManager.replace(annotations: StationStorage.stationsWithoutPhoto.map { StationAnnotation(station: $0) }, in: mapView)
+    showStations()
+  }
+
+  // Bahnhöfe anzeigen
+  func showStations() {
+    if StationStorage.lastUpdatedAt != stationsUpdatedAt {
+      stationsUpdatedAt = StationStorage.lastUpdatedAt
+      clusteringManager.replace(annotations: StationStorage.stationsWithoutPhoto.map { StationAnnotation(station: $0) }, in: mapView)
+    }
   }
 
 }
@@ -128,6 +140,15 @@ extension MapViewController: CLLocationManagerDelegate {
     let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     mapView.setRegion(region, animated: false)
     manager.stopUpdatingLocation()
+  }
+
+}
+
+// MARK: - AKSideMenuDelegate
+extension MapViewController: AKSideMenuDelegate {
+
+  func sideMenu(_ sideMenu: AKSideMenu, willHideMenuViewController menuViewController: UIViewController) {
+    showStations()
   }
 
 }
