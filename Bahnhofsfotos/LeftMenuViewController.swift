@@ -8,6 +8,7 @@
 
 import AKSideMenu
 import CPDAcknowledgements
+import FirebaseAuth
 import FontAwesomeKit_Swift
 import SwiftyUserDefaults
 
@@ -20,6 +21,7 @@ class LeftMenuViewController: UIViewController {
     MenuItem(key: "profile", title: "Deine Daten", action: LeftMenuViewController.openProfile),
     MenuItem(key: "map", title: "Karte", action: LeftMenuViewController.openMap),
     MenuItem(key: "list", title: "Bahnhöfe ohne Foto", action: LeftMenuViewController.openList),
+    MenuItem(key: "chat", title: "Chat", action: LeftMenuViewController.openChat),
     MenuItem(key: "infos", title: "Informationen", action: LeftMenuViewController.openInformations)
   ]
 
@@ -35,7 +37,7 @@ class LeftMenuViewController: UIViewController {
   // MARK: Helpers
 
   static func openProfile(_ sender: Any?) {
-    Helper.showViewController(withIdentifier: "ProfileViewController")
+    Helper.showViewController(withIdentifier: Constants.StoryboardIdentifiers.profileViewController)
   }
 
   static func loadData(_ sender: Any?) {
@@ -73,11 +75,15 @@ class LeftMenuViewController: UIViewController {
   }
 
   static func openList(_ sender: Any?) {
-    Helper.showViewController(withIdentifier: "ListViewController")
+    Helper.showViewController(withIdentifier: Constants.StoryboardIdentifiers.listViewController)
   }
 
   static func openMap(_ sender: Any?) {
-    Helper.showViewController(withIdentifier: "MapViewController")
+    Helper.showViewController(withIdentifier: Constants.StoryboardIdentifiers.mapViewController)
+  }
+
+  static func openChat(_ sender: Any?) {
+    Helper.showViewController(withIdentifier: Constants.StoryboardIdentifiers.signInViewController)
   }
 
   static func openInformations(_ sender: Any?) {

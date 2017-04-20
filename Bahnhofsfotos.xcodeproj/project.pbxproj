@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67F95631E12281F589409A6D /* Pods-Bahnhofsfotos-metadata.plist */; };
 		4906E7891E7809C800B527F5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906E7881E7809C800B527F5 /* RootViewController.swift */; };
+		491119351EA918BA00BC1F1D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491119341EA918BA00BC1F1D /* SignInViewController.swift */; };
+		491119371EA92E8600BC1F1D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491119361EA92E8600BC1F1D /* ChatViewController.swift */; };
 		4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4918B1E11E3E7C62007D5757 /* Settings.swift */; };
 		49200C211EA172840054F426 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49200C201EA172840054F426 /* StationAnnotation.swift */; };
 		493D06981E8DB2F2000EB37A /* ProfileWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D06971E8DB2F2000EB37A /* ProfileWrapperViewController.swift */; };
@@ -41,6 +43,8 @@
 		1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bahnhofsfotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D78A7B9AED7B7EE6DBA4F26 /* Pods-Bahnhofsfotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.release.xcconfig"; sourceTree = "<group>"; };
 		4906E7881E7809C800B527F5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		491119341EA918BA00BC1F1D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		491119361EA92E8600BC1F1D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		4918B1E11E3E7C62007D5757 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		49200C201EA172840054F426 /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		493D06971E8DB2F2000EB37A /* ProfileWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWrapperViewController.swift; sourceTree = "<group>"; };
@@ -153,13 +157,15 @@
 		49B504001E04A3D200B8AFDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				49455A661E04CA76007A5501 /* MapViewController.swift */,
+				491119361EA92E8600BC1F1D /* ChatViewController.swift */,
 				495CCE721E7AD80400D5B11C /* LeftMenuViewController.swift */,
+				49B503E91E048EAE00B8AFDE /* ListViewController.swift */,
+				49455A661E04CA76007A5501 /* MapViewController.swift */,
 				49455A6E1E04E981007A5501 /* PhotoViewController.swift */,
 				49F690F01E05272000BDE340 /* ProfileViewController.swift */,
 				493D06971E8DB2F2000EB37A /* ProfileWrapperViewController.swift */,
 				4906E7881E7809C800B527F5 /* RootViewController.swift */,
-				49B503E91E048EAE00B8AFDE /* ListViewController.swift */,
+				491119341EA918BA00BC1F1D /* SignInViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -343,7 +349,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				491119351EA918BA00BC1F1D /* SignInViewController.swift in Sources */,
 				499AD7E21E7ED6B600A5CFE9 /* MenuItem.swift in Sources */,
+				491119371EA92E8600BC1F1D /* ChatViewController.swift in Sources */,
 				49B503EA1E048EAE00B8AFDE /* ListViewController.swift in Sources */,
 				49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */,
 				49200C211EA172840054F426 /* StationAnnotation.swift in Sources */,

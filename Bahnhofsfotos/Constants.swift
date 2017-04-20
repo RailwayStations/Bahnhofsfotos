@@ -34,4 +34,19 @@ public class Constants {
   public static let baseUrl = "https://api.railway-stations.org"
   public static let countriesUrl = "https://railway-stations.org/laenderdaten.json"
 
+  struct StoryboardIdentifiers {
+    static let leftMenuViewController = "LeftMenuViewController"
+    static let profileViewController = "ProfileViewController"
+    static let listViewController = "ListViewController"
+    static let mapViewController = "MapViewController"
+    static let signInViewController = "SignInViewController"
+    static let chatViewController = "ChatViewController"
+  }
+
+  struct MessageFields {
+    static let name = "name"
+    static let text = "text"
+    static let photoURL = "photoURL"
+  }
+
 }

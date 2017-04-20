@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nzf-b8-BGk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nzf-b8-BGk">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -192,7 +192,7 @@
             </objects>
             <point key="canvasLocation" x="173" y="146"/>
         </scene>
-        <!--Deine Daten-->
+        <!--Profile Wrapper View Controller-->
         <scene sceneID="jZi-ik-zmh">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="aXH-4f-edi" customClass="ProfileWrapperViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
@@ -232,7 +232,6 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f0c9"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="showMenu:" destination="aEt-a1-M33" eventType="touchUpInside" id="Ofy-jY-GBc"/>
                                             <action selector="showMenu:" destination="aXH-4f-edi" eventType="touchUpInside" id="gj9-0A-qiD"/>
                                         </connections>
                                     </button>
@@ -258,7 +257,6 @@
                             <constraint firstAttribute="trailing" secondItem="VT1-sp-f7j" secondAttribute="trailing" id="vnm-Tv-G78"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Deine Daten" id="gLk-CY-rl4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ko6-Ks-QeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -535,6 +533,145 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wzg-ir-5nb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1114" y="1613"/>
+        </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="oBr-Gd-Uwt">
+            <objects>
+                <viewController storyboardIdentifier="SignInViewController" id="Vyg-FN-9kR" customClass="SignInViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pYX-Fg-fZL"/>
+                        <viewControllerLayoutGuide type="bottom" id="jie-JF-IAC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7WX-SA-1xJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwE-xk-sXi">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Anmeldung" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5p-SB-hlp">
+                                        <rect key="frame" x="114" y="31" width="93" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qni-Wr-Z1f" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
+                                        <rect key="frame" x="8" y="30" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f0c9"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="showMenu:" destination="Vyg-FN-9kR" eventType="touchUpInside" id="UrK-bD-qpa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="48" translatesAutoresizingMaskIntoConstraints="NO" id="Ct9-0D-62j" customClass="GIDSignInButton">
+                                <rect key="frame" x="85" y="260" width="150" height="48"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="h3o-BQ-Rpy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ct9-0D-62j" firstAttribute="centerY" secondItem="7WX-SA-1xJ" secondAttribute="centerY" id="mtJ-xO-T2F"/>
+                            <constraint firstItem="Ct9-0D-62j" firstAttribute="centerX" secondItem="7WX-SA-1xJ" secondAttribute="centerX" id="tja-n7-LSP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="signInButton" destination="Ct9-0D-62j" id="IMS-rL-bdk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wiq-ek-Kxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2062.5" y="917.95774647887322"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="rf5-Va-Xrc">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="1fs-Xb-7NJ" customClass="ChatViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2SO-iI-gfv"/>
+                        <viewControllerLayoutGuide type="bottom" id="dxZ-Un-ASH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PLd-p0-NyP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcK-WK-sU8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9R-kR-mdg">
+                                        <rect key="frame" x="142" y="31" width="37" height="24"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKa-Ib-qma" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
+                                        <rect key="frame" x="8" y="30" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="LjY-nP-33X"/>
+                                            <constraint firstAttribute="width" constant="24" id="jy8-VC-vKW"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f0c9"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="showMenu:" destination="1fs-Xb-7NJ" eventType="touchUpInside" id="do9-3x-PsU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p52-L5-qA7" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
+                                        <rect key="frame" x="288" y="30" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="SIG-s0-UZY"/>
+                                            <constraint firstAttribute="width" constant="24" id="eBH-7g-aFs"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f08b"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="signOut:" destination="1fs-Xb-7NJ" eventType="touchUpInside" id="BTa-s7-B7b"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="QKa-Ib-qma" firstAttribute="centerY" secondItem="bcK-WK-sU8" secondAttribute="centerY" constant="10" id="1Dq-Jb-GS4"/>
+                                    <constraint firstItem="QKa-Ib-qma" firstAttribute="leading" secondItem="bcK-WK-sU8" secondAttribute="leading" constant="8" id="6me-UV-cDi"/>
+                                    <constraint firstAttribute="trailing" secondItem="p52-L5-qA7" secondAttribute="trailing" constant="8" id="ccw-2O-FR0"/>
+                                    <constraint firstItem="W9R-kR-mdg" firstAttribute="centerX" secondItem="bcK-WK-sU8" secondAttribute="centerX" id="hFv-Br-poV"/>
+                                    <constraint firstAttribute="height" constant="65" id="juZ-tH-cO8"/>
+                                    <constraint firstItem="W9R-kR-mdg" firstAttribute="centerY" secondItem="bcK-WK-sU8" secondAttribute="centerY" constant="10" id="uR8-kK-ZF5"/>
+                                    <constraint firstItem="p52-L5-qA7" firstAttribute="centerY" secondItem="bcK-WK-sU8" secondAttribute="centerY" constant="10" id="xb3-2a-HPZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bcK-WK-sU8" firstAttribute="top" secondItem="2SO-iI-gfv" secondAttribute="bottom" constant="-20" id="8GK-92-lum"/>
+                            <constraint firstItem="bcK-WK-sU8" firstAttribute="leading" secondItem="PLd-p0-NyP" secondAttribute="leading" id="Q2O-1d-boU"/>
+                            <constraint firstAttribute="trailing" secondItem="bcK-WK-sU8" secondAttribute="trailing" id="VLN-Ri-uIr"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5SO-lO-zLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2963" y="919"/>
         </scene>
     </scenes>
     <resources>
