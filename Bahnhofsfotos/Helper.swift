@@ -7,6 +7,7 @@
 //
 
 import AKSideMenu
+import FirebaseAuth
 import MapKit
 import SwiftyUserDefaults
 import UIKit
@@ -114,6 +115,16 @@ class Helper {
       MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,
       MKLaunchOptionsShowsTrafficKey: true
       ])
+  }
+
+  static func signOut() {
+    let firebaseAuth = FIRAuth.auth()
+    do {
+      try firebaseAuth?.signOut()
+      showViewController(withIdentifier: Constants.StoryboardIdentifiers.signInViewController)
+    } catch let signOutError {
+      debugPrint("Error signing out: \(signOutError.localizedDescription)")
+    }
   }
 
 }

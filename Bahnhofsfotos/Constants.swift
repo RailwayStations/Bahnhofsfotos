@@ -44,9 +44,11 @@ public class Constants {
   }
 
   struct MessageFields {
+    static let userId = "userId"
     static let name = "name"
     static let text = "text"
-    static let photoURL = "photoURL"
+    static let photoURL = "photoUrl"
+    static let chatTimeStamp = "chatTimeStamp"
   }
 
 }

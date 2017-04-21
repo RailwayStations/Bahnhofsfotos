@@ -18,6 +18,7 @@ target 'Bahnhofsfotos' do
   pod 'FontAwesomeKit.Swift', '~> 0.3'
   pod 'GoogleSignIn', '~> 4.0'
   pod 'ImagePicker', :git => 'https://github.com/Haitec/ImagePicker'
+  pod 'JSQMessagesViewController', '~> 7.3'
   pod 'SQLite.swift', '~> 0.11'
   pod 'SwiftLint', '~> 0.17'
   pod 'SwiftyJSON', '~> 3.1'
