@@ -29,14 +29,6 @@ class ChatViewController: JSQMessagesViewController {
     return dateFormatter
   }()
 
-  @IBAction func showMenu(_ sender: Any) {
-    sideMenuViewController?.presentLeftMenuViewController()
-  }
-
-  @IBAction func signOut(_ sender: Any) {
-    Helper.signOut()
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
 

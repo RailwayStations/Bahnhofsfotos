@@ -11,6 +11,7 @@
 		4906E7891E7809C800B527F5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906E7881E7809C800B527F5 /* RootViewController.swift */; };
 		491119351EA918BA00BC1F1D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491119341EA918BA00BC1F1D /* SignInViewController.swift */; };
 		491119371EA92E8600BC1F1D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491119361EA92E8600BC1F1D /* ChatViewController.swift */; };
+		4911193B1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911193A1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift */; };
 		4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4918B1E11E3E7C62007D5757 /* Settings.swift */; };
 		49200C211EA172840054F426 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49200C201EA172840054F426 /* StationAnnotation.swift */; };
 		493D06981E8DB2F2000EB37A /* ProfileWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D06971E8DB2F2000EB37A /* ProfileWrapperViewController.swift */; };
@@ -45,6 +46,7 @@
 		4906E7881E7809C800B527F5 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		491119341EA918BA00BC1F1D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		491119361EA92E8600BC1F1D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		4911193A1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatWrapperViewController.swift; sourceTree = "<group>"; };
 		4918B1E11E3E7C62007D5757 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		49200C201EA172840054F426 /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		493D06971E8DB2F2000EB37A /* ProfileWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWrapperViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				491119361EA92E8600BC1F1D /* ChatViewController.swift */,
+				4911193A1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift */,
 				495CCE721E7AD80400D5B11C /* LeftMenuViewController.swift */,
 				49B503E91E048EAE00B8AFDE /* ListViewController.swift */,
 				49455A661E04CA76007A5501 /* MapViewController.swift */,
@@ -351,6 +354,7 @@
 			files = (
 				491119351EA918BA00BC1F1D /* SignInViewController.swift in Sources */,
 				499AD7E21E7ED6B600A5CFE9 /* MenuItem.swift in Sources */,
+				4911193B1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift in Sources */,
 				491119371EA92E8600BC1F1D /* ChatViewController.swift in Sources */,
 				49B503EA1E048EAE00B8AFDE /* ListViewController.swift in Sources */,
 				49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */,

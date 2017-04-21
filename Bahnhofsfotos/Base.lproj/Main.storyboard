@@ -595,10 +595,10 @@
             </objects>
             <point key="canvasLocation" x="2062.5" y="917.95774647887322"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Chat Wrapper View Controller-->
         <scene sceneID="rf5-Va-Xrc">
             <objects>
-                <viewController storyboardIdentifier="ChatViewController" id="1fs-Xb-7NJ" customClass="ChatViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="1fs-Xb-7NJ" customClass="ChatWrapperViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2SO-iI-gfv"/>
                         <viewControllerLayoutGuide type="bottom" id="dxZ-Un-ASH"/>
@@ -660,18 +660,42 @@
                                     <constraint firstItem="p52-L5-qA7" firstAttribute="centerY" secondItem="bcK-WK-sU8" secondAttribute="centerY" constant="10" id="xb3-2a-HPZ"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bde-Gz-pzo">
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                <connections>
+                                    <segue destination="9QG-F5-TKI" kind="embed" id="gsf-LH-su6"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bde-Gz-pzo" firstAttribute="leading" secondItem="PLd-p0-NyP" secondAttribute="leading" id="1LZ-vI-9ai"/>
+                            <constraint firstAttribute="trailing" secondItem="bde-Gz-pzo" secondAttribute="trailing" id="85A-Rp-d0B"/>
                             <constraint firstItem="bcK-WK-sU8" firstAttribute="top" secondItem="2SO-iI-gfv" secondAttribute="bottom" constant="-20" id="8GK-92-lum"/>
                             <constraint firstItem="bcK-WK-sU8" firstAttribute="leading" secondItem="PLd-p0-NyP" secondAttribute="leading" id="Q2O-1d-boU"/>
+                            <constraint firstItem="dxZ-Un-ASH" firstAttribute="top" secondItem="bde-Gz-pzo" secondAttribute="bottom" id="Rgu-MA-yZy"/>
                             <constraint firstAttribute="trailing" secondItem="bcK-WK-sU8" secondAttribute="trailing" id="VLN-Ri-uIr"/>
+                            <constraint firstItem="bde-Gz-pzo" firstAttribute="top" secondItem="bcK-WK-sU8" secondAttribute="bottom" id="wYe-nE-DfS"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SO-lO-zLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2962.5" y="917.95774647887322"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="Z1B-V0-Dty">
+            <objects>
+                <viewController id="9QG-F5-TKI" customClass="ChatViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DNC-DL-eif">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXd-M7-3M3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2963" y="1613"/>
         </scene>
     </scenes>
     <resources>
