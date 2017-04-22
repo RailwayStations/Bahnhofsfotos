@@ -19,8 +19,9 @@ class ChatViewController: JSQMessagesViewController {
   private var newMessageRefHandle: FIRDatabaseHandle?
   var messages = [FIRDataSnapshot]()
 
-  fileprivate lazy var incomingBubbleImage: JSQMessagesBubbleImage = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-  fileprivate lazy var outgoingBubbleImage: JSQMessagesBubbleImage = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.lightGray)
+  fileprivate lazy var incomingBubbleImage: JSQMessagesBubbleImage =
+    JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: Helper.alternativeTintColor)
+  fileprivate lazy var outgoingBubbleImage: JSQMessagesBubbleImage = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: Helper.tintColor)
 
   fileprivate lazy var isoDateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
@@ -62,6 +63,8 @@ class ChatViewController: JSQMessagesViewController {
     guard let user = FIRAuth.auth()?.currentUser else { return }
     senderId = user.uid
     senderDisplayName = user.displayName
+
+    collectionView.tintColor = UIColor.black
 
     inputToolbar.contentView.leftBarButtonItem = nil
   }
@@ -110,6 +113,21 @@ extension ChatViewController {
     return getJSQMessage(fromSnapshot: messages[indexPath.item])
   }
 
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = super.collectionView(collectionView, cellForItemAt: indexPath)
+
+    if let jsqCell = cell as? JSQMessagesCollectionViewCell {
+      let snapshot = messages[indexPath.row]
+      if let message = snapshot.value as? [String: String] {
+        let userId = message[Constants.MessageFields.userId] ?? message[Constants.MessageFields.name] ?? ""
+        jsqCell.textView?.textColor = userId == senderId ? UIColor.white : UIColor.black
+        return jsqCell
+      }
+    }
+
+    return cell
+  }
+
   override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
     let snapshot = messages[indexPath.row]
     guard let message = snapshot.value as? [String: String] else { return incomingBubbleImage }
@@ -150,7 +168,7 @@ extension ChatViewController {
     let initials = message[Constants.MessageFields.name]?.components(separatedBy: " ").map { $0.characters.first != nil ? String($0.characters.first!) : "" }.joined()
 
     return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: initials?.uppercased(),
-                                                     backgroundColor: UIColor.gray,
+                                                     backgroundColor: Helper.tintColor,
                                                      textColor: UIColor.white,
                                                      font: UIFont.systemFont(ofSize: 14),
                                                      diameter: 34)
@@ -165,8 +183,9 @@ extension ChatViewController {
     let messageItem = [
       Constants.MessageFields.userId: senderId,
       Constants.MessageFields.name: senderDisplayName,
-      Constants.MessageFields.text: text,
-      Constants.MessageFields.chatTimeStamp: isoDateFormatter.string(from: Date())
+      Constants.MessageFields.photoURL: FIRAuth.auth()?.currentUser?.photoURL?.absoluteString,
+      Constants.MessageFields.chatTimeStamp: isoDateFormatter.string(from: Date()),
+      Constants.MessageFields.text: text
     ]
 
     itemRef.setValue(messageItem)

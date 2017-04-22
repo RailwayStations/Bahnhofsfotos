@@ -18,6 +18,10 @@ class Helper {
     return UIColor(red: 167.0/255.0, green: 58.0/255.0, blue: 88/255.0, alpha: 1.0)
   }
 
+  static var alternativeTintColor: UIColor {
+    return UIColor(red: 212/255.0, green: 222/255.0, blue: 59/255.0, alpha: 1)
+  }
+
   static var rootViewController: AKSideMenu? {
     return (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? AKSideMenu
   }
