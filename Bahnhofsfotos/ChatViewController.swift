@@ -25,8 +25,17 @@ class ChatViewController: JSQMessagesViewController {
 
   fileprivate lazy var isoDateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
+    dateFormatter.calendar = Calendar(identifier: .iso8601)
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+    return dateFormatter
+  }()
+
+  fileprivate lazy var customDateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "de_DE")
+    dateFormatter.dateFormat = "dd.MM.yyyy @ HH:mm"
     return dateFormatter
   }()
 
@@ -74,8 +83,6 @@ class ChatViewController: JSQMessagesViewController {
 
     // date isn't iso 8601
     if date == nil {
-      let customDateFormatter = DateFormatter()
-      customDateFormatter.dateFormat = "dd.MM.yyyy @ HH:mm"
       date = customDateFormatter.date(from: from)
     }
 
@@ -184,7 +191,7 @@ extension ChatViewController {
       Constants.MessageFields.userId: senderId,
       Constants.MessageFields.name: senderDisplayName,
       Constants.MessageFields.photoURL: FIRAuth.auth()?.currentUser?.photoURL?.absoluteString,
-      Constants.MessageFields.chatTimeStamp: isoDateFormatter.string(from: Date()),
+      Constants.MessageFields.chatTimeStamp: customDateFormatter.string(from: Date()),
       Constants.MessageFields.text: text
     ]
 
