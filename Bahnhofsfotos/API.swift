@@ -18,7 +18,7 @@ class API {
   }
 
   static var baseUrl: String {
-    return Constants.baseUrl + "/" + Defaults[.country].lowercased()
+    return Constants.baseUrl
   }
 
   // Get all countries
@@ -50,9 +50,15 @@ class API {
   // Get all stations (or with/out photo)
   static func getStations(withPhoto hasPhoto: Bool?, completionHandler: @escaping ([Station]) -> Void) {
 
+    var parameters = Parameters()
+    parameters["country"] = Defaults[.country].lowercased()
+    if let hasPhoto = hasPhoto {
+      parameters["hasPhoto"] = hasPhoto.description
+    }
+
     Alamofire.request(API.baseUrl + "/stations",
                       method: .get,
-                      parameters: hasPhoto != nil ? ["hasPhoto": hasPhoto!.description] : nil,
+                      parameters: parameters,
                       encoding: URLEncoding.default,
                       headers: nil)
       .responseJSON { response in
