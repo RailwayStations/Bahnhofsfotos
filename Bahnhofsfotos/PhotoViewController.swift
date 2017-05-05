@@ -88,8 +88,8 @@ class PhotoViewController: UIViewController {
       mailController.setToRecipients([email])
       mailController.setSubject("Neues Bahnhofsfoto: \(name)")
       mailController.setMessageBody(text, isHTML: false)
-      if let data = UIImagePNGRepresentation(image) {
-        mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(name)-\(username)")
+      if let data = UIImageJPEGRepresentation(image, 1) {
+        mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(name)-\(username).jpg")
       }
       present(mailController, animated: true, completion: nil)
     } else {
@@ -166,8 +166,6 @@ extension PhotoViewController: AAShareBubblesDelegate {
       showMailController()
     case .twitter:
       showTwitterController()
-    case .facebook:
-      showError("Facebook ist nocht nicht implementiert.")
     default:
       break
     }
