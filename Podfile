@@ -15,6 +15,7 @@ target 'Bahnhofsfotos' do
   pod 'Firebase/Auth', '~> 3.16'
   pod 'Firebase/Core', '~> 3.16'
   pod 'Firebase/Database', '~> 3.16'
+  pod 'Firebase/Messaging', '~> 3.16'
   pod 'FontAwesomeKit.Swift', '~> 0.3'
   pod 'GoogleSignIn', '~> 4.0'
   pod 'ImagePicker', :git => 'https://github.com/Haitec/ImagePicker'

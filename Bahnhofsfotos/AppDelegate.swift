@@ -10,6 +10,7 @@ import Firebase
 import GoogleSignIn
 import SwiftyUserDefaults
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FIRApp.configure()
     GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
+
+    // Register for remote notifications. This shows a permission dialog on first run, to
+    // show the dialog at a more appropriate time move this registration accordingly.
+    if #available(iOS 10.0, *) {
+      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+      UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in }
+      // For iOS 10 display notification (sent via APNS)
+      UNUserNotificationCenter.current().delegate = self
+    } else {
+      let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+      application.registerUserNotificationSettings(settings)
+    }
+    application.registerForRemoteNotifications()
 
     return true
   }
@@ -64,6 +78,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
   }
 
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+
+    showAlert(withUserInfo: userInfo)
+  }
+
+  func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                   fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+
+    showAlert(withUserInfo: userInfo)
+
+    completionHandler(UIBackgroundFetchResult.newData)
+  }
+
+  func showAlert(withUserInfo userInfo: [AnyHashable : Any]) {
+    let apsKey = "aps"
+    let gcmMessage = "alert"
+    let gcmLabel = "google.c.a.c_l"
+
+    if let aps = userInfo[apsKey] as? NSDictionary {
+      if let message = aps[gcmMessage] as? String {
+        DispatchQueue.main.async {
+          let alert = UIAlertController(title: userInfo[gcmLabel] as? String ?? "",
+                                        message: message, preferredStyle: .alert)
+          let dismissAction = UIAlertAction(title: "Schließen", style: .destructive, handler: nil)
+          alert.addAction(dismissAction)
+          self.window?.rootViewController?.presentedViewController?.present(alert, animated: true, completion: nil)
+        }
+      }
+    }
+  }
+
 }
 
 extension AppDelegate: GIDSignInDelegate {
@@ -85,4 +134,28 @@ extension AppDelegate: GIDSignInDelegate {
     }
   }
 
+}
+
+@available(iOS 10, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+  // Receive displayed notifications for iOS 10 devices.
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              willPresent notification: UNNotification,
+                              withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    let userInfo = notification.request.content.userInfo
+    showAlert(withUserInfo: userInfo)
+
+    // Change this to your preferred presentation option
+    completionHandler([])
+  }
+
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              didReceive response: UNNotificationResponse,
+                              withCompletionHandler completionHandler: @escaping () -> Void) {
+    let userInfo = response.notification.request.content.userInfo
+    showAlert(withUserInfo: userInfo)
+
+    completionHandler()
+  }
 }
