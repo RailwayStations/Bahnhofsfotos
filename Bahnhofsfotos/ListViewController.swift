@@ -19,7 +19,11 @@ class ListViewController: UIViewController {
   let searchController = UISearchController(searchResultsController: nil)
 
   var stationsUpdatedAt: Date?
-  var filteredStations: [Station]?
+  var filteredStations: [String: [Station]]?
+  var filteredSectionTitles: [String]?
+
+  var stations = [String: [Station]]()
+  var sectionTitles = [String]()
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -54,14 +58,41 @@ class ListViewController: UIViewController {
   func showStations() {
     if StationStorage.lastUpdatedAt != stationsUpdatedAt {
       stationsUpdatedAt = StationStorage.lastUpdatedAt
-      self.tableView.reloadData()
+
+      stations = createSections(of: StationStorage.stationsWithoutPhoto)
+      sectionTitles = Array(stations.keys).sorted()
+
+      tableView.reloadData()
     }
+  }
+
+  func createSections(of stations: [Station]) -> [String: [Station]] {
+    var result = [String: [Station]]()
+
+    for station in stations {
+      let name = station.name
+      let key = name.substring(to: name.index(after: name.startIndex))
+
+      if result[key] != nil {
+        result[key]?.append(station)
+        result[key] = result[key]?.sorted { $0.name.compare($1.name) == .orderedAscending }
+      } else {
+        result[key] = [station]
+      }
+    }
+
+    return result
   }
 
   // Bahnhöfe filtern
   func filterContentForSearchText(_ searchText: String) {
-    filteredStations = StationStorage.stationsWithoutPhoto.filter { station in
+    let filtered = StationStorage.stationsWithoutPhoto.filter { station in
       return station.name.lowercased().contains(searchText.lowercased())
+    }
+
+    filteredStations = createSections(of: filtered)
+    if let filteredStations = filteredStations {
+      filteredSectionTitles = Array(filteredStations.keys).sorted()
     }
 
     tableView.reloadData()
@@ -78,7 +109,10 @@ extension ListViewController: UITableViewDataSource {
       tableView.backgroundView = nil
       tableView.separatorStyle = .singleLine
 
-      return 1
+      if searchController.isActive && searchController.searchBar.text != "" {
+        return filteredSectionTitles?.count ?? 0
+      }
+      return sectionTitles.count
     } else {
       // Keine Bahnhöfe geladen. Bitte zuerst im Profil auf "Bahnhofsdaten aktualisieren" tippen.
       let emptyView = EmptyView()
@@ -91,12 +125,31 @@ extension ListViewController: UITableViewDataSource {
     }
   }
 
+  func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    if searchController.isActive && searchController.searchBar.text != "" {
+      return filteredSectionTitles
+    }
+    return sectionTitles
+  }
+
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if searchController.isActive && searchController.searchBar.text != "" {
+      return filteredSectionTitles?[section]
+    }
+    return sectionTitles[section]
+  }
+
   // TableView: Anzahl der anzeigbaren Bahnhöfe
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if searchController.isActive && searchController.searchBar.text != "" {
-      return filteredStations?.count ?? 0
+      if let sectionTitle = filteredSectionTitles?[section] {
+        return filteredStations?[sectionTitle]?.count ?? 0
+      } else {
+        return 0
+      }
     }
-    return StationStorage.stationsWithoutPhoto.count
+    let sectionTitle = sectionTitles[section]
+    return stations[sectionTitle]?.count ?? 0
   }
 
   // TableView: Zelle
@@ -112,10 +165,14 @@ extension ListViewController: UITableViewDelegate {
   // TableView: station will be shown
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     var station: Station?
+
     if searchController.isActive && searchController.searchBar.text != "" {
-      station = filteredStations?[indexPath.row]
+      if let sectionTitle = filteredSectionTitles?[indexPath.section] {
+        station = filteredStations?[sectionTitle]?[indexPath.row]
+      }
     } else {
-      station = StationStorage.stationsWithoutPhoto[indexPath.row]
+      let sectionTitle = sectionTitles[indexPath.section]
+      station = stations[sectionTitle]?[indexPath.row]
     }
     if station != nil {
       cell.textLabel?.text = station?.title
@@ -125,10 +182,14 @@ extension ListViewController: UITableViewDelegate {
   // TableView: station selected
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+
     if searchController.isActive && searchController.searchBar.text != "" {
-      StationStorage.currentStation = filteredStations?[indexPath.row]
+      if let sectionTitle = filteredSectionTitles?[indexPath.section] {
+        StationStorage.currentStation = filteredStations?[sectionTitle]?[indexPath.row]
+      }
     } else {
-      StationStorage.currentStation = StationStorage.stationsWithoutPhoto[indexPath.row]
+      let sectionTitle = sectionTitles[indexPath.section]
+      StationStorage.currentStation = stations[sectionTitle]?[indexPath.row]
     }
     performSegue(withIdentifier: "showDetail", sender: nil)
   }
@@ -136,16 +197,25 @@ extension ListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
     return [UITableViewRowAction(style: UITableViewRowActionStyle.destructive, title: "Entfernen") { _, indexPath in
       var station: Station?
+
       if self.searchController.isActive && self.searchController.searchBar.text != "" {
-        station = self.filteredStations?[indexPath.row]
+        if let sectionTitle = self.filteredSectionTitles?[indexPath.section] {
+          station = self.filteredStations?[sectionTitle]?[indexPath.row]
+        }
       } else {
-        station = StationStorage.stationsWithoutPhoto[indexPath.row]
+        let sectionTitle = self.sectionTitles[indexPath.section]
+        station = self.stations[sectionTitle]?[indexPath.row]
       }
       guard station != nil else { return }
       do {
         try StationStorage.delete(station: station!)
         if self.searchController.isActive && self.searchController.searchBar.text != "" {
-          self.filteredStations?.remove(at: indexPath.row)
+          if let sectionTitle = self.filteredSectionTitles?[indexPath.section] {
+            self.filteredStations?[sectionTitle]?.remove(at: indexPath.row)
+          }
+        } else {
+          let sectionTitle = self.sectionTitles[indexPath.section]
+          self.stations[sectionTitle]?.remove(at: indexPath.row)
         }
         tableView.deleteRows(at: [indexPath], with: .automatic)
       } catch {
@@ -164,6 +234,9 @@ extension ListViewController: UISearchResultsUpdating {
   public func updateSearchResults(for searchController: UISearchController) {
     if let query = searchController.searchBar.text {
       filterContentForSearchText(query)
+      if !searchController.isActive {
+        showStations()
+      }
     }
   }
 
