@@ -1,20 +1,23 @@
 PODS:
   - AAShareBubbles (1.2.4)
   - AKSideMenu (1.3.5)
-  - Alamofire (4.2.0)
+  - Alamofire (4.4.0)
   - CPDAcknowledgements (1.0.0)
   - Eureka (2.0.1)
   - FBAnnotationClusteringSwift (2.0)
-  - Firebase/Auth (3.16.0):
+  - Firebase/Auth (3.17.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
-  - Firebase/Core (3.16.0):
-    - FirebaseAnalytics (= 3.8.0)
+  - Firebase/Core (3.17.0):
+    - FirebaseAnalytics (= 3.9.0)
     - FirebaseCore (= 3.6.0)
-  - Firebase/Database (3.16.0):
+  - Firebase/Database (3.17.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.2)
-  - FirebaseAnalytics (3.8.0):
+  - Firebase/Messaging (3.17.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 1.2.3)
+  - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
@@ -28,6 +31,11 @@ PODS:
     - FirebaseAnalytics (~> 3.7)
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
+  - FirebaseMessaging (1.2.3):
+    - FirebaseAnalytics (~> 3.8)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
   - FontAwesomeKit.Swift (0.3.1)
   - GoogleSignIn (4.0.2):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
@@ -37,6 +45,8 @@ PODS:
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/Logger (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
@@ -55,10 +65,11 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - SQLite.swift (0.11.2):
-    - SQLite.swift/standard (= 0.11.2)
-  - SQLite.swift/standard (0.11.2)
-  - SwiftLint (0.17.0)
+  - Protobuf (3.3.0)
+  - SQLite.swift (0.11.3):
+    - SQLite.swift/standard (= 0.11.3)
+  - SQLite.swift/standard (0.11.3)
+  - SwiftLint (0.18.1)
   - SwiftyJSON (3.1.4)
   - SwiftyUserDefaults (3.0.0)
   - Toast-Swift (2.0.0)
@@ -73,6 +84,7 @@ DEPENDENCIES:
   - Firebase/Auth (~> 3.16)
   - Firebase/Core (~> 3.16)
   - Firebase/Database (~> 3.16)
+  - Firebase/Messaging (~> 3.16)
   - FontAwesomeKit.Swift (~> 0.3)
   - GoogleSignIn (~> 4.0)
   - ImagePicker (from `https://github.com/Haitec/ImagePicker`)
@@ -100,16 +112,17 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AAShareBubbles: 53fd5064602fa041a2249dda6b26f7fdccca3093
   AKSideMenu: 15c78ef0f6b4fee7e7175f8828b08ae4bcbc86ac
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
   FBAnnotationClusteringSwift: 9eb6e2acee2db56183c7ccff9239723598f286b0
-  Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
-  FirebaseAnalytics: 920e46455f27b0a52a80907a6d9b73ee4bd1c635
+  Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
+  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  FirebaseMessaging: 753d05a925e9eb8eadd09a0ffc9b808578b72fac
   FontAwesomeKit.Swift: 77fd566e8c20d3267da18161a10c48a31b9323b9
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
@@ -118,12 +131,13 @@ SPEC CHECKSUMS:
   ImagePicker: 137d14706a1bf2de99febbe0593d8bad3e4fe8a2
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
-  SwiftLint: 9fb1dd71d5952d130f8c2fb60ae2e1475cf5d575
+  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
+  SQLite.swift: 99b36c22084427f0abbeb957556ce1528cf10bb3
+  SwiftLint: b467d08f5b25dc3b3cfed243d8e1b74b91714c67
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
 
-PODFILE CHECKSUM: 3f56efb05efd8a30c5ee0e0e34729b36354c6f52
+PODFILE CHECKSUM: 17496a134e89132f945f8b415e18950e907a3b85
 
 COCOAPODS: 1.2.0
