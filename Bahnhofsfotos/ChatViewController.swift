@@ -58,12 +58,15 @@ class ChatViewController: JSQMessagesViewController {
   }
 
   private func configureDatabase() {
+    view.makeToastActivity(.center)
+
     channelRef = FIRDatabase.database().reference()
     // Listen for new messages in the Firebase database
     guard let messageQuery = messageRef?.queryLimited(toLast: 25) else { return }
 
     newMessageRefHandle = messageQuery.observe(.childAdded, with: { snapshot in
       self.messages.append(snapshot)
+      self.view.hideToastActivity()
       self.finishReceivingMessage()
     })
   }

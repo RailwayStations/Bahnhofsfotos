@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FIRApp.configure()
     GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
+    connectToFcm()
 
     // Register for remote notifications. This shows a permission dialog on first run, to
     // show the dialog at a more appropriate time move this registration accordingly.
@@ -56,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use this method to release shared resources, save user data, invalidate timers,
     // and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    FIRMessaging.messaging().disconnect()
   }
 
   func applicationWillEnterForeground(_ application: UIApplication) {
@@ -95,26 +97,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     completionHandler(UIBackgroundFetchResult.newData)
   }
 
-  func showAlert(withUserInfo userInfo: [AnyHashable : Any]) {
-    let apsKey = "aps"
-    let gcmMessage = "alert"
-    let gcmLabel = "google.c.a.c_l"
+  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//    #if DEBUG
+//      FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
+//    #else
+//      FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .prod)
+//    #endif
 
-    if let aps = userInfo[apsKey] as? NSDictionary {
-      if let message = aps[gcmMessage] as? String {
-        DispatchQueue.main.async {
-          let alert = UIAlertController(title: userInfo[gcmLabel] as? String ?? "",
-                                        message: message, preferredStyle: .alert)
-          let dismissAction = UIAlertAction(title: "Schließen", style: .destructive, handler: nil)
-          alert.addAction(dismissAction)
-          self.window?.rootViewController?.presentedViewController?.present(alert, animated: true, completion: nil)
-        }
+    FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .unknown)
+
+    connectToFcm()
+  }
+
+  func showAlert(withUserInfo userInfo: [AnyHashable : Any]) {
+//    let apsKey = "aps"
+//    let gcmMessage = "alert"
+//    let gcmLabel = "google.c.a.c_l"
+//
+//    if let aps = userInfo[apsKey] as? NSDictionary {
+//      if let message = aps[gcmMessage] as? String {
+//        DispatchQueue.main.async {
+//          let alert = UIAlertController(title: userInfo[gcmLabel] as? String ?? "",
+//                                        message: message, preferredStyle: .alert)
+//          let dismissAction = UIAlertAction(title: "Schließen", style: .destructive, handler: nil)
+//          alert.addAction(dismissAction)
+//          Helper.rootViewController?.present(alert, animated: true, completion: nil)
+//        }
+//      }
+//    }
+  }
+
+  func connectToFcm() {
+    // Won't connect since there is no token
+    guard FIRInstanceID.instanceID().token() != nil else {
+      return
+    }
+
+    // Disconnect previous FCM connection if it exists.
+    FIRMessaging.messaging().disconnect()
+
+    FIRMessaging.messaging().connect { error in
+      if error != nil {
+        debugPrint("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
+      } else {
+        debugPrint("Connected to FCM.")
       }
     }
   }
 
 }
 
+// MARK: - GIDSignInDelegate
 extension AppDelegate: GIDSignInDelegate {
 
   func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
@@ -136,6 +169,7 @@ extension AppDelegate: GIDSignInDelegate {
 
 }
 
+// MARK: - UNUserNotificationCenterDelegate
 @available(iOS 10, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
@@ -158,4 +192,5 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     completionHandler()
   }
+
 }

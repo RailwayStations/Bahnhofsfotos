@@ -43,6 +43,9 @@ public class Constants {
     static let chatViewController = "ChatViewController"
   }
 
+//  public static let fcmTopic = "for_tests"
+  public static let fcmTopic = "friendly_engage"
+
   struct MessageFields {
     static let userId = "userId"
     static let name = "name"

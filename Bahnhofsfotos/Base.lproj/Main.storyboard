@@ -648,11 +648,30 @@
                                             <action selector="signOut:" destination="1fs-Xb-7NJ" eventType="touchUpInside" id="BTa-s7-B7b"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4q-6z-N7g" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
+                                        <rect key="frame" x="256" y="30" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="dZz-A0-X9c"/>
+                                            <constraint firstAttribute="height" constant="24" id="lJz-oO-BBg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f0f3"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="toggleNotification" destination="1fs-Xb-7NJ" eventType="touchUpInside" id="6ia-qI-qvd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="QKa-Ib-qma" firstAttribute="centerY" secondItem="bcK-WK-sU8" secondAttribute="centerY" constant="10" id="1Dq-Jb-GS4"/>
                                     <constraint firstItem="QKa-Ib-qma" firstAttribute="leading" secondItem="bcK-WK-sU8" secondAttribute="leading" constant="8" id="6me-UV-cDi"/>
+                                    <constraint firstItem="p52-L5-qA7" firstAttribute="leading" secondItem="D4q-6z-N7g" secondAttribute="trailing" constant="8" id="Bd0-8Q-j6J"/>
+                                    <constraint firstItem="D4q-6z-N7g" firstAttribute="centerY" secondItem="p52-L5-qA7" secondAttribute="centerY" id="K2v-Ma-gKc"/>
                                     <constraint firstAttribute="trailing" secondItem="p52-L5-qA7" secondAttribute="trailing" constant="8" id="ccw-2O-FR0"/>
                                     <constraint firstItem="W9R-kR-mdg" firstAttribute="centerX" secondItem="bcK-WK-sU8" secondAttribute="centerX" id="hFv-Br-poV"/>
                                     <constraint firstAttribute="height" constant="65" id="juZ-tH-cO8"/>
@@ -678,6 +697,9 @@
                             <constraint firstItem="bde-Gz-pzo" firstAttribute="top" secondItem="bcK-WK-sU8" secondAttribute="bottom" id="wYe-nE-DfS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="notificationButton" destination="D4q-6z-N7g" id="S5B-To-zmi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SO-lO-zLp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -687,6 +709,10 @@
         <scene sceneID="Z1B-V0-Dty">
             <objects>
                 <viewController id="9QG-F5-TKI" customClass="ChatViewController" customModule="Bahnhofsfotos" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hVj-y7-V7Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="UGJ-kU-ufa"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DNC-DL-eif">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
