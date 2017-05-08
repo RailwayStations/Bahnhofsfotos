@@ -18,6 +18,7 @@ class ChatViewController: JSQMessagesViewController {
   fileprivate lazy var messageRef: FIRDatabaseReference? = self.channelRef?.child("messages")
   private var newMessageRefHandle: FIRDatabaseHandle?
   var messages = [FIRDataSnapshot]()
+  var avatars = [String: UIImage]()
 
   fileprivate lazy var incomingBubbleImage: JSQMessagesBubbleImage =
     JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: Helper.alternativeTintColor)
@@ -66,6 +67,7 @@ class ChatViewController: JSQMessagesViewController {
 
     newMessageRefHandle = messageQuery.observe(.childAdded, with: { snapshot in
       self.messages.append(snapshot)
+      self.loadAvatars()
       self.view.hideToastActivity()
       self.finishReceivingMessage()
     })
@@ -108,6 +110,25 @@ class ChatViewController: JSQMessagesViewController {
     }
 
     return JSQMessage(senderId: userId, displayName: name, text: text)
+  }
+
+  private func loadAvatars() {
+    DispatchQueue.global(qos: .utility).async {
+      for snapshot in self.messages {
+        guard let message = snapshot.value as? [String: String] else { continue }
+        guard let key = message[Constants.MessageFields.name], self.avatars[key] == nil else { continue }
+
+        if let photoURL = message[Constants.MessageFields.photoURL], let URL = URL(string: photoURL),
+          let data = try? Data(contentsOf: URL) {
+          if let image = UIImage(data: data) {
+            self.avatars[key] = image
+          }
+        }
+      }
+      DispatchQueue.main.async {
+        self.collectionView.reloadData()
+      }
+    }
   }
 
 }
@@ -168,18 +189,17 @@ extension ChatViewController {
     let snapshot = messages[indexPath.row]
     guard let message = snapshot.value as? [String: String] else { return nil }
 
-    if let photoURL = message[Constants.MessageFields.photoURL], let URL = URL(string: photoURL),
-      let data = try? Data(contentsOf: URL) {
-      if let image = UIImage(data: data) {
-        return JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: 30)
-      }
+    if let key = message[Constants.MessageFields.name], let avatar = avatars[key] {
+      return JSQMessagesAvatarImageFactory.avatarImage(with: avatar, diameter: 30)
     }
 
     let initials = message[Constants.MessageFields.name]?.components(separatedBy: " ").map { $0.characters.first != nil ? String($0.characters.first!) : "" }.joined()
 
+    let userId = message[Constants.MessageFields.userId] ?? message[Constants.MessageFields.name] ?? ""
+
     return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: initials?.uppercased(),
-                                                     backgroundColor: Helper.tintColor,
-                                                     textColor: UIColor.white,
+                                                     backgroundColor: userId == senderId ? Helper.tintColor : Helper.alternativeTintColor,
+                                                     textColor: userId == senderId ? UIColor.white : UIColor.black,
                                                      font: UIFont.systemFont(ofSize: 14),
                                                      diameter: 34)
   }
