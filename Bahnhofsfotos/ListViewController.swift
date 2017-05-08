@@ -69,13 +69,12 @@ class ListViewController: UIViewController {
   func createSections(of stations: [Station]) -> [String: [Station]] {
     var result = [String: [Station]]()
 
-    for station in stations {
+    for station in stations.sorted(by: { $0.name.compare($1.name) == .orderedAscending }) {
       let name = station.name
       let key = name.substring(to: name.index(after: name.startIndex))
 
       if result[key] != nil {
         result[key]?.append(station)
-        result[key] = result[key]?.sorted { $0.name.compare($1.name) == .orderedAscending }
       } else {
         result[key] = [station]
       }
