@@ -162,9 +162,27 @@
                                             <action selector="showMenu:" destination="tyn-iQ-KqD" eventType="touchUpInside" id="m21-ao-ier"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjx-8R-HIm" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
+                                        <rect key="frame" x="288" y="31" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="bGB-6i-DDQ"/>
+                                            <constraint firstAttribute="height" constant="24" id="eWV-rb-Bio"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="normalUnicode" value="f124"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="followUser:" destination="tyn-iQ-KqD" eventType="touchUpInside" id="O6V-r7-M8N"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Sjx-8R-HIm" secondAttribute="trailing" constant="8" id="9Rc-0C-YNU"/>
+                                    <constraint firstItem="Sjx-8R-HIm" firstAttribute="centerY" secondItem="doO-c7-U1c" secondAttribute="centerY" constant="10" id="Dc5-1o-k2B"/>
                                     <constraint firstItem="aVO-Bf-fg9" firstAttribute="centerY" secondItem="doO-c7-U1c" secondAttribute="centerY" constant="10" id="Is5-cn-8bD"/>
                                     <constraint firstItem="aVO-Bf-fg9" firstAttribute="leading" secondItem="doO-c7-U1c" secondAttribute="leading" constant="8" id="VqJ-dH-gbm"/>
                                     <constraint firstAttribute="height" constant="65" id="aBt-yV-UXs"/>
@@ -186,6 +204,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="4BO-yD-xQk" id="aSS-1o-UZ3"/>
+                        <outlet property="trackingButton" destination="Sjx-8R-HIm" id="vkE-Wm-ptI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTw-oH-BRW" userLabel="First Responder" sceneMemberID="firstResponder"/>

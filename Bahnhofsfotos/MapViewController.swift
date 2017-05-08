@@ -42,9 +42,14 @@ class MapViewController: UIViewController {
   }()
 
   @IBOutlet weak var mapView: MKMapView!
+  @IBOutlet weak var trackingButton: UIButton!
 
   @IBAction func showMenu(_ sender: Any) {
     sideMenuViewController?.presentLeftMenuViewController()
+  }
+
+  @IBAction func followUser(_ sender: Any) {
+    mapView.setUserTrackingMode(.follow, animated: true)
   }
 
   override func viewDidLoad() {
@@ -129,16 +134,19 @@ extension MapViewController: MKMapViewDelegate {
     }
   }
 
+  func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
+    UIView.animate(withDuration: 0.4, animations: {
+      self.trackingButton.alpha = mode == .follow ? 0.0 : 1.0
+    })
+  }
+
 }
 
 // MARK: - CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
 
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    guard let location = manager.location else { return }
-
-    let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-    mapView.setRegion(region, animated: false)
+    mapView.setUserTrackingMode(.follow, animated: true)
     manager.stopUpdatingLocation()
   }
 
