@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
 
   var locationManager: CLLocationManager?
   var stationsUpdatedAt: Date?
+  var clusteringIsActive = true
 
   lazy var clusteringManager: FBClusteringManager = {
       let renderer = FBRenderer(animator: FBBounceAnimator())
@@ -43,6 +44,7 @@ class MapViewController: UIViewController {
 
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var trackingButton: UIButton!
+  @IBOutlet weak var toggleClusteringButton: UIButton!
 
   @IBAction func showMenu(_ sender: Any) {
     sideMenuViewController?.presentLeftMenuViewController()
@@ -50,6 +52,22 @@ class MapViewController: UIViewController {
 
   @IBAction func followUser(_ sender: Any) {
     mapView.setUserTrackingMode(.follow, animated: true)
+  }
+
+  @IBAction func toggleClustering(_ sender: Any) {
+    view.makeToastActivity(.center)
+
+    if clusteringIsActive {
+      clusteringManager.removeAll(from: mapView)
+      mapView.addAnnotations(StationStorage.stationsWithoutPhoto)
+      toggleClusteringButton.fa_setTitle(.fa_map_marker, for: .normal)
+    } else {
+      mapView.removeAnnotations(mapView.annotations)
+      clusteringManager.replace(annotations: StationStorage.stationsWithoutPhoto.map { StationAnnotation(station: $0) }, in: mapView)
+      toggleClusteringButton.fa_setTitle(.fa_map_pin, for: .normal)
+    }
+
+    clusteringIsActive = !clusteringIsActive
   }
 
   override func viewDidLoad() {
@@ -140,12 +158,16 @@ extension MapViewController: MKMapViewDelegate {
     })
   }
 
+  func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+    view.hideToastActivity()
+  }
+
 }
 
 // MARK: - CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
 
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations _: [CLLocation]) {
     mapView.setUserTrackingMode(.follow, animated: true)
     manager.stopUpdatingLocation()
   }
