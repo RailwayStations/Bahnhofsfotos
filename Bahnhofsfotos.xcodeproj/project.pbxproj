@@ -20,6 +20,8 @@
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
 		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
 		495CCE731E7AD80400D5B11C /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495CCE721E7AD80400D5B11C /* LeftMenuViewController.swift */; };
+		499087731ECE376D00AB45C2 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499087721ECE376D00AB45C2 /* HighScoreViewController.swift */; };
+		499087751ECE4FB200AB45C2 /* HighScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */; };
 		499AD7E21E7ED6B600A5CFE9 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499AD7E11E7ED6B600A5CFE9 /* MenuItem.swift */; };
 		499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B263D1E36A16400E081B3 /* EmptyView.swift */; };
 		499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 499B263F1E36ADF400E081B3 /* EmptyView.xib */; };
@@ -56,6 +58,8 @@
 		49455A6E1E04E981007A5501 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		494CB7B11EB128C9009F07C2 /* Bahnhofsfotos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bahnhofsfotos.entitlements; sourceTree = "<group>"; };
 		495CCE721E7AD80400D5B11C /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
+		499087721ECE376D00AB45C2 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
+		499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewCell.swift; sourceTree = "<group>"; };
 		499AD7E11E7ED6B600A5CFE9 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		499B263D1E36A16400E081B3 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		499B263F1E36ADF400E081B3 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			children = (
 				491119361EA92E8600BC1F1D /* ChatViewController.swift */,
 				4911193A1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift */,
+				499087721ECE376D00AB45C2 /* HighScoreViewController.swift */,
 				495CCE721E7AD80400D5B11C /* LeftMenuViewController.swift */,
 				49B503E91E048EAE00B8AFDE /* ListViewController.swift */,
 				49455A661E04CA76007A5501 /* MapViewController.swift */,
@@ -180,6 +185,7 @@
 			children = (
 				499B263D1E36A16400E081B3 /* EmptyView.swift */,
 				499B263F1E36ADF400E081B3 /* EmptyView.xib */,
+				499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */,
 				49B503F01E048EAE00B8AFDE /* LaunchScreen.storyboard */,
 				49B503EB1E048EAE00B8AFDE /* Main.storyboard */,
 				499B26411E36B08800E081B3 /* ViewFromNib.swift */,
@@ -369,8 +375,10 @@
 				49200C211EA172840054F426 /* StationAnnotation.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
 				49455A691E04CB60007A5501 /* StationStorage.swift in Sources */,
+				499087751ECE4FB200AB45C2 /* HighScoreTableViewCell.swift in Sources */,
 				493D06981E8DB2F2000EB37A /* ProfileWrapperViewController.swift in Sources */,
 				49F70DB21E85B41400154136 /* Helper.swift in Sources */,
+				499087731ECE376D00AB45C2 /* HighScoreViewController.swift in Sources */,
 				49C42F701E3FAE46005544C0 /* CountryStorage.swift in Sources */,
 				4906E7891E7809C800B527F5 /* RootViewController.swift in Sources */,
 				495CCE731E7AD80400D5B11C /* LeftMenuViewController.swift in Sources */,

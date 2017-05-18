@@ -41,6 +41,7 @@ public class Constants {
     static let mapViewController = "MapViewController"
     static let signInViewController = "SignInViewController"
     static let chatViewController = "ChatViewController"
+    static let highScoreViewController = "HighScoreViewController"
   }
 
 //  public static let fcmTopic = "for_tests"

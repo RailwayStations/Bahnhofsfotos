@@ -82,7 +82,26 @@ class API {
         }
 
         completionHandler(stations)
-      }
+    }
+  }
+
+  // Get all photographers of given country
+  static func getPhotographers(completionHandler: @escaping ([String: Any]) -> Void) {
+
+    Alamofire.request(API.baseUrl + "/photographers",
+                      method: .get,
+                      parameters: ["country": Defaults[.country].lowercased()],
+                      encoding: URLEncoding.default,
+                      headers: nil)
+      .responseJSON { response in
+
+        guard let value = response.result.value, let json = JSON(value).dictionaryObject else {
+          completionHandler([:])
+          return
+        }
+
+        completionHandler(json)
+    }
   }
 
 }

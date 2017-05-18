@@ -22,6 +22,7 @@ class LeftMenuViewController: UIViewController {
     MenuItem(key: "map", title: "Karte", action: LeftMenuViewController.openMap),
     MenuItem(key: "list", title: "Bahnhöfe ohne Foto", action: LeftMenuViewController.openList),
     MenuItem(key: "chat", title: "Chat", action: LeftMenuViewController.openChat),
+    MenuItem(key: "highscore", title: "Rangliste", action: LeftMenuViewController.openHighScore),
     MenuItem(key: "infos", title: "Informationen", action: LeftMenuViewController.openInformations)
   ]
 
@@ -107,6 +108,10 @@ class LeftMenuViewController: UIViewController {
     ]
 
     Helper.show(viewController: navigationViewController)
+  }
+
+  static func openHighScore(_ sender: Any?) {
+    Helper.showViewController(withIdentifier: Constants.StoryboardIdentifiers.highScoreViewController)
   }
 
 }
