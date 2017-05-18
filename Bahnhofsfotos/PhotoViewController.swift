@@ -68,6 +68,7 @@ class PhotoViewController: UIViewController {
   // show mail controller
   func showMailController() {
     guard let image = imageView.image else { return }
+    guard let id = StationStorage.currentStation?.id else { return }
     guard let name = StationStorage.currentStation?.title else { return }
     guard let email = CountryStorage.currentCountry?.mail else { return }
 
@@ -89,7 +90,7 @@ class PhotoViewController: UIViewController {
       mailController.setSubject("Neues Bahnhofsfoto: \(name)")
       mailController.setMessageBody(text, isHTML: false)
       if let data = UIImageJPEGRepresentation(image, 1) {
-        mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(name)-\(username).jpg")
+        mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(username)-\(id).jpg")
       }
       present(mailController, animated: true, completion: nil)
     } else {
