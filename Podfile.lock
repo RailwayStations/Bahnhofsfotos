@@ -61,7 +61,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.9)
   - GTMSessionFetcher/Full (1.1.9):
     - GTMSessionFetcher/Core (= 1.1.9)
-  - ImagePicker (2.1.0)
+  - ImagePicker (2.1.1)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -106,7 +106,7 @@ CHECKOUT OPTIONS:
     :commit: b146e122c8f6a12c947f7d321c6efffae1947fab
     :git: https://github.com/666tos/FBAnnotationClusteringSwift
   ImagePicker:
-    :commit: 513b327edd5c43684df1bba75aced295c04ce4ec
+    :commit: b66520e03cb5cb12eebe4c2b793b0ea6f7ca08b0
     :git: https://github.com/Haitec/ImagePicker
 
 SPEC CHECKSUMS:
@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
-  ImagePicker: 137d14706a1bf2de99febbe0593d8bad3e4fe8a2
+  ImagePicker: 4845cf22f8dd201ff5730474b619f017d374a3b8
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
