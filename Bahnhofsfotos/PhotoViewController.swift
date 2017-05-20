@@ -71,6 +71,7 @@ class PhotoViewController: UIViewController {
     guard let id = StationStorage.currentStation?.id else { return }
     guard let name = StationStorage.currentStation?.title else { return }
     guard let email = CountryStorage.currentCountry?.mail else { return }
+    guard let country = CountryStorage.currentCountry?.countryflag.lowercased() else { return }
 
     if MFMailComposeViewController.canSendMail() {
       guard let username = Defaults[.accountName] else {
@@ -90,7 +91,7 @@ class PhotoViewController: UIViewController {
       mailController.setSubject("Neues Bahnhofsfoto: \(name)")
       mailController.setMessageBody(text, isHTML: false)
       if let data = UIImageJPEGRepresentation(image, 1) {
-        mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(username)-\(id).jpg")
+        mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(username)-\(country)-\(id).jpg")
       }
       present(mailController, animated: true, completion: nil)
     } else {
