@@ -149,6 +149,8 @@ extension MapViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     if let annotation = view.annotation as? StationAnnotation {
       Helper.openNavigation(to: annotation.station)
+    } else if let annotation = view.annotation as? Station {
+      Helper.openNavigation(to: annotation)
     }
   }
 
