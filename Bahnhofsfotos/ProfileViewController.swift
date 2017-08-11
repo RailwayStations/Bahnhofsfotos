@@ -69,7 +69,7 @@ class ProfileViewController: FormViewController {
       return (
         all: CountryStorage.countries,
         current: CountryStorage.countries.first { (country) -> Bool in
-          return country.countryflag == Defaults[.country]
+          return country.code == Defaults[.country]
         }
       )
     }
@@ -89,13 +89,13 @@ class ProfileViewController: FormViewController {
         return empty
       })
       row.displayValueFor = { (value: Country?) in
-        return value.map { $0.country }
+        return value.map { $0.name }
       }
       let countries = getCountries()
       row.options = countries.all
       row.value = countries.current
     }.onChange { (row) in
-      Defaults[.country] = row.value?.countryflag ?? ""
+      Defaults[.country] = row.value?.code ?? ""
     }
   }
 

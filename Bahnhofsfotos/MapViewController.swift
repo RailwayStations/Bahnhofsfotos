@@ -11,6 +11,7 @@ import CoreLocation
 import FBAnnotationClusteringSwift
 import FontAwesomeKit_Swift
 import MapKit
+import SwiftyUserDefaults
 import UIKit
 
 class MapViewController: UIViewController {
@@ -59,11 +60,11 @@ class MapViewController: UIViewController {
 
     if clusteringIsActive {
       clusteringManager.removeAll(from: mapView)
-      mapView.addAnnotations(StationStorage.stationsWithoutPhoto)
+      mapView.addAnnotations(StationStorage.stations.map { StationAnnotation(station: $0) })
       toggleClusteringButton.fa_setTitle(.fa_map_marker, for: .normal)
     } else {
       mapView.removeAnnotations(mapView.annotations)
-      clusteringManager.replace(annotations: StationStorage.stationsWithoutPhoto.map { StationAnnotation(station: $0) }, in: mapView)
+      clusteringManager.replace(annotations: StationStorage.stations.map { StationAnnotation(station: $0) }, in: mapView)
       toggleClusteringButton.fa_setTitle(.fa_map_pin, for: .normal)
     }
 
@@ -88,7 +89,7 @@ class MapViewController: UIViewController {
   func showStations() {
     if StationStorage.lastUpdatedAt != stationsUpdatedAt {
       stationsUpdatedAt = StationStorage.lastUpdatedAt
-      clusteringManager.replace(annotations: StationStorage.stationsWithoutPhoto.map { StationAnnotation(station: $0) }, in: mapView)
+      clusteringManager.replace(annotations: StationStorage.stations.map { StationAnnotation(station: $0) }, in: mapView)
     }
   }
 
@@ -137,11 +138,22 @@ extension MapViewController: MKMapViewDelegate {
     // single station
     let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView ??
       MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-    pinView.pinTintColor = Helper.tintColor
+
     pinView.annotation = annotation
     pinView.isEnabled = true
     pinView.canShowCallout = true
     pinView.rightCalloutAccessoryView = button
+    pinView.pinTintColor = Helper.tintColor
+
+    if let annotation = annotation as? StationAnnotation {
+      if annotation.station.photographer != nil && Defaults[.accountName] != nil {
+        if annotation.station.photographer!.lowercased() == Defaults[.accountName]!.lowercased() {
+          pinView.pinTintColor = Helper.blueColor
+        } else {
+          pinView.pinTintColor = Helper.greenColor
+        }
+      }
+    }
 
     return pinView
   }

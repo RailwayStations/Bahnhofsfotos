@@ -11,27 +11,30 @@ import SwiftyJSON
 
 class Country: Equatable {
 
-  var country: String
-  var countryflag: String
+  var name: String
+  var code: String
   var mail: String?
   var twitterTags: String?
+  var timetableUrlTemplate: String?
 
-  init(country: String, countryflag: String, mail: String?, twitterTags: String?) {
-    self.country = country
-    self.countryflag = countryflag
+  init(country: String, countryflag: String, mail: String?, twitterTags: String?, timetableUrlTemplate: String?) {
+    self.name = country
+    self.code = countryflag
     self.mail = mail
     self.twitterTags = twitterTags
+    self.timetableUrlTemplate = timetableUrlTemplate
   }
 
   init?(json: JSON) throws {
-    self.country = json[Constants.JsonConstants.kCountryName].stringValue
-    self.countryflag = json[Constants.JsonConstants.kCountryShortcode].stringValue
-    self.mail = json[Constants.JsonConstants.kEmail].string
-    self.twitterTags = json[Constants.JsonConstants.kTwitterTags].string
+    self.name = json[Constants.JsonConstants.kCountryName].stringValue
+    self.code = json[Constants.JsonConstants.kCountryCode].stringValue
+    self.mail = json[Constants.JsonConstants.kCountryEmail].string
+    self.twitterTags = json[Constants.JsonConstants.kCountryTwitterTags].string
+    self.timetableUrlTemplate = json[Constants.JsonConstants.kCountryTimetableUrlTemplate].string
   }
 
   public static func == (lhs: Country, rhs: Country) -> Bool {
-    return lhs.countryflag == rhs.countryflag
+    return lhs.code == rhs.code
   }
 
 }

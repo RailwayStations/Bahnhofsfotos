@@ -24,7 +24,7 @@ class API {
   // Get all countries
   static func getCountries(completionHandler: @escaping ([Country]) -> Void) {
 
-    Alamofire.request(Constants.countriesUrl)
+    Alamofire.request(API.baseUrl + "/countries.json")
       .responseJSON { response in
 
         var countries = [Country]()
@@ -72,9 +72,7 @@ class API {
 
         do {
           stations = try json.map {
-            var jsonStation = $0
-            jsonStation["hasPhoto"].bool = hasPhoto ?? false
-            guard let station = try Station(json: jsonStation) else { throw APIError.message("JSON of station is invalid.") }
+            guard let station = try Station(json: $0) else { throw APIError.message("JSON of station is invalid.") }
             return station
           }
         } catch {

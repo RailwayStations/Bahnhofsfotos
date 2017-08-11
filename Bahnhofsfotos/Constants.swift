@@ -11,28 +11,29 @@ public class Constants {
   public final class JsonConstants {
 
     //Bahnhofs-Konstanten
-    public static let kRowId = "rowid"
     public static let kId = "id"
+    public static let kCountry = "country"
     public static let kTitle = "title"
     public static let kLat = "lat"
     public static let kLon = "lon"
-    public static let kDate = "datum"
-    public static let kPhotoflag = "photoflag"
-    public static let kPhotohrapher = "photographer"
+    public static let kPhotographer = "photographer"
+    public static let kPhotographerUrl = "photographerUrl"
+    public static let kPhotoUrl = "photoUrl"
+    public static let kLicense = "license"
+    public static let kDS100 = "DS100"
 
     //Länderkonstanten
-    public static let kCountryName = "country"
-    public static let kCountryShortcode = "countryflag"
-    public static let kEmail = "mail"
-    public static let kTwitterTags = "twitter_tags"
-    public static let kRowIdContries = "rowidcountries"
+    public static let kCountryCode = "code"
+    public static let kCountryName = "name"
+    public static let kCountryEmail = "mail"
+    public static let kCountryTwitterTags = "twitterTags"
+    public static let kCountryTimetableUrlTemplate = "timetableUrlTemplate"
   }
 
   public static let dbFilename = "db.sqlite3"
 
   // Links zusammenschrauben
   public static let baseUrl = "https://api.railway-stations.org"
-  public static let countriesUrl = "https://railway-stations.org/laenderdaten.json"
 
   struct StoryboardIdentifiers {
     static let leftMenuViewController = "LeftMenuViewController"

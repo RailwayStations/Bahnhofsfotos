@@ -18,8 +18,16 @@ class Helper {
     return UIColor(red: 167.0/255.0, green: 58.0/255.0, blue: 88/255.0, alpha: 1.0)
   }
 
+  static var greenColor: UIColor {
+    return UIColor(red: 46/255.0, green: 204/255.0, blue: 113/255.0, alpha: 1.0)
+  }
+
+  static var blueColor: UIColor {
+    return UIColor(red: 52/255.0, green: 152/255.0, blue: 219/255.0, alpha: 1.0)
+  }
+
   static var alternativeTintColor: UIColor {
-    return UIColor(red: 212/255.0, green: 222/255.0, blue: 59/255.0, alpha: 1)
+    return UIColor(red: 212/255.0, green: 222/255.0, blue: 59/255.0, alpha: 1.0)
   }
 
   static var rootViewController: AKSideMenu? {
@@ -80,7 +88,7 @@ class Helper {
   // Get and save stations
   static func loadStations(progressHandler: @escaping (Int, Int) -> Void, completionHandler: @escaping () -> Void) {
     UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    API.getStations(withPhoto: false) { stations in
+    API.getStations(withPhoto: nil) { stations in
       UIApplication.shared.isNetworkActivityIndicatorVisible = false
 
       let dispatchSource = DispatchSource.makeUserDataAddSource(queue: .main)

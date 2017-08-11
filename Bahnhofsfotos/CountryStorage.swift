@@ -24,17 +24,18 @@ class CountryStorage {
   }
   static var currentCountry: Country? {
     return CountryStorage.countries.first(where: { (country) -> Bool in
-      country.countryflag == Defaults[.country]
+      country.code == Defaults[.country]
     })
   }
 
   // SQLite properties
   private static let table = Table("country")
   private static let fileName = Constants.dbFilename
-  fileprivate static let expressionCountryFlag = Expression<String>(Constants.JsonConstants.kCountryShortcode)
-  fileprivate static let expressionCountry = Expression<String>(Constants.JsonConstants.kCountryName)
-  fileprivate static let expressionMail = Expression<String?>(Constants.JsonConstants.kEmail)
-  fileprivate static let expressionTwitterTags = Expression<String?>(Constants.JsonConstants.kTwitterTags)
+  fileprivate static let expressionCountryCode = Expression<String>(Constants.JsonConstants.kCountryCode)
+  fileprivate static let expressionCountryName = Expression<String>(Constants.JsonConstants.kCountryName)
+  fileprivate static let expressionMail = Expression<String?>(Constants.JsonConstants.kCountryEmail)
+  fileprivate static let expressionTwitterTags = Expression<String?>(Constants.JsonConstants.kCountryTwitterTags)
+  fileprivate static let expressionTimetableUrlTemplate = Expression<String?>(Constants.JsonConstants.kCountryTimetableUrlTemplate)
 
   // Open connection to database
   private static func openConnection() throws -> Connection {
@@ -51,10 +52,11 @@ class CountryStorage {
 
     // create table if not exists
     try db.run(table.create(ifNotExists: true) { table in
-      table.column(expressionCountryFlag, primaryKey: true)
-      table.column(expressionCountry)
+      table.column(expressionCountryCode, primaryKey: true)
+      table.column(expressionCountryName)
       table.column(expressionMail)
       table.column(expressionTwitterTags)
+      table.column(expressionTimetableUrlTemplate)
     })
 
     // return connection
@@ -80,7 +82,7 @@ class CountryStorage {
       _countries.append(c)
     }
 
-    _countries = _countries.sorted { $0.country < $1.country }
+    _countries = _countries.sorted { $0.name < $1.name }
 
     lastUpdatedAt = Date()
   }
@@ -89,15 +91,16 @@ class CountryStorage {
   static func create(country: Country) throws {
     let db = try openConnection()
 
-    try db.run(table.insert(expressionCountry <- country.country,
-                            expressionCountryFlag <- country.countryflag,
+    try db.run(table.insert(expressionCountryName <- country.name,
+                            expressionCountryCode <- country.code,
                             expressionMail <- country.mail,
-                            expressionTwitterTags <- country.twitterTags
+                            expressionTwitterTags <- country.twitterTags,
+                            expressionTimetableUrlTemplate <- country.timetableUrlTemplate
     ))
 
     _countries.append(country)
 
-    _countries = _countries.sorted { $0.country < $1.country }
+    _countries = _countries.sorted { $0.name < $1.name }
 
     lastUpdatedAt = Date()
   }
@@ -112,10 +115,11 @@ extension Country {
   }
 
   static func from(row: Row) -> Country {
-      return Country(country: row.get(CountryStorage.expressionCountry),
-                     countryflag: row.get(CountryStorage.expressionCountryFlag),
+      return Country(country: row.get(CountryStorage.expressionCountryName),
+                     countryflag: row.get(CountryStorage.expressionCountryCode),
                      mail: row.get(CountryStorage.expressionMail),
-                     twitterTags: row.get(CountryStorage.expressionTwitterTags)
+                     twitterTags: row.get(CountryStorage.expressionTwitterTags),
+                     timetableUrlTemplate: row.get(CountryStorage.expressionTimetableUrlTemplate)
       )
   }
 

@@ -59,7 +59,7 @@ class ListViewController: UIViewController {
     if StationStorage.lastUpdatedAt != stationsUpdatedAt {
       stationsUpdatedAt = StationStorage.lastUpdatedAt
 
-      stations = createSections(of: StationStorage.stationsWithoutPhoto)
+      stations = createSections(of: StationStorage.stations.filter({ !$0.hasPhoto }))
       sectionTitles = Array(stations.keys).sorted()
 
       tableView.reloadData()
@@ -85,7 +85,7 @@ class ListViewController: UIViewController {
 
   // Bahnhöfe filtern
   func filterContentForSearchText(_ searchText: String) {
-    let filtered = StationStorage.stationsWithoutPhoto.filter { station in
+    let filtered = StationStorage.stations.filter { station in
       return station.name.lowercased().contains(searchText.lowercased())
     }
 
@@ -103,7 +103,7 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDataSource {
 
   func numberOfSections(in tableView: UITableView) -> Int {
-    if StationStorage.stationsWithoutPhoto.count > 0 {
+    if StationStorage.stations.count > 0 {
       tableView.tableHeaderView?.isHidden = false
       tableView.backgroundView = nil
       tableView.separatorStyle = .singleLine

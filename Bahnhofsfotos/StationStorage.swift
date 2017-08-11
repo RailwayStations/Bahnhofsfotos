@@ -17,9 +17,9 @@ class StationStorage {
 
   static var lastUpdatedAt: Date?
 
-  private static var _stationsWithoutPhoto: [Station] = []
-  static var stationsWithoutPhoto: [Station] {
-    return _stationsWithoutPhoto
+  private static var _stations: [Station] = []
+  static var stations: [Station] {
+    return _stations
   }
   static var currentStation: Station?
 
@@ -31,6 +31,11 @@ class StationStorage {
   fileprivate static let expressionTitle = Expression<String>(Constants.JsonConstants.kTitle)
   fileprivate static let expressionLat = Expression<Double>(Constants.JsonConstants.kLat)
   fileprivate static let expressionLon = Expression<Double>(Constants.JsonConstants.kLon)
+  fileprivate static let expressionPhotographer = Expression<String?>(Constants.JsonConstants.kPhotographer)
+  fileprivate static let expressionPhotographerUrl = Expression<String?>(Constants.JsonConstants.kPhotographerUrl)
+  fileprivate static let expressionPhotoUrl = Expression<String?>(Constants.JsonConstants.kPhotoUrl)
+  fileprivate static let expressionLicense = Expression<String?>(Constants.JsonConstants.kLicense)
+  fileprivate static let expressionDS100 = Expression<String?>(Constants.JsonConstants.kDS100)
 
   // Open connection to database
   private static func openConnection() throws -> Connection {
@@ -52,6 +57,11 @@ class StationStorage {
       table.column(expressionTitle)
       table.column(expressionLat)
       table.column(expressionLon)
+      table.column(expressionPhotographer)
+      table.column(expressionPhotographerUrl)
+      table.column(expressionPhotoUrl)
+      table.column(expressionLicense)
+      table.column(expressionDS100)
     })
 
     // return connection
@@ -70,14 +80,14 @@ class StationStorage {
   static func fetchAll() throws {
     let db = try openConnection()
 
-    _stationsWithoutPhoto.removeAll()
+    _stations.removeAll()
 
     for station in try db.prepare(table) {
       let s = Station.from(row: station)
-      _stationsWithoutPhoto.append(s)
+      _stations.append(s)
     }
 
-    _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.name < $1.name }
+    _stations = _stations.sorted { $0.name < $1.name }
 
     lastUpdatedAt = Date()
   }
@@ -91,15 +101,20 @@ class StationStorage {
                             expressionTitle <- station.name,
                             expressionCountry <- station.country,
                             expressionLat <- station.lat,
-                            expressionLon <- station.lon
+                            expressionLon <- station.lon,
+                            expressionPhotographer <- station.photographer,
+                            expressionPhotographerUrl <- station.photographerUrl,
+                            expressionPhotoUrl <- station.photoUrl,
+                            expressionLicense <- station.license,
+                            expressionDS100 <- station.DS100
     ))
 
-    if let stationIdToUpdate = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
-      _stationsWithoutPhoto.remove(at: stationIdToUpdate)
-      _stationsWithoutPhoto.insert(station, at: stationIdToUpdate)
+    if let stationIdToUpdate = _stations.index(where: { $0.id == station.id }) {
+      _stations.remove(at: stationIdToUpdate)
+      _stations.insert(station, at: stationIdToUpdate)
     } else {
-      _stationsWithoutPhoto.append(station)
-      _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.name < $1.name }
+      _stations.append(station)
+      _stations = _stations.sorted { $0.name < $1.name }
     }
 
     lastUpdatedAt = Date()
@@ -119,19 +134,24 @@ class StationStorage {
                                 expressionTitle <- station.name,
                                 expressionCountry <- station.country,
                                 expressionLat <- station.lat,
-                                expressionLon <- station.lon
+                                expressionLon <- station.lon,
+                                expressionPhotographer <- station.photographer,
+                                expressionPhotographerUrl <- station.photographerUrl,
+                                expressionPhotoUrl <- station.photoUrl,
+                                expressionLicense <- station.license,
+                                expressionDS100 <- station.DS100
         ))
 
-        if let stationIdToUpdate = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
-          _stationsWithoutPhoto.remove(at: stationIdToUpdate)
-          _stationsWithoutPhoto.insert(station, at: stationIdToUpdate)
+        if let stationIdToUpdate = _stations.index(where: { $0.id == station.id }) {
+          _stations.remove(at: stationIdToUpdate)
+          _stations.insert(station, at: stationIdToUpdate)
         } else {
-          _stationsWithoutPhoto.append(station)
+          _stations.append(station)
         }
       }
     }
 
-    _stationsWithoutPhoto = _stationsWithoutPhoto.sorted { $0.name < $1.name }
+    _stations = _stations.sorted { $0.name < $1.name }
 
     lastUpdatedAt = Date()
   }
@@ -142,8 +162,8 @@ class StationStorage {
     let s = table.filter(expressionId == station.id)
     try db.run(s.delete())
 
-    if let stationIdToDelete = _stationsWithoutPhoto.index(where: { $0.id == station.id }) {
-      _stationsWithoutPhoto.remove(at: stationIdToDelete)
+    if let stationIdToDelete = _stations.index(where: { $0.id == station.id }) {
+      _stations.remove(at: stationIdToDelete)
     }
 
     lastUpdatedAt = Date()
@@ -159,11 +179,17 @@ extension Station {
   }
 
   static func from(row: Row) -> Station {
-    return Station(id: row.get(StationStorage.expressionId),
-                   title: row.get(StationStorage.expressionTitle),
-                   country: row.get(StationStorage.expressionCountry),
-                   lat: row.get(StationStorage.expressionLat),
-                   lon: row.get(StationStorage.expressionLon)
+    return Station(
+      id: row.get(StationStorage.expressionId),
+      title: row.get(StationStorage.expressionTitle),
+      country: row.get(StationStorage.expressionCountry),
+      lat: row.get(StationStorage.expressionLat),
+      lon: row.get(StationStorage.expressionLon),
+      photographer: row.get(StationStorage.expressionPhotographer),
+      photographerUrl: row.get(StationStorage.expressionPhotographerUrl),
+      photoUrl: row.get(StationStorage.expressionPhotoUrl),
+      license: row.get(StationStorage.expressionLicense),
+      DS100: row.get(StationStorage.expressionDS100)
     )
   }
 
