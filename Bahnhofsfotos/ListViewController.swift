@@ -86,7 +86,7 @@ class ListViewController: UIViewController {
   // Bahnhöfe filtern
   func filterContentForSearchText(_ searchText: String) {
     let filtered = StationStorage.stations.filter { station in
-      return station.name.lowercased().contains(searchText.lowercased())
+      return !station.hasPhoto && station.name.lowercased().contains(searchText.lowercased())
     }
 
     filteredStations = createSections(of: filtered)
