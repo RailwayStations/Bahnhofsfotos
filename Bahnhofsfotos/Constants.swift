@@ -25,7 +25,7 @@ public class Constants {
     //Länderkonstanten
     public static let kCountryCode = "code"
     public static let kCountryName = "name"
-    public static let kCountryEmail = "mail"
+    public static let kCountryEmail = "email"
     public static let kCountryTwitterTags = "twitterTags"
     public static let kCountryTimetableUrlTemplate = "timetableUrlTemplate"
   }

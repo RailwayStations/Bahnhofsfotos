@@ -28,12 +28,18 @@ class CountryStorage {
     })
   }
 
+  // table name for "migration" ...
+  private static let tableOldName = "country"
+  private static let tableName = "country_3"
+
   // SQLite properties
-  private static let table = Table("country")
   private static let fileName = Constants.dbFilename
+  private static let tableOld = Table(tableOldName)
+  private static let table = Table(tableName)
   fileprivate static let expressionCountryCode = Expression<String>(Constants.JsonConstants.kCountryCode)
   fileprivate static let expressionCountryName = Expression<String>(Constants.JsonConstants.kCountryName)
-  fileprivate static let expressionMail = Expression<String?>(Constants.JsonConstants.kCountryEmail)
+  fileprivate static let expressionMail = Expression<String?>(Constants.JsonConstants.kCountryEmail) // OLD
+  fileprivate static let expressionEmail = Expression<String?>(Constants.JsonConstants.kCountryEmail)
   fileprivate static let expressionTwitterTags = Expression<String?>(Constants.JsonConstants.kCountryTwitterTags)
   fileprivate static let expressionTimetableUrlTemplate = Expression<String?>(Constants.JsonConstants.kCountryTimetableUrlTemplate)
 
@@ -50,11 +56,16 @@ class CountryStorage {
     // open connection
     let db = try Connection("\(path)/\(fileName)")
 
+    // delete old table if exists
+    if tableOldName != tableName {
+      try db.run(tableOld.drop(ifExists: true))
+    }
+
     // create table if not exists
     try db.run(table.create(ifNotExists: true) { table in
       table.column(expressionCountryCode, primaryKey: true)
       table.column(expressionCountryName)
-      table.column(expressionMail)
+      table.column(expressionEmail)
       table.column(expressionTwitterTags)
       table.column(expressionTimetableUrlTemplate)
     })
@@ -93,7 +104,7 @@ class CountryStorage {
 
     try db.run(table.insert(expressionCountryName <- country.name,
                             expressionCountryCode <- country.code,
-                            expressionMail <- country.mail,
+                            expressionEmail <- country.email,
                             expressionTwitterTags <- country.twitterTags,
                             expressionTimetableUrlTemplate <- country.timetableUrlTemplate
     ))
@@ -117,7 +128,7 @@ extension Country {
   static func from(row: Row) -> Country {
       return Country(country: row.get(CountryStorage.expressionCountryName),
                      countryflag: row.get(CountryStorage.expressionCountryCode),
-                     mail: row.get(CountryStorage.expressionMail),
+                     email: row.get(CountryStorage.expressionEmail),
                      twitterTags: row.get(CountryStorage.expressionTwitterTags),
                      timetableUrlTemplate: row.get(CountryStorage.expressionTimetableUrlTemplate)
       )

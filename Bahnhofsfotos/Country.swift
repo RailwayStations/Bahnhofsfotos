@@ -13,14 +13,14 @@ class Country: Equatable {
 
   var name: String
   var code: String
-  var mail: String?
+  var email: String?
   var twitterTags: String?
   var timetableUrlTemplate: String?
 
-  init(country: String, countryflag: String, mail: String?, twitterTags: String?, timetableUrlTemplate: String?) {
+  init(country: String, countryflag: String, email: String?, twitterTags: String?, timetableUrlTemplate: String?) {
     self.name = country
     self.code = countryflag
-    self.mail = mail
+    self.email = email
     self.twitterTags = twitterTags
     self.timetableUrlTemplate = timetableUrlTemplate
   }
@@ -28,7 +28,7 @@ class Country: Equatable {
   init?(json: JSON) throws {
     self.name = json[Constants.JsonConstants.kCountryName].stringValue
     self.code = json[Constants.JsonConstants.kCountryCode].stringValue
-    self.mail = json[Constants.JsonConstants.kCountryEmail].string
+    self.email = json[Constants.JsonConstants.kCountryEmail].string
     self.twitterTags = json[Constants.JsonConstants.kCountryTwitterTags].string
     self.timetableUrlTemplate = json[Constants.JsonConstants.kCountryTimetableUrlTemplate].string
   }

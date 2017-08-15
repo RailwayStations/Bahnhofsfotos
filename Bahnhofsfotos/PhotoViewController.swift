@@ -70,7 +70,7 @@ class PhotoViewController: UIViewController {
     guard let image = imageView.image else { return }
     guard let id = StationStorage.currentStation?.id else { return }
     guard let name = StationStorage.currentStation?.title else { return }
-    guard let email = CountryStorage.currentCountry?.mail else { return }
+    guard let email = CountryStorage.currentCountry?.email else { return }
     guard let country = CountryStorage.currentCountry?.code.lowercased() else { return }
 
     if MFMailComposeViewController.canSendMail() {
