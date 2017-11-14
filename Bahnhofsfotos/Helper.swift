@@ -130,9 +130,9 @@ class Helper {
   }
 
   static func signOut() {
-    let firebaseAuth = FIRAuth.auth()
+    let firebaseAuth = Auth.auth()
     do {
-      try firebaseAuth?.signOut()
+      try firebaseAuth.signOut()
       showViewController(withIdentifier: Constants.StoryboardIdentifiers.signInViewController)
     } catch let signOutError {
       debugPrint("Error signing out: \(signOutError.localizedDescription)")

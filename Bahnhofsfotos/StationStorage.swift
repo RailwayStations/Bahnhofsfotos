@@ -180,16 +180,16 @@ extension Station {
 
   static func from(row: Row) -> Station {
     return Station(
-      id: row.get(StationStorage.expressionId),
-      title: row.get(StationStorage.expressionTitle),
-      country: row.get(StationStorage.expressionCountry),
-      lat: row.get(StationStorage.expressionLat),
-      lon: row.get(StationStorage.expressionLon),
-      photographer: row.get(StationStorage.expressionPhotographer),
-      photographerUrl: row.get(StationStorage.expressionPhotographerUrl),
-      photoUrl: row.get(StationStorage.expressionPhotoUrl),
-      license: row.get(StationStorage.expressionLicense),
-      DS100: row.get(StationStorage.expressionDS100)
+      id: try! row.get(StationStorage.expressionId),
+      title: try! row.get(StationStorage.expressionTitle),
+      country: try! row.get(StationStorage.expressionCountry),
+      lat: try! row.get(StationStorage.expressionLat),
+      lon: try! row.get(StationStorage.expressionLon),
+      photographer: try! row.get(StationStorage.expressionPhotographer),
+      photographerUrl: try! row.get(StationStorage.expressionPhotographerUrl),
+      photoUrl: try! row.get(StationStorage.expressionPhotoUrl),
+      license: try! row.get(StationStorage.expressionLicense),
+      DS100: try! row.get(StationStorage.expressionDS100)
     )
   }
 

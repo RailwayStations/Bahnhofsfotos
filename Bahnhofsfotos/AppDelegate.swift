@@ -6,7 +6,10 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
-import Firebase
+import FirebaseAnalytics
+import FirebaseAuth
+import FirebaseCore
+import FirebaseMessaging
 import GoogleSignIn
 import SwiftyUserDefaults
 import UIKit
@@ -25,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // Use Firebase library to configure APIs
-    FIRApp.configure()
-    GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+    FirebaseApp.configure()
+    GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
     connectToFcm()
 
@@ -57,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use this method to release shared resources, save user data, invalidate timers,
     // and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    FIRMessaging.messaging().disconnect()
+    Messaging.messaging().disconnect()
   }
 
   func applicationWillEnterForeground(_ application: UIApplication) {
@@ -72,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
-  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
     return application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: "")
   }
 
@@ -96,20 +99,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     completionHandler(UIBackgroundFetchResult.newData)
   }
-
-  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//    #if DEBUG
-//      FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
-//    #else
-//      FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .prod)
-//    #endif
-
-    FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .unknown)
-
-    connectToFcm()
+    
+  func application(application: UIApplication,
+                   didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    Messaging.messaging().apnsToken = deviceToken
   }
 
-  func showAlert(withUserInfo userInfo: [AnyHashable : Any]) {
+  func showAlert(withUserInfo userInfo: [AnyHashable: Any]) {
 //    let apsKey = "aps"
 //    let gcmMessage = "alert"
 //    let gcmLabel = "google.c.a.c_l"
@@ -129,14 +125,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func connectToFcm() {
     // Won't connect since there is no token
-    guard FIRInstanceID.instanceID().token() != nil else {
+    guard Messaging.messaging().apnsToken != nil else {
       return
     }
 
     // Disconnect previous FCM connection if it exists.
-    FIRMessaging.messaging().disconnect()
+    Messaging.messaging().disconnect()
 
-    FIRMessaging.messaging().connect { error in
+    Messaging.messaging().connect { error in
       if error != nil {
         debugPrint("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
       } else {
@@ -157,9 +153,9 @@ extension AppDelegate: GIDSignInDelegate {
     }
 
     guard let authentication = user.authentication else { return }
-    let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+    let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                       accessToken: authentication.accessToken)
-    FIRAuth.auth()?.signIn(with: credential) { _, error in
+    Auth.auth().signIn(with: credential) { _, error in
       if let error = error {
         debugPrint("Error \(error)")
         return

@@ -7,22 +7,36 @@ target 'Bahnhofsfotos' do
 
   # Pods for Bahnhofsfotos
   pod 'AAShareBubbles', '~> 1.2'
-  pod 'AKSideMenu', '~> 1.3'
-  pod 'Alamofire', '~> 4.2'
+  pod 'AKSideMenu', '~> 1.4'
+  pod 'Alamofire', '~> 4.5'
   pod 'CPDAcknowledgements', '~> 1.0'
-  pod 'Eureka', '~> 2.0'
+  pod 'Eureka', '~> 4.0'
   pod 'FBAnnotationClusteringSwift', :git => 'https://github.com/666tos/FBAnnotationClusteringSwift'
-  pod 'Firebase/Auth', '~> 3.16'
-  pod 'Firebase/Core', '~> 3.16'
-  pod 'Firebase/Database', '~> 3.16'
-  pod 'Firebase/Messaging', '~> 3.16'
-  pod 'FontAwesomeKit.Swift', '~> 0.3'
-  pod 'GoogleSignIn', '~> 4.0'
-  pod 'ImagePicker', :git => 'https://github.com/Haitec/ImagePicker'
+  pod 'FirebaseAuth', '~> 4.3'
+  pod 'FirebaseCore', '~> 4.0'
+  pod 'FirebaseDatabase', '~> 4.1'
+  pod 'FirebaseMessaging', '~> 2.0'
+  pod 'FontAwesomeKit.Swift', '~> 0.4'
+  pod 'GoogleSignIn', '~> 4.1'
+  pod 'ImagePicker', :git => 'https://github.com/hyperoslo/ImagePicker'
   pod 'JSQMessagesViewController', '~> 7.3'
   pod 'SQLite.swift', '~> 0.11'
-  pod 'SwiftLint', '~> 0.17'
-  pod 'SwiftyJSON', '~> 3.1'
+  pod 'SwiftLint', '~> 0.23'
+  pod 'SwiftyJSON', '~> 4.0'
   pod 'SwiftyUserDefaults', '~> 3.0'
   pod 'Toast-Swift', '~> 2.0'
+
+end
+
+post_install do |installer|
+    # List of Swift 4 targets
+    swift4_targets = []
+    
+    installer.pods_project.targets.each do |target|
+        if swift4_targets.include? target.name
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+        end
+    end
 end

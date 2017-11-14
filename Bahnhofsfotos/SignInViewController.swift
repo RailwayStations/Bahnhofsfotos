@@ -6,13 +6,13 @@
 //  Copyright © 2017 Railway-Stations. All rights reserved.
 //
 
-import Firebase
+import FirebaseAuth
 import GoogleSignIn
 
 class SignInViewController: UIViewController {
 
   @IBOutlet weak var signInButton: GIDSignInButton!
-  var handle: FIRAuthStateDidChangeListenerHandle?
+  var handle: AuthStateDidChangeListenerHandle?
 
   @IBAction func showMenu(_ sender: Any) {
     sideMenuViewController?.presentLeftMenuViewController()
@@ -22,7 +22,7 @@ class SignInViewController: UIViewController {
     super.viewDidLoad()
 
     GIDSignIn.sharedInstance().uiDelegate = self
-    handle = FIRAuth.auth()?.addStateDidChangeListener { _, user in
+    handle = Auth.auth().addStateDidChangeListener { _, user in
       self.show(loading: false)
       if user != nil {
         Helper.showViewController(withIdentifier: Constants.StoryboardIdentifiers.chatViewController)
@@ -32,7 +32,7 @@ class SignInViewController: UIViewController {
 
   deinit {
     if let handle = handle {
-      FIRAuth.auth()?.removeStateDidChangeListener(handle)
+      Auth.auth().removeStateDidChangeListener(handle)
     }
   }
 

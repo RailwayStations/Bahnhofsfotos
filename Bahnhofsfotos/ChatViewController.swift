@@ -6,7 +6,6 @@
 //  Copyright © 2017 Railway-Stations. All rights reserved.
 //
 
-import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import JSQMessagesViewController
@@ -14,10 +13,10 @@ import UIKit
 
 class ChatViewController: JSQMessagesViewController {
 
-  private lazy var channelRef: FIRDatabaseReference? = FIRDatabase.database().reference()
-  fileprivate lazy var messageRef: FIRDatabaseReference? = self.channelRef?.child("messages")
-  private var newMessageRefHandle: FIRDatabaseHandle?
-  var messages = [FIRDataSnapshot]()
+  private lazy var channelRef: DatabaseReference? = Database.database().reference()
+  fileprivate lazy var messageRef: DatabaseReference? = self.channelRef?.child("messages")
+  private var newMessageRefHandle: DatabaseHandle?
+  var messages = [DataSnapshot]()
   var avatars = [String: UIImage]()
 
   fileprivate lazy var incomingBubbleImage: JSQMessagesBubbleImage =
@@ -43,7 +42,7 @@ class ChatViewController: JSQMessagesViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    guard FIRAuth.auth()?.currentUser != nil else {
+    guard Auth.auth().currentUser != nil else {
       Helper.signOut()
       return
     }
@@ -61,7 +60,7 @@ class ChatViewController: JSQMessagesViewController {
   private func configureDatabase() {
     view.makeToastActivity(.center)
 
-    channelRef = FIRDatabase.database().reference()
+    channelRef = Database.database().reference()
     // Listen for new messages in the Firebase database
     guard let messageQuery = messageRef?.queryLimited(toLast: 25) else { return }
 
@@ -74,7 +73,7 @@ class ChatViewController: JSQMessagesViewController {
   }
 
   private func configureChat() {
-    guard let user = FIRAuth.auth()?.currentUser else { return }
+    guard let user = Auth.auth().currentUser else { return }
     senderId = user.uid
     senderDisplayName = user.displayName
 
@@ -94,7 +93,7 @@ class ChatViewController: JSQMessagesViewController {
     return date
   }
 
-  fileprivate func getJSQMessage(fromSnapshot snapshot: FIRDataSnapshot) -> JSQMessage? {
+  fileprivate func getJSQMessage(fromSnapshot snapshot: DataSnapshot) -> JSQMessage? {
     guard let message = snapshot.value as? [String: String] else { return nil }
     let userId = message[Constants.MessageFields.userId] ?? message[Constants.MessageFields.name] ?? ""
     let name = message[Constants.MessageFields.name] ?? ""
@@ -213,7 +212,7 @@ extension ChatViewController {
     let messageItem = [
       Constants.MessageFields.userId: senderId,
       Constants.MessageFields.name: senderDisplayName,
-      Constants.MessageFields.photoURL: FIRAuth.auth()?.currentUser?.photoURL?.absoluteString,
+      Constants.MessageFields.photoURL: Auth.auth().currentUser?.photoURL?.absoluteString,
       Constants.MessageFields.chatTimeStamp: customDateFormatter.string(from: Date()),
       Constants.MessageFields.text: text
     ]

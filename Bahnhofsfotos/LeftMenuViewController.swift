@@ -103,8 +103,8 @@ class LeftMenuViewController: UIViewController {
     navigationViewController.navigationBar.barTintColor = Helper.tintColor
     navigationViewController.navigationBar.tintColor = UIColor.white
     navigationViewController.navigationBar.titleTextAttributes = [
-      NSForegroundColorAttributeName: UIColor.white,
-      NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 17) as Any
+      NSAttributedStringKey.foregroundColor: UIColor.white,
+      NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 17) as Any
     ]
 
     Helper.show(viewController: navigationViewController)

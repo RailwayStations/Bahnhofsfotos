@@ -126,11 +126,11 @@ extension Country {
   }
 
   static func from(row: Row) -> Country {
-      return Country(country: row.get(CountryStorage.expressionCountryName),
-                     countryflag: row.get(CountryStorage.expressionCountryCode),
-                     email: row.get(CountryStorage.expressionEmail),
-                     twitterTags: row.get(CountryStorage.expressionTwitterTags),
-                     timetableUrlTemplate: row.get(CountryStorage.expressionTimetableUrlTemplate)
+      return Country(country: try! row.get(CountryStorage.expressionCountryName),
+                     countryflag: try! row.get(CountryStorage.expressionCountryCode),
+                     email: try! row.get(CountryStorage.expressionEmail),
+                     twitterTags: try! row.get(CountryStorage.expressionTwitterTags),
+                     timetableUrlTemplate: try! row.get(CountryStorage.expressionTimetableUrlTemplate)
       )
   }
 

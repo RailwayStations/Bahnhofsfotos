@@ -25,10 +25,10 @@ class ChatWrapperViewController: UIViewController {
   @IBAction func toggleNotification() {
     // TODO: https://developers.google.com/instance-id/reference/server#get_information_about_app_instances
     if Defaults[.chatNotificationsEnabled] {
-      FIRMessaging.messaging().unsubscribe(fromTopic: Constants.fcmTopic)
+      Messaging.messaging().unsubscribe(fromTopic: Constants.fcmTopic)
       Defaults[.chatNotificationsEnabled] = false
     } else {
-      FIRMessaging.messaging().subscribe(toTopic: Constants.fcmTopic)
+      Messaging.messaging().subscribe(toTopic: Constants.fcmTopic)
       Defaults[.chatNotificationsEnabled] = true
     }
 
