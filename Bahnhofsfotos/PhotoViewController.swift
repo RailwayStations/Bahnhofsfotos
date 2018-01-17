@@ -16,15 +16,14 @@ import UIKit
 class PhotoViewController: UIViewController {
 
   @IBOutlet weak var imageView: UIImageView!
-  @IBOutlet weak var shareBarButton: UIButton!
-  @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var shareBarButton: UIBarButtonItem!
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    titleLabel.text = StationStorage.currentStation?.name
+    title = StationStorage.currentStation?.name
     shareBarButton.isEnabled = false
-    shareBarButton.isHidden = true
+//    shareBarButton.isHidden = true
   }
 
   @IBAction func pickImage(_ sender: Any) {
@@ -49,7 +48,7 @@ class PhotoViewController: UIViewController {
   }
 
   @IBAction func closeTouched(_ sender: Any) {
-    dismiss(animated: true, completion: nil)
+    navigationController?.popViewController(animated: true)
   }
 
   @IBAction func openNavigation(_ sender: Any) {
@@ -148,7 +147,7 @@ extension PhotoViewController: ImagePickerDelegate {
     if !images.isEmpty {
       imageView.image = images[0]
       shareBarButton.isEnabled = true
-      shareBarButton.isHidden = false
+//      shareBarButton.isHidden = false
     }
     imagePicker.dismiss(animated: true, completion: nil)
   }

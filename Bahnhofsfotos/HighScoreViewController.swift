@@ -16,9 +16,13 @@ class HighScoreViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    loadData()
+  }
 
+  func loadData() {
     UIApplication.shared.isNetworkActivityIndicatorVisible = true
     view.makeToastActivity(.center)
 
@@ -28,14 +32,10 @@ class HighScoreViewController: UIViewController {
       if let photographers = photographers as? [String: Int] {
         self.photographers = photographers.sorted(by: { $0.value > $1.value })
         self.tableView.reloadData()
-
-        self.view.hideToastActivity()
       }
-    }
-  }
 
-  @IBAction func showMenu(_ sender: Any) {
-    sideMenuViewController?.presentLeftMenuViewController()
+      self.view.hideToastActivity()
+    }
   }
 
 }

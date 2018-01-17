@@ -14,10 +14,6 @@ class SignInViewController: UIViewController {
   @IBOutlet weak var signInButton: GIDSignInButton!
   var handle: AuthStateDidChangeListenerHandle?
 
-  @IBAction func showMenu(_ sender: Any) {
-    sideMenuViewController?.presentLeftMenuViewController()
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -25,9 +21,15 @@ class SignInViewController: UIViewController {
     handle = Auth.auth().addStateDidChangeListener { _, user in
       self.show(loading: false)
       if user != nil {
-        Helper.showViewController(withIdentifier: Constants.StoryboardIdentifiers.chatViewController)
+        self.navigationController?.pushViewController(Helper.viewController(withIdentifier: Constants.StoryboardIdentifiers.chatViewController), animated: true)
       }
     }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.setNavigationBarHidden(true, animated: true)
   }
 
   deinit {
@@ -37,11 +39,11 @@ class SignInViewController: UIViewController {
   }
 
   func show(loading: Bool) {
-    Helper.setIsUserInteractionEnabled(in: Helper.rootViewController!, to: !loading)
+    Helper.setIsUserInteractionEnabled(in: self, to: !loading)
     if loading {
-      Helper.rootViewController?.view.makeToastActivity(.center)
+      view.makeToastActivity(.center)
     } else {
-      Helper.rootViewController?.view.hideToastActivity()
+      view.hideToastActivity()
     }
   }
 

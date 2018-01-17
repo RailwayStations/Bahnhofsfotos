@@ -1,33 +1,33 @@
 PODS:
   - AAShareBubbles (1.2.4)
-  - AKSideMenu (1.4.0)
-  - Alamofire (4.5.1)
+  - Alamofire (4.6.0)
   - CPDAcknowledgements (1.0.0)
   - Eureka (4.0.1)
   - FBAnnotationClusteringSwift (2.0)
-  - FirebaseAnalytics (4.0.4):
+  - FirebaseAnalytics (4.0.5):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - nanopb (~> 0.3)
-  - FirebaseAuth (4.3.1):
+  - FirebaseAuth (4.4.1):
     - FirebaseAnalytics (~> 4.0)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (4.0.10):
+  - FirebaseCore (4.0.13):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - nanopb (~> 0.3)
-  - FirebaseDatabase (4.1.1):
+  - FirebaseDatabase (4.1.3):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (2.0.5)
-  - FirebaseMessaging (2.0.6):
+  - FirebaseInstanceID (2.0.8):
+    - FirebaseCore (~> 4.0)
+  - FirebaseMessaging (2.0.8):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
+  - FontAwesomeIconFactory (3.0)
   - FontAwesomeKit.Swift (0.4.2)
   - GoogleSignIn (4.1.1):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
@@ -46,14 +46,14 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.3)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
-  - GTMOAuth2 (1.1.5):
+  - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.1.12):
     - GTMSessionFetcher/Full (= 1.1.12)
   - GTMSessionFetcher/Core (1.1.12)
   - GTMSessionFetcher/Full (1.1.12):
     - GTMSessionFetcher/Core (= 1.1.12)
-  - ImagePicker (3.0.0)
+  - ImagePicker (3.1.0)
   - JSQMessagesViewController (7.3.5):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -63,26 +63,26 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Protobuf (3.4.0)
+  - Protobuf (3.5.0)
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
-  - SwiftLint (0.23.1)
+  - SwiftLint (0.24.0)
   - SwiftyJSON (4.0.0)
   - SwiftyUserDefaults (3.0.0)
-  - Toast-Swift (2.0.0)
+  - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
   - AAShareBubbles (~> 1.2)
-  - AKSideMenu (~> 1.4)
-  - Alamofire (~> 4.5)
+  - Alamofire (~> 4.6)
   - CPDAcknowledgements (~> 1.0)
   - Eureka (~> 4.0)
   - FBAnnotationClusteringSwift (from `https://github.com/666tos/FBAnnotationClusteringSwift`)
-  - FirebaseAuth (~> 4.3)
+  - FirebaseAuth (~> 4.4)
   - FirebaseCore (~> 4.0)
   - FirebaseDatabase (~> 4.1)
   - FirebaseMessaging (~> 2.0)
+  - FontAwesomeIconFactory (~> 3.0)
   - FontAwesomeKit.Swift (~> 0.4)
   - GoogleSignIn (~> 4.1)
   - ImagePicker (from `https://github.com/hyperoslo/ImagePicker`)
@@ -91,7 +91,7 @@ DEPENDENCIES:
   - SwiftLint (~> 0.23)
   - SwiftyJSON (~> 4.0)
   - SwiftyUserDefaults (~> 3.0)
-  - Toast-Swift (~> 2.0)
+  - Toast-Swift (~> 3.0)
 
 EXTERNAL SOURCES:
   FBAnnotationClusteringSwift:
@@ -104,39 +104,39 @@ CHECKOUT OPTIONS:
     :commit: b146e122c8f6a12c947f7d321c6efffae1947fab
     :git: https://github.com/666tos/FBAnnotationClusteringSwift
   ImagePicker:
-    :commit: 389c7808dfcd109295b26345474b87284c594365
+    :commit: f78fbf8ca3083272076b4fcfdf1cdeb04278eef6
     :git: https://github.com/hyperoslo/ImagePicker
 
 SPEC CHECKSUMS:
   AAShareBubbles: 53fd5064602fa041a2249dda6b26f7fdccca3093
-  AKSideMenu: c2f5b367529450e95e9fa3f000671cb2a14daf17
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Eureka: c8bd5cc07143b6f66268c208d28a246c99b41955
   FBAnnotationClusteringSwift: 9eb6e2acee2db56183c7ccff9239723598f286b0
-  FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
-  FirebaseAuth: e7c2b1359c2df4af23a568100a8eace0b8c507e4
-  FirebaseCore: da5e8e372cb6046212739a4d81e42d32c22907cc
-  FirebaseDatabase: 2e6e8e110b93b9a6e7aac71774c769a363035cb1
-  FirebaseInstanceID: f2b688c66b972f30d7fa9f5f9f91455454a03b47
-  FirebaseMessaging: 75d83375b0f7a9911568d7bdd1a1a8261cbcbdef
+  FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
+  FirebaseAuth: dc0dd403beca5b2b016aac89c2d0b8dad1c81926
+  FirebaseCore: 3c02ec652db3d03fdc8bc6d9154af3e20d64b6f5
+  FirebaseDatabase: 7088bfc4af2cc00231bb36e1404fc2d7509eb4dc
+  FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
+  FirebaseMessaging: dfdcd307c2382290a1e297a81d0f18370f5b1bcd
+  FontAwesomeIconFactory: dfc89a126ff158d3a642aeeb265eaa9b179ad496
   FontAwesomeKit.Swift: 252b2e05752e6c7410866693c7350e62313da910
   GoogleSignIn: 3fdaa34a2ba04dbd7a25d7db39aecb0da98d5bdc
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  GTMOAuth2: be83fd28d63ae3087e7d351b1f39c1a7e24ab6e7
+  GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
-  ImagePicker: f8a3ce52e587b55f58aef2d83d894ed6f7820f51
+  ImagePicker: db1fd7626337b2577c523bef5f499bbbe5a37079
   JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  leveldb-library: 44ef425bfde64f5b41daef86b38db2d13edbbee1
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
+  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
-  SwiftLint: 1b670ce79284c76520f84060e87d645078fd32fa
+  SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
-  Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 7bcd107789b1318df85296127329b13a3c9c3ddb
+PODFILE CHECKSUM: 0c730b5b4dba3633691518fa72434ac8537c7d1c
 
 COCOAPODS: 1.3.1

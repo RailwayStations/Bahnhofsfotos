@@ -33,18 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     GIDSignIn.sharedInstance().delegate = self
     connectToFcm()
 
-    // Register for remote notifications. This shows a permission dialog on first run, to
-    // show the dialog at a more appropriate time move this registration accordingly.
     if #available(iOS 10.0, *) {
-      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-      UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in }
       // For iOS 10 display notification (sent via APNS)
       UNUserNotificationCenter.current().delegate = self
-    } else {
-      let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-      application.registerUserNotificationSettings(settings)
     }
-    application.registerForRemoteNotifications()
 
     return true
   }

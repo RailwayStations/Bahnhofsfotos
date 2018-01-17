@@ -6,7 +6,6 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
-import AKSideMenu
 import CoreLocation
 import FBAnnotationClusteringSwift
 import FontAwesomeKit_Swift
@@ -47,10 +46,6 @@ class MapViewController: UIViewController {
   @IBOutlet weak var trackingButton: UIButton!
   @IBOutlet weak var toggleClusteringButton: UIButton!
 
-  @IBAction func showMenu(_ sender: Any) {
-    sideMenuViewController?.presentLeftMenuViewController()
-  }
-
   @IBAction func followUser(_ sender: Any) {
     mapView.setUserTrackingMode(.follow, animated: true)
   }
@@ -70,19 +65,33 @@ class MapViewController: UIViewController {
 
     clusteringIsActive = !clusteringIsActive
   }
+  
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .default
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.setNavigationBarHidden(true, animated: true)
+    
+    showStations()
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    Helper.rootViewController?.delegate = self
 
     locationManager = CLLocationManager()
     locationManager?.delegate = self
     locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
     locationManager?.requestWhenInUseAuthorization()
     locationManager?.startUpdatingLocation()
-
-    showStations()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.setNavigationBarHidden(false, animated: true)
   }
 
   // Bahnhöfe anzeigen
@@ -129,11 +138,18 @@ extension MapViewController: MKMapViewDelegate {
       clusterView.annotation = annotation
       return clusterView
     }
+    
+    // button for detail view
+    let detailViewButton = UIButton(type: .system)
+    detailViewButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+    detailViewButton.fa_setTitle(.fa_info_circle, for: .normal)
+    detailViewButton.accessibilityIdentifier = "detail"
 
     // button for navigation
     let button = UIButton(type: .system)
     button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
     button.fa_setTitle(.fa_compass, for: .normal)
+    button.accessibilityIdentifier = "navigation"
 
     // single station
     let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView ??
@@ -142,12 +158,13 @@ extension MapViewController: MKMapViewDelegate {
     pinView.annotation = annotation
     pinView.isEnabled = true
     pinView.canShowCallout = true
+    pinView.leftCalloutAccessoryView = detailViewButton
     pinView.rightCalloutAccessoryView = button
     pinView.pinTintColor = Helper.tintColor
 
     if let annotation = annotation as? StationAnnotation {
-      if annotation.station.photographer != nil && Defaults[.accountName] != nil {
-        if annotation.station.photographer!.lowercased() == Defaults[.accountName]!.lowercased() {
+      if annotation.station.photographer != nil {
+        if Defaults[.accountName] != nil && annotation.station.photographer!.lowercased() == Defaults[.accountName]!.lowercased() {
           pinView.pinTintColor = Helper.blueColor
         } else {
           pinView.pinTintColor = Helper.greenColor
@@ -159,10 +176,20 @@ extension MapViewController: MKMapViewDelegate {
   }
 
   func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    // get station (of annotation)
     if let annotation = view.annotation as? StationAnnotation {
-      Helper.openNavigation(to: annotation.station)
+      StationStorage.currentStation = annotation.station
     } else if let annotation = view.annotation as? Station {
-      Helper.openNavigation(to: annotation)
+      StationStorage.currentStation = annotation
+    }
+    
+    // take action with station
+    guard let station = StationStorage.currentStation else { return }
+    
+    if (control.accessibilityIdentifier == "detail") {
+      performSegue(withIdentifier: "showDetail", sender: station)
+    } else if (control.accessibilityIdentifier == "navigation") {
+      Helper.openNavigation(to: station)
     }
   }
 
@@ -184,15 +211,6 @@ extension MapViewController: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations _: [CLLocation]) {
     mapView.setUserTrackingMode(.follow, animated: true)
     manager.stopUpdatingLocation()
-  }
-
-}
-
-// MARK: - AKSideMenuDelegate
-extension MapViewController: AKSideMenuDelegate {
-
-  func sideMenu(_ sideMenu: AKSideMenu, willHideMenuViewController menuViewController: UIViewController) {
-    showStations()
   }
 
 }

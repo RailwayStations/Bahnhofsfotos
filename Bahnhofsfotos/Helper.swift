@@ -6,7 +6,6 @@
 //  Copyright © 2017 Railway-Stations. All rights reserved.
 //
 
-import AKSideMenu
 import FirebaseAuth
 import MapKit
 import SwiftyUserDefaults
@@ -30,27 +29,10 @@ class Helper {
     return UIColor(red: 212/255.0, green: 222/255.0, blue: 59/255.0, alpha: 1.0)
   }
 
-  static var rootViewController: AKSideMenu? {
-    return (UIApplication.shared.delegate as? AppDelegate)?.window?.rootViewController as? AKSideMenu
-  }
-
   static func viewController(withIdentifier identifier: String) -> UIViewController {
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
     return viewController
-  }
-
-  // Show view controller
-  static func show(viewController: UIViewController) {
-    rootViewController?.setContentViewController(viewController, animated: true)
-    rootViewController?.hideMenuViewController()
-  }
-
-  // Show view controller with identifier
-  static func showViewController(withIdentifier identifier: String) {
-    let viewController = self.viewController(withIdentifier: identifier)
-
-    show(viewController: viewController)
   }
 
   // Disables the view for user interaction
@@ -129,14 +111,15 @@ class Helper {
       ])
   }
 
-  static func signOut() {
+  static func signOut() -> Bool {
     let firebaseAuth = Auth.auth()
     do {
       try firebaseAuth.signOut()
-      showViewController(withIdentifier: Constants.StoryboardIdentifiers.signInViewController)
     } catch let signOutError {
       debugPrint("Error signing out: \(signOutError.localizedDescription)")
     }
+    
+    return firebaseAuth.currentUser == nil
   }
 
 }

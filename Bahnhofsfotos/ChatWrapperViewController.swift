@@ -7,22 +7,31 @@
 //
 
 import FirebaseMessaging
+import FontAwesomeKit_Swift
 import SwiftyUserDefaults
 import UIKit
+import UserNotifications
 
 class ChatWrapperViewController: UIViewController {
 
-  @IBOutlet weak var notificationButton: UIButton!
-
-  @IBAction func showMenu(_ sender: Any) {
-    sideMenuViewController?.presentLeftMenuViewController()
+  @objc func signOut() {
+    if Helper.signOut() {
+      navigationController?.popViewController(animated: true)
+    }
   }
 
-  @IBAction func signOut(_ sender: Any) {
-    Helper.signOut()
-  }
-
-  @IBAction func toggleNotification() {
+  @objc func toggleNotification() {
+    // Register for remote notifications. This shows a permission dialog on first run, to
+    // show the dialog at a more appropriate time move this registration accordingly.
+    if #available(iOS 10.0, *) {
+      let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+      UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in }
+    } else {
+      let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+      UIApplication.shared.registerUserNotificationSettings(settings)
+    }
+    UIApplication.shared.registerForRemoteNotifications()
+    
     // TODO: https://developers.google.com/instance-id/reference/server#get_information_about_app_instances
     if Defaults[.chatNotificationsEnabled] {
       Messaging.messaging().unsubscribe(fromTopic: Constants.fcmTopic)
@@ -32,21 +41,25 @@ class ChatWrapperViewController: UIViewController {
       Defaults[.chatNotificationsEnabled] = true
     }
 
-    showNotificationButton()
+    showNavigationButtons()
   }
 
   override func viewDidLoad() {
-    showNotificationButton()
+    super.viewDidLoad()
+    
+    title = "Chat"
+    
+    navigationController?.setNavigationBarHidden(false, animated: true)
+    navigationItem.hidesBackButton = true
+    
+    showNavigationButtons()
   }
 
-  func showNotificationButton() {
-    if Defaults[.chatNotificationsEnabled] {
-      notificationButton.fa_setTitle(.fa_bell_slash, for: .normal)
-    } else {
-      notificationButton.fa_setTitle(.fa_bell, for: .normal)
-    }
-
-    notificationButton.titleLabel?.font = UIFont(fa_fontSize: 17)
+  func showNavigationButtons() {
+    let signOutButton = UIBarButtonItem(awesomeType: .fa_sign_out, size: 18, style: .plain, target: self, action: #selector(signOut))
+    let notificationButton = UIBarButtonItem(awesomeType: (Defaults[.chatNotificationsEnabled] ? .fa_bell_slash : .fa_bell), size: 18, style: .plain, target: self, action: #selector(toggleNotification))
+    
+    navigationItem.rightBarButtonItems = [signOutButton, notificationButton]
   }
 
 }

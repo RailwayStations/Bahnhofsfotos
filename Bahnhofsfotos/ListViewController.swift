@@ -6,7 +6,6 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
-import AKSideMenu
 import Alamofire
 import UIKit
 
@@ -34,8 +33,6 @@ class ListViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    Helper.rootViewController?.delegate = self
-
     tableView.dataSource = self
     tableView.delegate = self
 
@@ -44,10 +41,6 @@ class ListViewController: UIViewController {
     searchController.dimsBackgroundDuringPresentation = false
     definesPresentationContext = true
     tableView.tableHeaderView = searchController.searchBar
-  }
-
-  @IBAction func showMenu(_ sender: Any) {
-    sideMenuViewController?.presentLeftMenuViewController()
   }
 
   @IBAction func toggleEditing(_ sender: Any) {
@@ -220,7 +213,7 @@ extension ListViewController: UITableViewDelegate {
       } catch {
         let alert = UIAlertController(title: "Fehler", message: "Löschen war nicht erfolgreich", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        Helper.show(viewController: alert)
+        self.present(alert, animated: true, completion: nil)
       }
     }]
   }
@@ -237,15 +230,6 @@ extension ListViewController: UISearchResultsUpdating {
         showStations()
       }
     }
-  }
-
-}
-
-// MARK: - AKSideMenuDelegate
-extension ListViewController: AKSideMenuDelegate {
-
-  func sideMenu(_ sideMenu: AKSideMenu, willHideMenuViewController menuViewController: UIViewController) {
-    showStations()
   }
 
 }

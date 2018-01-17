@@ -1,16 +1,17 @@
 //
-//  ProfileViewController.swift
+//  SettingsViewController.swift
 //  Bahnhofsfotos
 //
 //  Created by Miguel Dönicke on 17.12.16.
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import CPDAcknowledgements
 import Eureka
 import SwiftyUserDefaults
 import Toast_Swift
 
-class ProfileViewController: FormViewController {
+class SettingsViewController: FormViewController {
 
   private enum FormSection: String {
     case download = "Bahnhofsdaten"
@@ -21,12 +22,20 @@ class ProfileViewController: FormViewController {
   private enum RowTag: String {
     case loadCountries
     case countryPicker
+    case loadStations
+    case licensePicker
+    case linkPhotos
     case accountType
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     createForm()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(true, animated: true)
   }
 
   // MARK: - Eureka
@@ -36,6 +45,7 @@ class ProfileViewController: FormViewController {
       +++ createDownloadSection()
       +++ createLicenseSection()
       +++ createLinkSection()
+      +++ createInformationSection()
   }
 
   // MARK: Download
@@ -76,6 +86,9 @@ class ProfileViewController: FormViewController {
 
     return PickerInlineRow<Country>(RowTag.countryPicker.rawValue) { row in
       row.title = "Aktuelles Land"
+      row.hidden = .function([RowTag.loadCountries.rawValue]) { _ in
+        return CountryStorage.countries.count == 0
+      }
       row.disabled = .function([RowTag.loadCountries.rawValue], { _ in
         let empty = CountryStorage.countries.count == 0
         if !empty {
@@ -98,59 +111,94 @@ class ProfileViewController: FormViewController {
       Defaults[.country] = row.value?.code ?? ""
     }
   }
+  
+  // Creates thw row for getting the stations
+  private func createGetStationsRow() -> LabelRow {
+    let rowTitle = "Bahnhofsdaten aktualisieren"
+    
+    return LabelRow(RowTag.loadStations.rawValue) { row in
+      row.title = rowTitle
+      row.hidden = .function([RowTag.countryPicker.rawValue]) { _ in
+        return Defaults[.country] == ""
+      }
+      if let lastUpdate = Defaults[.lastUpdate] {
+        row.value = lastUpdate.relativeDateString
+      }
+      }.onCellSelection { (_, row) in
+        row.title = "Bahnhofsdaten herunterladen"
+        row.updateCell()
+        
+        Helper.setIsUserInteractionEnabled(in: self, to: false)
+        self.view.makeToastActivity(.center)
+
+        Helper.loadStations(progressHandler: { progress, count in
+          row.title = "Bahnhof speichern: \(progress)/\(count)"
+          row.value = "\(UInt(round(Float(progress) / Float(count) * 100)))%"
+          row.updateCell()
+        }) {
+          row.title = rowTitle
+          if let lastUpdate = Defaults[.lastUpdate] {
+            row.value = lastUpdate.relativeDateString
+          }
+          row.updateCell()
+          
+          Helper.setIsUserInteractionEnabled(in: self, to: true)
+          self.view.hideToastActivity()
+        }
+    }
+  }
 
   // Creates the download section
   private func createDownloadSection() -> Section {
     return Section(FormSection.download.rawValue)
       <<< createGetCountriesRow()
       <<< createCountryPickerRow()
+      <<< createGetStationsRow()
   }
 
   // MARK: License
-
-  private func createLicenseSection() -> Section {
-    let license = { (license: License?) in
-      return (text: license == .cc40 ? "CC4.0 mit Namensnennung" : "CC0 - ohne Namensnennung", value: license == .cc40)
+  
+  private func createLicensePickerRow() -> PickerInlineRow<License> {
+    return PickerInlineRow<License>(RowTag.licensePicker.rawValue) { row in
+      row.title = "Lizenz"
+      row.displayValueFor = { (value: License?) in
+        switch value {
+        case .cc40?:
+          return "CC4.0 mit Namensnennung"
+        default:
+          return "CC0 - ohne Namensnennung"
+        }
+      }
+      row.options = License.allValues
+      row.value = Defaults[.license]
+      }.onChange { (row) in
+        Defaults[.license] = License(rawValue: row.value?.rawValue ?? "")
     }
-
+  }
+  
+  private func createLicenseSection() -> Section {
     return Section(FormSection.license.rawValue)
-
-      <<< LabelRow { row in
-        row.title = "Lizenz deiner Fotos?"
-      }
-
-      <<< SwitchRow { row in
-        row.title = license(Defaults[.license]).text
-        row.value = license(Defaults[.license]).value
-      }.onChange { row in
-        guard let value = row.value else { return }
-        Defaults[.license] = value ? .cc40 : .cc0
-        row.title = license(Defaults[.license]).text
-        row.updateCell()
-      }
+      <<< createLicensePickerRow()
   }
 
-  // MARK: Verlinkung
+  // MARK: Linking
 
   private func createLinkSection() -> Section {
     return Section(FormSection.link.rawValue)
 
-      <<< LabelRow { row in
-        row.title = "Möchtest Du verlinkt werden?"
-      }
-
-      <<< SwitchRow { row in
-        row.title = Defaults[.accountLinking] ? "Ja" : "Nein"
+      <<< SwitchRow(RowTag.linkPhotos.rawValue) { row in
+        row.title = "Fotos verlinken"
         row.value = Defaults[.accountLinking]
       }.onChange { row in
         guard let value = row.value else { return }
         Defaults[.accountLinking] = value
-        row.title = Defaults[.accountLinking] ? "Ja" : "Nein"
-        row.updateCell()
       }
 
       <<< PickerInlineRow<AccountType>(RowTag.accountType.rawValue) { row in
         row.title = "Account"
+        row.hidden = .function([RowTag.linkPhotos.rawValue]) { _ in
+          return !Defaults[.accountLinking]
+        }
         row.options = [
           AccountType.none,
           AccountType.twitter,
@@ -171,12 +219,27 @@ class ProfileViewController: FormViewController {
       <<< TextRow { row in
         row.value = Defaults[.accountName]
         row.placeholder = "Accountname"
-        row.hidden = .function([RowTag.accountType.rawValue], { _ in
-          return Defaults[.accountType] == AccountType.none
-        })
       }.onChange { row in
         Defaults[.accountName] = row.value ?? ""
       }
+  }
+  
+  // MARK: Informations
+  
+  private func createInformationsRow() -> LabelRow {
+    return LabelRow() { row in
+      row.title = "Informationen"
+      row.onCellSelection({ (_, row) in
+        let acknowledgementsViewController = CPDAcknowledgementsViewController()
+        self.navigationController?.pushViewController(acknowledgementsViewController, animated: true)
+        acknowledgementsViewController.navigationController?.setNavigationBarHidden(false, animated: true)
+      })
+    }
+  }
+  
+  private func createInformationSection() -> Section {
+    return Section()
+      <<< createInformationsRow()
   }
 
 }
