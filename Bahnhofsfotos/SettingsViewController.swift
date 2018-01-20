@@ -17,6 +17,7 @@ class SettingsViewController: FormViewController {
     case download = "Bahnhofsdaten"
     case license = "Lizenzierung"
     case link = "Verlinkung"
+    case upload = "Direkt-Upload"
   }
 
   private enum RowTag: String {
@@ -24,8 +25,10 @@ class SettingsViewController: FormViewController {
     case countryPicker
     case loadStations
     case licensePicker
+    case photoOwner
     case linkPhotos
     case accountType
+    case requestToken
   }
 
   override func viewDidLoad() {
@@ -45,6 +48,9 @@ class SettingsViewController: FormViewController {
       +++ createDownloadSection()
       +++ createLicenseSection()
       +++ createLinkSection()
+      +++ createUploadSection()
+      +++ createUploadTokenSection()
+      +++ Section()
       +++ createInformationSection()
   }
 
@@ -176,9 +182,20 @@ class SettingsViewController: FormViewController {
     }
   }
   
+  private func createPhotoOwnerRow() -> SwitchRow {
+    return SwitchRow(RowTag.photoOwner.rawValue) { row in
+      row.title = "Urheber der Fotos"
+      row.value = Defaults[.photoOwner]
+      }.onChange { row in
+        guard let value = row.value else { return }
+        Defaults[.photoOwner] = value
+    }
+  }
+  
   private func createLicenseSection() -> Section {
     return Section(FormSection.license.rawValue)
       <<< createLicensePickerRow()
+      <<< createPhotoOwnerRow()
   }
 
   // MARK: Linking
@@ -221,6 +238,47 @@ class SettingsViewController: FormViewController {
         row.placeholder = "Accountname"
       }.onChange { row in
         Defaults[.accountName] = row.value ?? ""
+      }
+  }
+  
+  // MARK: Upload
+  
+  private func createUploadSection() -> Section {
+    return Section(FormSection.upload.rawValue)
+
+      <<< TextRow { row in
+        row.value = Defaults[.accountNickname]
+        row.placeholder = "Nickname"
+      }.onChange { row in
+        Defaults[.accountNickname] = row.value ?? ""
+      }
+
+      <<< TextRow { row in
+        row.value = Defaults[.accountEmail]
+        row.placeholder = "E-Mailadresse"
+      }.onChange { row in
+        Defaults[.accountEmail] = row.value ?? ""
+      }
+    
+      <<< ButtonRow(RowTag.requestToken.rawValue) { row in
+        row.title = "Token anfordern"
+      }.onCellSelection { cell, row in
+        // TODO: Request token
+      }
+  }
+  
+  private func createUploadTokenSection() -> Section {
+    return Section() { section in
+      section.hidden = .function([RowTag.requestToken.rawValue]) { _ in
+        return Defaults[.uploadTokenRequested] == nil
+      }
+    }
+
+      <<< TextRow { row in
+        row.value = Defaults[.uploadToken]
+        row.placeholder = "Upload Token"
+      }.onChange { row in
+        Defaults[.uploadToken] = row.value ?? ""
       }
   }
   
