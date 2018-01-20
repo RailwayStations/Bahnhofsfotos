@@ -97,5 +97,6 @@ fastlane/test_output
 
 # End of https://www.gitignore.io/api/swift
 
-# Firebase
+# Secrets ¯\_(ツ)_/¯
+Secrets.plist
 GoogleService-Info.plist

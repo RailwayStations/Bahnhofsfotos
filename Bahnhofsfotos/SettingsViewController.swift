@@ -28,6 +28,9 @@ class SettingsViewController: FormViewController {
     case photoOwner
     case linkPhotos
     case accountType
+    case accountName
+    case accountNickname
+    case accountEmail
     case requestToken
   }
 
@@ -235,7 +238,7 @@ class SettingsViewController: FormViewController {
         Defaults[.accountType] = value
       }
 
-      <<< TextRow { row in
+      <<< TextRow(RowTag.accountName.rawValue) { row in
         row.value = Defaults[.accountName]
         row.placeholder = "Accountname"
       }.onChange { row in
@@ -248,14 +251,14 @@ class SettingsViewController: FormViewController {
   private func createUploadSection() -> Section {
     return Section(FormSection.upload.rawValue)
 
-      <<< TextRow { row in
+      <<< TextRow(RowTag.accountNickname.rawValue) { row in
         row.value = Defaults[.accountNickname]
         row.placeholder = "Nickname"
       }.onChange { row in
         Defaults[.accountNickname] = row.value ?? ""
       }
 
-      <<< TextRow { row in
+      <<< TextRow(RowTag.accountEmail.rawValue) { row in
         row.value = Defaults[.accountEmail]
         row.placeholder = "E-Mailadresse"
       }.onChange { row in
@@ -264,8 +267,55 @@ class SettingsViewController: FormViewController {
     
       <<< ButtonRow(RowTag.requestToken.rawValue) { row in
         row.title = "Token anfordern"
+        row.hidden = Condition.function([
+          RowTag.photoOwner.rawValue,
+          RowTag.linkPhotos.rawValue,
+          RowTag.accountType.rawValue,
+          RowTag.accountName.rawValue,
+          RowTag.accountNickname.rawValue,
+          RowTag.accountEmail.rawValue
+        ], { form -> Bool in
+          guard
+            let nickname = Defaults[.accountNickname],
+            let email = Defaults[.accountEmail],
+            let name = Defaults[.accountName]
+            else {
+              return true
+          }
+
+          return !(Defaults[.photoOwner]
+            && nickname.count > 2
+            && email.count > 2
+            && name.count > 2)
+        })
       }.onCellSelection { cell, row in
-        // TODO: Request token
+        // check if token was created recently
+        if let lastRequest = Defaults[.uploadTokenRequested] {
+          guard Date() > lastRequest.addingTimeInterval(60 * 5) else {
+            self.view.makeToast("Der Token wurde erst vor kurzem erstellt.")
+            return
+          }
+        }
+
+        Helper.setIsUserInteractionEnabled(in: self, to: false)
+        self.view.makeToastActivity(.center)
+
+        // request token
+        API.register { success in
+          self.view.hideToastActivity()
+          Helper.setIsUserInteractionEnabled(in: self, to: true)
+
+          let date = Date()
+          if success {
+            Defaults[.uploadTokenRequested] = date
+            let alert = UIAlertController(title: "Token angefordert", message: "Der Token wurde per E-Mail verschickt.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+          } else {
+            self.view.makeToast("Fehler beim Anfordern des Token.")
+          }
+          row.value = date.relativeDateString
+        }
       }
   }
   

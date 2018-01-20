@@ -108,5 +108,26 @@ class API {
         completionHandler(json)
     }
   }
+  
+  // Register user
+  static func register(completionHandler: @escaping (Bool) -> Void) {
+    let parameters: Parameters = [
+      "nickname": Defaults[.accountNickname]!,
+      "email": Defaults[.accountEmail]!,
+      "license": Defaults[.license] == .cc40 ? "CC4.0" : "CC0",
+      "photoOwner": Defaults[.photoOwner],
+      "linking": Defaults[.accountLinking] ? Defaults[.accountType].rawValue : "NO",
+      "link": Defaults[.accountName]!
+    ]
+    
+    let headers: HTTPHeaders = [
+      "API-Key": Secret.apiKey
+    ]
+
+    Alamofire.request(API.baseUrl + "/registration", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response { dataResponse in
+      // 202 = registration accepted
+      completionHandler(dataResponse.response?.statusCode == 202)
+    }
+  }
 
 }
