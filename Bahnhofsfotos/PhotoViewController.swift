@@ -7,7 +7,9 @@
 //
 
 import AAShareBubbles
+import Imaginary
 import ImagePicker
+import Lightbox
 import MessageUI
 import Social
 import SwiftyUserDefaults
@@ -17,17 +19,36 @@ class PhotoViewController: UIViewController {
 
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var shareBarButton: UIBarButtonItem!
-
+  @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
     title = StationStorage.currentStation?.name
     shareBarButton.isEnabled = false
 //    shareBarButton.isHidden = true
+    
+    guard let station = StationStorage.currentStation else { return }
+    
+    if let photoUrl = station.photoUrl, let imageUrl = URL(string: photoUrl) {
+      imageView.image = nil
+      activityIndicatorView.startAnimating()
+      imageView.setImage(url: imageUrl) { result in
+        self.activityIndicatorView.stopAnimating()
+      }
+    }
   }
 
   @IBAction func pickImage(_ sender: Any) {
-    var configuration = Configuration()
+    guard let station = StationStorage.currentStation else { return }
+    if station.hasPhoto && imageView.image != nil {
+      LightboxConfig.PageIndicator.enabled = false
+      let lightboxController = LightboxController(images: [LightboxImage(image: imageView.image!)], startIndex: 0)
+      present(lightboxController, animated: true, completion: nil)
+      return
+    }
+    
+    let configuration = Configuration()
     configuration.allowMultiplePhotoSelection = false
     configuration.allowedOrientations = .landscape
     configuration.cancelButtonTitle = "Abbruch"
