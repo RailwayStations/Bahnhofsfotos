@@ -51,7 +51,9 @@ class API {
   static func getStations(withPhoto hasPhoto: Bool?, completionHandler: @escaping ([Station]) -> Void) {
 
     var parameters = Parameters()
-    parameters["country"] = Defaults[.country].lowercased()
+    if Defaults[.country].count > 0 {
+      parameters["country"] = Defaults[.country].lowercased()
+    }
     if let hasPhoto = hasPhoto {
       parameters["hasPhoto"] = hasPhoto.description
     }
@@ -86,9 +88,14 @@ class API {
   // Get all photographers of given country
   static func getPhotographers(completionHandler: @escaping ([String: Any]) -> Void) {
 
+    var parameters = Parameters()
+    if Defaults[.country].count > 0 {
+      parameters["country"] = Defaults[.country].lowercased()
+    }
+
     Alamofire.request(API.baseUrl + "/photographers",
                       method: .get,
-                      parameters: ["country": Defaults[.country].lowercased()],
+                      parameters: parameters,
                       encoding: URLEncoding.default,
                       headers: nil)
       .responseJSON { response in

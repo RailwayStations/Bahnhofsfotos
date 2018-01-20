@@ -178,7 +178,8 @@ class SettingsViewController: FormViewController {
       row.options = License.allValues
       row.value = Defaults[.license]
       }.onChange { (row) in
-        Defaults[.license] = License(rawValue: row.value?.rawValue ?? "")
+        guard let value = row.value else { return }
+        Defaults[.license] = value
     }
   }
   
@@ -230,7 +231,8 @@ class SettingsViewController: FormViewController {
         }
         row.value = Defaults[.accountType]
       }.onChange { row in
-        Defaults[.accountType] = row.value
+        guard let value = row.value else { return }
+        Defaults[.accountType] = value
       }
 
       <<< TextRow { row in

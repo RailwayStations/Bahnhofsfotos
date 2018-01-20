@@ -100,10 +100,10 @@ class PhotoViewController: UIViewController {
       }
 
       var text = "Bahnhof: \(name)\n"
-      text += "Lizenz: \(Defaults[.license] == License.cc40 ? "CC4.0" : "CC0")\n"
+      text += "Lizenz: \(Defaults[.license] == .cc40 ? "CC4.0" : "CC0")\n"
       text += "Accountname: \(username)\n"
       text += "Verlinkung: \(Defaults[.accountLinking] == true ? "Ja" : "Nein")\n"
-      text += "Accounttyp: \(Defaults[.accountType] ?? AccountType.none)"
+      text += "Accounttyp: \(Defaults[.accountType])"
 
       let mailController = MFMailComposeViewController()
       mailController.mailComposeDelegate = self
