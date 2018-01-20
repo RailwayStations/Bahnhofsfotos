@@ -244,7 +244,7 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tha-nz-vl9" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
-                                <rect key="frame" x="16" y="473" width="30" height="30"/>
+                                <rect key="frame" x="16" y="461" width="30" height="42"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.60519903898239136" green="0.25661405920982361" blue="0.34508711099624634" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -256,7 +256,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjx-8R-HIm" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
-                                <rect key="frame" x="54" y="473" width="30" height="30"/>
+                                <rect key="frame" x="54" y="461" width="30" height="42"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -322,16 +322,22 @@
                                                     <action selector="pickImage:" destination="0yW-na-ZCr" eventType="touchUpInside" id="pYf-5X-mWY"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Q72-6A-eUs">
+                                                <rect key="frame" x="126" y="165" width="37" height="37"/>
+                                                <color key="color" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="Nnd-qD-uxL" firstAttribute="leading" secondItem="hZo-v8-HhU" secondAttribute="leading" id="3bV-pw-P8U"/>
                                             <constraint firstAttribute="bottom" secondItem="Nnd-qD-uxL" secondAttribute="bottom" id="Prq-Ze-dhM"/>
                                             <constraint firstAttribute="trailing" secondItem="ofd-r7-PhF" secondAttribute="trailing" id="QOE-7W-VXV"/>
                                             <constraint firstItem="ofd-r7-PhF" firstAttribute="leading" secondItem="hZo-v8-HhU" secondAttribute="leading" id="Zjb-rZ-9GH"/>
+                                            <constraint firstItem="Q72-6A-eUs" firstAttribute="centerX" secondItem="hZo-v8-HhU" secondAttribute="centerX" id="cJh-wB-5ad"/>
                                             <constraint firstItem="Nnd-qD-uxL" firstAttribute="top" secondItem="hZo-v8-HhU" secondAttribute="top" id="ftt-qh-BVp"/>
                                             <constraint firstAttribute="trailing" secondItem="Nnd-qD-uxL" secondAttribute="trailing" id="o42-8V-TG9"/>
                                             <constraint firstAttribute="bottom" secondItem="ofd-r7-PhF" secondAttribute="bottom" id="oDr-wI-UOq"/>
                                             <constraint firstItem="ofd-r7-PhF" firstAttribute="top" secondItem="hZo-v8-HhU" secondAttribute="top" id="pYG-yL-7qd"/>
+                                            <constraint firstItem="Q72-6A-eUs" firstAttribute="centerY" secondItem="hZo-v8-HhU" secondAttribute="centerY" id="rPC-hU-42A"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Aee-sC-UUc">
@@ -397,7 +403,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Q72-6A-eUs" id="boy-Ob-QJG"/>
                         <outlet property="imageView" destination="ofd-r7-PhF" id="ZDe-4k-F6U"/>
+                        <outlet property="selectPhotoButton" destination="Nnd-qD-uxL" id="iju-A1-sGV"/>
                         <outlet property="shareBarButton" destination="jBo-Ej-Dz8" id="2zM-3y-Dep"/>
                     </connections>
                 </viewController>

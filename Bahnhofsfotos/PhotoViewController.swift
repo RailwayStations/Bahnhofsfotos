@@ -17,6 +17,8 @@ class PhotoViewController: UIViewController {
 
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var shareBarButton: UIBarButtonItem!
+  @IBOutlet weak var selectPhotoButton: UIButton!
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,6 +26,26 @@ class PhotoViewController: UIViewController {
     title = StationStorage.currentStation?.name
     shareBarButton.isEnabled = false
 //    shareBarButton.isHidden = true
+
+    // Station has photo -> load photo
+    guard let station = StationStorage.currentStation, station.hasPhoto else { return }
+
+    selectPhotoButton.isEnabled = false
+    imageView.image = nil
+    activityIndicator.startAnimating()
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+    API.getPhotoFromStation(station: station) { (imageData, error) in
+      self.activityIndicator.stopAnimating()
+      UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
+      guard let imageData = imageData else {
+        debugPrint(error?.localizedDescription ?? "")
+        return
+      }
+
+      self.imageView.image = UIImage(data: imageData)
+    }
   }
 
   @IBAction func pickImage(_ sender: Any) {

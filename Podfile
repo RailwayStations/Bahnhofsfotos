@@ -8,6 +8,7 @@ target 'Bahnhofsfotos' do
   # Pods for Bahnhofsfotos
   pod 'AAShareBubbles', '~> 1.2'
   pod 'Alamofire', '~> 4.6'
+  pod 'Apollo', '~> 0.7'
   pod 'CPDAcknowledgements', '~> 1.0'
   pod 'Eureka', '~> 4.0'
   pod 'FBAnnotationClusteringSwift', :git => 'https://github.com/666tos/FBAnnotationClusteringSwift'

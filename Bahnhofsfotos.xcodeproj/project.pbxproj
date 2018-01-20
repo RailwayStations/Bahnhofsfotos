@@ -23,6 +23,7 @@
 		499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B263D1E36A16400E081B3 /* EmptyView.swift */; };
 		499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 499B263F1E36ADF400E081B3 /* EmptyView.xib */; };
 		499B26421E36B08800E081B3 /* ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B26411E36B08800E081B3 /* ViewFromNib.swift */; };
+		49A0B08F20136888003A4A43 /* DBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A0B08E20136888003A4A43 /* DBAPI.swift */; };
 		49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503E71E048EAE00B8AFDE /* AppDelegate.swift */; };
 		49B503EA1E048EAE00B8AFDE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503E91E048EAE00B8AFDE /* ListViewController.swift */; };
 		49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B503EB1E048EAE00B8AFDE /* Main.storyboard */; };
@@ -32,6 +33,8 @@
 		49B503FC1E04A1B700B8AFDE /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B503FB1E04A1B700B8AFDE /* Station.swift */; };
 		49C42F6E1E3FA875005544C0 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C42F6D1E3FA875005544C0 /* Country.swift */; };
 		49C42F701E3FAE46005544C0 /* CountryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */; };
+		49DA11AE2013822300F6D1BD /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49DA11AD2013822300F6D1BD /* Secrets.plist */; };
+		49DA11B02013847B00F6D1BD /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA11AF2013847B00F6D1BD /* Secrets.swift */; };
 		49DF03B81E2BA7E8003C8159 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF03B71E2BA7E8003C8159 /* API.swift */; };
 		49E5B5331EB74EAD00C5FE25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49E5B5311EB7490300C5FE25 /* GoogleService-Info.plist */; };
 		49F690F11E05272000BDE340 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F690F01E05272000BDE340 /* SettingsViewController.swift */; };
@@ -58,6 +61,7 @@
 		499B263D1E36A16400E081B3 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		499B263F1E36ADF400E081B3 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		499B26411E36B08800E081B3 /* ViewFromNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFromNib.swift; sourceTree = "<group>"; };
+		49A0B08E20136888003A4A43 /* DBAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBAPI.swift; sourceTree = "<group>"; };
 		49B503E41E048EAE00B8AFDE /* Bahnhofsfotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bahnhofsfotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B503E71E048EAE00B8AFDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49B503E91E048EAE00B8AFDE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -69,6 +73,9 @@
 		49B503FB1E04A1B700B8AFDE /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		49C42F6D1E3FA875005544C0 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryStorage.swift; sourceTree = "<group>"; };
+		49DA11AD2013822300F6D1BD /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		49DA11AF2013847B00F6D1BD /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		49DA6625201376BB00B60338 /* DBAPI.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DBAPI.graphql; sourceTree = "<group>"; };
 		49DF03B71E2BA7E8003C8159 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		49E5B5311EB7490300C5FE25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49F690F01E05272000BDE340 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				49E5B5311EB7490300C5FE25 /* GoogleService-Info.plist */,
+				49DA11AD2013822300F6D1BD /* Secrets.plist */,
 				49B503E61E048EAE00B8AFDE /* Bahnhofsfotos */,
 				49B503E51E048EAE00B8AFDE /* Products */,
 				AEEA6128BE255DE686283DB3 /* Pods */,
@@ -129,7 +137,10 @@
 			children = (
 				49DF03B71E2BA7E8003C8159 /* API.swift */,
 				49B503F91E04991800B8AFDE /* Constants.swift */,
+				49A0B08E20136888003A4A43 /* DBAPI.swift */,
+				49DA6625201376BB00B60338 /* DBAPI.graphql */,
 				49F70DB11E85B41400154136 /* Helper.swift */,
+				49DA11AF2013847B00F6D1BD /* Secrets.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -214,6 +225,7 @@
 			buildPhases = (
 				ED397E516860B75F83899C8D /* [CP] Check Pods Manifest.lock */,
 				4915BFBD1E8FC1B900F5195A /* Run SwiftLint */,
+				49A0B08D2013643F003A4A43 /* Generate Apollo GraphQL API */,
 				49B503E01E048EAD00B8AFDE /* Sources */,
 				49B503E11E048EAD00B8AFDE /* Frameworks */,
 				49B503E21E048EAD00B8AFDE /* Resources */,
@@ -283,6 +295,7 @@
 			files = (
 				499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */,
 				49B503F21E048EAE00B8AFDE /* LaunchScreen.storyboard in Resources */,
+				49DA11AE2013822300F6D1BD /* Secrets.plist in Resources */,
 				49B503EF1E048EAE00B8AFDE /* Assets.xcassets in Resources */,
 				49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */,
 				32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */,
@@ -307,6 +320,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" help";
 			showEnvVarsInLog = 0;
+		};
+		49A0B08D2013643F003A4A43 /* Generate Apollo GraphQL API */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-codegen.sh generate $(find . -name '*.graphql') --schema schema.json --output DBAPI.swift";
 		};
 		927AAACFA7716B8BFDE8399A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -335,6 +362,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AAShareBubbles/AAShareBubbles.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
 				"${BUILT_PRODUCTS_DIR}/CPDAcknowledgements/CPDAcknowledgements.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FBAnnotationClusteringSwift/FBAnnotationClusteringSwift.framework",
@@ -358,6 +386,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AAShareBubbles.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CPDAcknowledgements.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBAnnotationClusteringSwift.framework",
@@ -408,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				491119351EA918BA00BC1F1D /* SignInViewController.swift in Sources */,
+				49DA11B02013847B00F6D1BD /* Secrets.swift in Sources */,
 				499AD7E21E7ED6B600A5CFE9 /* MenuItem.swift in Sources */,
 				4911193B1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift in Sources */,
 				491119371EA92E8600BC1F1D /* ChatViewController.swift in Sources */,
@@ -428,6 +458,7 @@
 				499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */,
 				49F690F11E05272000BDE340 /* SettingsViewController.swift in Sources */,
 				49DF03B81E2BA7E8003C8159 /* API.swift in Sources */,
+				49A0B08F20136888003A4A43 /* DBAPI.swift in Sources */,
 				49B503FA1E04991800B8AFDE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

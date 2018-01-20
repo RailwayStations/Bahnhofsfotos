@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import Apollo
 import Foundation
 import SwiftyJSON
 import SwiftyUserDefaults
@@ -20,6 +21,15 @@ class API {
   static var baseUrl: String {
     return Constants.baseUrl
   }
+
+  static let apollo: ApolloClient = {
+    let configuration = URLSessionConfiguration.default
+    configuration.httpAdditionalHeaders = ["Authorization": "Bearer " + Secret.dBDeveloperAuthorization]
+
+    let url = URL(string: "https://api.deutschebahn.com/1bahnql/graphql")!
+
+    return ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+  }()
 
   // Get all countries
   static func getCountries(completionHandler: @escaping ([Country]) -> Void) {
@@ -99,6 +109,28 @@ class API {
         }
 
         completionHandler(json)
+    }
+  }
+
+  // Get photo of a given station
+  static func getPhotoFromStation(station: Station, completionHandler: @escaping (Data?, Error?) -> Void) {
+    self.apollo.fetch(query: StationPhotoQuery(number: station.id)) { (result, error) in
+      // check if result has data
+      guard let data = result?.data else {
+        completionHandler(nil, error)
+        return
+      }
+
+      // extract url of picture
+      if let picture = data.stationWithStationNumber?.picture,
+        let url = URL(string: picture.url) {
+        do {
+          let imageData = try Data(contentsOf: url)
+          completionHandler(imageData, nil)
+        } catch {
+          completionHandler(nil, error)
+        }
+      }
     }
   }
 
