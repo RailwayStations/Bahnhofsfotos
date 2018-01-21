@@ -19,7 +19,6 @@
 		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
 		499087731ECE376D00AB45C2 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499087721ECE376D00AB45C2 /* HighScoreViewController.swift */; };
 		499087751ECE4FB200AB45C2 /* HighScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */; };
-		499AD7E21E7ED6B600A5CFE9 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499AD7E11E7ED6B600A5CFE9 /* MenuItem.swift */; };
 		499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B263D1E36A16400E081B3 /* EmptyView.swift */; };
 		499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 499B263F1E36ADF400E081B3 /* EmptyView.xib */; };
 		499B26421E36B08800E081B3 /* ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B26411E36B08800E081B3 /* ViewFromNib.swift */; };
@@ -54,7 +53,6 @@
 		494CB7B11EB128C9009F07C2 /* Bahnhofsfotos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bahnhofsfotos.entitlements; sourceTree = "<group>"; };
 		499087721ECE376D00AB45C2 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewCell.swift; sourceTree = "<group>"; };
-		499AD7E11E7ED6B600A5CFE9 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		499B263D1E36A16400E081B3 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		499B263F1E36ADF400E081B3 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		499B26411E36B08800E081B3 /* ViewFromNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFromNib.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 			children = (
 				49C42F6D1E3FA875005544C0 /* Country.swift */,
 				49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */,
-				499AD7E11E7ED6B600A5CFE9 /* MenuItem.swift */,
 				49B503FB1E04A1B700B8AFDE /* Station.swift */,
 				49455A681E04CB60007A5501 /* StationStorage.swift */,
 				49200C201EA172840054F426 /* StationAnnotation.swift */,
@@ -416,7 +413,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				491119351EA918BA00BC1F1D /* SignInViewController.swift in Sources */,
-				499AD7E21E7ED6B600A5CFE9 /* MenuItem.swift in Sources */,
 				4911193B1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift in Sources */,
 				491119371EA92E8600BC1F1D /* ChatViewController.swift in Sources */,
 				49B503EA1E048EAE00B8AFDE /* ListViewController.swift in Sources */,
