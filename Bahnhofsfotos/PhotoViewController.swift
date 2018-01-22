@@ -26,15 +26,24 @@ class PhotoViewController: UIViewController {
 
     title = StationStorage.currentStation?.name
     shareBarButton.isEnabled = false
-//    shareBarButton.isHidden = true
     
     guard let station = StationStorage.currentStation else { return }
     
-    if let photoUrl = station.photoUrl, let imageUrl = URL(string: photoUrl) {
-      imageView.image = nil
-      activityIndicatorView.startAnimating()
-      imageView.setImage(url: imageUrl) { result in
-        self.activityIndicatorView.stopAnimating()
+    if station.hasPhoto {
+      if let photoUrl = station.photoUrl, let imageUrl = URL(string: photoUrl) {
+        imageView.image = nil
+        activityIndicatorView.startAnimating()
+        imageView.setImage(url: imageUrl) { result in
+          self.activityIndicatorView.stopAnimating()
+        }
+      }
+    } else {
+      do {
+        if let photo = try PhotoStorage.fetch(id: station.id) {
+          imageView.image = UIImage(data: photo.data)
+        }
+      } catch {
+        debugPrint(error.localizedDescription)
       }
     }
   }
@@ -159,7 +168,10 @@ extension PhotoViewController: ImagePickerDelegate {
     if !images.isEmpty {
       imageView.image = images[0]
       shareBarButton.isEnabled = true
-//      shareBarButton.isHidden = false
+      if let station = StationStorage.currentStation, let imageData = UIImageJPEGRepresentation(images[0], 1) {
+        let photo = Photo(data: imageData, withId: station.id)
+        try? PhotoStorage.save(photo)
+      }
     }
     imagePicker.dismiss(animated: true, completion: nil)
   }
