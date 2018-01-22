@@ -137,22 +137,13 @@ class PhotoViewController: UIViewController {
       twitterController.add(image)
       twitterController.completionHandler = { result in
         if result == .done {
-          DispatchQueue.main.async {
-            self.removeStationAndCloseView()
-          }
+          self.dismiss(animated: true, completion: nil)
         }
       }
       present(twitterController, animated: true, completion: nil)
     } else {
       showError("Es können keine Tweets verschickt werden.")
     }
-  }
-
-  func removeStationAndCloseView() {
-    if let station = StationStorage.currentStation {
-      try? StationStorage.delete(station: station)
-    }
-    dismiss(animated: true, completion: nil)
   }
 
 }
@@ -199,11 +190,7 @@ extension PhotoViewController: AAShareBubblesDelegate {
 extension PhotoViewController: MFMailComposeViewControllerDelegate {
 
   func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-    if result == .cancelled || result == .failed {
-      controller.dismiss(animated: true, completion: nil)
-    } else {
-      controller.dismiss(animated: true) { self.removeStationAndCloseView() }
-    }
+    controller.dismiss(animated: true, completion: nil)
   }
 
 }
