@@ -13,7 +13,7 @@ import SwiftyUserDefaults
 
 class API {
 
-  enum APIError: Error {
+  enum Error: Swift.Error {
     case message(String)
   }
 
@@ -36,7 +36,7 @@ class API {
 
         do {
           countries = try json.map {
-            guard let country = try Country(json: $0) else { throw APIError.message("JSON of country is invalid.") }
+            guard let country = try Country(json: $0) else { throw Error.message("JSON of country is invalid.") }
             return country
           }
         } catch {
@@ -74,7 +74,7 @@ class API {
 
         do {
           stations = try json.map {
-            guard let station = try Station(json: $0) else { throw APIError.message("JSON of station is invalid.") }
+            guard let station = try Station(json: $0) else { throw Error.message("JSON of station is invalid.") }
             return station
           }
         } catch {
@@ -124,9 +124,67 @@ class API {
       "API-Key": Secret.apiKey
     ]
 
-    Alamofire.request(API.baseUrl + "/registration", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).response { dataResponse in
+    Alamofire.request(API.baseUrl + "/registration",
+                      method: .post,
+                      parameters: parameters,
+                      encoding: JSONEncoding.default,
+                      headers: headers).response { dataResponse in
       // 202 = registration accepted
       completionHandler(dataResponse.response?.statusCode == 202)
+    }
+  }
+
+  // Upload photo
+  static func uploadPhoto(imageData: Data,
+                          ofStation station: Station,
+                          inCountry country: Country,
+                          completionHandler: @escaping (() throws -> Void) -> Void) {
+    // 202 - upload successful
+    // 400 - wrong request
+    // 401 - wrong token
+    // 402 - wrong apiKey
+    // 409 - photo already exists
+    // 413 - image too large (maximum 20 MB)
+    guard
+      let token = Defaults[.uploadToken],
+      let nickname = Defaults[.accountNickname],
+      let email = Defaults[.accountEmail]
+      else {
+        completionHandler { throw Error.message("Fehlerhafte Daten in Einstellungen überprüfen") }
+        return
+    }
+
+    let headers: HTTPHeaders = [
+      "API-Key": Secret.apiKey,
+      "Upload-Token": token,
+      "Nickname": nickname,
+      "Email": email,
+      "Station-Id": "\(station.id)",
+      "Country": country.code,      // country code
+      "Content-Type": "image/jpeg"  // "image/png" or "image/jpeg"
+    ]
+
+    Alamofire.upload(imageData,
+                     to: API.baseUrl + "/photoUpload",
+                     method: .post,
+                     headers: headers).response { dataResponse in
+      guard let response = dataResponse.response else {
+        completionHandler { throw Error.message("Fehler beim Upload, bitte später erneut versuchen") }
+        return
+      }
+
+      switch response.statusCode {
+      case 400, 402:
+        completionHandler { throw Error.message("Upload nicht möglich") }
+      case 401:
+        completionHandler { throw Error.message("Token ungültig") }
+      case 409:
+        completionHandler { throw Error.message("Foto bereits vorhanden") }
+      case 413:
+        completionHandler { throw Error.message("Foto ist zu groß (max. 20 MB)") }
+      default:
+        completionHandler { return }
+      }
     }
   }
 

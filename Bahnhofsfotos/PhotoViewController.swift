@@ -78,6 +78,13 @@ class PhotoViewController: UIViewController {
   @IBAction func shareTouched(_ sender: Any) {
     let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
+    // Share by upload
+    if Defaults[.uploadToken] != nil {
+      controller.addAction(UIAlertAction(title: "Direkt-Upload", style: .default) { _ in
+        self.shareByUpload()
+      })
+    }
+
     // Share via twitter
     controller.addAction(UIAlertAction(title: "Twitter", style: .default) { _ in
       self.shareViaTwitter()
@@ -106,6 +113,25 @@ class PhotoViewController: UIViewController {
   @IBAction func openNavigation(_ sender: Any) {
     if let station = StationStorage.currentStation {
       Helper.openNavigation(to: station)
+    }
+  }
+
+  // Share via twitter
+  private func shareByUpload() {
+    guard let image = imageView.image else { return }
+    guard let station = StationStorage.currentStation, let country = CountryStorage.currentCountry else { return }
+    if let imageData = UIImageJPEGRepresentation(image, 1) {
+      API.uploadPhoto(imageData: imageData, ofStation: station, inCountry: country, completionHandler: { result in
+        do {
+          try result()
+          self.showError("Foto wurde erfolgreich hochgeladen")
+          self.setPhotoAsShared()
+        } catch API.Error.message(let msg) {
+          self.showError(msg)
+        } catch {
+          self.showError(error.localizedDescription)
+        }
+      })
     }
   }
 
