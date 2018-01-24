@@ -12,6 +12,7 @@ import FirebaseCore
 import FirebaseMessaging
 import GoogleSignIn
 import SwiftyUserDefaults
+import TwitterKit
 import UIKit
 import UserNotifications
 
@@ -37,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // For iOS 10 display notification (sent via APNS)
       UNUserNotificationCenter.current().delegate = self
     }
+    
+    // Initialize TwitterKit
+    TWTRTwitter.sharedInstance().start(withConsumerKey: Secret.twitterKey, consumerSecret: Secret.twitterSecret)
 
     return true
   }
@@ -68,6 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+    if TWTRTwitter.sharedInstance().application(app, open: url, options: options) {
+      return true
+    }
     return application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: "")
   }
 

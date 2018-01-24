@@ -57,7 +57,8 @@ class PhotoStorage {
 
     try db.run(table.insert(or: .replace,
                             exId <- photo.id,
-                            exPhoto <- photo.data.datatypeValue
+                            exPhoto <- photo.data.datatypeValue,
+                            exUploadedAt <- photo.uploadedAt
     ))
   }
 

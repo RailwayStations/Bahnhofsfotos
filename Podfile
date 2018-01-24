@@ -6,7 +6,6 @@ target 'Bahnhofsfotos' do
   use_frameworks!
 
   # Pods for Bahnhofsfotos
-  pod 'AAShareBubbles', '~> 1.2'
   pod 'Alamofire', '~> 4.6'
   pod 'CPDAcknowledgements', '~> 1.0'
   pod 'Eureka', '~> 4.0'
@@ -27,6 +26,7 @@ target 'Bahnhofsfotos' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SwiftyUserDefaults', '~> 3.0'
   pod 'Toast-Swift', '~> 3.0'
+  pod 'TwitterKit', '~> 3.3'
 
 end
 
