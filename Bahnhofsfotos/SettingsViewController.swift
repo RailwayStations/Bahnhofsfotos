@@ -243,6 +243,10 @@ class SettingsViewController: FormViewController {
         row.placeholder = "Accountname"
       }.onChange { row in
         Defaults[.accountName] = row.value ?? ""
+      }.onCellHighlightChanged { _, row in
+        if !row.isHighlighted {
+          row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
       }
   }
   
@@ -256,6 +260,10 @@ class SettingsViewController: FormViewController {
         row.placeholder = "Nickname"
       }.onChange { row in
         Defaults[.accountNickname] = row.value ?? ""
+      }.onCellHighlightChanged { _, row in
+        if !row.isHighlighted {
+          row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
       }
 
       <<< TextRow(RowTag.accountEmail.rawValue) { row in
@@ -263,6 +271,10 @@ class SettingsViewController: FormViewController {
         row.placeholder = "E-Mailadresse"
       }.onChange { row in
         Defaults[.accountEmail] = row.value ?? ""
+      }.onCellHighlightChanged { _, row in
+        if !row.isHighlighted {
+          row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
       }
     
       <<< ButtonRow(RowTag.requestToken.rawValue) { row in
@@ -331,6 +343,10 @@ class SettingsViewController: FormViewController {
         row.placeholder = "Upload Token"
       }.onChange { row in
         Defaults[.uploadToken] = row.value ?? ""
+      }.onCellHighlightChanged { _, row in
+        if !row.isHighlighted {
+          row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
       }
   }
   
