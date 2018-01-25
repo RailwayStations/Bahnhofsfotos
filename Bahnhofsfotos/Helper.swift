@@ -83,6 +83,7 @@ class Helper {
       // Save stations in background
       DispatchQueue.global(qos: .userInitiated).async {
         do {
+          try PhotoStorage.removeAll()
           try StationStorage.removeAll()
           try StationStorage.create(stations: stations, progressHandler: { counter in
             dispatchSource.add(data: UInt(counter))
