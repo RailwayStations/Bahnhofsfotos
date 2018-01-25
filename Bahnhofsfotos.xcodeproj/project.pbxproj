@@ -17,8 +17,13 @@
 		49455A691E04CB60007A5501 /* StationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A681E04CB60007A5501 /* StationStorage.swift */; };
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
 		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
+		497F0EC32013DFA40071470E /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 497F0EC22013DFA40071470E /* Secrets.plist */; };
+		497F0EC52013E16A0071470E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497F0EC42013E16A0071470E /* Secrets.swift */; };
+		49862314201A1F5800540C34 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E152B82017C47C00DB80A7 /* SafariServices.framework */; };
 		499087731ECE376D00AB45C2 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499087721ECE376D00AB45C2 /* HighScoreViewController.swift */; };
 		499087751ECE4FB200AB45C2 /* HighScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */; };
+		4992FD5E2014C92700F0521A /* PhotoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4992FD5D2014C92700F0521A /* PhotoStorage.swift */; };
+		4998C8DF2016166400BA24AD /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4998C8DE2016166400BA24AD /* Photo.swift */; };
 		499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B263D1E36A16400E081B3 /* EmptyView.swift */; };
 		499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 499B263F1E36ADF400E081B3 /* EmptyView.xib */; };
 		499B26421E36B08800E081B3 /* ViewFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B26411E36B08800E081B3 /* ViewFromNib.swift */; };
@@ -51,8 +56,12 @@
 		49455A6A1E04D73A007A5501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		49455A6E1E04E981007A5501 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		494CB7B11EB128C9009F07C2 /* Bahnhofsfotos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bahnhofsfotos.entitlements; sourceTree = "<group>"; };
+		497F0EC22013DFA40071470E /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		497F0EC42013E16A0071470E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		499087721ECE376D00AB45C2 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewCell.swift; sourceTree = "<group>"; };
+		4992FD5D2014C92700F0521A /* PhotoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStorage.swift; sourceTree = "<group>"; };
+		4998C8DE2016166400BA24AD /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		499B263D1E36A16400E081B3 /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		499B263F1E36ADF400E081B3 /* EmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		499B26411E36B08800E081B3 /* ViewFromNib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFromNib.swift; sourceTree = "<group>"; };
@@ -68,6 +77,7 @@
 		49C42F6D1E3FA875005544C0 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryStorage.swift; sourceTree = "<group>"; };
 		49DF03B71E2BA7E8003C8159 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		49E152B82017C47C00DB80A7 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		49E5B5311EB7490300C5FE25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49F690F01E05272000BDE340 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		49F70DB11E85B41400154136 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -80,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49862314201A1F5800540C34 /* SafariServices.framework in Frameworks */,
 				49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */,
 				7265CDE2F28E2527EA9C46C9 /* Pods_Bahnhofsfotos.framework in Frameworks */,
 			);
@@ -92,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				49E5B5311EB7490300C5FE25 /* GoogleService-Info.plist */,
+				497F0EC22013DFA40071470E /* Secrets.plist */,
 				49B503E61E048EAE00B8AFDE /* Bahnhofsfotos */,
 				49B503E51E048EAE00B8AFDE /* Products */,
 				AEEA6128BE255DE686283DB3 /* Pods */,
@@ -128,6 +140,7 @@
 				49DF03B71E2BA7E8003C8159 /* API.swift */,
 				49B503F91E04991800B8AFDE /* Constants.swift */,
 				49F70DB11E85B41400154136 /* Helper.swift */,
+				497F0EC42013E16A0071470E /* Secrets.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -137,6 +150,8 @@
 			children = (
 				49C42F6D1E3FA875005544C0 /* Country.swift */,
 				49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */,
+				4998C8DE2016166400BA24AD /* Photo.swift */,
+				4992FD5D2014C92700F0521A /* PhotoStorage.swift */,
 				49B503FB1E04A1B700B8AFDE /* Station.swift */,
 				49455A681E04CB60007A5501 /* StationStorage.swift */,
 				49200C201EA172840054F426 /* StationAnnotation.swift */,
@@ -186,6 +201,7 @@
 		95E2D7A511D466C1AF063B5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49E152B82017C47C00DB80A7 /* SafariServices.framework */,
 				49455A6A1E04D73A007A5501 /* MapKit.framework */,
 				1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */,
 			);
@@ -280,6 +296,7 @@
 			files = (
 				499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */,
 				49B503F21E048EAE00B8AFDE /* LaunchScreen.storyboard in Resources */,
+				497F0EC32013DFA40071470E /* Secrets.plist in Resources */,
 				49B503EF1E048EAE00B8AFDE /* Assets.xcassets in Resources */,
 				49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */,
 				32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */,
@@ -313,6 +330,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -352,6 +371,8 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -379,6 +400,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -420,7 +443,9 @@
 				49200C211EA172840054F426 /* StationAnnotation.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
 				49455A691E04CB60007A5501 /* StationStorage.swift in Sources */,
+				4998C8DF2016166400BA24AD /* Photo.swift in Sources */,
 				499087751ECE4FB200AB45C2 /* HighScoreTableViewCell.swift in Sources */,
+				4992FD5E2014C92700F0521A /* PhotoStorage.swift in Sources */,
 				49F70DB21E85B41400154136 /* Helper.swift in Sources */,
 				499087731ECE376D00AB45C2 /* HighScoreViewController.swift in Sources */,
 				49C42F701E3FAE46005544C0 /* CountryStorage.swift in Sources */,
@@ -431,6 +456,7 @@
 				49455A671E04CA76007A5501 /* MapViewController.swift in Sources */,
 				499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */,
 				49F690F11E05272000BDE340 /* SettingsViewController.swift in Sources */,
+				497F0EC52013E16A0071470E /* Secrets.swift in Sources */,
 				49DF03B81E2BA7E8003C8159 /* API.swift in Sources */,
 				49B503FA1E04991800B8AFDE /* Constants.swift in Sources */,
 			);

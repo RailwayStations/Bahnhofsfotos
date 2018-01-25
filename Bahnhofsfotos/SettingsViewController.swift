@@ -10,6 +10,7 @@ import CPDAcknowledgements
 import Eureka
 import SwiftyUserDefaults
 import Toast_Swift
+import TwitterKit
 
 class SettingsViewController: FormViewController {
 
@@ -17,6 +18,7 @@ class SettingsViewController: FormViewController {
     case download = "Bahnhofsdaten"
     case license = "Lizenzierung"
     case link = "Verlinkung"
+    case upload = "Direkt-Upload"
   }
 
   private enum RowTag: String {
@@ -24,8 +26,14 @@ class SettingsViewController: FormViewController {
     case countryPicker
     case loadStations
     case licensePicker
+    case photoOwner
     case linkPhotos
     case accountType
+    case accountName
+    case twitter
+    case accountNickname
+    case accountEmail
+    case requestToken
   }
 
   override func viewDidLoad() {
@@ -36,6 +44,7 @@ class SettingsViewController: FormViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: true)
+    tableView.reloadData()
   }
 
   // MARK: - Eureka
@@ -45,6 +54,9 @@ class SettingsViewController: FormViewController {
       +++ createDownloadSection()
       +++ createLicenseSection()
       +++ createLinkSection()
+      +++ createUploadSection()
+      +++ createUploadTokenSection()
+      +++ Section()
       +++ createInformationSection()
   }
 
@@ -172,13 +184,25 @@ class SettingsViewController: FormViewController {
       row.options = License.allValues
       row.value = Defaults[.license]
       }.onChange { (row) in
-        Defaults[.license] = License(rawValue: row.value?.rawValue ?? "")
+        guard let value = row.value else { return }
+        Defaults[.license] = value
+    }
+  }
+  
+  private func createPhotoOwnerRow() -> SwitchRow {
+    return SwitchRow(RowTag.photoOwner.rawValue) { row in
+      row.title = "Urheber der Fotos"
+      row.value = Defaults[.photoOwner]
+      }.onChange { row in
+        guard let value = row.value else { return }
+        Defaults[.photoOwner] = value
     }
   }
   
   private func createLicenseSection() -> Section {
     return Section(FormSection.license.rawValue)
       <<< createLicensePickerRow()
+      <<< createPhotoOwnerRow()
   }
 
   // MARK: Linking
@@ -213,14 +237,182 @@ class SettingsViewController: FormViewController {
         }
         row.value = Defaults[.accountType]
       }.onChange { row in
-        Defaults[.accountType] = row.value
+        guard let value = row.value else { return }
+        Defaults[.accountType] = value
       }
 
-      <<< TextRow { row in
+      <<< TextRow(RowTag.accountName.rawValue) { row in
         row.value = Defaults[.accountName]
         row.placeholder = "Accountname"
+        row.hidden = .function([RowTag.accountType.rawValue]) { _ in
+          return Defaults[.accountType] == .twitter
+        }
       }.onChange { row in
         Defaults[.accountName] = row.value ?? ""
+      }.onCellHighlightChanged { _, row in
+        if !row.isHighlighted {
+          row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+      }
+
+      <<< LabelRow(RowTag.twitter.rawValue) { row in
+        row.hidden = .function([RowTag.accountType.rawValue]) { _ in
+          return Defaults[.accountType] != .twitter
+        }
+
+        row.title = getTwitterAccountName()
+        row.value = nil
+
+        if TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers() {
+          row.value = "Abmelden"
+        }
+      }.onCellSelection { cell, row in
+        let store = TWTRTwitter.sharedInstance().sessionStore
+        if (store.hasLoggedInUsers()) {
+          if let session = store.session() {
+            store.logOutUserID(session.userID)
+          }
+          Defaults[.accountName] = nil
+          row.title = self.getTwitterAccountName()
+          row.value = nil
+          row.updateCell()
+        } else {
+          TWTRTwitter.sharedInstance().logIn { [weak self] (session, error) in
+            if let error = error, let weakSelf = self {
+              let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+              weakSelf.present(alert, animated: true, completion: nil)
+            } else if let session = session {
+              Defaults[.accountName] = session.userName
+              row.title = session.userName
+              row.value = "Abmelden"
+              row.updateCell()
+            }
+          }
+        }
+      }
+  }
+
+  // Returns the first session found
+  private func getTwitterAccountName() -> String {
+    let store = TWTRTwitter.sharedInstance().sessionStore
+
+    if let session = store.session() {
+      for existingUserSession in store.existingUserSessions() {
+        if let userSession = existingUserSession as? TWTRSession {
+          if userSession.userID == session.userID {
+            return userSession.userName
+          }
+        }
+      }
+    }
+
+    if store.hasLoggedInUsers() {
+      if let accountName = Defaults[.accountName] {
+        return accountName
+      }
+    }
+
+    return "Mit Twitter anmelden"
+  }
+  
+  // MARK: Upload
+  
+  private func createUploadSection() -> Section {
+    return Section(FormSection.upload.rawValue)
+
+      <<< TextRow(RowTag.accountNickname.rawValue) { row in
+        row.value = Defaults[.accountNickname]
+        row.placeholder = "Nickname"
+      }.onChange { row in
+        Defaults[.accountNickname] = row.value ?? ""
+      }.onCellHighlightChanged { _, row in
+        if !row.isHighlighted {
+          row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+      }
+
+      <<< TextRow(RowTag.accountEmail.rawValue) { row in
+        row.value = Defaults[.accountEmail]
+        row.placeholder = "E-Mailadresse"
+      }.onChange { row in
+        Defaults[.accountEmail] = row.value ?? ""
+      }.onCellHighlightChanged { _, row in
+        if !row.isHighlighted {
+          row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+      }
+    
+      <<< ButtonRow(RowTag.requestToken.rawValue) { row in
+        row.title = "Token anfordern"
+        row.hidden = Condition.function([
+          RowTag.photoOwner.rawValue,
+          RowTag.linkPhotos.rawValue,
+          RowTag.accountType.rawValue,
+          RowTag.accountName.rawValue,
+          RowTag.accountNickname.rawValue,
+          RowTag.accountEmail.rawValue
+        ], { form -> Bool in
+          guard
+            let nickname = Defaults[.accountNickname],
+            let email = Defaults[.accountEmail],
+            let name = Defaults[.accountName]
+            else {
+              return true
+          }
+
+          return !(Defaults[.photoOwner]
+            && nickname.count > 2
+            && email.count > 2
+            && name.count > 2)
+        })
+      }.onCellSelection { cell, row in
+        // check if token was created recently
+        if let lastRequest = Defaults[.uploadTokenRequested] {
+          guard Date() > lastRequest.addingTimeInterval(60 * 5) else {
+            self.view.makeToast("Der Token wurde erst vor kurzem erstellt.")
+            return
+          }
+        }
+
+        Helper.setIsUserInteractionEnabled(in: self, to: false)
+        self.view.makeToastActivity(.center)
+
+        // request token
+        API.register { success in
+          self.view.hideToastActivity()
+          Helper.setIsUserInteractionEnabled(in: self, to: true)
+
+          let date = Date()
+          if success {
+            Defaults[.uploadTokenRequested] = date
+            let alert = UIAlertController(title: "Token angefordert", message: "Der Token wurde per E-Mail verschickt.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+          } else {
+            self.view.makeToast("Fehler beim Anfordern des Token.")
+          }
+          row.value = date.relativeDateString
+        }
+      }
+  }
+  
+  private func createUploadTokenSection() -> Section {
+    return Section() { section in
+      section.hidden = .function([RowTag.requestToken.rawValue]) { _ in
+        return Defaults[.uploadTokenRequested] == nil
+      }
+    }
+
+      <<< TextRow { row in
+        row.value = Defaults[.uploadToken]
+        row.placeholder = "Upload Token"
+      }.onChange { row in
+        Defaults[.uploadToken] = row.value ?? ""
+      }.onCellHighlightChanged { _, row in
+        if !row.isHighlighted {
+          row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
       }
   }
   

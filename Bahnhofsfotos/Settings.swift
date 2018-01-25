@@ -24,29 +24,14 @@ enum AccountType: String {
   case misc = "Sonstiges"
 }
 
-class Settings {
-
-  static let shared = Settings()
-
-  init() {
-    if Defaults[.country] == "" {
-      Defaults[.country] = "DE"
-    }
-    if Defaults[.accountType] == nil {
-      Defaults[.accountType] = AccountType.none
-    }
-  }
-
-}
-
 extension UserDefaults {
-  subscript(key: DefaultsKey<License?>) -> License? {
-    get { return unarchive(key) }
+  subscript(key: DefaultsKey<License>) -> License {
+    get { return unarchive(key) ?? License.cc0 }
     set { archive(key, newValue) }
   }
 
-  subscript(key: DefaultsKey<AccountType?>) -> AccountType? {
-    get { return unarchive(key) }
+  subscript(key: DefaultsKey<AccountType>) -> AccountType {
+    get { return unarchive(key) ?? AccountType.none }
     set { archive(key, newValue) }
   }
 }
@@ -55,9 +40,14 @@ extension DefaultsKeys {
   static let country = DefaultsKey<String>("country")
   static let lastUpdate = DefaultsKey<Date?>("lastUpdate")
   static let dataComplete = DefaultsKey<Bool>("dataComplete")
-  static let license = DefaultsKey<License?>("license")
+  static let license = DefaultsKey<License>("license")
+  static let photoOwner = DefaultsKey<Bool>("photoOwner")
   static let accountLinking = DefaultsKey<Bool>("accountLinking")
-  static let accountType = DefaultsKey<AccountType?>("accountType")
+  static let accountType = DefaultsKey<AccountType>("accountType")
   static let accountName = DefaultsKey<String?>("accountName")
+  static let accountNickname = DefaultsKey<String?>("accountNickname")
+  static let accountEmail = DefaultsKey<String?>("accountEmail")
   static let chatNotificationsEnabled = DefaultsKey<Bool>("chatNotificationsEnabled")
+  static let uploadToken = DefaultsKey<String?>("uploadToken")
+  static let uploadTokenRequested = DefaultsKey<Date?>("uploadTokenRequested")
 }

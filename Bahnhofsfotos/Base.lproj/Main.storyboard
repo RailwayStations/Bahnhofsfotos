@@ -520,7 +520,7 @@
         <!--Einstellungen-->
         <scene sceneID="iPz-j4-rR4">
             <objects>
-                <navigationController storyboardIdentifier="SettingsViewController" automaticallyAdjustsScrollViewInsets="NO" id="BnL-fo-kzb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SettingsViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BnL-fo-kzb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Einstellungen" id="tsN-NJ-0yR" customClass="NIKFontAwesomeTabBarItem">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="iconHex" value="f013"/>

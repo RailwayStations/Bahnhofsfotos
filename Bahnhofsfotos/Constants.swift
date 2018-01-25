@@ -36,7 +36,7 @@ public class Constants {
   public static let baseUrl = "https://api.railway-stations.org"
 
   struct StoryboardIdentifiers {
-    static let profileViewController = "SettingsViewController"
+    static let settingsViewController = "SettingsViewController"
     static let listViewController = "ListViewController"
     static let mapViewController = "MapViewController"
     static let signInViewController = "SignInViewController"

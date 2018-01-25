@@ -22,3 +22,6 @@ $ sudo gem install cocoapods cocoapods-acknowledgements
 
 ### Installation
 After CocoaPods and the plugin has been installed, you have to run `$ pod install` in the project root directory, to download and install the dependencies.
+
+## Secrets / Keys
+Copy the `Secrets-sample.plist` and rename it to `Secrets.plist`. Then fill in your keys.

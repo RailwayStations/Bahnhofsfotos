@@ -78,6 +78,9 @@ PODS:
   - SwiftyJSON (4.0.0)
   - SwiftyUserDefaults (3.0.0)
   - Toast-Swift (3.0.1)
+  - TwitterCore (3.1.0)
+  - TwitterKit (3.3.0):
+    - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
   - AAShareBubbles (~> 1.2)
@@ -101,6 +104,7 @@ DEPENDENCIES:
   - SwiftyJSON (~> 4.0)
   - SwiftyUserDefaults (~> 3.0)
   - Toast-Swift (~> 3.0)
+  - TwitterKit (~> 3.3)
 
 EXTERNAL SOURCES:
   FBAnnotationClusteringSwift:
@@ -149,7 +153,9 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
+  TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
+  TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: f5302387eb37c8aac0144a7b0812ec09f3bf1460
+PODFILE CHECKSUM: ac08346be16ef6fd9d805f2fc2e9525764012102
 
 COCOAPODS: 1.3.1
