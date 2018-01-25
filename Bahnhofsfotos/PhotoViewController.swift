@@ -59,7 +59,14 @@ class PhotoViewController: UIViewController {
     guard let station = StationStorage.currentStation else { return }
     if station.hasPhoto && imageView.image != nil {
       LightboxConfig.PageIndicator.enabled = false
-      let lightboxController = LightboxController(images: [LightboxImage(image: imageView.image!)], startIndex: 0)
+      var image: LightboxImage
+      if let license = station.license, let photographer = station.photographer {
+        let text = license + " - " + photographer
+        image = LightboxImage(image: imageView.image!, text: text, videoURL: nil)
+      } else {
+        image = LightboxImage(image: imageView.image!)
+      }
+      let lightboxController = LightboxController(images: [image], startIndex: 0)
       present(lightboxController, animated: true, completion: nil)
       return
     }
