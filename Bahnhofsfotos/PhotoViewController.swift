@@ -19,6 +19,7 @@ class PhotoViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var shareBarButton: UIBarButtonItem!
   @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+  @IBOutlet weak var progressView: UIProgressView!
 
   var savedPhoto: Photo?
 
@@ -36,6 +37,7 @@ class PhotoViewController: UIViewController {
         activityIndicatorView.startAnimating()
         imageView.setImage(url: imageUrl) { result in
           self.activityIndicatorView.stopAnimating()
+          self.progressView.isHidden = false
         }
       }
     } else {
@@ -47,6 +49,7 @@ class PhotoViewController: UIViewController {
           // allow to share assigned photo
           if photo.uploadedAt == nil {
             shareBarButton.isEnabled = true
+            progressView.isHidden = false
           }
         }
       } catch {
@@ -127,8 +130,22 @@ class PhotoViewController: UIViewController {
   private func shareByUpload() {
     guard let image = imageView.image else { return }
     guard let station = StationStorage.currentStation, let country = CountryStorage.currentCountry else { return }
-    if let imageData = UIImageJPEGRepresentation(image, 1) {
-      API.uploadPhoto(imageData: imageData, ofStation: station, inCountry: country, completionHandler: { result in
+    if let imageData = UIImageJPEGRepresentation(image, 0.5) {
+      Helper.setIsUserInteractionEnabled(in: self, to: false)
+      UIApplication.shared.isNetworkActivityIndicatorVisible = true
+      activityIndicatorView.startAnimating()
+      progressView.progress = 0
+      imageView.isHidden = true
+
+      API.uploadPhoto(imageData: imageData, ofStation: station, inCountry: country, progressHandler: { progress in
+        self.progressView.setProgress(Float(progress), animated: true)
+      }) { result in
+        Helper.setIsUserInteractionEnabled(in: self, to: true)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        self.activityIndicatorView.stopAnimating()
+        self.progressView.progress = 1
+        self.imageView.isHidden = false
+
         do {
           try result()
           self.showError("Foto wurde erfolgreich hochgeladen")
@@ -138,7 +155,7 @@ class PhotoViewController: UIViewController {
         } catch {
           self.showError(error.localizedDescription)
         }
-      })
+      }
     }
   }
 
@@ -226,9 +243,9 @@ class PhotoViewController: UIViewController {
 
   // Set photo as shared
   private func setPhotoAsShared() {
-    guard let photo = savedPhoto else { return }
     shareBarButton.isEnabled = false
-    photo.uploadedAt = Date()
+    savedPhoto?.uploadedAt = Date()
+    guard let photo = savedPhoto else { return }
     try? PhotoStorage.save(photo)
   }
 
@@ -245,9 +262,11 @@ extension PhotoViewController: ImagePickerDelegate {
     if !images.isEmpty {
       imageView.image = images[0]
       shareBarButton.isEnabled = true
+      progressView.isHidden = false
       if let station = StationStorage.currentStation, let imageData = UIImageJPEGRepresentation(images[0], 1) {
         let photo = Photo(data: imageData, withId: station.id)
         try? PhotoStorage.save(photo)
+        self.savedPhoto = photo
       }
     }
     imagePicker.dismiss(animated: true, completion: nil)

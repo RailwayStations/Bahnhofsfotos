@@ -138,6 +138,7 @@ class API {
   static func uploadPhoto(imageData: Data,
                           ofStation station: Station,
                           inCountry country: Country,
+                          progressHandler: ((Double) -> Void)? = nil,
                           completionHandler: @escaping (() throws -> Void) -> Void) {
     // 202 - upload successful
     // 400 - wrong request
@@ -164,10 +165,18 @@ class API {
       "Content-Type": "image/jpeg"  // "image/png" or "image/jpeg"
     ]
 
-    Alamofire.upload(imageData,
-                     to: API.baseUrl + "/photoUpload",
-                     method: .post,
-                     headers: headers).response { dataResponse in
+    let request = Alamofire.upload(imageData,
+                                   to: API.baseUrl + "/photoUpload",
+                                   method: .post,
+                                   headers: headers)
+
+    if let progressHandler = progressHandler {
+      request.uploadProgress { progress in
+        progressHandler(progress.fractionCompleted)
+      }
+    }
+
+    request.response { dataResponse in
       guard let response = dataResponse.response else {
         completionHandler { throw Error.message("Fehler beim Upload, bitte später erneut versuchen") }
         return

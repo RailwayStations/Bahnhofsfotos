@@ -313,6 +313,22 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZo-v8-HhU">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="367"/>
                                         <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Z69-g9-cIZ">
+                                                <rect key="frame" x="0.0" y="161" width="288" height="37"/>
+                                                <subviews>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dKh-LM-Y4b">
+                                                        <rect key="frame" x="125.5" y="0.0" width="37" height="37"/>
+                                                        <color key="color" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </activityIndicatorView>
+                                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jFT-4N-PEM">
+                                                        <rect key="frame" x="0.0" y="-241" width="288" height="0.0"/>
+                                                    </progressView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="jFT-4N-PEM" firstAttribute="leading" secondItem="Z69-g9-cIZ" secondAttribute="leading" id="J7i-c0-IKt"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jFT-4N-PEM" secondAttribute="trailing" id="Xgr-wm-bgK"/>
+                                                </constraints>
+                                            </stackView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ofd-r7-PhF">
                                                 <rect key="frame" x="0.0" y="0.0" width="288" height="367"/>
                                             </imageView>
@@ -322,17 +338,13 @@
                                                     <action selector="pickImage:" destination="0yW-na-ZCr" eventType="touchUpInside" id="pYf-5X-mWY"/>
                                                 </connections>
                                             </button>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dKh-LM-Y4b">
-                                                <rect key="frame" x="126" y="165" width="37" height="37"/>
-                                                <color key="color" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="Nnd-qD-uxL" firstAttribute="leading" secondItem="hZo-v8-HhU" secondAttribute="leading" id="3bV-pw-P8U"/>
-                                            <constraint firstItem="dKh-LM-Y4b" firstAttribute="centerX" secondItem="hZo-v8-HhU" secondAttribute="centerX" id="4qE-Wu-siR"/>
-                                            <constraint firstItem="dKh-LM-Y4b" firstAttribute="centerY" secondItem="hZo-v8-HhU" secondAttribute="centerY" id="KUg-HW-rmn"/>
                                             <constraint firstAttribute="bottom" secondItem="Nnd-qD-uxL" secondAttribute="bottom" id="Prq-Ze-dhM"/>
                                             <constraint firstAttribute="trailing" secondItem="ofd-r7-PhF" secondAttribute="trailing" id="QOE-7W-VXV"/>
+                                            <constraint firstItem="Z69-g9-cIZ" firstAttribute="leading" secondItem="hZo-v8-HhU" secondAttribute="leading" id="Y3k-y8-L3y"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z69-g9-cIZ" secondAttribute="trailing" id="YjZ-Xo-5mK"/>
                                             <constraint firstItem="ofd-r7-PhF" firstAttribute="leading" secondItem="hZo-v8-HhU" secondAttribute="leading" id="Zjb-rZ-9GH"/>
                                             <constraint firstItem="Nnd-qD-uxL" firstAttribute="top" secondItem="hZo-v8-HhU" secondAttribute="top" id="ftt-qh-BVp"/>
                                             <constraint firstAttribute="trailing" secondItem="Nnd-qD-uxL" secondAttribute="trailing" id="o42-8V-TG9"/>
@@ -386,6 +398,7 @@
                             <constraint firstItem="QFz-bG-m8N" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leading" id="LOE-6C-ai5"/>
                             <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="sQB-52-Qh3" secondAttribute="bottom" constant="16" id="Rta-0n-Qxq"/>
                             <constraint firstItem="sQB-52-Qh3" firstAttribute="top" secondItem="rKr-kO-jnn" secondAttribute="top" constant="80" id="TRB-yg-WyV"/>
+                            <constraint firstItem="Z69-g9-cIZ" firstAttribute="centerY" secondItem="rKr-kO-jnn" secondAttribute="centerY" id="WJw-nx-VXA"/>
                             <constraint firstItem="sQB-52-Qh3" firstAttribute="leading" secondItem="rKr-kO-jnn" secondAttribute="leadingMargin" id="n8m-Pl-gGb"/>
                             <constraint firstItem="psc-Cf-leI" firstAttribute="top" secondItem="QFz-bG-m8N" secondAttribute="bottom" id="piO-be-XLi"/>
                         </constraints>
@@ -405,6 +418,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="dKh-LM-Y4b" id="E9h-sf-mvV"/>
                         <outlet property="imageView" destination="ofd-r7-PhF" id="ZDe-4k-F6U"/>
+                        <outlet property="progressView" destination="jFT-4N-PEM" id="Rjg-Jb-iv6"/>
                         <outlet property="shareBarButton" destination="jBo-Ej-Dz8" id="2zM-3y-Dep"/>
                     </connections>
                 </viewController>
