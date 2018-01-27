@@ -4,4 +4,4 @@ cache:
   - cocoapods
 before_install:
   - gem install cocoapods-acknowledgements -NV
-  - pod repo update --silent
+  - pod repo update
