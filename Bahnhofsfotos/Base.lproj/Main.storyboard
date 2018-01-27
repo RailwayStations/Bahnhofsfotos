@@ -244,7 +244,7 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tha-nz-vl9" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
-                                <rect key="frame" x="16" y="461" width="30" height="42"/>
+                                <rect key="frame" x="16" y="473" width="30" height="30"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.60519903898239136" green="0.25661405920982361" blue="0.34508711099624634" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -256,7 +256,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjx-8R-HIm" customClass="FontAwesomeButton" customModule="FontAwesomeKit_Swift">
-                                <rect key="frame" x="54" y="461" width="30" height="42"/>
+                                <rect key="frame" x="54" y="473" width="30" height="30"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -314,14 +314,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="367"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Z69-g9-cIZ">
-                                                <rect key="frame" x="0.0" y="161" width="288" height="37"/>
+                                                <rect key="frame" x="0.0" y="156" width="288" height="47"/>
                                                 <subviews>
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dKh-LM-Y4b">
                                                         <rect key="frame" x="125.5" y="0.0" width="37" height="37"/>
                                                         <color key="color" red="0.58039215690000001" green="0.1529411765" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </activityIndicatorView>
-                                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jFT-4N-PEM">
-                                                        <rect key="frame" x="0.0" y="-241" width="288" height="0.0"/>
+                                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jFT-4N-PEM">
+                                                        <rect key="frame" x="0.0" y="45" width="288" height="2"/>
                                                     </progressView>
                                                 </subviews>
                                                 <constraints>

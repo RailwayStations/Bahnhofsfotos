@@ -28,6 +28,7 @@ class PhotoViewController: UIViewController {
 
     title = StationStorage.currentStation?.name
     shareBarButton.isEnabled = false
+    progressView.alpha = 0
 
     guard let station = StationStorage.currentStation else { return }
 
@@ -37,7 +38,6 @@ class PhotoViewController: UIViewController {
         activityIndicatorView.startAnimating()
         imageView.setImage(url: imageUrl) { result in
           self.activityIndicatorView.stopAnimating()
-          self.progressView.isHidden = false
         }
       }
     } else {
@@ -49,7 +49,6 @@ class PhotoViewController: UIViewController {
           // allow to share assigned photo
           if photo.uploadedAt == nil {
             shareBarButton.isEnabled = true
-            progressView.isHidden = false
           }
         }
       } catch {
@@ -134,6 +133,7 @@ class PhotoViewController: UIViewController {
       Helper.setIsUserInteractionEnabled(in: self, to: false)
       UIApplication.shared.isNetworkActivityIndicatorVisible = true
       activityIndicatorView.startAnimating()
+      progressView.alpha = 1
       progressView.progress = 0
       imageView.isHidden = true
 
@@ -144,6 +144,7 @@ class PhotoViewController: UIViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         self.activityIndicatorView.stopAnimating()
         self.progressView.progress = 1
+        self.progressView.alpha = 0
         self.imageView.isHidden = false
 
         do {
@@ -262,7 +263,6 @@ extension PhotoViewController: ImagePickerDelegate {
     if !images.isEmpty {
       imageView.image = images[0]
       shareBarButton.isEnabled = true
-      progressView.isHidden = false
       if let station = StationStorage.currentStation, let imageData = UIImageJPEGRepresentation(images[0], 1) {
         let photo = Photo(data: imageData, withId: station.id)
         try? PhotoStorage.save(photo)
