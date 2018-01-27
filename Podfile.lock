@@ -1,5 +1,4 @@
 PODS:
-  - AAShareBubbles (1.2.4)
   - Alamofire (4.6.0)
   - Cache (4.1.2)
   - CPDAcknowledgements (1.0.0)
@@ -83,7 +82,6 @@ PODS:
     - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
-  - AAShareBubbles (~> 1.2)
   - Alamofire (~> 4.6)
   - CPDAcknowledgements (~> 1.0)
   - Eureka (~> 4.0)
@@ -121,7 +119,6 @@ CHECKOUT OPTIONS:
     :git: https://github.com/hyperoslo/ImagePicker
 
 SPEC CHECKSUMS:
-  AAShareBubbles: 53fd5064602fa041a2249dda6b26f7fdccca3093
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Cache: bd0233fc688b5e83a27bcd87807db7e6f23adcc5
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
@@ -156,6 +153,6 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: ac08346be16ef6fd9d805f2fc2e9525764012102
+PODFILE CHECKSUM: 013a8ffeca1be70b02fca752776235355fcfd5ca
 
 COCOAPODS: 1.3.1
