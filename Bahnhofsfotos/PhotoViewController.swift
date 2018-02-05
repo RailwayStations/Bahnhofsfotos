@@ -89,7 +89,11 @@ class PhotoViewController: UIViewController {
 
     // Share by upload
     if Defaults[.uploadToken] != nil {
-      controller.addAction(UIAlertAction(title: "Direkt-Upload", style: .default) { _ in
+      var title = "Direkt-Upload"
+      if let size = getSizeStringOfImage() {
+        title += " [\(size)]"
+      }
+      controller.addAction(UIAlertAction(title: title, style: .default) { _ in
         self.shareByUpload()
       })
     }
@@ -248,6 +252,24 @@ class PhotoViewController: UIViewController {
     savedPhoto?.uploadedAt = Date()
     guard let photo = savedPhoto else { return }
     try? PhotoStorage.save(photo)
+  }
+
+  private func getSizeStringOfImage() -> String? {
+    guard
+      let image = imageView.image,
+      let data = UIImageJPEGRepresentation(image, 1)
+    else { return nil }
+
+    let sizeInMegaBytes = Double(data.count) / 1024 / 1024
+
+    let numberFormatter = NumberFormatter()
+    numberFormatter.minimumFractionDigits = 1
+    numberFormatter.maximumFractionDigits = 1
+    if let readableSize = numberFormatter.string(from: NSNumber(value: sizeInMegaBytes)) {
+      return "\(readableSize) MB"
+    }
+
+    return nil
   }
 
 }
