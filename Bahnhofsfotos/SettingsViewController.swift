@@ -398,11 +398,7 @@ class SettingsViewController: FormViewController {
   }
   
   private func createUploadTokenSection() -> Section {
-    return Section() { section in
-      section.hidden = .function([RowTag.requestToken.rawValue]) { _ in
-        return Defaults[.uploadTokenRequested] == nil
-      }
-    }
+    return Section()
 
       <<< TextRow { row in
         row.value = Defaults[.uploadToken]
