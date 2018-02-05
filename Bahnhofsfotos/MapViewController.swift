@@ -56,11 +56,11 @@ class MapViewController: UIViewController {
     if clusteringIsActive {
       clusteringManager.removeAll(from: mapView)
       mapView.addAnnotations(StationStorage.stations.map { StationAnnotation(station: $0) })
-      toggleClusteringButton.fa_setTitle(.fa_map_marker, for: .normal)
+      toggleClusteringButton.fa.setTitle(.fa_map_marker, for: .normal)
     } else {
       mapView.removeAnnotations(mapView.annotations)
       clusteringManager.replace(annotations: StationStorage.stations.map { StationAnnotation(station: $0) }, in: mapView)
-      toggleClusteringButton.fa_setTitle(.fa_map_pin, for: .normal)
+      toggleClusteringButton.fa.setTitle(.fa_map_pin, for: .normal)
     }
 
     clusteringIsActive = !clusteringIsActive
@@ -142,13 +142,13 @@ extension MapViewController: MKMapViewDelegate {
     // button for detail view
     let detailViewButton = UIButton(type: .system)
     detailViewButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-    detailViewButton.fa_setTitle(.fa_info_circle, for: .normal)
+    detailViewButton.fa.setTitle(.fa_info_circle, for: .normal)
     detailViewButton.accessibilityIdentifier = "detail"
 
     // button for navigation
     let button = UIButton(type: .system)
     button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-    button.fa_setTitle(.fa_compass, for: .normal)
+    button.fa.setTitle(.fa_compass, for: .normal)
     button.accessibilityIdentifier = "navigation"
 
     // single station

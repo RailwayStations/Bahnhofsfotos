@@ -43,7 +43,7 @@ class ChatViewController: JSQMessagesViewController {
     super.viewDidLoad()
 
     guard Auth.auth().currentUser != nil else {
-      Helper.signOut()
+      let _ = Helper.signOut()
       return
     }
 
@@ -98,7 +98,7 @@ class ChatViewController: JSQMessagesViewController {
     let userId = message[Constants.MessageFields.userId] ?? message[Constants.MessageFields.name] ?? ""
     let name = message[Constants.MessageFields.name] ?? ""
 
-    guard let text = message[Constants.MessageFields.text], text.characters.count > 0  else {
+    guard let text = message[Constants.MessageFields.text], text.count > 0  else {
       debugPrint("Error! Could not decode message data")
       return nil
     }
@@ -192,7 +192,7 @@ extension ChatViewController {
       return JSQMessagesAvatarImageFactory.avatarImage(with: avatar, diameter: 30)
     }
 
-    let initials = message[Constants.MessageFields.name]?.components(separatedBy: " ").map { $0.characters.first != nil ? String($0.characters.first!) : "" }.joined()
+    let initials = message[Constants.MessageFields.name]?.components(separatedBy: " ").map { $0.first != nil ? String($0.first!) : "" }.joined()
 
     let userId = message[Constants.MessageFields.userId] ?? message[Constants.MessageFields.name] ?? ""
 
