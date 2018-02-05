@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
     GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
-    connectToFcm()
+    Messaging.messaging().delegate = self
 
     if #available(iOS 10.0, *) {
       // For iOS 10 display notification (sent via APNS)
@@ -56,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Use this method to release shared resources, save user data, invalidate timers,
     // and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    Messaging.messaging().disconnect()
   }
 
   func applicationWillEnterForeground(_ application: UIApplication) {
@@ -169,24 +168,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
   }
 
-  func connectToFcm() {
-    // Won't connect since there is no token
-    guard Messaging.messaging().apnsToken != nil else {
-      return
-    }
-
-    // Disconnect previous FCM connection if it exists.
-    Messaging.messaging().disconnect()
-
-    Messaging.messaging().connect { error in
-      if error != nil {
-        debugPrint("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
-      } else {
-        debugPrint("Connected to FCM.")
-      }
-    }
-  }
-
 }
 
 // MARK: - GIDSignInDelegate
@@ -207,6 +188,15 @@ extension AppDelegate: GIDSignInDelegate {
         return
       }
     }
+  }
+
+}
+
+// MARK: - MessagingDelegate
+extension AppDelegate: MessagingDelegate {
+
+  func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+    showAlert(withUserInfo: remoteMessage.appData)
   }
 
 }
