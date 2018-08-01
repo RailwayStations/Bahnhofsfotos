@@ -105,7 +105,7 @@ DEPENDENCIES:
   - TwitterKit (~> 3.3)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - Cache
     - CPDAcknowledgements
@@ -187,6 +187,6 @@ SPEC CHECKSUMS:
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 013a8ffeca1be70b02fca752776235355fcfd5ca
+PODFILE CHECKSUM: 84c0ef41a938b092ab89d3e2bcbc49d3729d2998
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

@@ -4,6 +4,7 @@ plugin 'cocoapods-acknowledgements'
 
 target 'Bahnhofsfotos' do
   use_frameworks!
+  inhibit_all_warnings!
 
   # Pods for Bahnhofsfotos
   pod 'Alamofire', '~> 4.6'
@@ -28,17 +29,4 @@ target 'Bahnhofsfotos' do
   pod 'Toast-Swift', '~> 3.0'
   pod 'TwitterKit', '~> 3.3'
 
-end
-
-post_install do |installer|
-    # List of Swift 4 targets
-    swift4_targets = []
-    
-    installer.pods_project.targets.each do |target|
-        if swift4_targets.include? target.name
-            target.build_configurations.each do |config|
-                config.build_settings['SWIFT_VERSION'] = '4.0'
-            end
-        end
-    end
 end
