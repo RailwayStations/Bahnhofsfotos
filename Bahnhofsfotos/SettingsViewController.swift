@@ -170,22 +170,10 @@ class SettingsViewController: FormViewController {
 
   // MARK: License
   
-  private func createLicensePickerRow() -> PickerInlineRow<License> {
-    return PickerInlineRow<License>(RowTag.licensePicker.rawValue) { row in
+  private func createLicensePickerRow() -> LabelRow {
+    return LabelRow() { row in
       row.title = "Lizenz"
-      row.displayValueFor = { (value: License?) in
-        switch value {
-        case .cc40?:
-          return "CC4.0 mit Namensnennung"
-        default:
-          return "CC0 - ohne Namensnennung"
-        }
-      }
-      row.options = License.allValues
-      row.value = Defaults[.license]
-      }.onChange { (row) in
-        guard let value = row.value else { return }
-        Defaults[.license] = value
+      row.value = "CC0 - ohne Namensnennung"
     }
   }
   

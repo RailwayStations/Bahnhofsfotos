@@ -210,7 +210,7 @@ class PhotoViewController: UIViewController {
         }
 
         var text = "Bahnhof: \(station.name)\n"
-        text += "Lizenz: \(Defaults[.license] == .cc40 ? "CC4.0" : "CC0")\n"
+        text += "Lizenz: CC0\n"
         text += "Verlinkung: \(Defaults[.accountLinking] == true ? "Ja" : "Nein")\n"
         text += "Accounttyp: \(Defaults[.accountType])\n"
         text += "Accountname: \(username)"

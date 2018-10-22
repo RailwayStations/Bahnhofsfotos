@@ -9,8 +9,7 @@
 import SwiftyUserDefaults
 
 enum License: String {
-  case cc0, cc40
-  static let allValues = [cc0, cc40]
+  case cc0
 }
 
 enum AccountType: String {
