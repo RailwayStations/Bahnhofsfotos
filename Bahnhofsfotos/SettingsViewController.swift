@@ -10,7 +10,6 @@ import CPDAcknowledgements
 import Eureka
 import SwiftyUserDefaults
 import Toast_Swift
-import TwitterKit
 
 class SettingsViewController: FormViewController {
 
@@ -232,9 +231,6 @@ class SettingsViewController: FormViewController {
       <<< TextRow(RowTag.accountName.rawValue) { row in
         row.value = Defaults[.accountName]
         row.placeholder = "Accountname"
-        row.hidden = .function([RowTag.accountType.rawValue]) { _ in
-          return Defaults[.accountType] == .twitter
-        }
       }.onChange { row in
         Defaults[.accountName] = row.value ?? ""
       }.onCellHighlightChanged { _, row in
@@ -243,65 +239,6 @@ class SettingsViewController: FormViewController {
         }
       }
 
-      <<< LabelRow(RowTag.twitter.rawValue) { row in
-        row.hidden = .function([RowTag.accountType.rawValue]) { _ in
-          return Defaults[.accountType] != .twitter
-        }
-
-        row.title = getTwitterAccountName()
-        row.value = nil
-
-        if TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers() {
-          row.value = "Abmelden"
-        }
-      }.onCellSelection { cell, row in
-        let store = TWTRTwitter.sharedInstance().sessionStore
-        if (store.hasLoggedInUsers()) {
-          if let session = store.session() {
-            store.logOutUserID(session.userID)
-          }
-          Defaults[.accountName] = nil
-          row.title = self.getTwitterAccountName()
-          row.value = nil
-          row.updateCell()
-        } else {
-          TWTRTwitter.sharedInstance().logIn { [weak self] (session, error) in
-            if let error = error, let weakSelf = self {
-              let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-              alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-              weakSelf.present(alert, animated: true, completion: nil)
-            } else if let session = session {
-              Defaults[.accountName] = session.userName
-              row.title = session.userName
-              row.value = "Abmelden"
-              row.updateCell()
-            }
-          }
-        }
-      }
-  }
-
-  // Returns the first session found
-  private func getTwitterAccountName() -> String {
-    let store = TWTRTwitter.sharedInstance().sessionStore
-
-    if let session = store.session() {
-      for existingUserSession in store.existingUserSessions() {
-        if let userSession = existingUserSession as? TWTRSession {
-          if userSession.userID == session.userID {
-            return userSession.userName
-          }
-        }
-      }
-    }
-
-    if store.hasLoggedInUsers() {
-      if let accountName = Defaults[.accountName] {
-        return accountName
-      }
-    }
-
-    return "Mit Twitter anmelden"
   }
   
   // MARK: Upload
