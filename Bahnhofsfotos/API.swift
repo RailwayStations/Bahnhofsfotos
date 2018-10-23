@@ -114,7 +114,7 @@ class API {
     let parameters: Parameters = [
       "nickname": Defaults[.accountNickname]!,
       "email": Defaults[.accountEmail]!,
-      "license": Defaults[.license] == .cc40 ? "CC4.0" : "CC0",
+      "license": "CC0",
       "photoOwner": Defaults[.photoOwner],
       "linking": Defaults[.accountLinking] ? Defaults[.accountType].rawValue : "NO",
       "link": Defaults[.accountName]!
