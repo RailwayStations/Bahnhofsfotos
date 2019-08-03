@@ -11,10 +11,6 @@ target 'Bahnhofsfotos' do
   pod 'CPDAcknowledgements', '~> 1.0'
   pod 'Eureka', '~> 4.0'
   pod 'FBAnnotationClusteringSwift', :git => 'https://github.com/666tos/FBAnnotationClusteringSwift'
-  pod 'FirebaseAuth', '~> 4.4'
-  pod 'FirebaseCore', '~> 4.0'
-  pod 'FirebaseDatabase', '~> 4.1'
-  pod 'FirebaseMessaging', '~> 2.0'
   pod 'FontAwesomeIconFactory', '~> 3.0'
   pod 'FontAwesomeKit.Swift', '~> 0.4'
   pod 'GoogleSignIn', '~> 4.1'
@@ -27,6 +23,5 @@ target 'Bahnhofsfotos' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SwiftyUserDefaults', '~> 3.0'
   pod 'Toast-Swift', '~> 3.0'
-  pod 'TwitterKit', '~> 3.3'
 
 end

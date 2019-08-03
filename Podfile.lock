@@ -4,29 +4,6 @@ PODS:
   - CPDAcknowledgements (1.0.0)
   - Eureka (4.1.1)
   - FBAnnotationClusteringSwift (2.0)
-  - FirebaseAnalytics (4.2.0):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-    - nanopb (~> 0.3)
-  - FirebaseAuth (4.6.1):
-    - FirebaseAnalytics (~> 4.2)
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
-    - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (4.0.20):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseDatabase (4.1.5):
-    - FirebaseAnalytics (~> 4.1)
-    - FirebaseCore (~> 4.0)
-    - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (2.0.10):
-    - FirebaseCore (~> 4.0)
-  - FirebaseMessaging (2.2.0):
-    - FirebaseAnalytics (~> 4.1)
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/Logger (~> 2.1)
-    - Protobuf (~> 3.5)
   - FontAwesomeIconFactory (3.0)
   - FontAwesomeKit.Swift (0.4.2)
   - GoogleSignIn (4.1.2):
@@ -37,10 +14,6 @@ PODS:
   - GoogleToolboxForMac/DebugUtils (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GoogleToolboxForMac/Defines (2.1.4)
-  - GoogleToolboxForMac/Logger (2.1.4):
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
   - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.4)":
     - GoogleToolboxForMac/DebugUtils (= 2.1.4)
     - GoogleToolboxForMac/Defines (= 2.1.4)
@@ -60,16 +33,9 @@ PODS:
   - JSQMessagesViewController (7.3.5):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - leveldb-library (1.20)
   - Lightbox (2.1.2):
     - Hue (~> 3.0)
     - Imaginary (~> 3.0)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
-  - Protobuf (3.5.0)
   - SQLite.swift (0.11.5):
     - SQLite.swift/standard (= 0.11.5)
   - SQLite.swift/standard (0.11.5)
@@ -77,19 +43,12 @@ PODS:
   - SwiftyJSON (4.1.0)
   - SwiftyUserDefaults (3.0.1)
   - Toast-Swift (3.0.1)
-  - TwitterCore (3.1.0)
-  - TwitterKit (3.3.0):
-    - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.6)
   - CPDAcknowledgements (~> 1.0)
   - Eureka (~> 4.0)
   - FBAnnotationClusteringSwift (from `https://github.com/666tos/FBAnnotationClusteringSwift`)
-  - FirebaseAuth (~> 4.4)
-  - FirebaseCore (~> 4.0)
-  - FirebaseDatabase (~> 4.1)
-  - FirebaseMessaging (~> 2.0)
   - FontAwesomeIconFactory (~> 3.0)
   - FontAwesomeKit.Swift (~> 0.4)
   - GoogleSignIn (~> 4.1)
@@ -102,7 +61,6 @@ DEPENDENCIES:
   - SwiftyJSON (~> 4.0)
   - SwiftyUserDefaults (~> 3.0)
   - Toast-Swift (~> 3.0)
-  - TwitterKit (~> 3.3)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -110,12 +68,6 @@ SPEC REPOS:
     - Cache
     - CPDAcknowledgements
     - Eureka
-    - FirebaseAnalytics
-    - FirebaseAuth
-    - FirebaseCore
-    - FirebaseDatabase
-    - FirebaseInstanceID
-    - FirebaseMessaging
     - FontAwesomeIconFactory
     - FontAwesomeKit.Swift
     - GoogleSignIn
@@ -126,17 +78,12 @@ SPEC REPOS:
     - Imaginary
     - JSQMessagesViewController
     - JSQSystemSoundPlayer
-    - leveldb-library
     - Lightbox
-    - nanopb
-    - Protobuf
     - SQLite.swift
     - SwiftLint
     - SwiftyJSON
     - SwiftyUserDefaults
     - Toast-Swift
-    - TwitterCore
-    - TwitterKit
 
 EXTERNAL SOURCES:
   FBAnnotationClusteringSwift:
@@ -158,12 +105,6 @@ SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   FBAnnotationClusteringSwift: 9eb6e2acee2db56183c7ccff9239723598f286b0
-  FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
-  FirebaseAuth: bf22cacf22c60ab454bf2636f556d8892b10b53f
-  FirebaseCore: 90cb1c53d69b556f112a1bf72b5fcfaad7650790
-  FirebaseDatabase: 5f0bc6134c5c237cf55f9e1249d406770a75eafd
-  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
-  FirebaseMessaging: 75cdb862e86c30e0913a2ff307e48d49357c5b73
   FontAwesomeIconFactory: dfc89a126ff158d3a642aeeb265eaa9b179ad496
   FontAwesomeKit.Swift: 252b2e05752e6c7410866693c7350e62313da910
   GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
@@ -175,18 +116,13 @@ SPEC CHECKSUMS:
   Imaginary: 9b45836a5af881f452a86e0a1215772ae4712d00
   JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
-  TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
-  TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: 84c0ef41a938b092ab89d3e2bcbc49d3729d2998
+PODFILE CHECKSUM: a7b08f29e9aae7d7b196f347c0968b75ecfbf445
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.4

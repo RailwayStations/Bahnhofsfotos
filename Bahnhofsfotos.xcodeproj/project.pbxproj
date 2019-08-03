@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67F95631E12281F589409A6D /* Pods-Bahnhofsfotos-metadata.plist */; };
-		491119351EA918BA00BC1F1D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491119341EA918BA00BC1F1D /* SignInViewController.swift */; };
-		491119371EA92E8600BC1F1D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491119361EA92E8600BC1F1D /* ChatViewController.swift */; };
-		4911193B1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911193A1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift */; };
 		4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4918B1E11E3E7C62007D5757 /* Settings.swift */; };
 		49200C211EA172840054F426 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49200C201EA172840054F426 /* StationAnnotation.swift */; };
 		49455A671E04CA76007A5501 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A661E04CA76007A5501 /* MapViewController.swift */; };
@@ -36,7 +33,6 @@
 		49C42F6E1E3FA875005544C0 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C42F6D1E3FA875005544C0 /* Country.swift */; };
 		49C42F701E3FAE46005544C0 /* CountryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */; };
 		49DF03B81E2BA7E8003C8159 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF03B71E2BA7E8003C8159 /* API.swift */; };
-		49E5B5331EB74EAD00C5FE25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49E5B5311EB7490300C5FE25 /* GoogleService-Info.plist */; };
 		49F690F11E05272000BDE340 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F690F01E05272000BDE340 /* SettingsViewController.swift */; };
 		49F70DB21E85B41400154136 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F70DB11E85B41400154136 /* Helper.swift */; };
 		7265CDE2F28E2527EA9C46C9 /* Pods_Bahnhofsfotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */; };
@@ -45,9 +41,6 @@
 /* Begin PBXFileReference section */
 		1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bahnhofsfotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D78A7B9AED7B7EE6DBA4F26 /* Pods-Bahnhofsfotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.release.xcconfig"; sourceTree = "<group>"; };
-		491119341EA918BA00BC1F1D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		491119361EA92E8600BC1F1D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		4911193A1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatWrapperViewController.swift; sourceTree = "<group>"; };
 		4918B1E11E3E7C62007D5757 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		49200C201EA172840054F426 /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		49455A661E04CA76007A5501 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -76,7 +69,6 @@
 		49C42F6F1E3FAE46005544C0 /* CountryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryStorage.swift; sourceTree = "<group>"; };
 		49DF03B71E2BA7E8003C8159 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		49E152B82017C47C00DB80A7 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		49E5B5311EB7490300C5FE25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49F690F01E05272000BDE340 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		49F70DB11E85B41400154136 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		67F95631E12281F589409A6D /* Pods-Bahnhofsfotos-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-Bahnhofsfotos-metadata.plist"; path = "Pods/Pods-Bahnhofsfotos-metadata.plist"; sourceTree = "<group>"; };
@@ -100,7 +92,6 @@
 		49B503DB1E048EAC00B8AFDE = {
 			isa = PBXGroup;
 			children = (
-				49E5B5311EB7490300C5FE25 /* GoogleService-Info.plist */,
 				497F0EC22013DFA40071470E /* Secrets.plist */,
 				49B503E61E048EAE00B8AFDE /* Bahnhofsfotos */,
 				49B503E51E048EAE00B8AFDE /* Products */,
@@ -171,13 +162,10 @@
 		49B504001E04A3D200B8AFDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				491119361EA92E8600BC1F1D /* ChatViewController.swift */,
-				4911193A1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift */,
 				499087721ECE376D00AB45C2 /* HighScoreViewController.swift */,
 				49455A661E04CA76007A5501 /* MapViewController.swift */,
 				49455A6E1E04E981007A5501 /* PhotoViewController.swift */,
 				49F690F01E05272000BDE340 /* SettingsViewController.swift */,
-				491119341EA918BA00BC1F1D /* SignInViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -246,7 +234,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Railway-Stations";
 				TargetAttributes = {
 					49B503E31E048EAD00B8AFDE = {
@@ -273,6 +261,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -297,7 +286,6 @@
 				49B503EF1E048EAE00B8AFDE /* Assets.xcassets in Resources */,
 				49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */,
 				32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */,
-				49E5B5331EB74EAD00C5FE25 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,20 +313,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C87A5D46B75C1D58483F0654 /* [CP] Embed Pods Frameworks */ = {
@@ -347,7 +331,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CPDAcknowledgements/CPDAcknowledgements.framework",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
@@ -364,15 +348,10 @@
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -392,19 +371,14 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ED397E516860B75F83899C8D /* [CP] Check Pods Manifest.lock */ = {
@@ -432,9 +406,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				491119351EA918BA00BC1F1D /* SignInViewController.swift in Sources */,
-				4911193B1EAA3F8B00BC1F1D /* ChatWrapperViewController.swift in Sources */,
-				491119371EA92E8600BC1F1D /* ChatViewController.swift in Sources */,
 				49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */,
 				49200C211EA172840054F426 /* StationAnnotation.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
@@ -484,6 +455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -493,6 +465,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -500,6 +473,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -542,6 +516,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -551,6 +526,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -558,6 +534,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
