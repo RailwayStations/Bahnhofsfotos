@@ -119,16 +119,11 @@ class API {
       "linking": Defaults[.accountLinking] ? Defaults[.accountType].rawValue : "NO",
       "link": Defaults[.accountName]!
     ]
-    
-    let headers: HTTPHeaders = [
-      "API-Key": Secret.apiKey
-    ]
 
     Alamofire.request(API.baseUrl + "/registration",
                       method: .post,
                       parameters: parameters,
-                      encoding: JSONEncoding.default,
-                      headers: headers).response { dataResponse in
+                      encoding: JSONEncoding.default).response { dataResponse in
       // 202 = registration accepted
       completionHandler(dataResponse.response?.statusCode == 202)
     }
@@ -143,7 +138,6 @@ class API {
     // 202 - upload successful
     // 400 - wrong request
     // 401 - wrong token
-    // 402 - wrong apiKey
     // 409 - photo already exists
     // 413 - image too large (maximum 20 MB)
     guard
@@ -156,7 +150,6 @@ class API {
     }
 
     let headers: HTTPHeaders = [
-      "API-Key": Secret.apiKey,
       "Upload-Token": token,
       "Nickname": nickname,
       "Email": email,
