@@ -46,7 +46,6 @@ extension DefaultsKeys {
   static let accountName = DefaultsKey<String?>("accountName")
   static let accountNickname = DefaultsKey<String?>("accountNickname")
   static let accountEmail = DefaultsKey<String?>("accountEmail")
-  static let chatNotificationsEnabled = DefaultsKey<Bool>("chatNotificationsEnabled")
   static let uploadToken = DefaultsKey<String?>("uploadToken")
   static let uploadTokenRequested = DefaultsKey<Date?>("uploadTokenRequested")
 }

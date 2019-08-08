@@ -16,14 +16,6 @@ class Secret {
     return try! self.value(forKey: "API_KEY")
   }
   
-  static var twitterKey: String {
-    return try! self.value(forKey: "TWITTER_KEY")
-  }
-  
-  static var twitterSecret: String {
-    return try! self.value(forKey: "TWITTER_SECRET")
-  }
-  
   private static func value(forKey key: String) throws -> String {
     do {
       guard let path = Bundle.main.path(forResource: "Secrets", ofType: "plist") else { throw SecretsError.message("Secrets.plist not found!") }

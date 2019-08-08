@@ -6,7 +6,6 @@
 //  Copyright © 2017 Railway-Stations. All rights reserved.
 //
 
-import FirebaseAuth
 import MapKit
 import SwiftyUserDefaults
 import UIKit
@@ -110,17 +109,6 @@ class Helper {
       MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,
       MKLaunchOptionsShowsTrafficKey: true
       ])
-  }
-
-  static func signOut() -> Bool {
-    let firebaseAuth = Auth.auth()
-    do {
-      try firebaseAuth.signOut()
-    } catch let signOutError {
-      debugPrint("Error signing out: \(signOutError.localizedDescription)")
-    }
-    
-    return firebaseAuth.currentUser == nil
   }
 
 }

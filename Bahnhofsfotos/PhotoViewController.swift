@@ -11,7 +11,6 @@ import ImagePicker
 import Lightbox
 import MessageUI
 import SwiftyUserDefaults
-import TwitterKit
 import UIKit
 
 class PhotoViewController: UIViewController {
@@ -98,11 +97,6 @@ class PhotoViewController: UIViewController {
       })
     }
 
-    // Share via twitter
-    controller.addAction(UIAlertAction(title: "Twitter", style: .default) { _ in
-      self.shareViaTwitter()
-    })
-
     // Share by email
     if CountryStorage.currentCountry?.email != nil {
       controller.addAction(UIAlertAction(title: "E-Mail", style: .default) { _ in
@@ -164,39 +158,6 @@ class PhotoViewController: UIViewController {
     }
   }
 
-  // Share via twitter
-  private func shareViaTwitter() {
-    if (TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
-      // App must have at least one logged-in user to compose a Tweet
-      self.showTwitterComposer()
-    } else {
-      // Log in, and then check again
-      TWTRTwitter.sharedInstance().logIn { session, error in
-        if session != nil { // Log in succeeded
-          self.showTwitterComposer()
-        } else {
-          self.showError("Kein Zugriff auf Twitter Account")
-        }
-      }
-    }
-  }
-
-  // Create and show a Twitter composer view controller
-  private func showTwitterComposer() {
-    guard let station = StationStorage.currentStation, let country = CountryStorage.currentCountry else { return }
-    guard let image = imageView.image else { return }
-
-    #if DEBUG
-      let text = "\(station.name)"
-    #else
-      let text = "\(station.name) \(country.twitterTags ?? "")"
-    #endif
-
-    let composer = TWTRComposerViewController(initialText: text, image: image, videoData: nil)
-    composer.delegate = self
-    self.present(composer, animated: true, completion: nil)
-  }
-
   // Share by sending an email
   private func shareByEmail() {
     guard let station = StationStorage.currentStation, let country = CountryStorage.currentCountry else { return }
@@ -234,8 +195,10 @@ class PhotoViewController: UIViewController {
   private func shareByOthers() {
     guard let station = StationStorage.currentStation else { return }
     guard let image = imageView.image else { return }
+    guard let country = CountryStorage.currentCountry else { return }
+    let text = "\(station.name) \(country.twitterTags ?? "")"
 
-    let activityController = UIActivityViewController(activityItems: [station.name, image], applicationActivities: nil)
+    let activityController = UIActivityViewController(activityItems: [station.name, image, text], applicationActivities: nil)
     present(activityController, animated: true, completion: nil)
   }
 
@@ -308,14 +271,6 @@ extension PhotoViewController: MFMailComposeViewControllerDelegate {
       setPhotoAsShared()
     }
     controller.dismiss(animated: true, completion: nil)
-  }
-
-}
-
-extension PhotoViewController: TWTRComposerViewControllerDelegate {
-
-  func composerDidSucceed(_ controller: TWTRComposerViewController, with tweet: TWTRTweet) {
-    setPhotoAsShared()
   }
 
 }
