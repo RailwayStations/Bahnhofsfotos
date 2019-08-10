@@ -34,7 +34,19 @@
 		49F690F11E05272000BDE340 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F690F01E05272000BDE340 /* SettingsViewController.swift */; };
 		49F70DB21E85B41400154136 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F70DB11E85B41400154136 /* Helper.swift */; };
 		7265CDE2F28E2527EA9C46C9 /* Pods_Bahnhofsfotos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */; };
+		DFCC339322FEFCF3003B5F23 /* BahnhofsfotosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC339222FEFCF3003B5F23 /* BahnhofsfotosUITests.swift */; };
+		DFCC339B22FEFD88003B5F23 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC339A22FEFD88003B5F23 /* SnapshotHelper.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFCC339522FEFCF3003B5F23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49B503DC1E048EAC00B8AFDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49B503E31E048EAD00B8AFDE;
+			remoteInfo = Bahnhofsfotos;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bahnhofsfotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +82,10 @@
 		49F70DB11E85B41400154136 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		67F95631E12281F589409A6D /* Pods-Bahnhofsfotos-metadata.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "Pods-Bahnhofsfotos-metadata.plist"; path = "Pods/Pods-Bahnhofsfotos-metadata.plist"; sourceTree = "<group>"; };
 		7C56300D9DCF452C76B5066F /* Pods-Bahnhofsfotos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.debug.xcconfig"; sourceTree = "<group>"; };
+		DFCC339022FEFCF3003B5F23 /* BahnhofsfotosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BahnhofsfotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFCC339222FEFCF3003B5F23 /* BahnhofsfotosUITests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = BahnhofsfotosUITests.swift; sourceTree = "<group>"; tabWidth = 4; };
+		DFCC339422FEFCF3003B5F23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFCC339A22FEFD88003B5F23 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +99,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DFCC338D22FEFCF3003B5F23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +114,7 @@
 			children = (
 				497A8ECB22FCABFE00E13EE9 /* README.md */,
 				49B503E61E048EAE00B8AFDE /* Bahnhofsfotos */,
+				DFCC339122FEFCF3003B5F23 /* BahnhofsfotosUITests */,
 				49B503E51E048EAE00B8AFDE /* Products */,
 				AEEA6128BE255DE686283DB3 /* Pods */,
 				95E2D7A511D466C1AF063B5D /* Frameworks */,
@@ -103,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				49B503E41E048EAE00B8AFDE /* Bahnhofsfotos.app */,
+				DFCC339022FEFCF3003B5F23 /* BahnhofsfotosUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,6 +224,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DFCC339122FEFCF3003B5F23 /* BahnhofsfotosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DFCC339A22FEFD88003B5F23 /* SnapshotHelper.swift */,
+				DFCC339222FEFCF3003B5F23 /* BahnhofsfotosUITests.swift */,
+				DFCC339422FEFCF3003B5F23 /* Info.plist */,
+			);
+			path = BahnhofsfotosUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,13 +258,31 @@
 			productReference = 49B503E41E048EAE00B8AFDE /* Bahnhofsfotos.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DFCC338F22FEFCF3003B5F23 /* BahnhofsfotosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFCC339722FEFCF3003B5F23 /* Build configuration list for PBXNativeTarget "BahnhofsfotosUITests" */;
+			buildPhases = (
+				DFCC338C22FEFCF3003B5F23 /* Sources */,
+				DFCC338D22FEFCF3003B5F23 /* Frameworks */,
+				DFCC338E22FEFCF3003B5F23 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFCC339622FEFCF3003B5F23 /* PBXTargetDependency */,
+			);
+			name = BahnhofsfotosUITests;
+			productName = BahnhofsfotosUITests;
+			productReference = DFCC339022FEFCF3003B5F23 /* BahnhofsfotosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		49B503DC1E048EAC00B8AFDE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Railway-Stations";
 				TargetAttributes = {
@@ -250,6 +303,12 @@
 							};
 						};
 					};
+					DFCC338F22FEFCF3003B5F23 = {
+						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = 93C29USLP6;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 49B503E31E048EAD00B8AFDE;
+					};
 				};
 			};
 			buildConfigurationList = 49B503DF1E048EAC00B8AFDE /* Build configuration list for PBXProject "Bahnhofsfotos" */;
@@ -267,6 +326,7 @@
 			projectRoot = "";
 			targets = (
 				49B503E31E048EAD00B8AFDE /* Bahnhofsfotos */,
+				DFCC338F22FEFCF3003B5F23 /* BahnhofsfotosUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -281,6 +341,13 @@
 				49B503EF1E048EAE00B8AFDE /* Assets.xcassets in Resources */,
 				49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */,
 				32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFCC338E22FEFCF3003B5F23 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +490,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DFCC338C22FEFCF3003B5F23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFCC339322FEFCF3003B5F23 /* BahnhofsfotosUITests.swift in Sources */,
+				DFCC339B22FEFD88003B5F23 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DFCC339622FEFCF3003B5F23 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49B503E31E048EAD00B8AFDE /* Bahnhofsfotos */;
+			targetProxy = DFCC339522FEFCF3003B5F23 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		49B503EB1E048EAE00B8AFDE /* Main.storyboard */ = {
@@ -603,6 +687,53 @@
 			};
 			name = Release;
 		};
+		DFCC339822FEFCF3003B5F23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = BahnhofsfotosUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.railway-stations.BahnhofsfotosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Bahnhofsfotos;
+			};
+			name = Debug;
+		};
+		DFCC339922FEFCF3003B5F23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = BahnhofsfotosUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.railway-stations.BahnhofsfotosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Bahnhofsfotos;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -620,6 +751,15 @@
 			buildConfigurations = (
 				49B503F71E048EAE00B8AFDE /* Debug */,
 				49B503F81E048EAE00B8AFDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFCC339722FEFCF3003B5F23 /* Build configuration list for PBXNativeTarget "BahnhofsfotosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFCC339822FEFCF3003B5F23 /* Debug */,
+				DFCC339922FEFCF3003B5F23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
