@@ -96,7 +96,3 @@ fastlane/screenshots
 fastlane/test_output
 
 # End of https://www.gitignore.io/api/swift
-
-# Secrets ¯\_(ツ)_/¯
-Secrets.plist
-GoogleService-Info.plist

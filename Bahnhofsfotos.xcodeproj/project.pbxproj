@@ -14,8 +14,6 @@
 		49455A691E04CB60007A5501 /* StationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A681E04CB60007A5501 /* StationStorage.swift */; };
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
 		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
-		497F0EC32013DFA40071470E /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 497F0EC22013DFA40071470E /* Secrets.plist */; };
-		497F0EC52013E16A0071470E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497F0EC42013E16A0071470E /* Secrets.swift */; };
 		49862314201A1F5800540C34 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E152B82017C47C00DB80A7 /* SafariServices.framework */; };
 		499087731ECE376D00AB45C2 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499087721ECE376D00AB45C2 /* HighScoreViewController.swift */; };
 		499087751ECE4FB200AB45C2 /* HighScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */; };
@@ -48,8 +46,7 @@
 		49455A6A1E04D73A007A5501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		49455A6E1E04E981007A5501 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		494CB7B11EB128C9009F07C2 /* Bahnhofsfotos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bahnhofsfotos.entitlements; sourceTree = "<group>"; };
-		497F0EC22013DFA40071470E /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
-		497F0EC42013E16A0071470E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		497A8ECB22FCABFE00E13EE9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		499087721ECE376D00AB45C2 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		499087741ECE4FB200AB45C2 /* HighScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewCell.swift; sourceTree = "<group>"; };
 		4992FD5D2014C92700F0521A /* PhotoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStorage.swift; sourceTree = "<group>"; };
@@ -92,7 +89,7 @@
 		49B503DB1E048EAC00B8AFDE = {
 			isa = PBXGroup;
 			children = (
-				497F0EC22013DFA40071470E /* Secrets.plist */,
+				497A8ECB22FCABFE00E13EE9 /* README.md */,
 				49B503E61E048EAE00B8AFDE /* Bahnhofsfotos */,
 				49B503E51E048EAE00B8AFDE /* Products */,
 				AEEA6128BE255DE686283DB3 /* Pods */,
@@ -129,7 +126,6 @@
 				49DF03B71E2BA7E8003C8159 /* API.swift */,
 				49B503F91E04991800B8AFDE /* Constants.swift */,
 				49F70DB11E85B41400154136 /* Helper.swift */,
-				497F0EC42013E16A0071470E /* Secrets.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -282,7 +278,6 @@
 			files = (
 				499B26401E36ADF400E081B3 /* EmptyView.xib in Resources */,
 				49B503F21E048EAE00B8AFDE /* LaunchScreen.storyboard in Resources */,
-				497F0EC32013DFA40071470E /* Secrets.plist in Resources */,
 				49B503EF1E048EAE00B8AFDE /* Assets.xcassets in Resources */,
 				49B503ED1E048EAE00B8AFDE /* Main.storyboard in Resources */,
 				32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */,
@@ -423,7 +418,6 @@
 				49455A671E04CA76007A5501 /* MapViewController.swift in Sources */,
 				499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */,
 				49F690F11E05272000BDE340 /* SettingsViewController.swift in Sources */,
-				497F0EC52013E16A0071470E /* Secrets.swift in Sources */,
 				49DF03B81E2BA7E8003C8159 /* API.swift in Sources */,
 				49B503FA1E04991800B8AFDE /* Constants.swift in Sources */,
 			);
