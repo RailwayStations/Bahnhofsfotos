@@ -577,6 +577,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.railway-stations.ios";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -598,6 +599,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.railway-stations.ios";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
