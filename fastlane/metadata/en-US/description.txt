@@ -1,0 +1,3 @@
+Mit der Bahnhofsfotos-App kannst Du das Projekt "Railway-Stations.org" unterstützen. 
+Sie ermöglicht es Dir, die Bahnhöfe zu finden, zu denen wir noch keine Bahnhofsfoto auf http://www.deutschlands-bahnhoefe.de / https://railway-stations.org haben. 
+Inzwischen kannst Du auch das Land auswählen. Es sind mit Stand August 2017 vier Länder vorhanden: Deutschland, die Schweiz, Finnland und United Kingdom.
