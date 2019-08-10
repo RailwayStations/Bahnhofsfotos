@@ -16,9 +16,53 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Push a new release build to the App Store"
-  lane :release do
-    build_app(workspace: "Bahnhofsfotos.xcworkspace", scheme: "Bahnhofsfotos")
-    upload_to_app_store
+  setup_travis
+
+  # --- Utilies ---
+
+  desc "Increment Version"
+  lane :increment do |options|
+
+    version = options[:version]
+
+    # Set App plist version
+    set_info_plist_value(
+      path: "Bahnhofsfotos/Info.plist",
+      key: "CFBundleShortVersionString", 
+      value: version
+    )
+    
+    # Commit plists to git
+    git_commit(
+      path: [
+        "Bahnhofsfotos/Info.plist"
+      ],
+      message: "Bahnhofsfotos Version #{version} (#{get_build_number()}) 🚀"
+    )
+
   end
+
+  desc "Increment Build Number"
+  lane :increment_build do
+    increment_build_number_in_plist(target: 'Bahnhofsfotos')
+  end
+
+  # --- Distribution ---
+
+  desc "Release a new version of Bahnhofsfotos"
+  lane :release do |options|
+
+    ensure_git_status_clean
+
+    version = options[:version]
+
+    increment_build()
+    increment(version: version)
+
+    match(type: "appstore")
+    build_app(workspace: "Bahnhofsfotos.xcworkspace", scheme: "Bahnhofsfotos")
+    pilot(skip_waiting_for_build_processing: true)
+
+  end
+
 end
