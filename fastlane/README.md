@@ -16,11 +16,21 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
+### ios increment
+```
+fastlane ios increment
+```
+Increment Version
+### ios increment_build
+```
+fastlane ios increment_build
+```
+Increment Build Number
 ### ios release
 ```
 fastlane ios release
 ```
-Push a new release build to the App Store
+Release a new version of Bahnhofsfotos
 
 ----
 
