@@ -37,7 +37,7 @@ platform :ios do
       path: [
         "Bahnhofsfotos/Info.plist"
       ],
-      message: "Bahnhofsfotos Version #{version} (#{get_build_number(xcodeproj: "Bahnhofsfotos.xcodeproj")}) 🚀"
+      message: "Bahnhofsfotos Version #{version} 🚀"
     )
 
   end
