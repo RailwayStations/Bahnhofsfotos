@@ -4,6 +4,7 @@ PODS:
   - CPDAcknowledgements (1.0.0)
   - Eureka (5.3.1)
   - FBAnnotationClusteringSwift (2.0)
+  - FontAwesomeIconFactory (3.0)
   - FontAwesomeKit.Swift (1.0.2)
   - ImagePicker (3.2.0)
   - Imaginary (5.0.0):
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - CPDAcknowledgements (~> 1.0)
   - Eureka (~> 5.3)
   - FBAnnotationClusteringSwift (from `https://github.com/666tos/FBAnnotationClusteringSwift`)
+  - FontAwesomeIconFactory (~> 3.0)
   - FontAwesomeKit.Swift (~> 1.0)
   - ImagePicker (from `https://github.com/hyperoslo/ImagePicker`)
   - Lightbox (~> 2.5)
@@ -38,6 +40,7 @@ SPEC REPOS:
     - Cache
     - CPDAcknowledgements
     - Eureka
+    - FontAwesomeIconFactory
     - FontAwesomeKit.Swift
     - Imaginary
     - Lightbox
@@ -67,6 +70,7 @@ SPEC CHECKSUMS:
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Eureka: 859877ab1e85661b6b7e810015d430e937d9cc7d
   FBAnnotationClusteringSwift: 9eb6e2acee2db56183c7ccff9239723598f286b0
+  FontAwesomeIconFactory: dfc89a126ff158d3a642aeeb265eaa9b179ad496
   FontAwesomeKit.Swift: cf839537bbff89b5853a00653b2a2f31748c2c1c
   ImagePicker: 1d950bbb2422548ed58791b4ec7f42fe42920511
   Imaginary: cf5e3a7dd6ab1dcbd47ba8ce5edf2307c4e99eb3
@@ -77,6 +81,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 33fcb42bd1feb53a37d873feb62c82967db5f7f6
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 6b2c9b83e5f361ef82fee58e2dbbb85327889705
+PODFILE CHECKSUM: 4493c34b362bb441f61f6d45c411b56881142c10
 
 COCOAPODS: 1.9.3
