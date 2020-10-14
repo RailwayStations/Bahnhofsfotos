@@ -1,83 +1,45 @@
 PODS:
-  - Alamofire (4.7.2)
-  - Cache (4.2.0)
+  - Alamofire (5.2.2)
+  - Cache (6.0.0)
   - CPDAcknowledgements (1.0.0)
-  - Eureka (4.1.1)
+  - Eureka (5.3.1)
   - FBAnnotationClusteringSwift (2.0)
-  - FontAwesomeIconFactory (3.0)
-  - FontAwesomeKit.Swift (0.4.2)
-  - GoogleSignIn (4.1.2):
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
-    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
-    - GTMOAuth2 (~> 1.0)
-    - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.1.4):
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.4)":
-    - GoogleToolboxForMac/DebugUtils (= 2.1.4)
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
-  - GTMOAuth2 (1.1.6):
-    - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.15):
-    - GTMSessionFetcher/Full (= 1.1.15)
-  - GTMSessionFetcher/Core (1.1.15)
-  - GTMSessionFetcher/Full (1.1.15):
-    - GTMSessionFetcher/Core (= 1.1.15)
-  - Hue (3.0.1)
-  - ImagePicker (3.1.0)
-  - Imaginary (3.0.3):
-    - Cache (~> 4.0)
-  - JSQMessagesViewController (7.3.5):
-    - JSQSystemSoundPlayer (~> 2.0.1)
-  - JSQSystemSoundPlayer (2.0.1)
-  - Lightbox (2.1.2):
-    - Hue (~> 3.0)
-    - Imaginary (~> 3.0)
-  - SQLite.swift (0.11.5):
-    - SQLite.swift/standard (= 0.11.5)
-  - SQLite.swift/standard (0.11.5)
-  - SwiftLint (0.25.1)
-  - SwiftyJSON (4.1.0)
-  - SwiftyUserDefaults (3.0.1)
-  - Toast-Swift (3.0.1)
+  - FontAwesomeKit.Swift (1.0.2)
+  - ImagePicker (3.2.0)
+  - Imaginary (5.0.0):
+    - Cache (~> 6.0.0)
+  - Lightbox (2.5.0):
+    - Imaginary (~> 5.0.0)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
+  - SwiftLint (0.40.3)
+  - SwiftyJSON (5.0.0)
+  - SwiftyUserDefaults (5.0.0)
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.6)
+  - Alamofire (~> 5.2)
   - CPDAcknowledgements (~> 1.0)
-  - Eureka (~> 4.0)
+  - Eureka (~> 5.3)
   - FBAnnotationClusteringSwift (from `https://github.com/666tos/FBAnnotationClusteringSwift`)
-  - FontAwesomeIconFactory (~> 3.0)
-  - FontAwesomeKit.Swift (~> 0.4)
-  - GoogleSignIn (~> 4.1)
+  - FontAwesomeKit.Swift (~> 1.0)
   - ImagePicker (from `https://github.com/hyperoslo/ImagePicker`)
-  - Imaginary (~> 3.0)
-  - JSQMessagesViewController (~> 7.3)
-  - Lightbox (~> 2.1)
-  - SQLite.swift (~> 0.11)
-  - SwiftLint (~> 0.23)
-  - SwiftyJSON (~> 4.0)
-  - SwiftyUserDefaults (~> 3.0)
-  - Toast-Swift (~> 3.0)
+  - Lightbox (~> 2.5)
+  - SQLite.swift (~> 0.12)
+  - SwiftLint (~> 0.40)
+  - SwiftyJSON (~> 5.0)
+  - SwiftyUserDefaults (~> 5.0)
+  - Toast-Swift (~> 5.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - Cache
     - CPDAcknowledgements
     - Eureka
-    - FontAwesomeIconFactory
     - FontAwesomeKit.Swift
-    - GoogleSignIn
-    - GoogleToolboxForMac
-    - GTMOAuth2
-    - GTMSessionFetcher
-    - Hue
     - Imaginary
-    - JSQMessagesViewController
-    - JSQSystemSoundPlayer
     - Lightbox
     - SQLite.swift
     - SwiftLint
@@ -96,33 +58,25 @@ CHECKOUT OPTIONS:
     :commit: b146e122c8f6a12c947f7d321c6efffae1947fab
     :git: https://github.com/666tos/FBAnnotationClusteringSwift
   ImagePicker:
-    :commit: 71aa8d19feb590edef3bdc9b48ff04cb2516fedc
+    :commit: ecee6e25559c64ce117aef61ee52dcc529e5ee23
     :git: https://github.com/hyperoslo/ImagePicker
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  Cache: f28f8dd64b632155aabf9b3906b036a659048251
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
-  Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
+  Eureka: 859877ab1e85661b6b7e810015d430e937d9cc7d
   FBAnnotationClusteringSwift: 9eb6e2acee2db56183c7ccff9239723598f286b0
-  FontAwesomeIconFactory: dfc89a126ff158d3a642aeeb265eaa9b179ad496
-  FontAwesomeKit.Swift: 252b2e05752e6c7410866693c7350e62313da910
-  GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GTMOAuth2: e8b6512c896235149df975c41d9a36c868ab7fba
-  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
-  Hue: 93e852fa6211ab35922ad8c293f51c43d6c79eb2
-  ImagePicker: db1fd7626337b2577c523bef5f499bbbe5a37079
-  Imaginary: 9b45836a5af881f452a86e0a1215772ae4712d00
-  JSQMessagesViewController: 6587f56aedbcb150a8ba1d968e1ef58b1bc758b7
-  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  Lightbox: 2dc267df8be2285bc7724cb11cbbf4aaaf59dced
-  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
-  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
-  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
+  FontAwesomeKit.Swift: cf839537bbff89b5853a00653b2a2f31748c2c1c
+  ImagePicker: 1d950bbb2422548ed58791b4ec7f42fe42920511
+  Imaginary: cf5e3a7dd6ab1dcbd47ba8ce5edf2307c4e99eb3
+  Lightbox: cc3d5124f024fa8197fd23f913160db1c61a1852
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
+  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  SwiftyUserDefaults: 33fcb42bd1feb53a37d873feb62c82967db5f7f6
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: a7b08f29e9aae7d7b196f347c0968b75ecfbf445
+PODFILE CHECKSUM: 6b2c9b83e5f361ef82fee58e2dbbb85327889705
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.3

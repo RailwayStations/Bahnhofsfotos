@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Get SQLite data
     try? CountryStorage.fetchAll()
-    if Defaults[.dataComplete] {
+    if Defaults.dataComplete {
       try? StationStorage.fetchAll()
     }
 
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       switch (url.pathComponents[0], url.pathComponents[1], url.pathComponents[2]) {
       case ("/", "uploadToken", let token):
         // set upload token
-        Defaults[.uploadToken] = token
+        Defaults.uploadToken = token
 
         if let rootViewController = window?.rootViewController {
           // find and show settings view controller

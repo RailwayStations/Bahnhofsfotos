@@ -24,7 +24,7 @@ class CountryStorage {
   }
   static var currentCountry: Country? {
     return CountryStorage.countries.first(where: { (country) -> Bool in
-      country.code == Defaults[.country]
+      country.code == Defaults.country
     })
   }
 

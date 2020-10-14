@@ -87,8 +87,8 @@ class Helper {
           try StationStorage.create(stations: stations, progressHandler: { counter in
             dispatchSource.add(data: UInt(counter))
           })
-          Defaults[.dataComplete] = true
-          Defaults[.lastUpdate] = StationStorage.lastUpdatedAt
+          Defaults.dataComplete = true
+          Defaults.lastUpdate = StationStorage.lastUpdatedAt
           try StationStorage.fetchAll()
         } catch {
           debugPrint(error)

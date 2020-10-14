@@ -90,7 +90,7 @@ class SettingsViewController: FormViewController {
       return (
         all: CountryStorage.countries,
         current: CountryStorage.countries.first { (country) -> Bool in
-          return country.code == Defaults[.country]
+          return country.code == Defaults.country
         }
       )
     }
@@ -119,7 +119,7 @@ class SettingsViewController: FormViewController {
       row.options = countries.all
       row.value = countries.current
     }.onChange { (row) in
-      Defaults[.country] = row.value?.code ?? ""
+      Defaults.country = row.value?.code ?? ""
     }
   }
   
@@ -130,9 +130,9 @@ class SettingsViewController: FormViewController {
     return LabelRow(RowTag.loadStations.rawValue) { row in
       row.title = rowTitle
       row.hidden = .function([RowTag.countryPicker.rawValue]) { _ in
-        return Defaults[.country] == ""
+        return Defaults.country == ""
       }
-      if let lastUpdate = Defaults[.lastUpdate] {
+      if let lastUpdate = Defaults.lastUpdate {
         row.value = lastUpdate.relativeDateString
       }
       }.onCellSelection { (_, row) in
@@ -148,7 +148,7 @@ class SettingsViewController: FormViewController {
           row.updateCell()
         }) {
           row.title = rowTitle
-          if let lastUpdate = Defaults[.lastUpdate] {
+          if let lastUpdate = Defaults.lastUpdate {
             row.value = lastUpdate.relativeDateString
           }
           row.updateCell()
@@ -179,10 +179,10 @@ class SettingsViewController: FormViewController {
   private func createPhotoOwnerRow() -> SwitchRow {
     return SwitchRow(RowTag.photoOwner.rawValue) { row in
       row.title = "Urheber der Fotos"
-      row.value = Defaults[.photoOwner]
+      row.value = Defaults.photoOwner
       }.onChange { row in
         guard let value = row.value else { return }
-        Defaults[.photoOwner] = value
+        Defaults.photoOwner = value
     }
   }
   
@@ -199,16 +199,16 @@ class SettingsViewController: FormViewController {
 
       <<< SwitchRow(RowTag.linkPhotos.rawValue) { row in
         row.title = "Fotos verlinken"
-        row.value = Defaults[.accountLinking]
+        row.value = Defaults.accountLinking
       }.onChange { row in
         guard let value = row.value else { return }
-        Defaults[.accountLinking] = value
+        Defaults.accountLinking = value
       }
 
       <<< PickerInlineRow<AccountType>(RowTag.accountType.rawValue) { row in
         row.title = "Account"
         row.hidden = .function([RowTag.linkPhotos.rawValue]) { _ in
-          return !Defaults[.accountLinking]
+          return !Defaults.accountLinking
         }
         row.options = [
           AccountType.none,
@@ -222,17 +222,17 @@ class SettingsViewController: FormViewController {
         row.displayValueFor = { (value: AccountType?) in
           return value?.rawValue
         }
-        row.value = Defaults[.accountType]
+        row.value = Defaults.accountType
       }.onChange { row in
         guard let value = row.value else { return }
-        Defaults[.accountType] = value
+        Defaults.accountType = value
       }
 
       <<< TextRow(RowTag.accountName.rawValue) { row in
-        row.value = Defaults[.accountName]
+        row.value = Defaults.accountName
         row.placeholder = "Accountname"
       }.onChange { row in
-        Defaults[.accountName] = row.value ?? ""
+        Defaults.accountName = row.value ?? ""
       }.onCellHighlightChanged { _, row in
         if !row.isHighlighted {
           row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
@@ -247,10 +247,10 @@ class SettingsViewController: FormViewController {
     return Section(FormSection.upload.rawValue)
 
       <<< TextRow(RowTag.accountNickname.rawValue) { row in
-        row.value = Defaults[.accountNickname]
+        row.value = Defaults.accountNickname
         row.placeholder = "Nickname"
       }.onChange { row in
-        Defaults[.accountNickname] = row.value ?? ""
+        Defaults.accountNickname = row.value ?? ""
       }.onCellHighlightChanged { _, row in
         if !row.isHighlighted {
           row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
@@ -258,10 +258,10 @@ class SettingsViewController: FormViewController {
       }
 
       <<< TextRow(RowTag.accountEmail.rawValue) { row in
-        row.value = Defaults[.accountEmail]
+        row.value = Defaults.accountEmail
         row.placeholder = "E-Mailadresse"
       }.onChange { row in
-        Defaults[.accountEmail] = row.value ?? ""
+        Defaults.accountEmail = row.value ?? ""
       }.onCellHighlightChanged { _, row in
         if !row.isHighlighted {
           row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
@@ -279,21 +279,21 @@ class SettingsViewController: FormViewController {
           RowTag.accountEmail.rawValue
         ], { form -> Bool in
           guard
-            let nickname = Defaults[.accountNickname],
-            let email = Defaults[.accountEmail],
-            let name = Defaults[.accountName]
+            let nickname = Defaults.accountNickname,
+            let email = Defaults.accountEmail,
+            let name = Defaults.accountName
             else {
               return true
           }
 
-          return !(Defaults[.photoOwner]
+          return !(Defaults.photoOwner
             && nickname.count > 2
             && email.count > 2
             && name.count > 2)
         })
       }.onCellSelection { cell, row in
         // check if token was created recently
-        if let lastRequest = Defaults[.uploadTokenRequested] {
+        if let lastRequest = Defaults.uploadTokenRequested {
           guard Date() > lastRequest.addingTimeInterval(60 * 5) else {
             self.view.makeToast("Der Token wurde erst vor kurzem erstellt.")
             return
@@ -310,7 +310,7 @@ class SettingsViewController: FormViewController {
 
           let date = Date()
           if success {
-            Defaults[.uploadTokenRequested] = date
+            Defaults.uploadTokenRequested = date
             let alert = UIAlertController(title: "Token angefordert", message: "Der Token wurde per E-Mail verschickt.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -326,10 +326,10 @@ class SettingsViewController: FormViewController {
     return Section()
 
       <<< TextRow { row in
-        row.value = Defaults[.uploadToken]
+        row.value = Defaults.uploadToken
         row.placeholder = "Upload Token"
       }.onChange { row in
-        Defaults[.uploadToken] = row.value ?? ""
+        Defaults.uploadToken = row.value ?? ""
       }.onCellHighlightChanged { _, row in
         if !row.isHighlighted {
           row.value = (row.value ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
