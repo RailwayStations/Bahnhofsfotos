@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '13.0'
 
 plugin 'cocoapods-acknowledgements'
 
@@ -7,21 +7,16 @@ target 'Bahnhofsfotos' do
   inhibit_all_warnings!
 
   # Pods for Bahnhofsfotos
-  pod 'Alamofire', '~> 4.6'
+  pod 'Alamofire', '~> 5.2'
   pod 'CPDAcknowledgements', '~> 1.0'
-  pod 'Eureka', '~> 4.0'
+  pod 'Eureka', '~> 5.3'
   pod 'FBAnnotationClusteringSwift', :git => 'https://github.com/666tos/FBAnnotationClusteringSwift'
-  pod 'FontAwesomeIconFactory', '~> 3.0'
-  pod 'FontAwesomeKit.Swift', '~> 0.4'
-  pod 'GoogleSignIn', '~> 4.1'
+  pod 'FontAwesomeKit.Swift', '~> 1.0'
   pod 'ImagePicker', :git => 'https://github.com/hyperoslo/ImagePicker'
-  pod 'Imaginary', '~> 3.0'
-  pod 'JSQMessagesViewController', '~> 7.3'
-  pod 'Lightbox', '~> 2.1'
-  pod 'SQLite.swift', '~> 0.11'
-  pod 'SwiftLint', '~> 0.23'
-  pod 'SwiftyJSON', '~> 4.0'
-  pod 'SwiftyUserDefaults', '~> 3.0'
-  pod 'Toast-Swift', '~> 3.0'
-
+  pod 'Lightbox', '~> 2.5'
+  pod 'SQLite.swift', '~> 0.12'
+  pod 'SwiftLint', '~> 0.40'
+  pod 'SwiftyJSON', '~> 5.0'
+  pod 'SwiftyUserDefaults', '~> 5.0'
+  pod 'Toast-Swift', '~> 5.0'
 end

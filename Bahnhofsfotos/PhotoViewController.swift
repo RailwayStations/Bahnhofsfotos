@@ -72,7 +72,7 @@ class PhotoViewController: UIViewController {
       return
     }
 
-    let configuration = Configuration()
+    let configuration = ImagePickerConfiguration()
     configuration.allowMultiplePhotoSelection = false
     configuration.allowedOrientations = .landscape
     configuration.cancelButtonTitle = "Abbruch"
@@ -87,7 +87,7 @@ class PhotoViewController: UIViewController {
     let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
     // Share by upload
-    if Defaults[.uploadToken] != nil {
+    if Defaults.uploadToken != nil {
       var title = "Direkt-Upload"
       if let size = getSizeStringOfImage() {
         title += " [\(size)]"
@@ -165,15 +165,15 @@ class PhotoViewController: UIViewController {
 
     if MFMailComposeViewController.canSendMail() {
       if let email = CountryStorage.currentCountry?.email {
-        guard let username = Defaults[.accountName] else {
+        guard let username = Defaults.accountName else {
           showError("Kein Accountname hinterlegt. Bitte unter \"Einstellungen\" angeben.")
           return
         }
 
         var text = "Bahnhof: \(station.name)\n"
         text += "Lizenz: CC0\n"
-        text += "Verlinkung: \(Defaults[.accountLinking] == true ? "Ja" : "Nein")\n"
-        text += "Accounttyp: \(Defaults[.accountType])\n"
+        text += "Verlinkung: \(Defaults.accountLinking == true ? "Ja" : "Nein")\n"
+        text += "Accounttyp: \(Defaults.accountType)\n"
         text += "Accountname: \(username)"
 
         let mailController = MFMailComposeViewController()

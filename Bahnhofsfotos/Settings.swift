@@ -8,11 +8,11 @@
 
 import SwiftyUserDefaults
 
-enum License: String {
+enum License: String, DefaultsSerializable {
   case cc0
 }
 
-enum AccountType: String {
+enum AccountType: String, DefaultsSerializable {
   case none = "Kein"
   case twitter = "Twitter"
   case facebook = "Facebook"
@@ -23,29 +23,17 @@ enum AccountType: String {
   case misc = "Sonstiges"
 }
 
-extension UserDefaults {
-  subscript(key: DefaultsKey<License>) -> License {
-    get { return unarchive(key) ?? License.cc0 }
-    set { archive(key, newValue) }
-  }
-
-  subscript(key: DefaultsKey<AccountType>) -> AccountType {
-    get { return unarchive(key) ?? AccountType.none }
-    set { archive(key, newValue) }
-  }
-}
-
 extension DefaultsKeys {
-  static let country = DefaultsKey<String>("country")
-  static let lastUpdate = DefaultsKey<Date?>("lastUpdate")
-  static let dataComplete = DefaultsKey<Bool>("dataComplete")
-  static let license = DefaultsKey<License>("license")
-  static let photoOwner = DefaultsKey<Bool>("photoOwner")
-  static let accountLinking = DefaultsKey<Bool>("accountLinking")
-  static let accountType = DefaultsKey<AccountType>("accountType")
-  static let accountName = DefaultsKey<String?>("accountName")
-  static let accountNickname = DefaultsKey<String?>("accountNickname")
-  static let accountEmail = DefaultsKey<String?>("accountEmail")
-  static let uploadToken = DefaultsKey<String?>("uploadToken")
-  static let uploadTokenRequested = DefaultsKey<Date?>("uploadTokenRequested")
+  var country: DefaultsKey<String> { .init("country", defaultValue: "") }
+  var lastUpdate: DefaultsKey<Date?> { .init("lastUpdate") }
+  var dataComplete: DefaultsKey<Bool> { .init("dataComplete", defaultValue: false) }
+  var license: DefaultsKey<License> { .init("license", defaultValue: .cc0) }
+  var photoOwner: DefaultsKey<Bool> { .init("photoOwner", defaultValue: true) }
+  var accountLinking: DefaultsKey<Bool> { .init("accountLinking", defaultValue: false) }
+  var accountType: DefaultsKey<AccountType> { .init("accountType", defaultValue: .none) }
+  var accountName: DefaultsKey<String?> { .init("accountName") }
+  var accountNickname: DefaultsKey<String?> { .init("accountNickname") }
+  var accountEmail: DefaultsKey<String?> { .init("accountEmail") }
+  var uploadToken: DefaultsKey<String?> { .init("uploadToken") }
+  var uploadTokenRequested: DefaultsKey<Date?> { .init("uploadTokenRequested") }
 }

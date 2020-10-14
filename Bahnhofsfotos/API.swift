@@ -23,13 +23,12 @@ class API {
 
   // Get all countries
   static func getCountries(completionHandler: @escaping ([Country]) -> Void) {
-
-    Alamofire.request(API.baseUrl + "/countries.json")
+    AF.request(API.baseUrl + "/countries.json")
       .responseJSON { response in
 
         var countries = [Country]()
 
-        guard let json = JSON(response.result.value as Any).array else {
+        guard let json = JSON(response.data as Any).array else {
           completionHandler(countries)
           return
         }
@@ -51,15 +50,14 @@ class API {
   static func getStations(withPhoto hasPhoto: Bool?, completionHandler: @escaping ([Station]) -> Void) {
 
     var parameters = Parameters()
-    if Defaults[.country].count > 0 {
-      parameters["country"] = Defaults[.country].lowercased()
+    if Defaults.country.count > 0 {
+      parameters["country"] = Defaults.country.lowercased()
     }
     if let hasPhoto = hasPhoto {
       parameters["hasPhoto"] = hasPhoto.description
     }
 
-    Alamofire.request(API.baseUrl + "/stations",
-                      method: .get,
+    AF.request(API.baseUrl + "/stations",
                       parameters: parameters,
                       encoding: URLEncoding.default,
                       headers: nil)
@@ -67,7 +65,7 @@ class API {
 
         var stations = [Station]()
 
-        guard let json = JSON(response.result.value as Any).array else {
+        guard let json = JSON(response.data as Any).array else {
           completionHandler(stations)
           return
         }
@@ -89,18 +87,17 @@ class API {
   static func getPhotographers(completionHandler: @escaping ([String: Any]) -> Void) {
 
     var parameters = Parameters()
-    if Defaults[.country].count > 0 {
-      parameters["country"] = Defaults[.country].lowercased()
+    if Defaults.country.count > 0 {
+      parameters["country"] = Defaults.country.lowercased()
     }
 
-    Alamofire.request(API.baseUrl + "/photographers",
-                      method: .get,
+    AF.request(API.baseUrl + "/photographers",
                       parameters: parameters,
                       encoding: URLEncoding.default,
                       headers: nil)
       .responseJSON { response in
 
-        guard let value = response.result.value, let json = JSON(value).dictionaryObject else {
+        guard let json = JSON(response.data as Any).dictionaryObject else {
           completionHandler([:])
           return
         }
@@ -112,15 +109,15 @@ class API {
   // Register user
   static func register(completionHandler: @escaping (Bool) -> Void) {
     let parameters: Parameters = [
-      "nickname": Defaults[.accountNickname]!,
-      "email": Defaults[.accountEmail]!,
+      "nickname": Defaults.accountNickname ?? "",
+      "email": Defaults.accountEmail ?? "",
       "license": "CC0",
-      "photoOwner": Defaults[.photoOwner],
-      "linking": Defaults[.accountLinking] ? Defaults[.accountType].rawValue : "NO",
-      "link": Defaults[.accountName]!
+      "photoOwner": Defaults.photoOwner,
+      "linking": Defaults.accountType.rawValue,
+      "link": Defaults.accountName ?? ""
     ]
 
-    Alamofire.request(API.baseUrl + "/registration",
+    AF.request(API.baseUrl + "/registration",
                       method: .post,
                       parameters: parameters,
                       encoding: JSONEncoding.default).response { dataResponse in
@@ -141,9 +138,9 @@ class API {
     // 409 - photo already exists
     // 413 - image too large (maximum 20 MB)
     guard
-      let token = Defaults[.uploadToken],
-      let nickname = Defaults[.accountNickname],
-      let email = Defaults[.accountEmail]
+      let token = Defaults.uploadToken,
+      let nickname = Defaults.accountNickname,
+      let email = Defaults.accountEmail
       else {
         completionHandler { throw Error.message("Fehlerhafte Daten in Einstellungen überprüfen") }
         return
@@ -158,10 +155,10 @@ class API {
       "Content-Type": "image/jpeg"  // "image/png" or "image/jpeg"
     ]
 
-    let request = Alamofire.upload(imageData,
-                                   to: API.baseUrl + "/photoUpload",
-                                   method: .post,
-                                   headers: headers)
+    let request = AF.upload(imageData,
+                            to: API.baseUrl + "/photoUpload",
+                            method: .post,
+                            headers: headers)
 
     if let progressHandler = progressHandler {
       request.uploadProgress { progress in
