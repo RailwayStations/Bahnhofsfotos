@@ -27,7 +27,7 @@ platform :ios do
 
     # Set App plist version
     set_info_plist_value(
-      path: "Bahnhofsfotos/Info.plist",
+      path: "iOS/Application/Info.plist",
       key: "CFBundleShortVersionString", 
       value: version
     )
@@ -35,7 +35,7 @@ platform :ios do
     # Commit plists to git
     git_commit(
       path: [
-        "Bahnhofsfotos/Info.plist"
+        "iOS/Application/Info.plist"
       ],
       message: "Bahnhofsfotos Version #{version} 🚀"
     )
