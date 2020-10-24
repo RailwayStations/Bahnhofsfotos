@@ -6,6 +6,7 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import Combine
 import Imaginary
 import ImagePicker
 import Lightbox
@@ -14,6 +15,10 @@ import SwiftyUserDefaults
 import UIKit
 
 class PhotoViewController: UIViewController {
+  private var uploadCancellable: AnyCancellable?
+  private lazy var photoUseCase: PhotosUseCase = {
+    PhotosUseCase(photosRepository: PhotosRepository())
+  }()
 
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var shareBarButton: UIBarButtonItem!
@@ -129,32 +134,31 @@ class PhotoViewController: UIViewController {
     guard let station = StationStorage.currentStation, let country = CountryStorage.currentCountry else { return }
     if let imageData = UIImageJPEGRepresentation(image, 0.5) {
       Helper.setIsUserInteractionEnabled(in: self, to: false)
-      UIApplication.shared.isNetworkActivityIndicatorVisible = true
       activityIndicatorView.startAnimating()
       progressView.alpha = 1
       progressView.progress = 0
       imageView.isHidden = true
 
-      API.uploadPhoto(imageData: imageData, ofStation: station, inCountry: country, progressHandler: { progress in
-        self.progressView.setProgress(Float(progress), animated: true)
-      }) { result in
-        Helper.setIsUserInteractionEnabled(in: self, to: true)
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        self.activityIndicatorView.stopAnimating()
-        self.progressView.progress = 1
-        self.progressView.alpha = 0
-        self.imageView.isHidden = false
+      uploadCancellable = photoUseCase.uploadPhoto(imageData, station: station, country: country)
+        .sink { completion in
+          switch completion {
+          case .finished:
+            Helper.setIsUserInteractionEnabled(in: self, to: true)
+            self.activityIndicatorView.stopAnimating()
+            self.progressView.progress = 1
+            self.progressView.alpha = 0
+            self.imageView.isHidden = false
+            self.showError("Foto wurde erfolgreich hochgeladen")
+            self.setPhotoAsShared()
 
-        do {
-          try result()
-          self.showError("Foto wurde erfolgreich hochgeladen")
-          self.setPhotoAsShared()
-        } catch API.Error.message(let msg) {
-          self.showError(msg)
-        } catch {
-          self.showError(error.localizedDescription)
-        }
-      }
+          case .failure(let error):
+            if let error = error as? API.Error, case .message(let msg) = error {
+              self.showError(msg)
+            } else {
+              self.showError(error.localizedDescription)
+            }
+          }
+        } receiveValue: { _ in }
     }
   }
 
@@ -272,5 +276,4 @@ extension PhotoViewController: MFMailComposeViewControllerDelegate {
     }
     controller.dismiss(animated: true, completion: nil)
   }
-
 }

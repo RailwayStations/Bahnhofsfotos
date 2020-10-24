@@ -6,13 +6,18 @@
 //  Copyright © 2017 Railway-Stations. All rights reserved.
 //
 
+import Combine
 import UIKit
 
 let kCellIdentifier = "scoreCell"
 
 class HighScoreViewController: UIViewController {
 
-  var photographers = [(key: String, value: Int)]()
+  private var photographers = [(key: String, value: Int)]()
+  private var fetchCancellable: AnyCancellable?
+  private lazy var photographersUseCase: PhotographersUseCase = {
+    PhotographersUseCase(photographersRepository: PhotographersRepository())
+  }()
 
   @IBOutlet weak var tableView: UITableView!
 
@@ -23,19 +28,15 @@ class HighScoreViewController: UIViewController {
   }
 
   func loadData() {
-    UIApplication.shared.isNetworkActivityIndicatorVisible = true
     view.makeToastActivity(.center)
 
-    API.getPhotographers { photographers in
-      UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-      if let photographers = photographers as? [String: Int] {
-        self.photographers = photographers.sorted(by: { $0.value > $1.value })
+    fetchCancellable = photographersUseCase.fetchPhotographers()
+      .replaceError(with: [:])
+      .sink(receiveValue: { photographers in
+        self.photographers = photographers.map { $0 }
         self.tableView.reloadData()
-      }
-
-      self.view.hideToastActivity()
-    }
+        self.view.hideToastActivity()
+      })
   }
 
 }

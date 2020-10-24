@@ -16,11 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Get SQLite data
-    try? CountryStorage.fetchAll()
-    if Defaults.dataComplete {
-      try? StationStorage.fetchAll()
-    }
+    ReadCountriesAndStationsUseCase(
+      countriesRepository: CountriesRepository(),
+      stationsRepository: StationsRepository()
+    ).readStationsOfCountry()
 
     return true
   }
