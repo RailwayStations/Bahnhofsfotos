@@ -40,67 +40,6 @@ class Helper {
     viewController.navigationController?.view.isUserInteractionEnabled = enabled
   }
 
-  // Get and save countries
-  static func loadCountries(completionHandler: @escaping () -> Void) {
-    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    API.getCountries { countries in
-      UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-      // Save countries in background
-      DispatchQueue.global(qos: .userInitiated).async {
-        do {
-          try CountryStorage.removeAll()
-
-          for country in countries {
-            try country.save()
-          }
-          try CountryStorage.fetchAll()
-        } catch {
-          debugPrint(error)
-        }
-
-        DispatchQueue.main.async {
-          completionHandler()
-        }
-      }
-    }
-  }
-
-  // Get and save stations
-  static func loadStations(progressHandler: @escaping (Int, Int) -> Void, completionHandler: @escaping () -> Void) {
-    UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    API.getStations(withPhoto: nil) { stations in
-      UIApplication.shared.isNetworkActivityIndicatorVisible = false
-
-      let dispatchSource = DispatchSource.makeUserDataAddSource(queue: .main)
-      dispatchSource.setEventHandler {
-        if dispatchSource.data > UInt(stations.count) { return }
-        progressHandler(Int(dispatchSource.data), stations.count)
-      }
-      dispatchSource.resume()
-
-      // Save stations in background
-      DispatchQueue.global(qos: .userInitiated).async {
-        do {
-          try PhotoStorage.removeAll()
-          try StationStorage.removeAll()
-          try StationStorage.create(stations: stations, progressHandler: { counter in
-            dispatchSource.add(data: UInt(counter))
-          })
-          Defaults.dataComplete = true
-          Defaults.lastUpdate = StationStorage.lastUpdatedAt
-          try StationStorage.fetchAll()
-        } catch {
-          debugPrint(error)
-        }
-
-        DispatchQueue.main.async {
-          completionHandler()
-        }
-      }
-    }
-  }
-
   static func openNavigation(to station: Station) {
     let placemark = MKPlacemark(coordinate: station.coordinate, addressDictionary: nil)
     let mapItem = MKMapItem(placemark: placemark)

@@ -6,6 +6,7 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import Combine
 import CPDAcknowledgements
 import Eureka
 import SwiftyUserDefaults
@@ -46,6 +47,16 @@ class SettingsViewController: FormViewController {
     tableView.reloadData()
   }
 
+  private lazy var countriesUseCase: CountriesUseCase = {
+    CountriesUseCase(countriesRepository: CountriesRepository())
+  }()
+
+  private lazy var stationsUseCase: StationsUseCase = {
+    StationsUseCase(stationsRepository: StationsRepository())
+  }()
+
+  private var cancellables = [AnyCancellable]()
+
   // MARK: - Eureka
 
   private func createForm() {
@@ -74,13 +85,16 @@ class SettingsViewController: FormViewController {
       Helper.setIsUserInteractionEnabled(in: self, to: false)
       self.view.makeToastActivity(.center)
 
-      Helper.loadCountries {
-        row.title = rowTitle
-        row.value = ""
-        row.updateCell()
-        Helper.setIsUserInteractionEnabled(in: self, to: true)
-        self.view.hideToastActivity()
-      }
+      self.countriesUseCase.fetchCountries()
+        .replaceError(with: [])
+        .sink { _ in
+          row.title = rowTitle
+          row.value = ""
+          row.updateCell()
+          Helper.setIsUserInteractionEnabled(in: self, to: true)
+          self.view.hideToastActivity()
+        }
+        .store(in: &self.cancellables)
     }
   }
 
@@ -137,25 +151,25 @@ class SettingsViewController: FormViewController {
       }
       }.onCellSelection { (_, row) in
         row.title = "Bahnhofsdaten herunterladen"
+        row.value = nil
         row.updateCell()
         
         Helper.setIsUserInteractionEnabled(in: self, to: false)
         self.view.makeToastActivity(.center)
 
-        Helper.loadStations(progressHandler: { progress, count in
-          row.title = "Bahnhof speichern: \(progress)/\(count)"
-          row.value = "\(UInt(round(Float(progress) / Float(count) * 100)))%"
-          row.updateCell()
-        }) {
-          row.title = rowTitle
-          if let lastUpdate = Defaults.lastUpdate {
-            row.value = lastUpdate.relativeDateString
+        self.stationsUseCase.fetchStations()
+          .replaceError(with: [])
+          .sink { stations in
+            row.title = rowTitle
+            if let lastUpdate = Defaults.lastUpdate {
+              row.value = lastUpdate.relativeDateString
+            }
+            row.updateCell()
+
+            Helper.setIsUserInteractionEnabled(in: self, to: true)
+            self.view.hideToastActivity()
           }
-          row.updateCell()
-          
-          Helper.setIsUserInteractionEnabled(in: self, to: true)
-          self.view.hideToastActivity()
-        }
+          .store(in: &self.cancellables)
     }
   }
 

@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67F95631E12281F589409A6D /* Pods-Bahnhofsfotos-metadata.plist */; };
+		49017CA22540C06C0067A500 /* CountriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CA12540C06C0067A500 /* CountriesUseCase.swift */; };
+		49017CA72540C2360067A500 /* CountriesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CA62540C2360067A500 /* CountriesRepository.swift */; };
+		49017CBF2541F0A10067A500 /* StationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CBE2541F0A10067A500 /* StationsRepository.swift */; };
+		49017CC32541F4E10067A500 /* StationsUserCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CC22541F4E10067A500 /* StationsUserCase.swift */; };
+		49017CCB254476850067A500 /* PhotosUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CCA254476850067A500 /* PhotosUseCase.swift */; };
+		49017CCF254478570067A500 /* PhotographersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CCE254478570067A500 /* PhotographersRepository.swift */; };
+		49017CD525448D930067A500 /* PhotographersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CD425448D930067A500 /* PhotographersUseCase.swift */; };
+		49017CD925448DF50067A500 /* PhotosRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CD825448DF50067A500 /* PhotosRepository.swift */; };
+		49017CDF2544A1C80067A500 /* ReadCountriesAndStationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49017CDE2544A1C80067A500 /* ReadCountriesAndStationsUseCase.swift */; };
 		4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4918B1E11E3E7C62007D5757 /* Settings.swift */; };
 		49200C211EA172840054F426 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49200C201EA172840054F426 /* StationAnnotation.swift */; };
 		49455A671E04CA76007A5501 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A661E04CA76007A5501 /* MapViewController.swift */; };
@@ -50,6 +59,15 @@
 /* Begin PBXFileReference section */
 		1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bahnhofsfotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D78A7B9AED7B7EE6DBA4F26 /* Pods-Bahnhofsfotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.release.xcconfig"; sourceTree = "<group>"; };
+		49017CA12540C06C0067A500 /* CountriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesUseCase.swift; sourceTree = "<group>"; };
+		49017CA62540C2360067A500 /* CountriesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesRepository.swift; sourceTree = "<group>"; };
+		49017CBE2541F0A10067A500 /* StationsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsRepository.swift; sourceTree = "<group>"; };
+		49017CC22541F4E10067A500 /* StationsUserCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsUserCase.swift; sourceTree = "<group>"; };
+		49017CCA254476850067A500 /* PhotosUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUseCase.swift; sourceTree = "<group>"; };
+		49017CCE254478570067A500 /* PhotographersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographersRepository.swift; sourceTree = "<group>"; };
+		49017CD425448D930067A500 /* PhotographersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotographersUseCase.swift; sourceTree = "<group>"; };
+		49017CD825448DF50067A500 /* PhotosRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRepository.swift; sourceTree = "<group>"; };
+		49017CDE2544A1C80067A500 /* ReadCountriesAndStationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCountriesAndStationsUseCase.swift; sourceTree = "<group>"; };
 		4918B1E11E3E7C62007D5757 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		49200C201EA172840054F426 /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		49455A661E04CA76007A5501 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -107,6 +125,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49017CA02540BFEC0067A500 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				49017CA12540C06C0067A500 /* CountriesUseCase.swift */,
+				49017CD425448D930067A500 /* PhotographersUseCase.swift */,
+				49017CCA254476850067A500 /* PhotosUseCase.swift */,
+				49017CDE2544A1C80067A500 /* ReadCountriesAndStationsUseCase.swift */,
+				49017CC22541F4E10067A500 /* StationsUserCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		49017CA52540C1E70067A500 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				49017CA62540C2360067A500 /* CountriesRepository.swift */,
+				49017CCE254478570067A500 /* PhotographersRepository.swift */,
+				49017CD825448DF50067A500 /* PhotosRepository.swift */,
+				49017CBE2541F0A10067A500 /* StationsRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		49775BA6253758D000554CEF /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				49775BBB25375B0700554CEF /* Entities */,
+				49017CA02540BFEC0067A500 /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -133,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				49775BB72537597B00554CEF /* Network */,
+				49017CA52540C1E70067A500 /* Repositories */,
 				49775C1E2537614600554CEF /* Storage */,
 			);
 			path = Data;
@@ -471,21 +514,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49017CBF2541F0A10067A500 /* StationsRepository.swift in Sources */,
 				49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */,
 				49200C211EA172840054F426 /* StationAnnotation.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
 				4998C8DF2016166400BA24AD /* Photo.swift in Sources */,
 				499087751ECE4FB200AB45C2 /* HighScoreTableViewCell.swift in Sources */,
+				49017CD525448D930067A500 /* PhotographersUseCase.swift in Sources */,
 				49F70DB21E85B41400154136 /* Helper.swift in Sources */,
+				49017CCF254478570067A500 /* PhotographersRepository.swift in Sources */,
 				499087731ECE376D00AB45C2 /* HighScoreViewController.swift in Sources */,
 				49B503FC1E04A1B700B8AFDE /* Station.swift in Sources */,
+				49017CD925448DF50067A500 /* PhotosRepository.swift in Sources */,
+				49017CDF2544A1C80067A500 /* ReadCountriesAndStationsUseCase.swift in Sources */,
 				499B26421E36B08800E081B3 /* ViewFromNib.swift in Sources */,
 				49775C222537614600554CEF /* CountryStorage.swift in Sources */,
 				49C42F6E1E3FA875005544C0 /* Country.swift in Sources */,
+				49017CCB254476850067A500 /* PhotosUseCase.swift in Sources */,
 				49775C242537614600554CEF /* PhotoStorage.swift in Sources */,
 				4918B1E21E3E7C62007D5757 /* Settings.swift in Sources */,
+				49017CA22540C06C0067A500 /* CountriesUseCase.swift in Sources */,
 				49455A671E04CA76007A5501 /* MapViewController.swift in Sources */,
 				499B263E1E36A16400E081B3 /* EmptyView.swift in Sources */,
+				49017CC32541F4E10067A500 /* StationsUserCase.swift in Sources */,
+				49017CA72540C2360067A500 /* CountriesRepository.swift in Sources */,
 				49F690F11E05272000BDE340 /* SettingsViewController.swift in Sources */,
 				49DF03B81E2BA7E8003C8159 /* API.swift in Sources */,
 				49775C232537614600554CEF /* StationStorage.swift in Sources */,
