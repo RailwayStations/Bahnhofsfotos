@@ -7,19 +7,10 @@
 //
 
 import Combine
+import Domain
 import SwiftyUserDefaults
 
-final class StationsRepository {}
-
-// MARK: - StationsRepositoryType
-
-protocol StationsRepositoryType {
-  func fetchStations() -> AnyPublisher<[Station], Error>
-  func readStations() throws
-  func getStations() -> [Station]
-}
-
-extension StationsRepository: StationsRepositoryType {
+final class StationsRepository: StationsRepositoryType {
   func fetchStations() -> AnyPublisher<[Station], Error> {
     Deferred {
       Future<[Station], Error> { promise in
@@ -27,7 +18,7 @@ extension StationsRepository: StationsRepositoryType {
           do {
             try PhotoStorage.removeAll()
             try StationStorage.removeAll()
-            try StationStorage.create(stations: stations)
+            try StationStorage.create(stations: stations.map({ $0.toDomain() }))
             Defaults.dataComplete = true
             Defaults.lastUpdate = StationStorage.lastUpdatedAt
             try StationStorage.fetchAll()

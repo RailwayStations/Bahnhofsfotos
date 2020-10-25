@@ -7,11 +7,8 @@
 //
 
 import Combine
+import Domain
 import Foundation
-
-protocol PhotosRepositoryType {
-  func uploadPhoto(_ photo: Data, station: Station, country: Country) -> AnyPublisher<Void, Error>
-}
 
 final class PhotosRepository: PhotosRepositoryType {
   func uploadPhoto(_ photo: Data, station: Station, country: Country) -> AnyPublisher<Void, Error> {

@@ -6,6 +6,7 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import Domain
 import SQLite
 import SwiftyJSON
 
@@ -179,9 +180,9 @@ extension Station {
   }
 
   static func from(row: Row) -> Station {
-    return Station(
+    .init(
       id: try! row.get(StationStorage.expressionId),
-      title: try! row.get(StationStorage.expressionTitle),
+      name: try! row.get(StationStorage.expressionTitle),
       country: try! row.get(StationStorage.expressionCountry),
       lat: try! row.get(StationStorage.expressionLat),
       lon: try! row.get(StationStorage.expressionLon),

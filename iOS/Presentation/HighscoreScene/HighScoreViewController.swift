@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Domain
 import UIKit
 
 let kCellIdentifier = "scoreCell"
@@ -31,7 +32,7 @@ class HighScoreViewController: UIViewController {
     view.makeToastActivity(.center)
 
     fetchCancellable = photographersUseCase.fetchPhotographers()
-      .replaceError(with: [:])
+      .replaceError(with: [])
       .sink(receiveValue: { photographers in
         self.photographers = photographers.map { $0 }
         self.tableView.reloadData()

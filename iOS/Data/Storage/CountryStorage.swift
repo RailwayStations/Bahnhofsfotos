@@ -6,8 +6,8 @@
 //  Copyright © 2017 MrHaitec. All rights reserved.
 //
 
+import Domain
 import SQLite
-import SwiftyJSON
 import SwiftyUserDefaults
 
 class CountryStorage {
@@ -48,9 +48,9 @@ class CountryStorage {
 
     // find path to SQLite database
     guard let path = NSSearchPathForDirectoriesInDomains(
-      .documentDirectory, .userDomainMask, true)
-      .first else {
-        throw CountryError.message("Path not found.")
+            .documentDirectory, .userDomainMask, true)
+            .first else {
+      throw CountryError.message("Path not found.")
     }
 
     // open connection
@@ -118,20 +118,21 @@ class CountryStorage {
 
 }
 
-// MARK: - Station extension
+// MARK: - Country extension
 extension Country {
 
   func save() throws {
-      try CountryStorage.create(country: self)
+    try CountryStorage.create(country: self)
   }
 
   static func from(row: Row) -> Country {
-      return Country(country: try! row.get(CountryStorage.expressionCountryName),
-                     countryflag: try! row.get(CountryStorage.expressionCountryCode),
-                     email: try! row.get(CountryStorage.expressionEmail),
-                     twitterTags: try! row.get(CountryStorage.expressionTwitterTags),
-                     timetableUrlTemplate: try! row.get(CountryStorage.expressionTimetableUrlTemplate)
-      )
+    .init(
+      name: try! row.get(CountryStorage.expressionCountryName),
+      code: try! row.get(CountryStorage.expressionCountryCode),
+      email: try! row.get(CountryStorage.expressionEmail),
+      twitterTags: try! row.get(CountryStorage.expressionTwitterTags),
+      timetableUrlTemplate: try! row.get(CountryStorage.expressionTimetableUrlTemplate)
+    )
   }
 
 }

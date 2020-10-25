@@ -7,32 +7,24 @@
 //
 
 import Combine
+import Domain
 
-final class CountriesRepository {}
-
-// MARK: - CountriesRepositoryType
-
-protocol CountriesRepositoryType {
-  func fetchCountries() -> AnyPublisher<[Country], Error>
-  func readCountries() throws
-}
-
-extension CountriesRepository: CountriesRepositoryType {
+final class CountriesRepository: CountriesRepositoryType {
   func fetchCountries() -> AnyPublisher<[Country], Error> {
     Deferred {
       Future<[Country], Error> { promise in
         API.getCountries { countries in
-            do {
-              try CountryStorage.removeAll()
+          do {
+            try CountryStorage.removeAll()
 
-              for country in countries {
-                try country.save()
-              }
-
-              try CountryStorage.fetchAll()
-            } catch {
-              promise(.failure(error))
+            for country in countries.map({ $0.toDomain() }) {
+              try country.save()
             }
+
+            try CountryStorage.fetchAll()
+          } catch {
+            promise(.failure(error))
+          }
 
           promise(.success(CountryStorage.countries))
         }
