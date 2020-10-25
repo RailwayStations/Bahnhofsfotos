@@ -179,8 +179,6 @@ extension MapViewController: MKMapViewDelegate {
     // get station (of annotation)
     if let annotation = view.annotation as? StationAnnotation {
       StationStorage.currentStation = annotation.station
-    } else if let annotation = view.annotation as? Station {
-      StationStorage.currentStation = annotation
     }
     
     // take action with station

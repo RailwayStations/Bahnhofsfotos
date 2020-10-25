@@ -7,6 +7,7 @@
 //
 
 import Combine
+import Domain
 import CPDAcknowledgements
 import Eureka
 import SwiftyUserDefaults

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Railway-Stations. All rights reserved.
 //
 
+import Domain
 import MapKit
 import SwiftyUserDefaults
 import UIKit
@@ -41,13 +42,19 @@ class Helper {
   }
 
   static func openNavigation(to station: Station) {
-    let placemark = MKPlacemark(coordinate: station.coordinate, addressDictionary: nil)
+    let placemark = MKPlacemark(
+      coordinate: CLLocationCoordinate2D(
+        latitude: station.lat,
+        longitude: station.lon
+      ),
+      addressDictionary: nil
+    )
     let mapItem = MKMapItem(placemark: placemark)
     mapItem.name = station.name
     mapItem.openInMaps(launchOptions: [
       MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving,
       MKLaunchOptionsShowsTrafficKey: true
-      ])
+    ])
   }
 
 }

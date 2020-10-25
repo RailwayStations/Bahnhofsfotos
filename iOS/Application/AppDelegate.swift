@@ -6,6 +6,7 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import Domain
 import SwiftyUserDefaults
 import UIKit
 import UserNotifications
@@ -18,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     ReadCountriesAndStationsUseCase(
       countriesRepository: CountriesRepository(),
-      stationsRepository: StationsRepository()
+      stationsRepository: StationsRepository(),
+      settingsRepository: SettingsRepository()
     ).readStationsOfCountry()
 
     return true

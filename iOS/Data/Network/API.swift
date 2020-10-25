@@ -7,8 +7,8 @@
 //
 
 import Alamofire
+import Domain
 import Foundation
-import SwiftyJSON
 import SwiftyUserDefaults
 
 class API {
@@ -22,37 +22,22 @@ class API {
   }
 
   // Get all countries
-  static func getCountries(completionHandler: @escaping ([Country]) -> Void) {
+  static func getCountries(completionHandler: @escaping ([CountryDTO]) -> Void) {
     AF.request(API.baseUrl + "/countries.json")
       .responseJSON { response in
-
-        var countries = [Country]()
-
-        guard let json = JSON(response.data as Any).array else {
-          completionHandler(countries)
-          return
-        }
-
-        do {
-          countries = try json.map {
-            guard let country = try Country(json: $0) else { throw Error.message("JSON of country is invalid.") }
-            return country
-          }
-        } catch {
-          debugPrint(error)
-        }
-
-        completionHandler(countries)
+        guard let data = response.data else { return completionHandler([]) }
+        let countries = try? JSONDecoder().decode([CountryDTO].self, from: data)
+        completionHandler(countries ?? [])
     }
   }
 
   // Get all stations (or with/out photo)
-  static func getStations(withPhoto hasPhoto: Bool?, completionHandler: @escaping ([Station]) -> Void) {
-
+  static func getStations(withPhoto hasPhoto: Bool?, completionHandler: @escaping ([StationDTO]) -> Void) {
     var parameters = Parameters()
     if Defaults.country.count > 0 {
       parameters["country"] = Defaults.country.lowercased()
     }
+
     if let hasPhoto = hasPhoto {
       parameters["hasPhoto"] = hasPhoto.description
     }
@@ -62,30 +47,19 @@ class API {
                       encoding: URLEncoding.default,
                       headers: nil)
       .responseJSON { response in
-
-        var stations = [Station]()
-
-        guard let json = JSON(response.data as Any).array else {
-          completionHandler(stations)
-          return
-        }
-
+        guard let data = response.data else { return completionHandler([]) }
         do {
-          stations = try json.map {
-            guard let station = try Station(json: $0) else { throw Error.message("JSON of station is invalid.") }
-            return station
-          }
+          let stations = try JSONDecoder().decode([StationDTO].self, from: data)
+          completionHandler(stations)
         } catch {
-          debugPrint(error)
+          debugPrint(error.localizedDescription)
+          completionHandler([])
         }
-
-        completionHandler(stations)
     }
   }
 
   // Get all photographers of given country
-  static func getPhotographers(completionHandler: @escaping ([String: Any]) -> Void) {
-
+  static func getPhotographers(completionHandler: @escaping ([String: Int]) -> Void) {
     var parameters = Parameters()
     if Defaults.country.count > 0 {
       parameters["country"] = Defaults.country.lowercased()
@@ -96,13 +70,14 @@ class API {
                       encoding: URLEncoding.default,
                       headers: nil)
       .responseJSON { response in
-
-        guard let json = JSON(response.data as Any).dictionaryObject else {
+        guard let data = response.data else { return completionHandler([:]) }
+        do {
+          let photographers = try JSONDecoder().decode([String: Int].self, from: data)
+          completionHandler(photographers)
+        } catch {
+          debugPrint(error.localizedDescription)
           completionHandler([:])
-          return
         }
-
-        completionHandler(json)
     }
   }
   

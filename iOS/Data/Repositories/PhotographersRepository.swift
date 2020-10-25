@@ -7,24 +7,14 @@
 //
 
 import Combine
-
-protocol PhotographersRepositoryType {
-  func fetchPhotographers() -> AnyPublisher<[String: Int], Error>
-}
+import Domain
 
 final class PhotographersRepository: PhotographersRepositoryType {
-  func fetchPhotographers() -> AnyPublisher<[String: Int], Error> {
+  func fetchPhotographers() -> AnyPublisher<[(key: String, value: Int)], Error> {
     Deferred {
-      Future<[String: Int], Error> { promise in
+      Future<[(key: String, value: Int)], Error> { promise in
         API.getPhotographers { photographers in
-
-          if let photographers = photographers as? [String: Int] {
-            let sortedPhotographers = photographers.sorted(by: { $0.value > $1.value })
-            let sortedPhotographersAsDictionary = [String: Int](uniqueKeysWithValues: sortedPhotographers)
-            promise(.success(sortedPhotographersAsDictionary))
-          } else {
-            promise(.success([:]))
-          }
+          promise(.success(photographers.sorted(by: { $0.value > $1.value })))
         }
       }
     }

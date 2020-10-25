@@ -6,6 +6,7 @@
 //  Copyright © 2018 Railway-Stations. All rights reserved.
 //
 
+import Domain
 import SQLite
 
 class PhotoStorage {
