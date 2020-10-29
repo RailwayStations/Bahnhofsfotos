@@ -6,7 +6,9 @@
 //  Copyright © 2016 MrHaitec. All rights reserved.
 //
 
+import Data
 import Domain
+import Shared
 import SwiftyUserDefaults
 import UIKit
 import UserNotifications

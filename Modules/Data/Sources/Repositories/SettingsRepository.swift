@@ -9,6 +9,8 @@
 import Domain
 import SwiftyUserDefaults
 
-final class SettingsRepository: SettingsRepositoryType {
-  var isDataComplete: Bool { Defaults.dataComplete }
+public final class SettingsRepository: SettingsRepositoryType {
+    public init() {}
+
+    public var isDataComplete: Bool { Defaults.dataComplete }
 }

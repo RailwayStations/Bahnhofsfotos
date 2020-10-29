@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import Data
 import FBAnnotationClusteringSwift
 import FontAwesomeKit_Swift
 import MapKit
