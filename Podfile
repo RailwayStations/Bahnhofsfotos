@@ -7,10 +7,10 @@ target 'Bahnhofsfotos' do
   inhibit_all_warnings!
 
   # Pods for Bahnhofsfotos
-  pod 'Alamofire', '~> 5.2'
+#  pod 'Alamofire', '~> 5.2'
   pod 'CPDAcknowledgements', '~> 1.0'
   pod 'Eureka', '~> 5.3'
-  pod 'FBAnnotationClusteringSwift', :git => 'https://github.com/666tos/FBAnnotationClusteringSwift'
+#  pod 'FBAnnotationClusteringSwift', :git => 'https://github.com/666tos/FBAnnotationClusteringSwift'
   pod 'FontAwesomeIconFactory', '~> 3.0'
   pod 'FontAwesomeKit.Swift', '~> 1.0'
   pod 'ImagePicker', :git => 'https://github.com/hyperoslo/ImagePicker'

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67F95631E12281F589409A6D /* Pods-Bahnhofsfotos-metadata.plist */; };
-		49200C211EA172840054F426 /* StationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49200C201EA172840054F426 /* StationAnnotation.swift */; };
 		49455A671E04CA76007A5501 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A661E04CA76007A5501 /* MapViewController.swift */; };
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
 		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
@@ -422,7 +421,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */,
-				49200C211EA172840054F426 /* StationAnnotation.swift in Sources */,
 				49B503E81E048EAE00B8AFDE /* AppDelegate.swift in Sources */,
 				499087751ECE4FB200AB45C2 /* HighScoreTableViewCell.swift in Sources */,
 				49F70DB21E85B41400154136 /* Helper.swift in Sources */,

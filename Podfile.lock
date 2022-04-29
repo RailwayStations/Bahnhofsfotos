@@ -1,9 +1,7 @@
 PODS:
-  - Alamofire (5.2.2)
   - Cache (6.0.0)
   - CPDAcknowledgements (1.0.0)
   - Eureka (5.3.1)
-  - FBAnnotationClusteringSwift (2.0)
   - FontAwesomeIconFactory (3.0)
   - FontAwesomeKit.Swift (1.0.2)
   - ImagePicker (3.2.0)
@@ -15,10 +13,8 @@ PODS:
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.2)
   - CPDAcknowledgements (~> 1.0)
   - Eureka (~> 5.3)
-  - FBAnnotationClusteringSwift (from `https://github.com/666tos/FBAnnotationClusteringSwift`)
   - FontAwesomeIconFactory (~> 3.0)
   - FontAwesomeKit.Swift (~> 1.0)
   - ImagePicker (from `https://github.com/hyperoslo/ImagePicker`)
@@ -28,7 +24,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - Cache
     - CPDAcknowledgements
     - Eureka
@@ -40,25 +35,18 @@ SPEC REPOS:
     - Toast-Swift
 
 EXTERNAL SOURCES:
-  FBAnnotationClusteringSwift:
-    :git: https://github.com/666tos/FBAnnotationClusteringSwift
   ImagePicker:
     :git: https://github.com/hyperoslo/ImagePicker
 
 CHECKOUT OPTIONS:
-  FBAnnotationClusteringSwift:
-    :commit: b146e122c8f6a12c947f7d321c6efffae1947fab
-    :git: https://github.com/666tos/FBAnnotationClusteringSwift
   ImagePicker:
     :commit: d8a8f840380b9a28230c8fcad277adb458706d0a
     :git: https://github.com/hyperoslo/ImagePicker
 
 SPEC CHECKSUMS:
-  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   CPDAcknowledgements: 6e15e71849ba4ad5e8a17a0bb9d20938ad23bac8
   Eureka: 859877ab1e85661b6b7e810015d430e937d9cc7d
-  FBAnnotationClusteringSwift: 9eb6e2acee2db56183c7ccff9239723598f286b0
   FontAwesomeIconFactory: dfc89a126ff158d3a642aeeb265eaa9b179ad496
   FontAwesomeKit.Swift: cf839537bbff89b5853a00653b2a2f31748c2c1c
   ImagePicker: 1d950bbb2422548ed58791b4ec7f42fe42920511
@@ -67,6 +55,6 @@ SPEC CHECKSUMS:
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: fa2f614d3f6a18b173500b10ab902e9add7c8a50
+PODFILE CHECKSUM: 7f76412fccafebd3b0defa413402f3c09d4499d8
 
 COCOAPODS: 1.11.3

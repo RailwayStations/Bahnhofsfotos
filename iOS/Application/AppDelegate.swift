@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     ReadCountriesAndStationsUseCase(
       countriesRepository: CountriesRepository(),
       stationsRepository: StationsRepository(),
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let rootViewController = window?.rootViewController {
           // find and show settings view controller
           if let tabBarController = rootViewController as? UITabBarController {
-            let index = tabBarController.childViewControllers.index { viewController -> Bool in
+            let index = tabBarController.children.firstIndex { viewController -> Bool in
               return viewController.restorationIdentifier == Constants.StoryboardIdentifiers.settingsViewController
             }
             if let index = index {

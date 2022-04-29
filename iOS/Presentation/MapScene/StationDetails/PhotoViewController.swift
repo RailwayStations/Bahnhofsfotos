@@ -134,7 +134,7 @@ class PhotoViewController: UIViewController {
   private func shareByUpload() {
     guard let image = imageView.image else { return }
     guard let station = StationStorage.currentStation, let country = CountryStorage.currentCountry else { return }
-    if let imageData = UIImageJPEGRepresentation(image, 0.5) {
+    if let imageData = image.jpegData(compressionQuality: 0.5) {
       Helper.setIsUserInteractionEnabled(in: self, to: false)
       activityIndicatorView.startAnimating()
       progressView.alpha = 1
@@ -187,7 +187,7 @@ class PhotoViewController: UIViewController {
         mailController.setToRecipients([email])
         mailController.setSubject("Neues Bahnhofsfoto: \(station.name)")
         mailController.setMessageBody(text, isHTML: false)
-        if let data = UIImageJPEGRepresentation(image, 1) {
+        if let data = image.jpegData(compressionQuality: 1) {
           mailController.addAttachmentData(data, mimeType: "image/jpeg", fileName: "\(username)-\(country.code.lowercased())-\(station.id).jpg")
         }
         present(mailController, animated: true, completion: nil)
@@ -226,7 +226,7 @@ class PhotoViewController: UIViewController {
   private func getSizeStringOfImage() -> String? {
     guard
       let image = imageView.image,
-      let data = UIImageJPEGRepresentation(image, 1)
+      let data = image.jpegData(compressionQuality: 1)
     else { return nil }
 
     let sizeInMegaBytes = Double(data.count) / 1024 / 1024
@@ -254,7 +254,7 @@ extension PhotoViewController: ImagePickerDelegate {
     if !images.isEmpty {
       imageView.image = images[0]
       shareBarButton.isEnabled = true
-      if let station = StationStorage.currentStation, let imageData = UIImageJPEGRepresentation(images[0], 1) {
+      if let station = StationStorage.currentStation, let imageData = images[0].jpegData(compressionQuality: 1) {
         let photo = Photo(data: imageData, withId: station.id)
         try? PhotoStorage.save(photo)
         self.savedPhoto = photo
