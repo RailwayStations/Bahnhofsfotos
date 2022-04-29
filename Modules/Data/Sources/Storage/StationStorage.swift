@@ -110,7 +110,7 @@ public class StationStorage {
                                 expressionDS100 <- station.DS100
         ))
 
-        if let stationIdToUpdate = _stations.index(where: { $0.id == station.id }) {
+        if let stationIdToUpdate = _stations.firstIndex(where: { $0.id == station.id }) {
             _stations.remove(at: stationIdToUpdate)
             _stations.insert(station, at: stationIdToUpdate)
         } else {
@@ -143,7 +143,7 @@ public class StationStorage {
                                         expressionDS100 <- station.DS100
                 ))
 
-                if let stationIdToUpdate = _stations.index(where: { $0.id == station.id }) {
+                if let stationIdToUpdate = _stations.firstIndex(where: { $0.id == station.id }) {
                     _stations.remove(at: stationIdToUpdate)
                     _stations.insert(station, at: stationIdToUpdate)
                 } else {
@@ -163,7 +163,7 @@ public class StationStorage {
         let s = table.filter(expressionId == station.id)
         try db.run(s.delete())
 
-        if let stationIdToDelete = _stations.index(where: { $0.id == station.id }) {
+        if let stationIdToDelete = _stations.firstIndex(where: { $0.id == station.id }) {
             _stations.remove(at: stationIdToDelete)
         }
 

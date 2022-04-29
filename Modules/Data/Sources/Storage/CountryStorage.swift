@@ -120,11 +120,11 @@ public class CountryStorage {
 
 // MARK: - Country extension
 public extension Country {
-    public func save() throws {
+    func save() throws {
         try CountryStorage.create(country: self)
     }
 
-    public static func from(row: Row) -> Country {
+    static func from(row: Row) -> Country {
         .init(
             name: try! row.get(CountryStorage.expressionCountryName),
             code: try! row.get(CountryStorage.expressionCountryCode),
