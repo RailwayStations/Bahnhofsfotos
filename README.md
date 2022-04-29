@@ -11,10 +11,7 @@ You can find the project website on [railway-stations.org](https://railway-stati
      
 ## Requirements
 
-### CocoaPods
-```
-$ sudo gem install cocoapods cocoapods-acknowledgements
-```
-
 #### Installation
-After CocoaPods and the plugin has been installed, you have to run `$ pod install` in the project root directory, to download and install the dependencies.
+```
+$ bundle && bundle exec pod install
+```
