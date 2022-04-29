@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		32A5F1DFB93616350F05F3D6 /* Pods-Bahnhofsfotos-metadata.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67F95631E12281F589409A6D /* Pods-Bahnhofsfotos-metadata.plist */; };
+		4910D575281C83CB002584CE /* RailwayStationsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910D574281C83CB002584CE /* RailwayStationsApp.swift */; };
+		4910D577281C83CB002584CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4910D576281C83CB002584CE /* ContentView.swift */; };
+		4910D579281C83CB002584CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4910D578281C83CB002584CE /* Assets.xcassets */; };
+		4910D57C281C83CB002584CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4910D57B281C83CB002584CE /* Preview Assets.xcassets */; };
+		4910D582281C849D002584CE /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = 4910D581281C849D002584CE /* Data */; };
+		4910D584281C849D002584CE /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 4910D583281C849D002584CE /* Domain */; };
+		4910D586281C849D002584CE /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 4910D585281C849D002584CE /* Shared */; };
 		49455A671E04CA76007A5501 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A661E04CA76007A5501 /* MapViewController.swift */; };
 		49455A6B1E04D73A007A5501 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49455A6A1E04D73A007A5501 /* MapKit.framework */; };
 		49455A6F1E04E981007A5501 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49455A6E1E04E981007A5501 /* PhotoViewController.swift */; };
@@ -43,6 +50,13 @@
 /* Begin PBXFileReference section */
 		1A5D14F39825A2F532F59DF8 /* Pods_Bahnhofsfotos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bahnhofsfotos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D78A7B9AED7B7EE6DBA4F26 /* Pods-Bahnhofsfotos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bahnhofsfotos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bahnhofsfotos/Pods-Bahnhofsfotos.release.xcconfig"; sourceTree = "<group>"; };
+		4910D572281C83CB002584CE /* Railway-Stations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Railway-Stations.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4910D574281C83CB002584CE /* RailwayStationsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RailwayStationsApp.swift; sourceTree = "<group>"; };
+		4910D576281C83CB002584CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4910D578281C83CB002584CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4910D57B281C83CB002584CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4910D580281C8408002584CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4910D587281C877C002584CE /* Railway-Stations.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Railway-Stations.entitlements"; sourceTree = "<group>"; };
 		49200C201EA172840054F426 /* StationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationAnnotation.swift; sourceTree = "<group>"; };
 		49455A661E04CA76007A5501 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MapViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49455A6A1E04D73A007A5501 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -74,6 +88,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4910D56F281C83CB002584CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4910D584281C849D002584CE /* Domain in Frameworks */,
+				4910D582281C849D002584CE /* Data in Frameworks */,
+				4910D586281C849D002584CE /* Shared in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49B503E11E048EAD00B8AFDE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -97,6 +121,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4910D573281C83CB002584CE /* Railway-Stations */ = {
+			isa = PBXGroup;
+			children = (
+				4910D587281C877C002584CE /* Railway-Stations.entitlements */,
+				4910D580281C8408002584CE /* Info.plist */,
+				4910D574281C83CB002584CE /* RailwayStationsApp.swift */,
+				4910D576281C83CB002584CE /* ContentView.swift */,
+				4910D578281C83CB002584CE /* Assets.xcassets */,
+				4910D57A281C83CB002584CE /* Preview Content */,
+			);
+			path = "Railway-Stations";
+			sourceTree = "<group>";
+		};
+		4910D57A281C83CB002584CE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4910D57B281C83CB002584CE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		49775BA6253758D000554CEF /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,19 +238,21 @@
 				497A8ECB22FCABFE00E13EE9 /* README.md */,
 				49B503E61E048EAE00B8AFDE /* iOS */,
 				49775BFD253760D800554CEF /* iOS Screenshots */,
+				4910D573281C83CB002584CE /* Railway-Stations */,
 				49B503E51E048EAE00B8AFDE /* Products */,
 				AEEA6128BE255DE686283DB3 /* Pods */,
 				95E2D7A511D466C1AF063B5D /* Frameworks */,
 			);
-			indentWidth = 2;
+			indentWidth = 4;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 4;
 		};
 		49B503E51E048EAE00B8AFDE /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				49B503E41E048EAE00B8AFDE /* Bahnhofsfotos.app */,
 				DFCC339022FEFCF3003B5F23 /* BahnhofsfotosUITests.xctest */,
+				4910D572281C83CB002584CE /* Railway-Stations.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,6 +289,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4910D571281C83CB002584CE /* Railway-Stations */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4910D57F281C83CB002584CE /* Build configuration list for PBXNativeTarget "Railway-Stations" */;
+			buildPhases = (
+				4910D56E281C83CB002584CE /* Sources */,
+				4910D56F281C83CB002584CE /* Frameworks */,
+				4910D570281C83CB002584CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Railway-Stations";
+			packageProductDependencies = (
+				4910D581281C849D002584CE /* Data */,
+				4910D583281C849D002584CE /* Domain */,
+				4910D585281C849D002584CE /* Shared */,
+			);
+			productName = "Railway-Stations";
+			productReference = 4910D572281C83CB002584CE /* Railway-Stations.app */;
+			productType = "com.apple.product-type.application";
+		};
 		49B503E31E048EAD00B8AFDE /* Bahnhofsfotos */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49B503F61E048EAE00B8AFDE /* Build configuration list for PBXNativeTarget "Bahnhofsfotos" */;
@@ -291,10 +360,13 @@
 		49B503DC1E048EAC00B8AFDE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Railway-Stations";
 				TargetAttributes = {
+					4910D571281C83CB002584CE = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 					49B503E31E048EAD00B8AFDE = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 93C29USLP6;
@@ -336,11 +408,21 @@
 			targets = (
 				49B503E31E048EAD00B8AFDE /* Bahnhofsfotos */,
 				DFCC338F22FEFCF3003B5F23 /* BahnhofsfotosUITests */,
+				4910D571281C83CB002584CE /* Railway-Stations */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4910D570281C83CB002584CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4910D57C281C83CB002584CE /* Preview Assets.xcassets in Resources */,
+				4910D579281C83CB002584CE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49B503E21E048EAD00B8AFDE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -416,6 +498,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4910D56E281C83CB002584CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4910D577281C83CB002584CE /* ContentView.swift in Sources */,
+				4910D575281C83CB002584CE /* RailwayStationsApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49B503E01E048EAD00B8AFDE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,6 +561,86 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4910D57D281C83CB002584CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Railway-Stations/Railway-Stations.entitlements";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Railway-Stations/Preview Content\"";
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Railway-Stations/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Stations;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.railway-stations.ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development de.okfn.railway-stations.ios";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		4910D57E281C83CB002584CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "Railway-Stations/Railway-Stations.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Railway-Stations/Preview Content\"";
+				DEVELOPMENT_TEAM = 93C29USLP6;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Railway-Stations/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Stations;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.okfn.railway-stations.ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore de.okfn.railway-stations.ios";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
 		49B503F41E048EAE00B8AFDE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -683,6 +854,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4910D57F281C83CB002584CE /* Build configuration list for PBXNativeTarget "Railway-Stations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4910D57D281C83CB002584CE /* Debug */,
+				4910D57E281C83CB002584CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		49B503DF1E048EAC00B8AFDE /* Build configuration list for PBXProject "Bahnhofsfotos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -713,6 +893,18 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4910D581281C849D002584CE /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		4910D583281C849D002584CE /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		4910D585281C849D002584CE /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
 		49A9DD45254598F0009FCA2C /* Domain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Domain;
