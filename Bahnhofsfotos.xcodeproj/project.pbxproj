@@ -300,6 +300,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				49D25C6528218DE5007142A0 /* PBXTargetDependency */,
+				498D577128218DD7002437D6 /* PBXTargetDependency */,
+				498D577328218DD7002437D6 /* PBXTargetDependency */,
 			);
 			name = "Railway-Stations";
 			packageProductDependencies = (
@@ -325,6 +328,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				49D25C6728218F12007142A0 /* PBXTargetDependency */,
+				49D25C6928218F12007142A0 /* PBXTargetDependency */,
+				49D25C6B28218F12007142A0 /* PBXTargetDependency */,
 			);
 			name = Bahnhofsfotos;
 			packageProductDependencies = (
@@ -534,6 +540,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		498D577128218DD7002437D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 498D577028218DD7002437D6 /* Shared */;
+		};
+		498D577328218DD7002437D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 498D577228218DD7002437D6 /* Data */;
+		};
+		49D25C6528218DE5007142A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 49D25C6428218DE5007142A0 /* Domain */;
+		};
+		49D25C6728218F12007142A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 49D25C6628218F12007142A0 /* Shared */;
+		};
+		49D25C6928218F12007142A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 49D25C6828218F12007142A0 /* Data */;
+		};
+		49D25C6B28218F12007142A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 49D25C6A28218F12007142A0 /* Domain */;
+		};
 		DFCC339622FEFCF3003B5F23 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 49B503E31E048EAD00B8AFDE /* Bahnhofsfotos */;
@@ -905,7 +935,31 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Shared;
 		};
+		498D577028218DD7002437D6 /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
+		498D577228218DD7002437D6 /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
 		49A9DD45254598F0009FCA2C /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		49D25C6428218DE5007142A0 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
+		49D25C6628218F12007142A0 /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
+		49D25C6828218F12007142A0 /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		49D25C6A28218F12007142A0 /* Domain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Domain;
 		};
