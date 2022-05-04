@@ -29,6 +29,8 @@ let package = Package(
             name: "Data",
             dependencies: [
                 "Alamofire",
+                "Domain",
+                "Shared",
                 .product(name: "SQLite", package: "SQLite.swift"),
                 "SwiftyUserDefaults"
             ],
