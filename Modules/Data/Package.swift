@@ -33,9 +33,5 @@ let package = Package(
                 "SwiftyUserDefaults"
             ],
             path: "Sources"),
-        .testTarget(
-            name: "DataTests",
-            dependencies: ["Data"],
-            path: "Tests"),
     ]
 )
