@@ -1,3 +1,3 @@
 # Presentation
 
-A description of this package.
+This module contains the presentation of the app.
