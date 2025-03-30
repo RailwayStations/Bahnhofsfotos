@@ -1,4 +1,7 @@
 # Bahnhofsfotos for iOS
+
+Repository moved to: https://codeberg.org/RailwayStations/Bahnhofsfotos
+
 [![Build Status](https://travis-ci.org/RailwayStations/Bahnhofsfotos.svg?branch=develop)](https://travis-ci.org/RailwayStations/Bahnhofsfotos) [![Build Status](https://travis-ci.org/RailwayStations/Bahnhofsfotos.svg?branch=master)](https://travis-ci.org/RailwayStations/Bahnhofsfotos)
 
 iOS-App for the project "Deutschlands-Bahnhoefe"
